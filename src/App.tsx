@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import Dummy from './components/DummyComponent/Dummy';
+import { Welcome } from './screens/WelcomeScreen/Welcome.screen';
 
 function App() {
-  return <Dummy />;
+  return <Welcome />;
 }
 
 export default App;

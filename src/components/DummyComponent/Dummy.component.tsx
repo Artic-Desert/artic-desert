@@ -1,8 +1,6 @@
 import React from 'react';
 import './Dummy.css';
 
-const Dummy = () => {
+export const Dummy: React.FC = () => {
   return <div className="dummyDiv">Im a Dummy Component</div>;
 };
-
-export default Dummy;
