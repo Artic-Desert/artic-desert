@@ -19,39 +19,24 @@ export const Validation: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          'access-control-allow-origin': '*',
         },
         body,
       },
-    ).catch(err => console.log(err));
-    // const data = JSON.stringify({
-    //   code: token,
-    // });
-
-    // const config = {
-    //   method: 'post',
-    //   url: 'https://p96g6g201b.execute-api.us-east-1.amazonaws.com/dev/github-auth',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   data: data,
-    // };
-
-    // axios(config)
-    //   .then(function (response) {
-    //     console.log(JSON.stringify(response.data));
-    //     setLoading(false);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     setLoading(false);
-    //   });
+    )
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
   };
 
+  //hrllo!
+
   useEffect(() => {
+    console.log('hi');
     setTempToken(searchParams.get('code'));
+    console.log('hello');
     console.log(tempToken);
-    setTimeout(() => tempToken && fetchRealToken(tempToken), 4000);
+    tempToken && fetchRealToken(tempToken);
   }, []);
 
   useEffect(() => {
