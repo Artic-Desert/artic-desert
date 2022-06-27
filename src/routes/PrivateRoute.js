@@ -7,6 +7,6 @@ export const PrivateRoute = () => {
   return AuthService.getToken() ? (
     <Outlet />
   ) : (
-    <Navigate to={{ pathname: '/login' }} />
+    <Navigate to={{ pathname: '/' }} />
   );
 };
