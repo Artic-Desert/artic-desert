@@ -12,9 +12,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/validation" element={<Validation />} />
-        <Route path="/dashboard" element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
+        {/* <Route path="/dashboard" element={<PrivateRoute />}> */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        {/* </Route> */}
       </Routes>
     </Router>
   );
