@@ -3,7 +3,7 @@ import './App.css';
 import { Welcome } from './screens/WelcomeScreen/Welcome.screen';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Validation } from './screens/ValidationScreen/Validation.screen';
-import { PrivateRoute } from './routes/PrivateRoute';
+import { PrivateRoute } from './routes/PrivateRoute'; //eslint-disable-line
 import { Dashboard } from './screens/DashboardScreen/Dashoard.screen';
 
 function App() {

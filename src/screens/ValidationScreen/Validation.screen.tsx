@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'; //eslint-disable-line
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // require('dotenv').config('../../../.env'); //eslint-disable-line
