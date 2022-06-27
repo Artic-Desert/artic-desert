@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 export const Validation: React.FC = () => {
-  const { code } = useParams();
+  const [tempToken, setTempToken] = useSearchParams(); //eslint-disable-line
+
+  tempToken.get('code');
 
   useEffect(() => {
-    console.log(code);
+    console.log(tempToken);
   }, []);
 
   return (
