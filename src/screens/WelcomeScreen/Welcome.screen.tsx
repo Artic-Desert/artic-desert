@@ -13,9 +13,11 @@ export const Welcome: React.FC = () => {
 
   return (
     <div className="wrapper">
-      <button className="loginButton" onClick={handleLogin}>
+      <a
+        className="loginButton"
+        href={`https://github.com/login/oauth/authorize?client_id=${client_id}`}>
         Login with GitHub
-      </button>
+      </a>
     </div>
   );
 };
