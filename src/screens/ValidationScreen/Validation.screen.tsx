@@ -5,7 +5,9 @@ import { useSearchParams } from 'react-router-dom';
 
 export const Validation: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams(); //eslint-disable-line
-  const [tempToken, setTempToken] = useState<string | null>('');
+  const [tempToken, setTempToken] = useState<string | null>(
+    searchParams.get('code'),
+  );
   const [trueToken, setTrueToken] = useState<string | undefined>(); //eslint-disable-line
   const [loading, setLoading] = useState(false);
 
@@ -33,8 +35,6 @@ export const Validation: React.FC = () => {
 
   useEffect(() => {
     console.log('hi');
-    setTempToken(searchParams.get('code'));
-    console.log('hello');
     console.log(tempToken);
     tempToken && fetchRealToken(tempToken);
   }, []);
