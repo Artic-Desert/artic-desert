@@ -6,38 +6,56 @@ import { useSearchParams } from 'react-router-dom';
 export const Validation: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams(); //eslint-disable-line
   const [tempToken, setTempToken] = useState<string | null>('');
-  const [trueToken, setTrueToken] = useState<string | undefined>();
+  const [trueToken, setTrueToken] = useState<string | undefined>(); //eslint-disable-line
   const [loading, setLoading] = useState(false);
 
   const fetchRealToken = async (token: string) => {
-    console.log('hello inside fetch');
+    console.log(token, 'Token inside fetch');
     setLoading(true);
-    axios
-      .post('https://github.com/login/oauth/access_token', {
-        body: {
-          client_id: '71c6863d3d338f86fe07',
-          client_secret: '',
-          code: token,
-        },
-        header: {
+    const body = JSON.stringify({ code: token });
+    fetch(
+      'https://p96g6g201b.execute-api.us-east-1.amazonaws.com/dev/github-auth',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
-          Accept: 'application/json',
         },
-      })
-      .then(res => {
-        console.log(res);
-        setLoading(false);
-        setTrueToken(res.data.access_token);
-      });
+        body,
+      },
+    ).catch(err => console.log(err));
+    // const data = JSON.stringify({
+    //   code: token,
+    // });
+
+    // const config = {
+    //   method: 'post',
+    //   url: 'https://p96g6g201b.execute-api.us-east-1.amazonaws.com/dev/github-auth',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   data: data,
+    // };
+
+    // axios(config)
+    //   .then(function (response) {
+    //     console.log(JSON.stringify(response.data));
+    //     setLoading(false);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     setLoading(false);
+    //   });
   };
 
   useEffect(() => {
     setTempToken(searchParams.get('code'));
-    setTimeout(() => tempToken && fetchRealToken(tempToken), 2000);
+    console.log(tempToken);
+    setTimeout(() => tempToken && fetchRealToken(tempToken), 4000);
   }, []);
 
   useEffect(() => {
-    console.log(trueToken);
+    console.log(trueToken, 'hello');
   }, [trueToken]);
 
   return (
