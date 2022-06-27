@@ -4,6 +4,6 @@ import { Dummy } from './Dummy.component';
 
 test('renders learn react link', () => {
   render(<Dummy />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const dummy = screen.getByText('Im a Dummy Component');
+  expect(dummy).toBeInTheDocument();
 });
