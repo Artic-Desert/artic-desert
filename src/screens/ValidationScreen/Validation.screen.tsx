@@ -21,8 +21,19 @@ export const Validation: React.FC = () => {
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'content-type': 'application/json',
           'access-control-allow-origin': '*',
+          ':authority': 'p96g6g201b.execute-api.us-east-1.amazonaws.com',
+          ':method': 'POST',
+          ':path': '/dev/github-auth',
+          ':scheme': 'https',
+          accept: '*/*',
+          'accpet-econding': 'gzip, deflate, br',
+          'accept-language':
+            'en-ES,en;q=0.9,es-ES;q=0.8,es;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+          'content-length': '31',
+          origin: 'https://dev.articdesert.click',
+          referer: 'https://dev.articdesert.click/',
         },
         body,
       },
