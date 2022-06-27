@@ -29,8 +29,6 @@ export const Validation: React.FC = () => {
           ':scheme': 'https',
           accept: '*/*',
           'accpet-econding': 'gzip, deflate, br',
-          'accept-language':
-            'en-ES,en;q=0.9,es-ES;q=0.8,es;q=0.7,en-GB;q=0.6,en-US;q=0.5',
           'content-length': '31',
           origin: 'https://dev.articdesert.click',
           'sec-fetch-dest': 'empty',
