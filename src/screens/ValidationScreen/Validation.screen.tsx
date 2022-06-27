@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 
 export const Validation: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams(); //eslint-disable-line
+  //eslint-disable-next-line
   const [tempToken, setTempToken] = useState<string | null>(
     searchParams.get('code'),
   );
