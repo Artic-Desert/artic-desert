@@ -2,6 +2,8 @@
 
 ### By Alex Price-Richards, Andrés Rodriguez, Seabstian Fernandez and Xavier Fabregat
 
+This porject is the love child between git kraken and slack, built by developers for developers.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
