@@ -2,7 +2,7 @@
 
 ### By Alex Price-Richards, Andrés Rodriguez, Seabstian Fernandez and Xavier Fabregat
 
-This porject is the love child between git kraken and slack, built by developers for developers.
+This project is the love child between git kraken and slack, built by developers for developers.
 
 # Getting Started with Create React App
 
