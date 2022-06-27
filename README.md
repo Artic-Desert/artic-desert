@@ -1,3 +1,7 @@
+# ARTIC DESERT:
+
+### By Alex Price-Richards, Andrés Rodriguez, Seabstian Fernandez and Xavier Fabregat
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
