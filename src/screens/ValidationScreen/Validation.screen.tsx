@@ -4,10 +4,8 @@ import { useSearchParams } from 'react-router-dom';
 export const Validation: React.FC = () => {
   const [tempToken, setTempToken] = useSearchParams(); //eslint-disable-line
 
-  tempToken.get('code');
-
   useEffect(() => {
-    console.log(tempToken);
+    console.log(tempToken.get('code'));
   }, []);
 
   return (
