@@ -1,32 +1,18 @@
 .kanban {
   width: 100vw;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
+  background: #0e1117;
+  /* background: linear-gradient(
     180deg,
     #0e1117 0%,
     rgba(9, 9, 121, 1) 65%,
     rgb(36, 95, 214) 100%
-  );
+  ); */
   overflow: hidden;
-}
-
-.kanban-header {
-  display: flex;
-  justify-content: space-between;
-  color: bisque;
-  height: 10%;
-  padding: 20px;
-}
-
-.left {
-  width: 20%;
-  display: flex;
-  justify-content: space-between;
 }
 
 .kanban-board {
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
 
 /* RESIZER CSS */

@@ -11,11 +11,11 @@ export const KanbanBoard: React.FC = () => {
     },
     doing: {
       id: 'doing',
-      list: [],
+      list: ['item 4'],
     },
     done: {
       id: 'done',
-      list: [],
+      list: ['item 5'],
     },
   };
   const [columns, setColumns] = useState(initialColumns);
