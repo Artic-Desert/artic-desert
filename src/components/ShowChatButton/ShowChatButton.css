@@ -1,0 +1,13 @@
+.chat-button {
+  position: absolute;
+  right: 7px;
+  top: -49px;
+  z-index: 100;
+  background-color: transparent;
+  border: none;
+  transition: all linear 0.1s;
+}
+
+.chat-button:hover {
+  transform: scale(1.1);
+}

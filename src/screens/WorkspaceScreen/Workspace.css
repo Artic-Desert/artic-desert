@@ -10,6 +10,7 @@
     rgb(36, 95, 214) 100%
   ); */
   overflow: hidden;
+  position: relative;
 }
 
 .kanban-board {
