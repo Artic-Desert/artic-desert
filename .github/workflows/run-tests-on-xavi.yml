@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install modules
-        run: npm ci --legacy-peer-deps
+        run: npm i --legacy-peer-deps
       - name: Run tests
         run: npm tests
       - name: Build application
