@@ -30,11 +30,24 @@
   position: relative;
 }
 
+.expand-icon-div {
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+.shrink-icon {
+  position: absolute;
+  transform: translateY(-20px);
+}
+
+.expand-icon-div:hover {
+  transform: scale(1.2) translateY(2px);
+}
 /* RESIZER CSS */
 
 .Resizer {
   background: transparent;
-  opacity: 1;
+  opacity: 0.75;
   z-index: 1;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
