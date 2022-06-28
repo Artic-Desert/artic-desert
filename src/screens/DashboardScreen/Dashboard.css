@@ -1,0 +1,29 @@
+.avatar {
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.name {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.githubName {
+  font-size: 15;
+  font-weight: lighter;
+}
+
+.githubLink {
+  text-decoration: none;
+  color: black;
+  font-size: xx-large;
+}
+
+.githubInfo {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+  width: 20%;
+  margin-top: 10px;
+}
