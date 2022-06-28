@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
 import { GoMarkGithub } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
+import { RepoItem } from '../../components/RepoItemComponent/RepoItem.component';
 import { useUser } from '../../hooks/use-user';
 import { AuthService } from '../../services/AuthService';
 import './Dashboard.css';
@@ -20,11 +21,11 @@ export const Dashboard: React.FC = () => {
     user && (
       <div className="dashboard-wrapper">
         <div className="header">
-          <div className="left">
+          <div className="dashboard-left">
             <h1>Dashboard</h1>
           </div>
-          <div className="right">
-            <div className="user-info">
+          <div className="dashboard-right">
+            <div className="dashboard-user-info">
               <img src={user.avatar_url} alt="user profile pics" />
               <div className="name">{user.name}</div>
               <div className="githubName">{user.login}</div>
@@ -41,7 +42,13 @@ export const Dashboard: React.FC = () => {
         </div>
         <div className="hero">
           <div className="productivity"></div>
-          <div className="dashboard-column"></div>
+          <div className="dashboard-column">
+            <RepoItem />
+            <RepoItem />
+            <RepoItem />
+            <RepoItem />
+            <RepoItem />
+          </div>
         </div>
       </div>
     )
