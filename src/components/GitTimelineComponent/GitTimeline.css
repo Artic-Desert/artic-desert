@@ -1,0 +1,10 @@
+.svg-cont {
+  width: 90%;
+  overflow: hidden;
+  position: relative;
+  /* overflow-x: scroll; */
+}
+
+.the-svg {
+  background-color: rgb(29, 28, 28);
+}
