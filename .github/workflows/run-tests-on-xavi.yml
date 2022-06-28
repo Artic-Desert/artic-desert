@@ -1,0 +1,17 @@
+﻿name: Run checks
+
+on:
+  push:
+    branches:
+      - xavi
+
+jobs:
+  Checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install modules
+        run: npm ci --legacy-peer-deps
+      - name: Run tests
+        run: npm tests
+      - name: Build application
+        run: npm run build
