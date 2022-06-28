@@ -18,23 +18,30 @@ export const Dashboard: React.FC = () => {
 
   return (
     user && (
-      <div className="wrapper">
-        <div className="avatar">
-          <img src={user.avatar_url}></img>
+      <div className="dashboard-wrapper">
+        <div className="header">
+          <div className="left">
+            <h1>Dashboard</h1>
+          </div>
+          <div className="right">
+            <div className="user-info">
+              <img src={user.avatar_url} alt="user profile pics" />
+              <div className="name">{user.name}</div>
+              <div className="githubName">{user.login}</div>
+              <a
+                href={user.html_url}
+                className="githubLink"
+                target="_blank"
+                rel="noreferrer">
+                <GoMarkGithub />
+              </a>
+              <button onClick={handleLogout}>Log Out</button>
+            </div>
+          </div>
         </div>
-        <div className="name">{user.name}</div>
-        <div className="githubInfo">
-          <div className="githubName">{user.login}</div>
-          <a
-            href={user.html_url}
-            className="githubLink"
-            target="_blank"
-            rel="noreferrer">
-            <GoMarkGithub />
-          </a>
-        </div>
-        <div>
-          <button onClick={handleLogout}>Log Out</button>
+        <div className="hero">
+          <div className="productivity"></div>
+          <div className="dashboard-column"></div>
         </div>
       </div>
     )

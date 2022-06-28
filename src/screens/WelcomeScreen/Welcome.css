@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Trispace&display=swap');
 
-.wrapper {
+.welcome-wrapper {
   background-image: url('../../assets/ice.svg');
   background-size: contain;
   display: flex;
@@ -15,7 +15,7 @@
 .company-name {
   font-size: 3.5vw;
   font-family: 'Trispace', sans-serif;
-  color: #ffffff;
+  color: #f3f0f0;
   width: 45%;
   position: absolute;
   left: 10%;
