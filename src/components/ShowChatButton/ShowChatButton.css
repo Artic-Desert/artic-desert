@@ -7,7 +7,6 @@
   border: none;
   transition: all linear 0.1s;
 }
-
 .chat-button:hover {
   transform: scale(1.1);
 }
