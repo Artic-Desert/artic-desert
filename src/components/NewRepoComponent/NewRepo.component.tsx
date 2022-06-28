@@ -4,16 +4,17 @@ import { useUser } from '../../hooks/use-user';
 import './NewRepo.css';
 
 export const NewRepo: React.FC<{
-  setRepos: React.Dispatch<React.SetStateAction<any>>;
-}> = ({ setRepos }) => {
+  setRepos: React.Dispatch<React.SetStateAction<any[]>>;
+  repos: any[];
+}> = ({ setRepos, repos }) => {
   const [ownerName, setOwnerName] = useState('');
   const [repoName, setRepoName] = useState('');
-  const [isVisible, setIsVisible] = useState(false);
+  const [message, setMessage] = useState('');
 
   const BASE_URL = 'https://api.github.com';
 
   const repoFetchRequest = async (owner: string, repo: string) => {
-    setIsVisible(false);
+    setMessage('');
     // const token = AuthService.getToken();
     console.log(`${BASE_URL}/repos/${owner}/${repo}`);
     const repsonse = await fetch(`${BASE_URL}/repos/${owner}/${repo}`, {
@@ -22,10 +23,21 @@ export const NewRepo: React.FC<{
       // },
     });
     const data = await repsonse.json();
-    if (data.id) {
-      setRepos((prevState: any) => [...prevState, data]);
+    if (
+      repos.find(
+        (el: any) =>
+          el.full_name.toLowerCase() === `${owner}/${repo}`.toLowerCase(),
+      )
+    ) {
+      setMessage('Repo already added');
+      return;
     } else {
-      setIsVisible(true);
+      if (data.id) {
+        setRepos((prevState: any[]) => [...prevState, data]);
+      } else {
+        setMessage(`Haven't found repo ${repo} by ${owner}. Please try again.`);
+        return;
+      }
     }
     return data;
   };
@@ -34,6 +46,13 @@ export const NewRepo: React.FC<{
 
   const updateUserRepos = async (owner: string, repo: string) => {
     if (!owner || !repo) return;
+
+    const repoFromGH = await repoFetchRequest(owner, repo);
+
+    console.log(repoFromGH);
+
+    if (!repoFromGH) return;
+
     const body = JSON.stringify({
       repo: `${owner}/${repo}`,
       action: 'add',
@@ -45,14 +64,13 @@ export const NewRepo: React.FC<{
         body,
       },
     );
-
     const data = await response.json();
     return data;
   };
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    repoFetchRequest(ownerName, repoName);
+    // repoFetchRequest(ownerName, repoName);
     updateUserRepos(ownerName, repoName);
   };
 
@@ -73,11 +91,7 @@ export const NewRepo: React.FC<{
         />
         <input type="submit" value="Submit" />
       </form>
-      {isVisible && (
-        <h4>
-          Haven&apos;t found repo {repoName} by {ownerName}. Please try again.
-        </h4>
-      )}
+      {message && <h4>{message}</h4>}
     </div>
   );
 };
