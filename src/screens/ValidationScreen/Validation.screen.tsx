@@ -1,6 +1,9 @@
 import axios from 'axios'; //eslint-disable-line
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { setUser } from '../../redux/user/actions';
+import { AuthService } from '../../services/AuthService';
 // require('dotenv').config('../../../.env'); //eslint-disable-line
 
 export const Validation: React.FC = () => {
@@ -11,6 +14,10 @@ export const Validation: React.FC = () => {
   );
   const [trueToken, setTrueToken] = useState<string | undefined>(); //eslint-disable-line
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const fetchRealToken = async (token: string) => {
     console.log(token, 'Token inside fetch');
@@ -23,19 +30,35 @@ export const Validation: React.FC = () => {
         headers: {
           'content-type': 'application/json',
           'access-control-allow-origin': '*',
-          // ':authority': 'p96g6g201b.execute-api.us-east-1.amazonaws.com',
-          // ':method': 'POST',
-          // ':path': '/dev/github-auth',
-          // ':scheme': 'https',
-          accept: '*/*',
-          'accpet-econding': 'gzip, deflate, br',
-          'content-length': '31',
-          origin: 'https://dev.articdesert.click',
-          'sec-fetch-dest': 'empty',
-          'sec-fetch-mode': 'cors',
-          'sec-fetch-site': 'cross-site',
         },
         body,
+      },
+    )
+      .then(res => res.json())
+      .then(data => {
+        postUserToDynamo(data);
+        setTrueToken(data.access_token);
+        return fetchUserData(data.access_token);
+      })
+      .then(res => res.json())
+      .then(data => {
+        AuthService.setUserSession(data.login, trueToken);
+        dispatch(setUser(data));
+        navigate('/Dashboard');
+      })
+      .catch(err => console.log('Err : ', err));
+  };
+
+  const postUserToDynamo = async (body: {
+    acces_token: string;
+    token_type: string;
+    scope: string;
+  }) => {
+    fetch(
+      'https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/register-user',
+      {
+        method: 'POST',
+        body: JSON.stringify(body),
       },
     )
       .then(res => res.json())
@@ -43,7 +66,13 @@ export const Validation: React.FC = () => {
       .catch(err => console.log(err));
   };
 
-  //hrllo!
+  const fetchUserData = async (token: string) => {
+    return await fetch('https://api.github.com/user', {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    });
+  };
 
   useEffect(() => {
     console.log('hi');

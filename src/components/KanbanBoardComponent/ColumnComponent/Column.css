@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;500&display=swap');
+
+.column {
+  background-color: #ebecf0;
+  font-family: 'Assistant', sans-serif;
+  width: 32%;
+  height: fit-content;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
