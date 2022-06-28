@@ -1,26 +1,71 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { Column } from './ColumnComponent/Column.component';
 import './KanbanBoard.css';
 
+const KANBAN_BOARD_ID = '{sebastianfdz:by:nanji:by:main}'; // will be changed to be dynamic
 export const KanbanBoard: React.FC = () => {
   const initialColumns: { [index: string]: any } = {
     todo: {
       id: 'todo',
-      list: ['item 1', 'item 2', 'item 3'],
+      tasks: [
+        {
+          creator: 'arod80',
+          title: 'This is an example task',
+          body: 'You can delete this task and create you own!',
+          timestamp: '1656430001000',
+        },
+      ],
     },
     doing: {
       id: 'doing',
-      list: ['item 4'],
+      tasks: [
+        {
+          creator: 'arod80',
+          title: 'This is an example task',
+          body: 'You can delete this task and create you own!',
+          timestamp: '1656430001002',
+        },
+      ],
     },
     done: {
       id: 'done',
-      list: ['item 5'],
+      tasks: [
+        {
+          creator: 'arod80',
+          title: 'This is an example task',
+          body: 'You can delete this task and create you own!',
+          timestamp: '1656430001001',
+        },
+      ],
     },
   };
+
   const [columns, setColumns] = useState(initialColumns);
 
+  useEffect(() => {
+    console.log('columsn state: ', columns);
+    fetch(
+      `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/kanban/${KANBAN_BOARD_ID}`,
+    )
+      .then(res => res.json())
+      .then(data => setColumns(data.board));
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/kanban/${KANBAN_BOARD_ID}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(columns),
+      },
+    )
+      .then(res => res.json())
+      .then(data => console.log(data));
+  }, [columns]);
+
   const onDragEnd = ({ source, destination }: DropResult) => {
+    console.log('source: ', source, ' destination: ', destination);
     // Make sure we have a valid destination
     if (destination === undefined || destination === null) return null;
 
@@ -28,28 +73,31 @@ export const KanbanBoard: React.FC = () => {
     if (
       source.droppableId === destination.droppableId &&
       destination.index === source.index
-    )
+    ) {
       return null;
+    }
 
     // Set start and end variables
+    console.log('columns: ', columns);
     const start = columns[source.droppableId];
     const end = columns[destination.droppableId];
 
     // If start is the same as end, we're in the same column
     if (start === end) {
+      console.log('start: ', start, ' end: ', end);
+
       // Move the item within the list
       // Start by making a new list without the dragged item
-      const newList = start.list.filter(
+      const newList = start.tasks.filter(
         (_: any, idx: number) => idx !== source.index,
       );
 
       // Then insert the item at the right location
-      newList.splice(destination.index, 0, start.list[source.index]);
-
+      newList.splice(destination.index, 0, start.tasks[source.index]);
       // Then create a new copy of the column object
       const newCol = {
         id: start.id,
-        list: newList,
+        tasks: newList,
       };
 
       // Update the state
@@ -58,26 +106,28 @@ export const KanbanBoard: React.FC = () => {
     } else {
       // If start is different from end, we need to update multiple columns
       // Filter the start list like before
-      const newStartList = start.list.filter(
+      console.log('start tasks: ', start.tasks);
+      const newStartList = start.tasks.filter(
         (_: any, idx: number) => idx !== source.index,
       );
+      console.log('new start tasks: ', newStartList);
 
       // Create a new start column
       const newStartCol = {
         id: start.id,
-        list: newStartList,
+        tasks: newStartList,
       };
 
       // Make a new end list array
-      const newEndList = end.list;
+      const newEndList = end.tasks;
 
       // Insert the item into the end list
-      newEndList.splice(destination.index, 0, start.list[source.index]);
+      newEndList.splice(destination.index, 0, start.tasks[source.index]);
 
       // Create a new end column
       const newEndCol = {
         id: end.id,
-        list: newEndList,
+        tasks: newEndList,
       };
 
       // Update the state
@@ -93,9 +143,14 @@ export const KanbanBoard: React.FC = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="columns-cont">
-        {Object.values(columns).map(col => (
-          <Column col={col} key={col.id} />
-        ))}
+        {Object.keys(columns).map(col => {
+          console.log('COLS', columns[col]);
+          console.log(col);
+          return (
+            <Column col={columns[col]} key={columns[col].id} />
+            // <div style={{ color: 'white' }}>{columns.col.id}</div>
+          );
+        })}
       </div>
     </DragDropContext>
   );
