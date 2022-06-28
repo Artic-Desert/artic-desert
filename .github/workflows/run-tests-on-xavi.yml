@@ -3,7 +3,7 @@
 on:
   push:
     branches:
-      - xavi
+      - [xavi, alex, sebas, andres]
 
 jobs:
   Checks:
