@@ -9,9 +9,9 @@ export const ChatInput: React.FC<{
 
   const handleSendMessage = () => {
     // TODO: Send message to the backend get it back and update new State with the created message
-    setMessages(prevState => {
-      return [...prevState, message];
-    });
+    // setMessages(prevState => {
+    //   return [...prevState, message];
+    // });
     setMessage('');
   };
 
