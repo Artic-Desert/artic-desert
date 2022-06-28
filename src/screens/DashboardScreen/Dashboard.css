@@ -1,23 +1,38 @@
-.dashboardWrapper {
+.dashboard-wrapper {
   height: 100vh;
   width: 100vw;
+}
+.header {
+  width: 100vw;
+  height: 20vh;
   display: flex;
-  flex-direction: row;
-  border: 1px solid red;
   justify-content: space-between;
-  overflow: hidden;
+  background-color: #00111c;
 }
 
-.userInfo {
-  align-self: flex-start;
+.dashboard-left {
+  height: 100%;
+  width: 80vw;
+}
+
+.dashboard-right {
+  width: 30vw;
+}
+
+/* USER INFO CSS */
+.dashboard-user-info {
+  width: 100%;
   display: flex;
+  color: rgb(255, 228, 196);
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  padding: 30px;
 }
 
-.avatar {
-  border-radius: 100%;
+.dashboard-user-info img {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
   overflow: hidden;
   margin: 10px 0;
 }
@@ -28,12 +43,35 @@
 }
 
 .name {
+  font-family: 'Lobster Two', cursive;
+}
+
+.name-pic {
+  display: flex;
+  align-items: center;
+}
+
+.git-link {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: space-between;
+}
+.git-logo {
+  color: rgb(255, 228, 196);
+  margin-left: 10px;
+}
+
+.name {
+  margin-left: 20px;
   font-size: larger;
   font-weight: bold;
+  font-size: 1.5vw;
+  margin-bottom: 5px;
 }
 
 .githubName {
-  font-size: 15;
+  font-size: 1.5vw;
   font-weight: lighter;
 }
 
@@ -52,7 +90,39 @@
   margin-top: 10px;
 }
 
-.repoSideBar {
-  border: 1px solid blue;
-  width: 25%;
+.logout-button {
+  background-color: transparent;
+  width: 140px;
+  margin-top: 10px;
+  height: 35px;
+  padding: 10px;
+  font-size: 1.2vw;
+  color: rgba(255, 228, 196, 0.716);
+  border: 1px solid rgba(255, 228, 196, 0.701);
+  border-radius: 5px;
+}
+
+.hero {
+  display: flex;
+  height: 80vh;
+  width: 100vw;
+}
+
+.productivity {
+  background-image: url('../../assets/desert1.svg');
+  background-size: cover;
+  border-top: 1px solid #c8d1d9;
+  border-right: 1px solid #c8d1d9;
+  width: 80vw;
+  height: 80vh;
+}
+
+.dashboard-column {
+  background-color: #00111c;
+  height: 80vh;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
 }

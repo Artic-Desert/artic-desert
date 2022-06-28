@@ -1,21 +1,47 @@
-.repoItem {
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&family=Lobster&family=Lobster+Two&display=swap');
+
+.repo-item-container {
+  color: #c8d1d9;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-  height: 10%;
-  border: 1px solid yellowgreen;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  height: 18vh;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #c8d1d9;
 }
 
-.title {
+.repo-name {
+  color: #57a6ff;
+  margin-bottom: 15px;
+}
+
+.privacy {
+  color: rgba(255, 228, 196, 0.794);
+  border: 1px solid rgba(255, 228, 196, 0.742);
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 20px;
+}
+
+.lang-cont {
+  margin-top: 15px;
+  margin-bottom: 10px;
   display: flex;
-  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
-  justify-content: space-around;
 }
 
-.githubRepoLink {
-  margin-left: 10px;
-  color: black;
+.lang-ball {
+  color: #57a6ff;
+  margin-right: 5px;
+}
+
+.branches {
+  margin-top: 5px;
+}
+
+.updated {
+  color: #c8d1d987;
 }
