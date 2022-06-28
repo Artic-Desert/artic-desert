@@ -3,6 +3,8 @@ import SplitPane from 'react-split-pane';
 import { GitTimeline } from '../../components/GitTimelineComponent/GitTimeline.component';
 import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/Header.component';
 import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.component';
+import { ShowChatButton } from '../../components/ShowChatButton/ShowChatButton.component';
+
 import './Workspace.css';
 
 export const Workspace: React.FC = () => {
@@ -14,6 +16,7 @@ export const Workspace: React.FC = () => {
         <div className="kanban">
           <Header />
           <KanbanBoard />
+          <ShowChatButton />
         </div>
         <div className="timeline">
           <GitTimeline />
