@@ -26,17 +26,23 @@ export const Dashboard: React.FC = () => {
           </div>
           <div className="dashboard-right">
             <div className="dashboard-user-info">
-              <img src={user.avatar_url} alt="user profile pics" />
-              <div className="name">{user.name}</div>
-              <div className="githubName">{user.login}</div>
-              <a
-                href={user.html_url}
-                className="githubLink"
-                target="_blank"
-                rel="noreferrer">
-                <GoMarkGithub />
-              </a>
-              <button onClick={handleLogout}>Log Out</button>
+              <div className="name-pic">
+                <img src={user.avatar_url} alt="user profile pics" />
+                <div className="name">{user.name}</div>
+              </div>
+              <div className="git-link">
+                <div className="githubName">{user.login}</div>
+                <a
+                  href={user.html_url}
+                  className="githubLink"
+                  target="_blank"
+                  rel="noreferrer">
+                  <GoMarkGithub className="git-logo" />
+                </a>
+              </div>
+              <button className="logout-button" onClick={handleLogout}>
+                Log Out
+              </button>
             </div>
           </div>
         </div>
