@@ -30,10 +30,10 @@ export const RepoSideBar: React.FC = () => {
 
   return (
     <div className="repoSideBarWrapper">
-      <NewRepo setRepos={setRepos} />
+      <NewRepo setRepos={setRepos} repos={repos} />
       {repos &&
         repos.map((repo: any) => {
-          return <RepoItem repo={repo} key={repo.id} />;
+          return <RepoItem repo={repo} key={repo.id} setRepos={setRepos} />;
         })}
     </div>
   );
