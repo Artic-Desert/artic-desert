@@ -2,13 +2,19 @@ import React from 'react';
 import { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
 import { GoMarkGithub } from 'react-icons/go';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/use-user';
+import { AuthService } from '../../services/AuthService';
 import './Dashboard.css';
 
 export const Dashboard: React.FC = () => {
   const { user } = useUser();
+  const navigate = useNavigate();
 
-  useEffect(() => console.log(user, 'user in dashboards'), [user]);
+  const handleLogout = () => {
+    AuthService.resetUserSession();
+    navigate('/');
+  };
 
   return (
     user && (
@@ -26,6 +32,9 @@ export const Dashboard: React.FC = () => {
             rel="noreferrer">
             <GoMarkGithub />
           </a>
+        </div>
+        <div>
+          <button onClick={handleLogout}>Log Out</button>
         </div>
       </div>
     )
