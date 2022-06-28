@@ -1,0 +1,16 @@
+.modal {
+  width: clamp(30%, 500px, 70%);
+  height: min(60%, 400px);
+  margin: auto;
+  padding: 0 2rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  background: orange;
+}
+
+.background {
+  background: orange;
+}

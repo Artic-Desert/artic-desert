@@ -1,5 +1,6 @@
 import React from 'react';
 import SplitPane from 'react-split-pane';
+import { GitTimeline } from '../../components/GitTimelineComponent/GitTimeline.component';
 import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/Header.component';
 import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.component';
 import './Workspace.css';
@@ -14,7 +15,9 @@ export const Workspace: React.FC = () => {
           <Header />
           <KanbanBoard />
         </div>
-        <div className="timeline"></div>
+        <div className="timeline">
+          <GitTimeline />
+        </div>
       </SplitPane>
     </div>
   );
