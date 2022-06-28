@@ -9,6 +9,8 @@ jobs:
   Checks:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Install modules
         run: npm i --legacy-peer-deps
       - name: Run tests
