@@ -2,7 +2,6 @@ import axios from 'axios'; //eslint-disable-line
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useActions } from '../../hooks/use-actions';
 import { setUser } from '../../redux/user/actions';
 import { AuthService } from '../../services/AuthService';
 // require('dotenv').config('../../../.env'); //eslint-disable-line
@@ -50,7 +49,11 @@ export const Validation: React.FC = () => {
       .catch(err => console.log('Err : ', err));
   };
 
-  const postUserToDynamo = async (body: any) => {
+  const postUserToDynamo = async (body: {
+    acces_token: string;
+    token_type: string;
+    scope: string;
+  }) => {
     fetch(
       'https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/register-user',
       {
@@ -58,7 +61,8 @@ export const Validation: React.FC = () => {
         body: JSON.stringify(body),
       },
     )
-      .then(res => console.log(res))
+      .then(res => res.json())
+      .then(data => console.log(data))
       .catch(err => console.log(err));
   };
 

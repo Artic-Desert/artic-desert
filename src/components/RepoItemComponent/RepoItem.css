@@ -1,0 +1,21 @@
+.repoItem {
+  display: flex;
+  flex-direction: column;
+  height: 10%;
+  border: 1px solid yellowgreen;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.githubRepoLink {
+  margin-left: 10px;
+  color: black;
+}
