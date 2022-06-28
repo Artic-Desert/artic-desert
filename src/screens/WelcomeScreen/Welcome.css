@@ -1,17 +1,92 @@
-.wrapper {
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Trispace&display=swap');
+
+.welcome-wrapper {
+  background-image: url('../../assets/ice.svg');
+  background-size: contain;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
+  position: relative;
 }
 
-.loginButton {
-  background-color: rgb(41, 39, 39);
-  color: white;
-  padding: 30px;
-  border-radius: 20px;
+.company-name {
+  font-size: 3.5vw;
+  font-family: 'Trispace', sans-serif;
+  color: #f3f0f0;
+  width: 45%;
+  position: absolute;
+  left: 10%;
+  top: 14%;
+}
+
+.bot {
+  margin-left: 100px;
+}
+
+.main-title {
+  background-image: url('../../assets/ice.svg');
+  background-clip: text;
+  -webkit-background-clip: text;
+  width: 40%;
+  color: transparent;
+  position: absolute;
+  bottom: 26%;
+  right: 0%;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  font-size: 2.7vw;
+  line-height: 120px;
+  z-index: 10;
+}
+
+.mask {
+  width: 100%;
+  position: absolute;
+  bottom: -5%;
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
+}
+
+.ades {
+  z-index: 10;
+  height: 60vh;
+  position: absolute;
+  right: -5%;
+  top: 2%;
+  opacity: 0.4;
+}
+
+.login-button {
+  border: 3px solid #277197;
+  color: #277197;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.3vw;
+  align-items: center;
+  width: 20vw;
+  border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
+  position: absolute;
+  bottom: 18%;
+  right: 12%;
+  z-index: 10;
+  -webkit-box-shadow: 3px 4px 34px -14px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 4px 34px -14px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 4px 34px -14px rgba(0, 0, 0, 0.75);
+}
+
+.a-tag {
+  color: #277197;
+  text-decoration: none;
+}
+/* .a-tag:hover {
+  background-color: #277197;
+  color: #ffffff;
+} */
+
+.a-tag:visited {
+  color: #277197;
 }
