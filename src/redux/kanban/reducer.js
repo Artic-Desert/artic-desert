@@ -1,5 +1,10 @@
 // import produce from 'immer';
-import { DELETE_TASK, SET_KANBAN } from './actions';
+import {
+  DELETE_TASK,
+  SET_KANBAN,
+  UPDATE_ONE_COLUMN,
+  UPDATE_TWO_COLUMNS,
+} from './actions';
 
 const initialKanban = {
   todo: {
@@ -39,6 +44,8 @@ const initialKanban = {
 
 export const kanbanReducer = (state = initialKanban, action) => {
   if (action.type === SET_KANBAN) {
+    console.log('inside set kanban');
+    console.log('action payload: ', action.payload);
     const newState = { ...action.payload };
     console.log('new state: ', newState);
     return newState;
@@ -54,6 +61,27 @@ export const kanbanReducer = (state = initialKanban, action) => {
     const newState = {
       ...state,
       [columnId]: { id: columnId, tasks: newTasks },
+    };
+    console.log('new state: ', newState);
+    return newState;
+  }
+  if (action.type === UPDATE_ONE_COLUMN) {
+    const columnId = action.payload.column.id;
+    const newState = { ...state, [columnId]: action.payload.column };
+    console.log('new state: ', newState);
+    return newState;
+  }
+  if (action.type === UPDATE_TWO_COLUMNS) {
+    const columnOneId = action.payload.columnOne.id;
+    const columnTwoId = action.payload.columnTwo.id;
+    console.log('columone id: ', columnOneId);
+    console.log('columtwo id: ', columnTwoId);
+    console.log('columone obj: ', action.payload.columnOne);
+    console.log('columtwo obj: ', action.payload.columnTwo);
+    const newState = {
+      ...state,
+      [columnOneId]: action.payload.columnOne,
+      [columnTwoId]: action.payload.columnTwo,
     };
     console.log('new state: ', newState);
     return newState;
