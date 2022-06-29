@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { RepoItem } from '../../components/RepoItemComponent/RepoItem.component';
 import { RepoSideBar } from '../../components/RepoSideBarComponent/RepoSideBar.component';
 import { Time } from '../../components/TimeComponent/Time.component';
+import { RandomQuote } from '../../components/RandomQuoteComponent/RandomQuote.component';
 import { useUser } from '../../hooks/use-user';
 import { AuthService } from '../../services/AuthService';
 import './Dashboard.css';
@@ -50,6 +51,7 @@ export const Dashboard: React.FC = () => {
           <div className="hero">
             <div className="productivity">
               <Time />
+              <RandomQuote />
             </div>
           </div>
         </div>

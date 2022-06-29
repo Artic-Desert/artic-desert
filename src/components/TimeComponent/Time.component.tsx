@@ -5,9 +5,9 @@ import './Time.css';
 export const Time: React.FC = () => {
   const [dateState, setDateState] = useState(new Date());
 
-  // useEffect(() => {
-  //   setInterval(() => setDateState(new Date()), 500); // updates state every half seconds
-  // }, []);
+  useEffect(() => {
+    setInterval(() => setDateState(new Date()), 500); // updates state every half seconds
+  }, []);
 
   return (
     <div className="time-container">
