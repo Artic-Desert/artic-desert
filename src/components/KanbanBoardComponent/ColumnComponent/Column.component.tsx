@@ -1,6 +1,8 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
+import { useDispatch } from 'react-redux';
 import { ListItem } from '../ListItemComponent/ListItem.component';
+import { addTask } from '../../../redux/kanban/actions';
 import './Column.css';
 
 type Task = {
@@ -18,10 +20,21 @@ interface ColumnProps {
 }
 
 export const Column: React.FC<ColumnProps> = ({ col }) => {
+  const dispatch = useDispatch();
+  const newTask = {
+    creator: 'newTask',
+    title: 'This is an example new task',
+    body: 'You can delete this task and create you own!',
+    timestamp: String(Math.floor(Math.random() * 100000000000)),
+  };
+
   return (
     <Droppable droppableId={col.id}>
       {provided => (
         <div className="column">
+          <button onClick={() => dispatch(addTask(newTask, col))}>
+            Add task
+          </button>
           <h2>{col.id}</h2>
           <div
             className="list"

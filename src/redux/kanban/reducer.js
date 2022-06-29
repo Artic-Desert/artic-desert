@@ -1,5 +1,6 @@
 // import produce from 'immer';
 import {
+  ADD_TASK,
   DELETE_TASK,
   SET_KANBAN,
   UPDATE_ONE_COLUMN,
@@ -50,8 +51,18 @@ export const kanbanReducer = (state = initialKanban, action) => {
     console.log('new state: ', newState);
     return newState;
   }
+  if (action.type === ADD_TASK) {
+    const columnId = action.payload.column.id;
+    const taskToAdd = action.payload.task;
+    const oldTasks = state[columnId].tasks;
+    const newTasks = [...oldTasks, taskToAdd];
+    const newState = {
+      ...state,
+      [columnId]: { id: columnId, tasks: newTasks },
+    };
+    return newState;
+  }
   if (action.type === DELETE_TASK) {
-    // console.log(action.payload);
     const columnId = action.payload.column;
     console.log('state: ', state);
     const oldTasks = state[columnId].tasks;
@@ -74,10 +85,6 @@ export const kanbanReducer = (state = initialKanban, action) => {
   if (action.type === UPDATE_TWO_COLUMNS) {
     const columnOneId = action.payload.columnOne.id;
     const columnTwoId = action.payload.columnTwo.id;
-    console.log('columone id: ', columnOneId);
-    console.log('columtwo id: ', columnTwoId);
-    console.log('columone obj: ', action.payload.columnOne);
-    console.log('columtwo obj: ', action.payload.columnTwo);
     const newState = {
       ...state,
       [columnOneId]: action.payload.columnOne,

@@ -27,9 +27,8 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}>
-          <button onClick={() => dispatch(deleteTask(task, column, index))}>
-            X
-          </button>
+          <button onClick={() => dispatch(deleteTask(column, index))}>X</button>
+          <button>Edit</button>
           <h3>{task.title}</h3>
           <div>{task.body}</div>
           <p>{task.creator}</p>
