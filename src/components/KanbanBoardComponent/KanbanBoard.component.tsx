@@ -5,10 +5,13 @@ import { ApiClientService } from '../../services/ApiClientService';
 import { useKanban } from '../../hooks/use-kanban';
 
 import './KanbanBoard.css';
+import { useDispatch } from 'react-redux';
+import { setKanban } from '../../redux/kanban/actions';
 
 const KANBAN_BOARD_ID = '{sebastianfdz:by:nanji:by:main}'; // will be changed to be dynamic
 export const KanbanBoard: React.FC = () => {
   const { kanban } = useKanban();
+  const dispatch = useDispatch();
 
   const [columns, setColumns] = useState(kanban);
 

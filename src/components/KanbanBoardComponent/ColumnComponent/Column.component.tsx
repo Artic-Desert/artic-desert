@@ -30,7 +30,12 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
             {col.tasks.map((task, index) => {
               console.log(task, index);
               return (
-                <ListItem key={task.timestamp} task={task} index={index} />
+                <ListItem
+                  key={task.timestamp}
+                  task={task}
+                  index={index}
+                  column={col.id}
+                />
                 // <></>
               );
             })}
