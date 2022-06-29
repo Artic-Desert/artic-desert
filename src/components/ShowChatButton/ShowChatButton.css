@@ -1,3 +1,19 @@
+.show-chat-button-main-container {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 70px;
+  z-index: 100;
+}
+.chat-container {
+  position: absolute;
+  display: flex;
+  right: 0;
+  min-width: 0px;
+  max-width: 75vw;
+  min-height: 100px;
+  max-height: 95vh;
+}
 .chat-button {
   position: absolute;
   right: 7px;
