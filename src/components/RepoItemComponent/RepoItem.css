@@ -6,10 +6,21 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 18vh;
-  padding: 20px;
+  height: fit-content;
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid #c8d1d9;
+}
+
+.owner-cont {
+  display: flex;
+  align-items: center;
+}
+.owner-cont img {
+  height: 25px;
+  border-radius: 25%;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .repo-name {
@@ -23,6 +34,10 @@
   padding-left: 12px;
   padding-right: 12px;
   border-radius: 20px;
+}
+
+.repo-owner {
+  margin-bottom: 9px;
 }
 
 .lang-cont {

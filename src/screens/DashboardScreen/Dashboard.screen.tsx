@@ -21,11 +21,8 @@ export const Dashboard: React.FC = () => {
   return (
     user && (
       <div className="dashboard-wrapper">
-        <div className="header">
-          <div className="dashboard-left">
-            <h1>Dashboard</h1>
-          </div>
-          <div className="dashboard-right">
+        <div className="dashboard-left">
+          <div className="header">
             <div className="dashboard-user-info">
               <div className="name-pic">
                 <img src={user.avatar_url} alt="user profile pics" />
@@ -45,10 +42,15 @@ export const Dashboard: React.FC = () => {
                 Log Out
               </button>
             </div>
+            <div className="add-new">
+              <h4>Add a new repository to your Dashboard</h4>
+            </div>
+          </div>
+          <div className="hero">
+            <div className="productivity"></div>
           </div>
         </div>
-        <div className="hero">
-          <div className="productivity"></div>
+        <div className="dashboard-right">
           <div className="dashboard-column">
             <RepoSideBar />
           </div>
