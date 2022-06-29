@@ -2,60 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { Column } from './ColumnComponent/Column.component';
 import { ApiClientService } from '../../services/ApiClientService';
+import { useKanban } from '../../hooks/use-kanban';
+
 import './KanbanBoard.css';
+import { useDispatch } from 'react-redux';
+import {
+  setKanban,
+  updateOneColumn,
+  updateTwoColumns,
+} from '../../redux/kanban/actions';
 
 const KANBAN_BOARD_ID = '{sebastianfdz:by:nanji:by:main}'; // will be changed to be dynamic
 export const KanbanBoard: React.FC = () => {
-  const initialColumns: { [index: string]: any } = {
-    todo: {
-      id: 'todo',
-      tasks: [
-        {
-          creator: 'arod80',
-          title: 'This is an example task',
-          body: 'You can delete this task and create you own!',
-          timestamp: '1656430001000',
-        },
-      ],
-    },
-    doing: {
-      id: 'doing',
-      tasks: [
-        {
-          creator: 'arod80',
-          title: 'This is an example task',
-          body: 'You can delete this task and create you own!',
-          timestamp: '1656430001002',
-        },
-      ],
-    },
-    done: {
-      id: 'done',
-      tasks: [
-        {
-          creator: 'arod80',
-          title: 'This is an example task',
-          body: 'You can delete this task and create you own!',
-          timestamp: '1656430001001',
-        },
-      ],
-    },
-  };
-
-  const [columns, setColumns] = useState(initialColumns);
+  const { kanban } = useKanban();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     ApiClientService.getKanbanBoard(KANBAN_BOARD_ID).then(data => {
       console.log('Initial get of kanban board: ', data),
-        setColumns(data.board);
+        dispatch(setKanban(data.board));
     });
   }, []);
 
   useEffect(() => {
-    ApiClientService.updateKanbanBoard(KANBAN_BOARD_ID, columns).then(data =>
+    ApiClientService.updateKanbanBoard(KANBAN_BOARD_ID, kanban).then(data =>
       console.log('Making an update to kanbanboard: ', data),
     );
-  }, [columns]);
+  }, [kanban]);
 
   const onDragEnd = ({ source, destination }: DropResult) => {
     // Make sure we have a valid destination
@@ -70,8 +43,8 @@ export const KanbanBoard: React.FC = () => {
     }
 
     // Set start and end variables
-    const start = columns[source.droppableId];
-    const end = columns[destination.droppableId];
+    const start = kanban[source.droppableId];
+    const end = kanban[destination.droppableId];
 
     // If start is the same as end, we're in the same column
     if (start === end) {
@@ -90,7 +63,7 @@ export const KanbanBoard: React.FC = () => {
       };
 
       // Update the state
-      setColumns(state => ({ ...state, [newCol.id]: newCol }));
+      dispatch(updateOneColumn(newCol));
       return null;
     } else {
       // If start is different from end, we need to update multiple columns
@@ -118,22 +91,20 @@ export const KanbanBoard: React.FC = () => {
       };
 
       // Update the state
-      setColumns(state => ({
-        ...state,
-        [newStartCol.id]: newStartCol,
-        [newEndCol.id]: newEndCol,
-      }));
+      dispatch(updateTwoColumns(newStartCol, newEndCol));
       return null;
     }
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="columns-cont">
-        {Object.keys(columns).map(col => {
-          return <Column col={columns[col]} key={columns[col].id} />;
-        })}
-      </div>
-    </DragDropContext>
+    kanban && (
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="columns-cont">
+          {Object.keys(kanban).map(col => {
+            return <Column col={kanban[col]} key={kanban[col].id} />;
+          })}
+        </div>
+      </DragDropContext>
+    )
   );
 };
