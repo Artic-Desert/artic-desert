@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { Column } from './ColumnComponent/Column.component';
+import { ApiClientService } from '../../services/ApiClientService';
 import './KanbanBoard.css';
 
 const KANBAN_BOARD_ID = '{sebastianfdz:by:nanji:by:main}'; // will be changed to be dynamic
@@ -45,9 +46,7 @@ export const KanbanBoard: React.FC = () => {
 
   useEffect(() => {
     console.log('columsn state: ', columns);
-    fetch(
-      `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/kanban/${KANBAN_BOARD_ID}`,
-    )
+    ApiClientService.getKanbanBoard(KANBAN_BOARD_ID)
       .then(res => res.json())
       .then(data => setColumns(data.board));
   }, []);
