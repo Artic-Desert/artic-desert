@@ -6,6 +6,8 @@ import { setUser } from '../../redux/user/actions';
 import { AuthService } from '../../services/AuthService';
 // require('dotenv').config('../../../.env'); //eslint-disable-line
 
+import './Validation.css';
+
 export const Validation: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams(); //eslint-disable-line
   //eslint-disable-next-line
@@ -85,9 +87,11 @@ export const Validation: React.FC = () => {
   }, [trueToken]);
 
   return (
-    <div>
-      <h1>Im validating your token, please wait...</h1>
-      {loading ? <div>Loading...</div> : null}
+    <div className="validation-wrapper">
+      <div className="validation-main-container">
+        <h1 className="validation-screen-h1">Validating token</h1>
+        {loading ? <div className="validation-loading">Please wait</div> : null}
+      </div>
     </div>
   );
 };

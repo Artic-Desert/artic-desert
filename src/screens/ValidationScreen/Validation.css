@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Trispace&display=swap');
+
+.validation-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../../assets/matrixV3.svg');
+}
+.validation-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  z-index: 5;
+}
+.validation-screen-h1 {
+  font-family: 'Trispace', sans-serif;
+  font-size: 8vw;
+  color: var(--white-body);
+}
+.validation-loading {
+  font-family: 'Trispace', sans-serif;
+  font-size: 2vw;
+  color: var(--white-body);
+}

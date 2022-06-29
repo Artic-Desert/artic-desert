@@ -10,7 +10,7 @@ export const ShowChatButton: React.FC = () => {
   const onClick = () => setChat(!chat);
 
   return (
-    <div className="main-container">
+    <div className="show-chat-button-main-container">
       <div className="chat-container">{chat ? <ResizableChat /> : null}</div>
       <button title="Chat" className="chat-button" onClick={onClick}>
         <TbBrandHipchat size={40} color="lightgrey" />
