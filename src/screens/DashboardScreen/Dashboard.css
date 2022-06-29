@@ -112,8 +112,9 @@
 }
 
 .productivity {
-  background-image: url('../../assets/background.svg');
-  background-size: contain;
+  background-image: url('../../assets/heroback.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
   border-top: 1px solid #c8d1d9;
   border-right: 1px solid #c8d1d9;
   width: 80vw;
