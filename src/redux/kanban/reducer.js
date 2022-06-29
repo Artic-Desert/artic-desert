@@ -51,15 +51,12 @@ export const kanbanReducer = (state = initialKanban, action) => {
     const newTasks = oldTasks.filter(
       (task, index) => index !== action.payload.index,
     );
-    if (columnId === 'todo') {
-      return { ...state, todo: { id: 'todo', tasks: newTasks } };
-    }
-    if (columnId === 'doing') {
-      return { ...state, doing: { id: 'doing', tasks: newTasks } };
-    }
-    if (columnId === 'done') {
-      return { ...state, done: { id: 'done', tasks: newTasks } };
-    }
+    const newState = {
+      ...state,
+      [columnId]: { id: columnId, tasks: newTasks },
+    };
+    console.log('new state: ', newState);
+    return newState;
   }
   return state;
 };
