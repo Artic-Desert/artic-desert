@@ -56,7 +56,7 @@ export const ResizableChat: React.FC = () => {
           mWidth.set(500);
           mHeight.set(500);
         }}>
-        <Chat></Chat>
+        <Chat />
         <motion.div
           className="dragger"
           drag="x"

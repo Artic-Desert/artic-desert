@@ -13,7 +13,9 @@ export const Chat: React.FC = () => {
         messages.map(message => {
           return <ChatMessage message={message} key={message.id} />;
         })}
-      <ChatInput setMessages={setMessages} />
+      <div className="input-container">
+        <ChatInput setMessages={setMessages} />
+      </div>
     </div>
   );
 };

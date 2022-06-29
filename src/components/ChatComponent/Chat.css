@@ -1,0 +1,12 @@
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.input-container {
+  position: absolute;
+  width: 80%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
