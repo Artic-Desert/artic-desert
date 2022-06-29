@@ -42,6 +42,11 @@ export const RepoItem: React.FC<any> = ({ repo, setRepos }) => {
     setNumOfBranches(branches.length);
   };
 
+  // const obj = {
+  //   JavaScript: 'js',
+  //   TypeScript: 'ts',
+  // };
+
   useEffect(() => {
     fetchNumOfBranches();
   }, []);
@@ -58,7 +63,24 @@ export const RepoItem: React.FC<any> = ({ repo, setRepos }) => {
       </div>
       <div className="bot-line">
         <div className="lang-cont">
-          <BsCircleFill className="lang-ball" />
+          {repo.language === 'JavaScript' && (
+            <BsCircleFill className="lang-ball-yellow" />
+          )}
+          {repo.language === 'TypeScript' && (
+            <BsCircleFill className="lang-ball-blue" />
+          )}
+          {repo.language === 'CSS' && (
+            <BsCircleFill className="lang-ball-purple" />
+          )}
+          {repo.language === 'HTML' && (
+            <BsCircleFill className="lang-ball-red" />
+          )}
+          {repo.language !== 'HTML' ||
+            'CSS' ||
+            'TypeScript' ||
+            ('JavaScript' && <BsCircleFill className="lang-ball-default" />)}
+          {/* {!obj[repo.language] && <BsCircleFill className="lang-ball" />} */}
+
           <span className="language">{repo.language}</span>
         </div>
         {numOfBranches && (

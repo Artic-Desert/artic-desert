@@ -1,7 +1,7 @@
 :root {
   --background-color: #00111c;
   /* Opacity varies for accents */
-  --gold-accent: rgba(255, 228, 196);
+  --gold-accent: #ffe4c4;
   --gray-accent: #c8d1d9;
   /* Body Colors */
   --blue-body: #6592b7;
