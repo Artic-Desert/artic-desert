@@ -1,7 +1,7 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
-import { deleteTask } from '../../../redux/kanban/actions';
+import { deleteTask, updateTask } from '../../../redux/kanban/actions';
 import './ListItem.css';
 
 type Task = {
@@ -19,6 +19,14 @@ interface ItemProps {
 
 export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
   const dispatch = useDispatch();
+  const handleEdit = () => {
+    const taskBody = {
+      creator: 'edited',
+      title: 'edited',
+      body: 'edited',
+    };
+    dispatch(updateTask(taskBody, column, index));
+  };
   return (
     <Draggable draggableId={task.timestamp} index={index}>
       {provided => (
@@ -28,7 +36,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}>
           <button onClick={() => dispatch(deleteTask(column, index))}>X</button>
-          <button>Edit</button>
+          <button onClick={handleEdit}>Edit</button>
           <h3>{task.title}</h3>
           <div>{task.body}</div>
           <p>{task.creator}</p>

@@ -3,6 +3,7 @@ export const DELETE_TASK = 'DELETE_TASK';
 export const ADD_TASK = 'ADD_TASK';
 export const UPDATE_ONE_COLUMN = 'UPDATE_ONE_COLUMN';
 export const UPDATE_TWO_COLUMNS = 'UPDATE_TWO_COLUMNS';
+export const UPDATE_TASK = 'UPDATE_TASK';
 
 export const setKanban = kanban => ({
   type: SET_KANBAN,
@@ -27,4 +28,9 @@ export const updateOneColumn = column => ({
 export const updateTwoColumns = (columnOne, columnTwo) => ({
   type: UPDATE_TWO_COLUMNS,
   payload: { columnOne, columnTwo },
+});
+
+export const updateTask = (task, column, index) => ({
+  type: UPDATE_TASK,
+  payload: { task, column, index },
 });

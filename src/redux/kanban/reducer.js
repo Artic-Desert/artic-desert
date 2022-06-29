@@ -4,6 +4,7 @@ import {
   DELETE_TASK,
   SET_KANBAN,
   UPDATE_ONE_COLUMN,
+  UPDATE_TASK,
   UPDATE_TWO_COLUMNS,
 } from './actions';
 
@@ -55,7 +56,7 @@ export const kanbanReducer = (state = initialKanban, action) => {
     const columnId = action.payload.column.id;
     const taskToAdd = action.payload.task;
     const oldTasks = state[columnId].tasks;
-    const newTasks = [...oldTasks, taskToAdd];
+    const newTasks = [taskToAdd, ...oldTasks];
     const newState = {
       ...state,
       [columnId]: { id: columnId, tasks: newTasks },
@@ -89,6 +90,27 @@ export const kanbanReducer = (state = initialKanban, action) => {
       ...state,
       [columnOneId]: action.payload.columnOne,
       [columnTwoId]: action.payload.columnTwo,
+    };
+    console.log('new state: ', newState);
+    return newState;
+  }
+  if (action.type === UPDATE_TASK) {
+    const updatedTask = action.payload.task;
+    const columnId = action.payload.column;
+    const oldTasks = state[columnId].tasks;
+    const taskIndex = action.payload.index;
+    const newTasks = oldTasks.map((task, index) => {
+      if (index === taskIndex) {
+        return { ...updatedTask, timestamp: task.timestamp };
+      }
+      return task;
+    });
+    const newState = {
+      ...state,
+      [columnId]: {
+        id: columnId,
+        tasks: newTasks,
+      },
     };
     console.log('new state: ', newState);
     return newState;
