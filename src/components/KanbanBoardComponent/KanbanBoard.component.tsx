@@ -2,47 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { Column } from './ColumnComponent/Column.component';
 import { ApiClientService } from '../../services/ApiClientService';
+import { useKanban } from '../../hooks/use-kanban';
+
 import './KanbanBoard.css';
 
 const KANBAN_BOARD_ID = '{sebastianfdz:by:nanji:by:main}'; // will be changed to be dynamic
 export const KanbanBoard: React.FC = () => {
-  const initialColumns: { [index: string]: any } = {
-    todo: {
-      id: 'todo',
-      tasks: [
-        {
-          creator: 'arod80',
-          title: 'This is an example task',
-          body: 'You can delete this task and create you own!',
-          timestamp: '1656430001000',
-        },
-      ],
-    },
-    doing: {
-      id: 'doing',
-      tasks: [
-        {
-          creator: 'arod80',
-          title: 'This is an example task',
-          body: 'You can delete this task and create you own!',
-          timestamp: '1656430001002',
-        },
-      ],
-    },
-    done: {
-      id: 'done',
-      tasks: [
-        {
-          creator: 'arod80',
-          title: 'This is an example task',
-          body: 'You can delete this task and create you own!',
-          timestamp: '1656430001001',
-        },
-      ],
-    },
-  };
+  const { kanban } = useKanban();
 
-  const [columns, setColumns] = useState(initialColumns);
+  const [columns, setColumns] = useState(kanban);
 
   useEffect(() => {
     ApiClientService.getKanbanBoard(KANBAN_BOARD_ID).then(data => {
@@ -90,7 +58,7 @@ export const KanbanBoard: React.FC = () => {
       };
 
       // Update the state
-      setColumns(state => ({ ...state, [newCol.id]: newCol }));
+      setColumns((state: any) => ({ ...state, [newCol.id]: newCol }));
       return null;
     } else {
       // If start is different from end, we need to update multiple columns
@@ -118,7 +86,7 @@ export const KanbanBoard: React.FC = () => {
       };
 
       // Update the state
-      setColumns(state => ({
+      setColumns((state: any) => ({
         ...state,
         [newStartCol.id]: newStartCol,
         [newEndCol.id]: newEndCol,
@@ -128,12 +96,17 @@ export const KanbanBoard: React.FC = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="columns-cont">
-        {Object.keys(columns).map(col => {
-          return <Column col={columns[col]} key={columns[col].id} />;
-        })}
-      </div>
-    </DragDropContext>
+    columns && (
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="columns-cont">
+          {Object.keys(columns).map(col => {
+            console.log('columns: ', columns);
+            console.log('col: ', col);
+            console.log('columns[col]: ', columns[col]);
+            return <Column col={columns[col]} key={columns[col].id} />;
+          })}
+        </div>
+      </DragDropContext>
+    )
   );
 };
