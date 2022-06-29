@@ -18,7 +18,6 @@ interface ColumnProps {
 }
 
 export const Column: React.FC<ColumnProps> = ({ col }) => {
-  console.log('col:', col.tasks);
   return (
     <Droppable droppableId={col.id}>
       {provided => (
