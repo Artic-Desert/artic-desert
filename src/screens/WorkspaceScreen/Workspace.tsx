@@ -3,7 +3,7 @@ import Pane from 'react-split-pane';
 import { GitTimeline } from '../../components/GitTimelineComponent/GitTimeline.component';
 import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/Header.component';
 import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.component';
-import { ShowChatButton } from '../../components/ShowChatButton/ShowChatButton.component';
+import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
 import { BsArrowBarDown } from 'react-icons/bs';
 import { BsArrowBarUp } from 'react-icons/bs';
 
