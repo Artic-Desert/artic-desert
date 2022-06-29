@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { EventEmitter } from 'stream';
 import { useUser } from '../../hooks/use-user';
 // import { AuthService } from '../../services/AuthService';
 import './NewRepo.css';
@@ -29,13 +30,17 @@ export const NewRepo: React.FC<{
           el.full_name.toLowerCase() === `${owner}/${repo}`.toLowerCase(),
       )
     ) {
-      setMessage('Repo already added');
+      setMessage(
+        'The Repository you are trying to add already exists in your workspace!',
+      );
       return;
     } else {
       if (data.id) {
         setRepos((prevState: any[]) => [...prevState, data]);
       } else {
-        setMessage(`Haven't found repo ${repo} by ${owner}. Please try again.`);
+        setMessage(
+          `Error 🚫 \nWe weren't able to find a repository called: ${repo} with author: ${owner}. Check your input and please try again.`,
+        );
         return;
       }
     }
@@ -72,6 +77,12 @@ export const NewRepo: React.FC<{
     event.preventDefault();
     // repoFetchRequest(ownerName, repoName);
     updateUserRepos(ownerName, repoName);
+    setOwnerName('');
+    setRepoName('');
+  };
+
+  const byeError = () => {
+    setMessage('');
   };
 
   return (
@@ -80,18 +91,27 @@ export const NewRepo: React.FC<{
         <input
           type="text"
           value={ownerName}
-          placeholder="Owner of the repo..."
+          placeholder="Enter Github username"
           onChange={event => setOwnerName(event.target.value)}
         />
         <input
           type="text"
           value={repoName}
-          placeholder="Name of the repo..."
+          placeholder="And the repository name"
           onChange={event => setRepoName(event.target.value)}
         />
-        <input type="submit" value="Submit" />
+        <span className="or">or ...</span>
+        <input type="text" placeholder="Paste Github URL" />
+        <button className="dashboard-submit-button" type="submit">
+          Add repo to dashboard
+        </button>
       </form>
-      {message && <h4>{message}</h4>}
+      {message && (
+        <h4 className="error-message" onClick={byeError}>
+          {message}
+          <button>close</button>
+        </h4>
+      )}
     </div>
   );
 };

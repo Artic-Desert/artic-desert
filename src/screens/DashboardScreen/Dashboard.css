@@ -1,18 +1,23 @@
 .dashboard-wrapper {
+  display: flex;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 }
 .header {
-  width: 100vw;
+  width: 80vw;
   height: 20vh;
   display: flex;
   justify-content: space-between;
   background-color: #00111c;
+  padding-left: 20px;
 }
 
 .dashboard-left {
-  height: 100%;
+  height: 100vw;
   width: 80vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboard-right {
@@ -25,8 +30,6 @@
   display: flex;
   color: rgb(255, 228, 196);
   flex-direction: column;
-  align-items: flex-end;
-  padding: 30px;
 }
 
 .dashboard-user-info img {
@@ -109,8 +112,8 @@
 }
 
 .productivity {
-  background-image: url('../../assets/desert1.svg');
-  background-size: cover;
+  background-image: url('../../assets/background.svg');
+  background-size: contain;
   border-top: 1px solid #c8d1d9;
   border-right: 1px solid #c8d1d9;
   width: 80vw;
@@ -119,10 +122,11 @@
 
 .dashboard-column {
   background-color: #00111c;
-  height: 80vh;
+  height: 100vh;
   width: 20vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: scroll;
+  overflow-x: hidden;
 }

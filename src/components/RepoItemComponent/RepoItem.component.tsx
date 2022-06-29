@@ -50,6 +50,10 @@ export const RepoItem: React.FC<any> = ({ repo, setRepos }) => {
     <div className="repo-item-container">
       <div className="top-line">
         <h3 className="repo-name">{repo.name}</h3>
+        <div className="owner-cont">
+          <img src={repo.owner.avatar_url} alt="" />
+          <p className="repo-owner">{repo.owner.login}</p>
+        </div>
         <span className="privacy">{repo.private ? 'Private' : 'Public'}</span>
       </div>
       <div className="bot-line">

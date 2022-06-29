@@ -1,0 +1,11 @@
+:root {
+  --background-color: #00111c;
+  /* Opacity varies for accents */
+  --gold-accent: rgba(255, 228, 196);
+  --gray-accent: #c8d1d9;
+  /* Body Colors */
+  --blue-body: #6592b7;
+  --blue2-body: #57a6ff;
+  --blue3-body: #277197;
+  --white-body: #f3f0f0;
+}
