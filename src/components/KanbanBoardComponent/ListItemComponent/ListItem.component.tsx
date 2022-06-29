@@ -1,6 +1,8 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { FiEdit } from 'react-icons/fi';
 import { deleteTask, updateTask } from '../../../redux/kanban/actions';
 import './ListItem.css';
 
@@ -27,6 +29,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
     };
     dispatch(updateTask(taskBody, column, index));
   };
+  console.log('TASK', task);
   return (
     <Draggable draggableId={task.timestamp} index={index}>
       {provided => (
@@ -35,11 +38,22 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}>
-          <button onClick={() => dispatch(deleteTask(column, index))}>X</button>
-          <button onClick={handleEdit}>Edit</button>
-          <h3>{task.title}</h3>
-          <div>{task.body}</div>
-          <p>{task.creator}</p>
+          <button
+            className="item-delete"
+            onClick={() => dispatch(deleteTask(column, index))}>
+            <RiDeleteBin6Line />
+          </button>
+          <button className="item-edit" onClick={handleEdit}>
+            <FiEdit />
+          </button>
+          <h3 className="item-title">{task.title}</h3>
+          <div className="item-body">{task.body}</div>
+          <div className="creator-time">
+            <p className="item-creator">
+              {task.creator.split('').slice(0, 1).join(' ').toUpperCase()}
+            </p>
+            {/* <p className="item-timestamp">{task.timestamp.toLocaleString()}</p> */}
+          </div>
         </div>
       )}
     </Draggable>

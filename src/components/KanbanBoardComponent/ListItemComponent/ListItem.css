@@ -1,8 +1,78 @@
 .item {
   background-color: #ffffff;
-  border-radius: 5px;
+  border-radius: 7px;
+  margin-top: 10px;
+  height: fit-content;
+  padding: 10px;
+  -webkit-box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
+  position: relative;
+}
+
+.item-drag {
+  background-color: #ffffff;
+  border-radius: 7px;
   margin-top: 10px;
   height: auto;
   padding: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
+  transform: rotate(-3deg);
+}
+
+.item-delete {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: not-allowed;
+  font-size: 23px;
+  opacity: 0.56;
+  transition: 200ms linear all;
+}
+
+.item-delete:hover {
+  transform: rotate(25deg);
+}
+
+.item-edit {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: crosshair;
+  font-size: 18px;
+  opacity: 0.56;
+  transition: 200ms linear all;
+}
+
+.item-edit:hover {
+  transform: translateX(-5px);
+}
+
+.item-creator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-top: 5px;
+  height: 25px;
+  width: 25px;
+  border: 1.7px solid rgba(0, 0, 0, 0.75);
+  border-radius: 50%;
+  background-color: #01fe12;
+  transition: 200ms linear all;
+}
+
+.item-creator:hover {
+  transform: scale(1.1);
+}
+
+.creator-time {
+  display: flex;
+  width: 100%;
 }

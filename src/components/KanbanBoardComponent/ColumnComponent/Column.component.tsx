@@ -32,10 +32,14 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
     <Droppable droppableId={col.id}>
       {provided => (
         <div className="column">
-          <button onClick={() => dispatch(addTask(newTask, col))}>
-            Add task
-          </button>
-          <h2>{col.id}</h2>
+          <div className="column-top-line">
+            <h2 className="column-name">{col.id}</h2>
+            <button
+              className="column-add-button"
+              onClick={() => dispatch(addTask(newTask, col))}>
+              +
+            </button>
+          </div>
           <div
             className="list"
             {...provided.droppableProps}

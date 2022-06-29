@@ -39,7 +39,7 @@ export const Workspace: React.FC = () => {
       <Pane
         split="horizontal"
         minSize={85}
-        maxSize={vh * 0.75}
+        maxSize={vh * 0.95}
         size={kanbanSize}
         onDragFinished={e => {
           setKanbanSize(e);
