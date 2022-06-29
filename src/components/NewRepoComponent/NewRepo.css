@@ -40,6 +40,12 @@ input::placeholder {
   border-radius: 6px;
 }
 
+.dashboard-submit-button:hover {
+  background-color: #00111c;
+  border: 2px solid rgb(255, 228, 196);
+  color: rgba(255, 228, 196, 0.9);
+}
+
 .error-message {
   height: fit-content;
   width: 90%;
@@ -56,12 +62,6 @@ input::placeholder {
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
-}
-
-.dashboard-submit-button:hover {
-  background-color: #00111c;
-  border: 2px solid rgb(255, 228, 196);
-  color: rgba(255, 228, 196, 0.9);
 }
 
 .formWrapper {

@@ -48,15 +48,32 @@
   align-items: center;
 }
 
-.lang-ball {
-  color: #57a6ff;
-  margin-right: 5px;
-}
-
 .branches {
   margin-top: 5px;
 }
 
 .updated {
   color: #c8d1d987;
+}
+
+.lang-ball-default {
+  color: #ffe4c4;
+  margin-right: 5px;
+}
+
+.lang-ball-purple {
+  color: #563d7c;
+  margin-right: 5px;
+}
+.lang-ball-blue {
+  color: #57a6ff;
+  margin-right: 5px;
+}
+.lang-ball-yellow {
+  color: #f1e05a;
+  margin-right: 5px;
+}
+.lang-ball-red {
+  color: #e34c25;
+  margin-right: 5px;
 }
