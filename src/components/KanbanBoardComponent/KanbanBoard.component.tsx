@@ -44,24 +44,24 @@ export const KanbanBoard: React.FC = () => {
 
   const [columns, setColumns] = useState(initialColumns);
 
-  useEffect(() => {
-    console.log('columsn state: ', columns);
-    ApiClientService.getKanbanBoard(KANBAN_BOARD_ID)
-      .then(res => res.json())
-      .then(data => setColumns(data.board));
-  }, []);
+  // useEffect(() => {
+  //   console.log('columsn state: ', columns);
+  //   ApiClientService.getKanbanBoard(KANBAN_BOARD_ID)
+  //     .then(res => res.json())
+  //     .then(data => setColumns(data.board));
+  // }, []);
 
-  useEffect(() => {
-    fetch(
-      `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/kanban/${KANBAN_BOARD_ID}`,
-      {
-        method: 'PUT',
-        body: JSON.stringify(columns),
-      },
-    )
-      .then(res => res.json())
-      .then(data => console.log(data));
-  }, [columns]);
+  // useEffect(() => {
+  //   fetch(
+  //     `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/kanban/${KANBAN_BOARD_ID}`,
+  //     {
+  //       method: 'PUT',
+  //       body: JSON.stringify(columns),
+  //     },
+  //   )
+  //     .then(res => res.json())
+  //     .then(data => console.log(data));
+  // }, [columns]);
 
   const onDragEnd = ({ source, destination }: DropResult) => {
     console.log('source: ', source, ' destination: ', destination);

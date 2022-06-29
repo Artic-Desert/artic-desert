@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './ChatInput.css';
 import { MdSend } from 'react-icons/md';
 
 export const ChatInput: React.FC<{
@@ -16,7 +16,7 @@ export const ChatInput: React.FC<{
   };
 
   return (
-    <div className="container">
+    <div className="inputContainer">
       <div className="mainContainer">
         <input
           placeholder="Type your message here ..."
@@ -25,8 +25,8 @@ export const ChatInput: React.FC<{
           value={message}
           onChange={event => setMessage(event.target.value)}
         />
-        <button onClick={handleSendMessage}>
-          <MdSend />
+        <button onClick={handleSendMessage} className="send-button">
+          <MdSend size={23} color={'white'} />
         </button>
       </div>
     </div>

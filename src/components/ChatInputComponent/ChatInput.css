@@ -1,0 +1,10 @@
+.send-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  margin-left: 2%;
+}
+
+.inputContainer {
+  padding: 2%;
+}
