@@ -2,29 +2,49 @@ import React, { useEffect, useState } from 'react';
 import { useUser } from '../../hooks/use-user';
 import { NewRepo } from '../NewRepoComponent/NewRepo.component';
 import { RepoItem } from '../RepoItemComponent/RepoItem.component';
+import { DynamoUser, GithubRepo } from '../../types/Types';
 import './RepoSideBar.css';
 
 export const RepoSideBar: React.FC = () => {
-  const [repos, setRepos] = useState<any>([]); //eslint-disable-line
+  const [repos, setRepos] = useState<GithubRepo[]>([]); //eslint-disable-line
   const [loading, setLoading] = useState(false); //eslint-disable-line
 
   const { user } = useUser();
 
+  const fetchUser = async (): Promise<DynamoUser | undefined> => {
+    try {
+      const response = await fetch(
+        `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${user.login}}`,
+      );
+      return await response.json();
+    } catch (error) {
+      console.log('Error in repo side bar fetching user from dynamo: ', error);
+    }
+    return;
+  };
+
   const fetchUserRepos = async () => {
     setLoading(true);
-    const response = await fetch(
-      `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${user.login}}`,
-    );
-    const data = await response.json();
-    for (const repo of data.repos) {
-      const response = await fetch(`https://api.github.com/repos/${repo}`);
-      const data = await response.json();
-      setRepos((prevState: any[]) => {
-        return [...prevState, data];
+
+    const user = await fetchUser();
+    console.log('user before', user);
+
+    user &&
+      user.repos.map(async repo => {
+        try {
+          const response = await fetch(`https://api.github.com/repos/${repo}`);
+          const data = await response.json();
+          console.log('repo data: ', data);
+          setRepos((prevState: GithubRepo[]) => [...prevState, data]); // Type of prevstate is github repo response
+        } catch (error) {
+          console.log(
+            'Error in repo side bar fetching repos from github: ',
+            error,
+          );
+        }
       });
-    }
+
     setLoading(false);
-    return data;
   };
 
   useEffect(() => {
@@ -35,7 +55,7 @@ export const RepoSideBar: React.FC = () => {
     <div className="repoSideBarWrapper">
       <NewRepo setRepos={setRepos} repos={repos} />
       {repos &&
-        repos.map((repo: any) => {
+        repos.map((repo: GithubRepo) => {
           return <RepoItem repo={repo} key={repo.id} setRepos={setRepos} />;
         })}
     </div>

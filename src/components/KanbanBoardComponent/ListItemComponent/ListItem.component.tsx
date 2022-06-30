@@ -6,11 +6,11 @@ import { FiEdit } from 'react-icons/fi';
 import { deleteTask, updateTask } from '../../../redux/kanban/actions';
 import { GithubApiService } from '../../../services/GithubApiService';
 import { useUser } from '../../../hooks/use-user';
-import { TaskType } from '../../../types/Types';
+import { Task } from '../../../types/Types';
 import './ListItem.css';
 
 interface ItemProps {
-  task: TaskType;
+  task: Task;
   index: number;
   column: string;
 }
