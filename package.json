@@ -11,6 +11,7 @@
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
     "framer-motion": "^6.3.16",
     "immer": "^9.0.15",
     "moment": "^2.29.3",
