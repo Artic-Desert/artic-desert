@@ -60,7 +60,7 @@ export const RepoItem: React.FC<{
   };
 
   const handleNavigation = () => {
-    navigate('/workspace');
+    navigate('/workspace', { state: repo });
   };
 
   // const obj = {

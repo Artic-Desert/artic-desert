@@ -8,6 +8,7 @@ import { BsArrowBarDown } from 'react-icons/bs';
 import { BsArrowBarUp } from 'react-icons/bs';
 
 import './Workspace.css';
+import { useLocation } from 'react-router-dom';
 
 const vw = Math.max(
   document.documentElement.clientWidth || 0,
@@ -23,6 +24,9 @@ export const Workspace: React.FC = () => {
   const [flipArrow, setFlipArrow] = useState(false);
 
   const onClick = () => setKanbanSize(500);
+  const location = useLocation();
+
+  console.log('LOCATION: ', location.state);
 
   useEffect(() => {
     if (kanbanSize > 500) {

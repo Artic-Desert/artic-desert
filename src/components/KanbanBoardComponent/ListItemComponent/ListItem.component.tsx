@@ -35,7 +35,6 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
     };
     dispatch(updateTask(taskBody, column, index));
   };
-  console.log('TASK', task);
   const date = new Date(Number(task.timestamp)).toDateString();
   return (
     <Draggable draggableId={String(task.timestamp)} index={index}>

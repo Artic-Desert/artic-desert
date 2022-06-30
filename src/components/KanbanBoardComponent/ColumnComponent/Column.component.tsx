@@ -13,7 +13,7 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
   let user: any = sessionStorage.getItem('user');
   user = JSON.parse(user);
 
-  console.log('USER inside column:', user);
+  // console.log('USER inside column:', user);
 
   const newTask = user
     ? {
@@ -48,7 +48,7 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
             {...provided.droppableProps}
             ref={provided.innerRef}>
             {col.tasks.map((task, index) => {
-              console.log(task, index);
+              // console.log(task, index);
               return (
                 <ListItem
                   key={task.timestamp}

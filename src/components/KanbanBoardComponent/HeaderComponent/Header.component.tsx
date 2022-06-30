@@ -4,6 +4,9 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import './Header.css';
 
 export const Header: React.FC = () => {
+  let user: any = sessionStorage.getItem('user');
+  user = JSON.parse(user);
+
   return (
     <div className="kanban-header">
       <div className="left">
@@ -25,8 +28,8 @@ export const Header: React.FC = () => {
       </div>
       <div className="right">
         <div className="user-info">
-          <span>Hello Andres!</span>
-          <img src={require('../../../assets/andres.jpeg')} alt="" />
+          <span>Hello {user.name.split(' ')[0]}!</span>
+          <img src={user.avatar_url} alt="" />
         </div>
       </div>
     </div>
