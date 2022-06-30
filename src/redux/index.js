@@ -1,10 +1,12 @@
 import { combineReducers, createStore } from 'redux';
 import { userReducer } from './user/reducer';
 import { kanbanReducer } from './kanban/reducer';
+import { repoReducer } from './repo/reducer';
 
 const reducer = combineReducers({
   users: userReducer,
   kanban: kanbanReducer,
+  repo: repoReducer,
 });
 
 export const store = createStore(

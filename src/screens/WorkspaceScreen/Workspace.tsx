@@ -6,9 +6,11 @@ import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.c
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
 import { BsArrowBarDown } from 'react-icons/bs';
 import { BsArrowBarUp } from 'react-icons/bs';
+import { setRepo } from '../../redux/repo/actions';
 
 import './Workspace.css';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const vw = Math.max(
   document.documentElement.clientWidth || 0,
@@ -22,6 +24,11 @@ const vh = Math.max(
 export const Workspace: React.FC = () => {
   const [kanbanSize, setKanbanSize] = useState(85);
   const [flipArrow, setFlipArrow] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setRepo(location.state));
+  }, []);
 
   const onClick = () => setKanbanSize(500);
   const location = useLocation();
