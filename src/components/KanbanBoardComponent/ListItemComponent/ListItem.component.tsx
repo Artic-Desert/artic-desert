@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { RiDeleteBin6Line } from 'react-icons/ri';
@@ -18,15 +18,19 @@ interface ItemProps {
 export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
   const { user } = useUser();
 
+  const [editing, setEditing] = useState(false);
+
   const dispatch = useDispatch();
   const handleEdit = () => {
-    const taskBody = {
-      creator: user.username,
-      title: 'edited',
-      body: 'edited',
-      timestamp: Date.now(),
-      avatar_url: user.avatar_url,
-    };
+    setEditing(task.creator === user.login);
+    const taskBody = editing
+      ? {
+          creator: user.username,
+          title: 'edited',
+          body: 'edited',
+          timestamp: Date.now(),
+        }
+      : task;
     dispatch(updateTask(taskBody, column, index));
   };
   const date = new Date(Number(task.timestamp)).toDateString();
@@ -46,7 +50,9 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
           <button className="item-edit" onClick={handleEdit}>
             <FiEdit />
           </button>
-          <h3 className="item-title">{task.title}</h3>
+          <h3 contentEditable={editing} className="item-title">
+            {task.title}
+          </h3>
           <div className="item-body">{task.body}</div>
           <div className="creator-time">
             <img
