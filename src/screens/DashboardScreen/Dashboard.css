@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap');
+
 .dashboard-wrapper {
   display: flex;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
 }
+
+/* HEADER CSS */
+
 .header {
   width: 80vw;
   height: 20vh;
@@ -11,6 +16,44 @@
   justify-content: space-between;
   background-color: #00111c;
   padding-left: 20px;
+}
+
+.add-new {
+  margin-top: 30px;
+  width: 33.3%;
+  font-family: 'Ubuntu', sans-serif;
+  opacity: 0.8;
+  font-size: 1vw;
+  text-align: right;
+  color: var(--gold-accent);
+}
+
+.title-logo-cont {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  text-align: center;
+  color: var(--gold-accent);
+  width: 33.3%;
+  position: relative;
+}
+
+.header-logo {
+  opacity: 0.5;
+  position: absolute;
+  top: 18%;
+  right: 13%;
+}
+
+.header-title {
+  font-size: 4.5vw;
+  opacity: 0.8;
+  align-self: flex-end;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.header-logo {
+  height: 80px;
 }
 
 .dashboard-left {
@@ -26,7 +69,7 @@
 
 /* USER INFO CSS */
 .dashboard-user-info {
-  width: 100%;
+  width: 33.3%;
   display: flex;
   color: rgb(255, 228, 196);
   flex-direction: column;
@@ -56,10 +99,14 @@
 
 .git-link {
   display: flex;
-  width: fit-content;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  opacity: 0.8;
+  font-weight: bold;
+  font-family: 'Ubuntu', sans-serif;
+
+  /* justify-content: right; */
 }
+
 .git-logo {
   color: rgb(255, 228, 196);
   margin-left: 10px;
@@ -97,18 +144,27 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: 4px;
-  width: 18%;
-  height: 38px;
+  width: 40%;
+  height: 34px;
   background-color: rgb(255, 228, 196);
   color: #00111c;
   cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+
+  /* align-self: flex-end; */
   border-radius: 6px;
+  box-shadow: 0 4px rgba(255, 228, 196, 0.65);
 }
 
 .logout-button:hover {
   background-color: #00111c;
   border: 2px solid rgb(255, 228, 196);
   color: rgba(255, 228, 196, 0.9);
+}
+
+.quote-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 4px #666;
 }
 
 .hero {
