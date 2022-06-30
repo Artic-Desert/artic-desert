@@ -12,13 +12,21 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
   const { user } = useUser();
   console.log('USER:', user);
 
-  const newTask = {
-    creator: user.username,
-    title: 'This is an example new task',
-    body: 'You can delete this task and create you own!',
-    timestamp: Date.now(),
-    avatar_url: user.avatar_url,
-  };
+  const newTask = user
+    ? {
+        creator: user.username,
+        title: 'This is an example new task',
+        body: 'You can delete this task and create you own!',
+        timestamp: Date.now(),
+        avatar_url: user.avatar_url,
+      }
+    : {
+        creator: 'sebastianfdz',
+        title: 'This is an example new task',
+        body: 'You can delete this task and create you own!',
+        timestamp: Date.now(),
+        avatar_url: 'https://avatars.githubusercontent.com/u/101415858?v=4',
+      };
 
   return (
     <Droppable droppableId={col.id}>
