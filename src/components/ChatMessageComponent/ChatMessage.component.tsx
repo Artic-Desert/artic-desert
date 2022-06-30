@@ -7,7 +7,9 @@ import './ChatMessage.css';
 
 //eslint-disable-next-line
 export const ChatMessage: React.FC<any> = ({ message }) => {
-  const { user } = useUser();
+  // const { user } = useUser();
+  let user: any = sessionStorage.getItem('user');
+  user = JSON.parse(user);
 
   const isMyMessage = () => {
     return user.login === message.username;

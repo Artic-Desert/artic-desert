@@ -9,16 +9,27 @@ import './Column.css';
 
 export const Column: React.FC<ColumnProps> = ({ col }) => {
   const dispatch = useDispatch();
-  const { user } = useUser();
-  console.log('USER:', user);
+  // const { user } = useUser();
+  let user: any = sessionStorage.getItem('user');
+  user = JSON.parse(user);
 
-  const newTask = {
-    creator: user.username,
-    title: 'This is an example new task',
-    body: 'You can delete this task and create you own!',
-    timestamp: Date.now(),
-    avatar_url: user.avatar_url,
-  };
+  // console.log('USER inside column:', user);
+
+  const newTask = user
+    ? {
+        creator: user.username,
+        title: 'This is an example new task',
+        body: 'You can delete this task and create you own!',
+        timestamp: Date.now(),
+        avatar_url: user.avatar_url,
+      }
+    : {
+        creator: 'sebastianfdz',
+        title: 'This is an example new task',
+        body: 'You can delete this task and create you own!',
+        timestamp: Date.now(),
+        avatar_url: 'https://avatars.githubusercontent.com/u/101415858?v=4',
+      };
 
   return (
     <Droppable droppableId={col.id}>
@@ -37,7 +48,7 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
             {...provided.droppableProps}
             ref={provided.innerRef}>
             {col.tasks.map((task, index) => {
-              console.log(task, index);
+              // console.log(task, index);
               return (
                 <ListItem
                   key={task.timestamp}

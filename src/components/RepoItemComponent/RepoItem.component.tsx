@@ -13,7 +13,9 @@ export const RepoItem: React.FC<{
 }> = ({ repo, setRepos }) => {
   console.log('repo input from repo item: ', repo);
   const [numOfBranches, setNumOfBranches] = useState(0);
-  const { user } = useUser();
+  // const { user } = useUser();
+  let user: any = sessionStorage.getItem('user');
+  user = JSON.parse(user);
 
   const navigate = useNavigate();
 
@@ -58,7 +60,7 @@ export const RepoItem: React.FC<{
   };
 
   const handleNavigation = () => {
-    navigate('/workspace');
+    navigate('/workspace', { state: repo });
   };
 
   // const obj = {

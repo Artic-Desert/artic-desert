@@ -16,8 +16,8 @@ interface ItemProps {
 }
 
 export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
-  const { user } = useUser();
-
+  let user: any = sessionStorage.getItem('user');
+  user = JSON.parse(user);
   // useEffect(() => {
   //   GithubApiService.getUser(task.creator).then(data => {
   //     console.log('api call data: ', data);
@@ -35,7 +35,6 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
     };
     dispatch(updateTask(taskBody, column, index));
   };
-  console.log('TASK', task);
   const date = new Date(Number(task.timestamp)).toDateString();
   return (
     <Draggable draggableId={String(task.timestamp)} index={index}>

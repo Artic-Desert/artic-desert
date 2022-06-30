@@ -8,7 +8,8 @@ import './Dashboard.css';
 
 export const Dashboard: React.FC = () => {
   // const { user } = useUser();
-  const user: any = sessionStorage.getItem('user');
+  let user: any = sessionStorage.getItem('user');
+  user = JSON.parse(user);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -16,7 +17,7 @@ export const Dashboard: React.FC = () => {
     navigate('/');
   };
 
-  console.log('session user: ', user);
+  console.log('USER inside dashboard: ', user);
 
   return (
     user && (
