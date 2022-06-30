@@ -92,13 +92,13 @@ export const NewRepo: React.FC<{
         <input
           type="text"
           value={ownerName}
-          placeholder="Enter Github username"
+          placeholder="Github username"
           onChange={event => setOwnerName(event.target.value)}
         />
         <input
           type="text"
           value={repoName}
-          placeholder="And the repository name"
+          placeholder="Repository name"
           onChange={event => setRepoName(event.target.value)}
         />
         <span className="or">or ...</span>

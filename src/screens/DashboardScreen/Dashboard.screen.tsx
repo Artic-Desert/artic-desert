@@ -9,6 +9,7 @@ import { Time } from '../../components/TimeComponent/Time.component';
 import { RandomQuote } from '../../components/RandomQuoteComponent/RandomQuote.component';
 import { useUser } from '../../hooks/use-user';
 import { AuthService } from '../../services/AuthService';
+import ades from '../../assets/ades.svg';
 import './Dashboard.css';
 
 export const Dashboard: React.FC = () => {
@@ -43,6 +44,10 @@ export const Dashboard: React.FC = () => {
               <button className="logout-button" onClick={handleLogout}>
                 Log Out
               </button>
+            </div>
+            <div className="title-logo-cont">
+              <img className="header-logo" src={ades} alt="" />
+              <h1 className="header-title">Dashboard</h1>
             </div>
             <div className="add-new">
               <h4>Add a new repository to your Dashboard</h4>
