@@ -1,19 +1,18 @@
 .resizable-div {
-  background-color: #484a4d;
-  min-width: 0px;
-  max-width: 75vw;
-  min-height: 100px;
-  max-height: 95vh;
+  background-color: var(--gray-accent);
+  opacity: 0.8;
+  position: absolute;
+  top: -50%;
+  min-height: 80vh;
   transition: all linear 0.1s;
-  border-radius: 20px 0 0 20px;
+  border-radius: 7px 0 0 7px;
   display: flex;
-  position: relative;
 }
 .dragger {
   position: absolute;
   left: 0;
-  bottom: 0;
-  cursor: 'col-resize';
+  top: 45%;
+  cursor: ew-resize;
   color: black;
   padding: 10px;
 }

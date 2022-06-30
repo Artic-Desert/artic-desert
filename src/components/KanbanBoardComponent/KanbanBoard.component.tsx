@@ -19,14 +19,14 @@ export const KanbanBoard: React.FC = () => {
 
   useEffect(() => {
     ApiClientService.getKanbanBoard(KANBAN_BOARD_ID).then(data => {
-      console.log('Initial get of kanban board: ', data),
+      console.log(' 8===========D~~~~~ Initial get of kanban board: ', data),
         dispatch(setKanban(data.board));
     });
   }, []);
 
   useEffect(() => {
     ApiClientService.updateKanbanBoard(KANBAN_BOARD_ID, kanban).then(data =>
-      console.log('Making an update to kanbanboard: ', data),
+      console.log('8===========D~~~~~ Making an update to kanbanboard: ', data),
     );
   }, [kanban]);
 

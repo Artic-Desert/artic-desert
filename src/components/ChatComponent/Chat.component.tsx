@@ -8,7 +8,7 @@ export const Chat: React.FC = () => {
   const [messages, setMessages] = useState<any[]>([]); //eslint-disable-line
 
   return (
-    <div className="container">
+    <div className="main-chat-container">
       {messages &&
         messages.map(message => {
           return <ChatMessage message={message} key={message.id} />;

@@ -1,8 +1,9 @@
 .show-chat-button-main-container {
   display: flex;
-  position: absolute;
+  position: fixed;
   right: 0;
-  top: 70px;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 100;
 }
 .chat-container {
@@ -17,12 +18,47 @@
 .chat-button {
   position: absolute;
   right: 7px;
+  width: 80px;
   top: -49px;
+  font-size: 15px;
+  font-weight: bold;
   z-index: 100;
-  background-color: transparent;
+  background-color: var(--gray-accent);
+  opacity: 0.8;
+  padding: 10px;
+  border-radius: 6px;
   border: none;
   transition: all linear 0.1s;
 }
+
 .chat-button:hover {
   transform: scale(1.1);
+}
+
+.chat-left-arrow {
+  position: absolute;
+  left: -5%;
+  top: 38%;
+  transform: translateY(-50%);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateX(0);
+  }
+  40% {
+    -webkit-transform: translateX(-4px);
+  }
+  60% {
+    -webkit-transform: translateX(-2px);
+  }
+}
+
+.chat-icon {
+  color: var(--backgound-color);
 }
