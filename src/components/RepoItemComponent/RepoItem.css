@@ -26,6 +26,7 @@
 .repo-name {
   color: #57a6ff;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 .privacy {

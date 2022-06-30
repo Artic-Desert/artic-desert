@@ -61,11 +61,12 @@ export const RepoItem: React.FC<{
     navigate('/workspace', { state: repo });
   };
 
-  // const obj = {
-  //   JavaScript: 'js',
-  //   TypeScript: 'ts',
-  // };
-
+  const obj: any = {
+    JavaScript: 'lang-ball-yellow',
+    TypeScript: 'lang-ball-blue',
+    CSS: 'lang-ball-purple',
+    HTML: 'lang-ball-red',
+  };
   useEffect(() => {
     fetchNumOfBranches();
   }, []);
@@ -86,7 +87,10 @@ export const RepoItem: React.FC<{
       </div>
       <div className="bot-line">
         <div className="lang-cont">
-          {repo.language === 'JavaScript' && (
+          <BsCircleFill
+            className={`${obj[repo.language || 'lang-ball-default']}`}
+          />
+          {/* {repo.language === 'JavaScript' && (
             <BsCircleFill className="lang-ball-yellow" />
           )}
           {repo.language === 'TypeScript' && (
@@ -101,7 +105,7 @@ export const RepoItem: React.FC<{
           {repo.language !== 'HTML' ||
             'CSS' ||
             'TypeScript' ||
-            ('JavaScript' && <BsCircleFill className="lang-ball-default" />)}
+            ('JavaScript' && <BsCircleFill className="lang-ball-default" />)} */}
           {/* {!obj[repo.language] && <BsCircleFill className="lang-ball" />} */}
 
           <span className="language">{repo.language}</span>
