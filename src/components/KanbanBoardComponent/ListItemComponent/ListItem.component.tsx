@@ -16,8 +16,8 @@ interface ItemProps {
 }
 
 export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
-  const { user } = useUser();
-
+  let user: any = sessionStorage.getItem('user');
+  user = JSON.parse(user);
   // useEffect(() => {
   //   GithubApiService.getUser(task.creator).then(data => {
   //     console.log('api call data: ', data);
