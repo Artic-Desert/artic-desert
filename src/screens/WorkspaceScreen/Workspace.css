@@ -2,7 +2,9 @@
 
 .kanban {
   width: 100vw;
-  background: #0e1117;
+  /* background: #0e1117; */
+  background-image: url('../../assets/oceanback2.svg');
+  background-size: cover;
   /* background: linear-gradient(
     180deg,
     #0e1117 0%,

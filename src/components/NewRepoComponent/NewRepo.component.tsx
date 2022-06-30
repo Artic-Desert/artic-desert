@@ -44,6 +44,7 @@ export const NewRepo: React.FC<{
         return;
       }
     }
+    setMessage('Repository added successfully!');
     return data;
   };
 
