@@ -36,7 +36,7 @@ export type GithubRepo = {
   language: string;
   full_name: string;
   pushed_at: string;
-  message?: {}; // This is not a repo property, it only exists with there is an error message from the fetch.
+  message?: { message: string }; // This is not a repo property, it only exists with there is an error message from the fetch.
 };
 
 export type OrganizationToCreate = {
@@ -113,4 +113,13 @@ export type ChatGroup = {
 export type MemberToEdit = {
   repo_id: string;
   member: string;
+};
+
+export type UserToAddToPremium = {
+  user_id: string;
+};
+
+export type PremiumUser = {
+  time_added: string;
+  user_id: string;
 };

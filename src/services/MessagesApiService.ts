@@ -1,19 +1,4 @@
-export type MessageToCreate = {
-  content: string;
-  timestamp: number;
-  edited_timestamp?: number;
-  username: string;
-  chatgroup_id: string;
-};
-
-export type Message = {
-  id: string;
-  content: string;
-  edited_timestamp?: number;
-  timestamp: number;
-  username: string;
-  chatgroup_id: string;
-};
+import { Message, MessageToCreate } from '../types/Types';
 
 const BASE_URL = 'https://arctic-desert.herokuapp.com/messages';
 
