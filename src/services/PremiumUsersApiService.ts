@@ -1,13 +1,6 @@
+import { PremiumUser, UserToAddToPremium } from '../types/Types';
+
 const BASE_URL = 'https://arctic-desert.herokuapp.com/premium';
-
-export type UserToAddToPremium = {
-  user_id: string;
-};
-
-export type PremiumUser = {
-  time_added: string;
-  user_id: string;
-};
 
 export const addUserToPremium = async (body: UserToAddToPremium) => {
   try {

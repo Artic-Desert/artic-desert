@@ -1,43 +1,14 @@
+import {
+  AdminToEdit,
+  GodToEdit,
+  NameToEdit,
+  Organization,
+  OrganizationToCreate,
+  RepoToEdit,
+  UserToEdit,
+} from '../types/Types';
+
 const BASE_URL = 'https://arctic-desert.herokuapp.com/organization';
-
-export type OrganizationToCreate = {
-  name: string;
-  god: string;
-};
-
-export type Organization = {
-  id: string;
-  name: string;
-  god: string;
-  admins: string[];
-  users: string[];
-  repos: string[];
-};
-
-export type AdminToEdit = {
-  admin: string;
-  id: string;
-};
-
-export type RepoToEdit = {
-  repo: string;
-  id: string;
-};
-
-export type UserToEdit = {
-  user: string;
-  id: string;
-};
-
-export type NameToEdit = {
-  name: string;
-  id: string;
-};
-
-export type GodToEdit = {
-  god: string;
-  id: string;
-};
 
 export const createOrganization = async (body: OrganizationToCreate) => {
   try {

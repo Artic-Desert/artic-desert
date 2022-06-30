@@ -37,3 +37,79 @@ export type GithubRepo = {
   full_name: string;
   pushed_at: string;
 };
+
+export type OrganizationToCreate = {
+  name: string;
+  god: string;
+};
+
+export type Organization = {
+  id: string;
+  name: string;
+  god: string;
+  admins: string[];
+  users: string[];
+  repos: string[];
+};
+
+export type AdminToEdit = {
+  admin: string;
+  id: string;
+};
+
+export type RepoToEdit = {
+  repo: string;
+  id: string;
+};
+
+export type UserToEdit = {
+  user: string;
+  id: string;
+};
+
+export type NameToEdit = {
+  name: string;
+  id: string;
+};
+
+export type GodToEdit = {
+  god: string;
+  id: string;
+};
+
+export type MessageToCreate = {
+  content: string;
+  timestamp: number;
+  edited_timestamp?: number;
+  username: string;
+  chatgroup_id: string;
+};
+
+export type Message = {
+  id: string;
+  content: string;
+  edited_timestamp?: number;
+  timestamp: number;
+  username: string;
+  chatgroup_id: string;
+};
+
+export type ChatGroupToCreate = {
+  name: string;
+  admin: string;
+  repo_id: string;
+};
+
+export type ChatGroup = {
+  id: string;
+  name: string;
+  members: string[];
+  admin: string;
+  messages: string[];
+  repo_id: string;
+};
+
+export type MemberToEdit = {
+  repo_id: string;
+  member: string;
+};
