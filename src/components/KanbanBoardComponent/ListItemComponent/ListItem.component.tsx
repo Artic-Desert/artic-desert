@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  BaseSyntheticEvent,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { RiDeleteBin6Line } from 'react-icons/ri';
@@ -18,21 +23,38 @@ interface ItemProps {
 export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
   const { user } = useUser();
 
+  console.log('inside taks');
+
+  const isEditable = user.login === task.creator;
   const [editing, setEditing] = useState(false);
+  const [taskTitle, setTaskTitle] = useState(task.title);
+  const [taskBody, setTaskBody] = useState(task.body);
 
   const dispatch = useDispatch();
+
   const handleEdit = () => {
-    setEditing(task.creator === user.login);
-    const taskBody = editing
-      ? {
-          creator: user.username,
-          title: 'edited',
-          body: 'edited',
-          timestamp: Date.now(),
-        }
-      : task;
-    dispatch(updateTask(taskBody, column, index));
+    isEditable && setEditing(true);
   };
+
+  const handleSubmitEdit = () => {
+    const editedTask = {
+      ...task,
+      title: taskTitle,
+      body: taskBody,
+      timestamp: Date.now(),
+    };
+    dispatch(updateTask(editedTask, column, index));
+    setEditing(false);
+  };
+
+  const handleTitleChange = (event: any) => {
+    setTaskTitle(event.target.innerText);
+  };
+
+  const handleBodyChange = (event: any) => {
+    setTaskBody(event.target.innerText);
+  };
+
   const date = new Date(Number(task.timestamp)).toDateString();
   return (
     <Draggable draggableId={String(task.timestamp)} index={index}>
@@ -50,10 +72,22 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
           <button className="item-edit" onClick={handleEdit}>
             <FiEdit />
           </button>
-          <h3 contentEditable={editing} className="item-title">
-            {task.title}
-          </h3>
-          <div className="item-body">{task.body}</div>
+          <div>
+            {editing && <button onClick={handleSubmitEdit}>save</button>}
+            <h3
+              contentEditable={editing}
+              onInput={e => handleTitleChange(e)}
+              className="item-title">
+              {task.title}
+            </h3>
+
+            <div
+              contentEditable={editing}
+              onInput={e => handleBodyChange(e)}
+              className="item-body">
+              {task.body}
+            </div>
+          </div>
           <div className="creator-time">
             <img
               src={task.avatar_url}

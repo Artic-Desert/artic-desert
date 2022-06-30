@@ -17,21 +17,13 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
   console.log('USER inside column:', user);
   console.log('REPO FROM REDUX STORE: ', repo);
 
-  const newTask = user
-    ? {
-        creator: user.username,
-        title: 'This is an example new task',
-        body: 'You can delete this task and create you own!',
-        timestamp: Date.now(),
-        avatar_url: user.avatar_url,
-      }
-    : {
-        creator: 'sebastianfdz',
-        title: 'This is an example new task',
-        body: 'You can delete this task and create you own!',
-        timestamp: Date.now(),
-        avatar_url: 'https://avatars.githubusercontent.com/u/101415858?v=4',
-      };
+  const newTask = {
+    creator: user.login,
+    title: 'This is an example new task',
+    body: 'You can delete this task and create you own!',
+    timestamp: Date.now(),
+    avatar_url: user.avatar_url,
+  };
 
   return (
     <Droppable droppableId={col.id}>
