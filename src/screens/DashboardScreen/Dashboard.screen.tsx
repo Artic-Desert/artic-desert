@@ -7,6 +7,7 @@ import { RepoItem } from '../../components/RepoItemComponent/RepoItem.component'
 import { RepoSideBar } from '../../components/RepoSideBarComponent/RepoSideBar.component';
 import { Time } from '../../components/TimeComponent/Time.component';
 import { RandomQuote } from '../../components/RandomQuoteComponent/RandomQuote.component';
+import { Weather } from '../../components/WeatherComponent/Weather.component';
 import { useUser } from '../../hooks/use-user';
 import { AuthService } from '../../services/AuthService';
 import './Dashboard.css';
@@ -52,6 +53,7 @@ export const Dashboard: React.FC = () => {
             <div className="productivity">
               <Time />
               <RandomQuote />
+              <Weather />
             </div>
           </div>
         </div>
