@@ -13,10 +13,11 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
   console.log('USER:', user);
 
   const newTask = {
-    creator: 'sebastianfdz',
+    creator: user.username,
     title: 'This is an example new task',
     body: 'You can delete this task and create you own!',
     timestamp: Date.now(),
+    avatar_url: user.avatar_url,
   };
 
   return (

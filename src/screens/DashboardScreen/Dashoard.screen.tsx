@@ -7,13 +7,16 @@ import { AuthService } from '../../services/AuthService';
 import './Dashboard.css';
 
 export const Dashboard: React.FC = () => {
-  const { user } = useUser();
+  // const { user } = useUser();
+  const user: any = sessionStorage.getItem('user');
   const navigate = useNavigate();
 
   const handleLogout = () => {
     AuthService.resetUserSession();
     navigate('/');
   };
+
+  console.log('session user: ', user);
 
   return (
     user && (

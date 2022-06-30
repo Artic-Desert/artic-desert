@@ -31,7 +31,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
       title: 'edited',
       body: 'edited',
       timestamp: Date.now(),
-      creator_avatar: user.avatar_url,
+      avatar_url: user.avatar_url,
     };
     dispatch(updateTask(taskBody, column, index));
   };

@@ -44,7 +44,7 @@ export const Validation: React.FC = () => {
       })
       .then(res => res.json())
       .then(data => {
-        AuthService.setUserSession(data.login, trueToken);
+        AuthService.setUserSession(data, trueToken);
         dispatch(setUser(data));
         navigate('/Dashboard');
       })
