@@ -5,8 +5,13 @@ import './RepoItem.css';
 import { useUser } from '../../hooks/use-user';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
+import { GithubRepo } from '../../types/Types';
 
-export const RepoItem: React.FC<any> = ({ repo, setRepos }) => {
+export const RepoItem: React.FC<{
+  repo: GithubRepo;
+  setRepos: React.Dispatch<React.SetStateAction<GithubRepo[]>>;
+}> = ({ repo, setRepos }) => {
+  console.log('repo input from repo item: ', repo);
   const [numOfBranches, setNumOfBranches] = useState(0);
   const { user } = useUser();
 
@@ -38,11 +43,18 @@ export const RepoItem: React.FC<any> = ({ repo, setRepos }) => {
   };
 
   const fetchNumOfBranches = async () => {
-    const response = await fetch(
-      `https://api.github.com/repos/${repo.full_name}/branches`,
-    );
-    const branches = await response.json();
-    setNumOfBranches(branches.length);
+    try {
+      const response = await fetch(
+        `https://api.github.com/repos/${repo.full_name}/branches`,
+      );
+      const branches = await response.json();
+      setNumOfBranches(branches.length);
+    } catch (error) {
+      console.log(
+        'Error fetching repo branches from github inside repo item component: ',
+        error,
+      );
+    }
   };
 
   const handleNavigation = () => {
@@ -58,7 +70,9 @@ export const RepoItem: React.FC<any> = ({ repo, setRepos }) => {
     fetchNumOfBranches();
   }, []);
 
-  return (
+  return repo.message ? (
+    <div style={{ color: 'white' }}>There was an error in repo fetching</div>
+  ) : (
     <div className="repo-item-container">
       <div className="top-line">
         <h3 className="repo-name" onClick={handleNavigation}>
