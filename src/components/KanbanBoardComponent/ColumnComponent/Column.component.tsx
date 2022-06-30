@@ -3,29 +3,20 @@ import { Droppable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { ListItem } from '../ListItemComponent/ListItem.component';
 import { addTask } from '../../../redux/kanban/actions';
+import { useUser } from '../../../hooks/use-user';
+import { ColumnProps } from '../../../types/Types';
 import './Column.css';
-
-type Task = {
-  creator: string;
-  title: string;
-  body: string;
-  timestamp: string;
-};
-
-interface ColumnProps {
-  col: {
-    id: string;
-    tasks: Task[];
-  };
-}
 
 export const Column: React.FC<ColumnProps> = ({ col }) => {
   const dispatch = useDispatch();
+  const { user } = useUser();
+  console.log('USER:', user);
+
   const newTask = {
-    creator: 'newTask',
+    creator: 'sebastianfdz',
     title: 'This is an example new task',
     body: 'You can delete this task and create you own!',
-    timestamp: String(Math.floor(Math.random() * 100000000000)),
+    timestamp: Date.now(),
   };
 
   return (

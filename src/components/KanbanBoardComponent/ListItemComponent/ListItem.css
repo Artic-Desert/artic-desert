@@ -64,7 +64,7 @@
   width: 25px;
   border: 1.7px solid rgba(0, 0, 0, 0.75);
   border-radius: 50%;
-  background-color: #01fe12;
+  /* background-color: #01fe12; */
   transition: 200ms linear all;
 }
 
@@ -75,4 +75,10 @@
 .creator-time {
   display: flex;
   width: 100%;
+  align-items: 'center';
+}
+
+.item-timestamp {
+  margin-left: 10px;
+  font-size: 12px;
 }

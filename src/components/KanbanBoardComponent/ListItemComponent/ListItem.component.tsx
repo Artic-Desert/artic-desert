@@ -1,37 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FiEdit } from 'react-icons/fi';
 import { deleteTask, updateTask } from '../../../redux/kanban/actions';
+import { GithubApiService } from '../../../services/GithubApiService';
+import { useUser } from '../../../hooks/use-user';
+import { TaskType } from '../../../types/Types';
 import './ListItem.css';
 
-type Task = {
-  creator: string;
-  title: string;
-  body: string;
-  timestamp: string;
-};
-
 interface ItemProps {
-  task: Task;
+  task: TaskType;
   index: number;
   column: string;
 }
 
 export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
+  const { user } = useUser();
+
+  // useEffect(() => {
+  //   GithubApiService.getUser(task.creator).then(data => {
+  //     console.log('api call data: ', data);
+  //     return (task.avatar_path = data.avatar_url);
+  //   });
+  // }, []);
   const dispatch = useDispatch();
   const handleEdit = () => {
     const taskBody = {
-      creator: 'edited',
+      creator: user.username,
       title: 'edited',
       body: 'edited',
+      timestamp: Date.now(),
+      creator_avatar: user.avatar_url,
     };
     dispatch(updateTask(taskBody, column, index));
   };
   console.log('TASK', task);
+  const date = new Date(Number(task.timestamp)).toDateString();
   return (
-    <Draggable draggableId={task.timestamp} index={index}>
+    <Draggable draggableId={String(task.timestamp)} index={index}>
       {provided => (
         <div
           className="item"
@@ -49,10 +56,14 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
           <h3 className="item-title">{task.title}</h3>
           <div className="item-body">{task.body}</div>
           <div className="creator-time">
-            <p className="item-creator">
-              {task.creator.split('').slice(0, 1).join(' ').toUpperCase()}
-            </p>
-            {/* <p className="item-timestamp">{task.timestamp.toLocaleString()}</p> */}
+            <img
+              src={task.avatar_url}
+              alt=""
+              style={{ width: '25px', height: '25px', borderRadius: '50px' }}
+            />
+            {/* <p>{task.creator.split('').slice(0, 1).join(' ').toUpperCase()}</p> */}
+
+            <p className="item-timestamp">{date}</p>
           </div>
         </div>
       )}
