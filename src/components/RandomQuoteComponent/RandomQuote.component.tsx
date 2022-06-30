@@ -1,7 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
+import './RandomQuote.css';
+
+interface Data {
+  id: string;
+  tags: [];
+  content: string;
+  author: string;
+  authorSlug: string;
+  length: number;
+  dateAdded: string;
+  dateModified: string;
+}
+
 export const RandomQuote: React.FC = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<Data | null>();
+  const [dataError, setDataError] = useState(false);
 
   async function updateQuote() {
     try {
@@ -9,9 +23,10 @@ export const RandomQuote: React.FC = () => {
       const { statusCode, statusMessage, ...data } = await response.json();
       if (!response.ok) throw new Error(`${statusCode} ${statusMessage}`);
       setData(data);
+      setDataError(false);
     } catch (error) {
       console.error(error);
-      setData({ content: 'Oops... Something went wrong' });
+      setDataError(true);
     }
   }
 
@@ -24,7 +39,9 @@ export const RandomQuote: React.FC = () => {
   return (
     <div className="random-quote-container">
       <div className="quote-main">
-        <p className="quote-main-p">{data.content}</p>
+        <p className="quote-main-p">
+          {dataError ? 'Oops... Something went wrong' : data.content}
+        </p>
         <p>{data.author}</p>
       </div>
       <div className="button-container">
