@@ -5,29 +5,25 @@ import { ListItem } from '../ListItemComponent/ListItem.component';
 import { addTask } from '../../../redux/kanban/actions';
 import { useUser } from '../../../hooks/use-user';
 import { ColumnProps } from '../../../types/Types';
+import { useRepo } from '../../../hooks/use-repo.js';
 import './Column.css';
 
 export const Column: React.FC<ColumnProps> = ({ col }) => {
   const dispatch = useDispatch();
   const { user } = useUser();
 
-  console.log('USER inside column:', user);
+  const { repo } = useRepo();
 
-  const newTask = user
-    ? {
-        creator: user.username,
-        title: 'This is an example new task',
-        body: 'You can delete this task and create you own!',
-        timestamp: Date.now(),
-        avatar_url: user.avatar_url,
-      }
-    : {
-        creator: 'sebastianfdz',
-        title: 'This is an example new task',
-        body: 'You can delete this task and create you own!',
-        timestamp: Date.now(),
-        avatar_url: 'https://avatars.githubusercontent.com/u/101415858?v=4',
-      };
+  console.log('USER inside column:', user);
+  console.log('REPO FROM REDUX STORE: ', repo);
+
+  const newTask = {
+    creator: user.login,
+    title: 'This is an example new task',
+    body: 'You can delete this task and create you own!',
+    timestamp: Date.now(),
+    avatar_url: user.avatar_url,
+  };
 
   return (
     <Droppable droppableId={col.id}>
