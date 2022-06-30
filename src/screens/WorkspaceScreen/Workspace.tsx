@@ -58,7 +58,6 @@ export const Workspace: React.FC = () => {
         <div className="kanban">
           <Header />
           <KanbanBoard />
-          <ShowChatButton />
         </div>
         <div className="timeline">
           <div
@@ -89,6 +88,7 @@ export const Workspace: React.FC = () => {
             )}
           </div>
           <GitTimeline />
+          <ShowChatButton />
         </div>
       </Pane>
     </div>
