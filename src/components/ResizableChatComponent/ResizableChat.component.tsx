@@ -1,6 +1,7 @@
 import { motion, useMotionValue } from 'framer-motion';
 import React, { useState } from 'react';
 import { Chat } from '../ChatComponent/Chat.component';
+import { MdOutlineDragIndicator } from 'react-icons/md';
 
 import './ResizableChat.css';
 
@@ -70,7 +71,11 @@ export const ResizableChat: React.FC = () => {
           onDragStart={() => {
             setIsDragging(true);
           }}>
-          ↙️
+          <MdOutlineDragIndicator
+            className="chat-dragger"
+            size={40}
+            color="black"
+          />
         </motion.div>
       </motion.div>
     </div>
