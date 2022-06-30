@@ -53,50 +53,48 @@ interface wind {
 }
 
 export const Weather: React.FC = () => {
-  const [data, setData] = useState<Data | null>();
+  const [data, setData] = useState<Data | null>(null);
   const [url, setUrl] = useState('');
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.error(error, 'no data error');
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const { ...data } = await response.json();
-        setData(data);
-      } catch (error) {
-        console.error(error, 'no data error');
+    const getLocationPromise = new Promise<{
+      latitude: number;
+      longitude: number;
+    }>((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const lat = position.coords.latitude;
+          const long = position.coords.longitude;
+
+          resolve({ latitude: lat, longitude: long });
+        });
+      } else {
+        reject("your browser doesn't support geolocation API");
       }
-    };
-    fetchData();
+    });
+    getLocationPromise
+      .then(location => {
+        const url2 = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=bdc27bcefe054e17fc40f6db933fb96c`;
+        setUrl(url2);
+      })
+      .catch(err => {
+        console.error(err, 'location promise error');
+      });
   }, []);
 
-  const getLocationPromise = new Promise<{
-    latitude: number;
-    longitude: number;
-  }>((resolve, reject) => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const lat = position.coords.latitude;
-        const long = position.coords.longitude;
-
-        resolve({ latitude: lat, longitude: long });
-      });
-    } else {
-      reject("your browser doesn't support geolocation API");
-    }
-  });
-
-  getLocationPromise
-    .then(location => {
-      const url2 = `https://api.openweathermap.org/data/2.5/weather?lat=${
-        location.latitude
-      }&lon=${location.longitude}&appid=${
-        process.env.REACT_APP_WEATHER_API_KEY as string
-      }`;
-      setUrl(url2);
-    })
-    .catch(err => {
-      console.error(err, 'location promise error');
-    });
+  useEffect(() => {
+    fetchData();
+  }, [url]);
 
   return (
     <div className="weather-container">
@@ -141,7 +139,7 @@ export const Weather: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div>No location data</div>
+        <div></div>
       )}
     </div>
   );
