@@ -13,9 +13,7 @@ export const RepoItem: React.FC<{
 }> = ({ repo, setRepos }) => {
   console.log('repo input from repo item: ', repo);
   const [numOfBranches, setNumOfBranches] = useState(0);
-  // const { user } = useUser();
-  let user: any = sessionStorage.getItem('user');
-  user = JSON.parse(user);
+  const { user } = useUser();
 
   const navigate = useNavigate();
 

@@ -9,11 +9,9 @@ import './Column.css';
 
 export const Column: React.FC<ColumnProps> = ({ col }) => {
   const dispatch = useDispatch();
-  // const { user } = useUser();
-  let user: any = sessionStorage.getItem('user');
-  user = JSON.parse(user);
+  const { user } = useUser();
 
-  // console.log('USER inside column:', user);
+  console.log('USER inside column:', user);
 
   const newTask = user
     ? {

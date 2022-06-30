@@ -2,10 +2,10 @@ import React from 'react';
 import { GoGitBranch } from 'react-icons/go';
 import { AiFillCaretDown } from 'react-icons/ai';
 import './Header.css';
+import { useUser } from '../../../hooks/use-user';
 
 export const Header: React.FC = () => {
-  let user: any = sessionStorage.getItem('user');
-  user = JSON.parse(user);
+  const { user } = useUser();
 
   return (
     <div className="kanban-header">
