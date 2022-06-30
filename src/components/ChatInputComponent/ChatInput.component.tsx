@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
 import './ChatInput.css';
 import { MdSend } from 'react-icons/md';
+import { useUser } from '../../hooks/use-user';
 
 export const ChatInput: React.FC<{
   setMessages: React.Dispatch<React.SetStateAction<any[]>>; //eslint-disable-line
 }> = ({ setMessages }) => {
   const [message, setMessage] = useState('');
+  const { user } = useUser();
 
   const handleSendMessage = () => {
+    const messageBody = {
+      content: message,
+      timestamp: Date.now(),
+      username: user.login,
+      chatgroup_id: 'testrepo/branchname',
+    };
     // TODO: Send message to the backend get it back and update new State with the created message
-    // setMessages(prevState => {
-    //   return [...prevState, message];
-    // });
+    setMessages(prevState => {
+      return [...prevState, messageBody];
+    });
     setMessage('');
   };
 

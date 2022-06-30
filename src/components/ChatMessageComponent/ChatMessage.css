@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.usersMessageBox {
+  background-color: antiquewhite;
+  align-self: flex-end;
+  margin-right: 5%;
+  min-width: 20%;
+  margin-top: 3%;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+}
+
+.content {
+  margin: 0 5%;
+}
+
+.time {
+  text-align: end;
+  margin: 0 5%;
+}

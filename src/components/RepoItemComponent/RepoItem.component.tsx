@@ -4,10 +4,13 @@ import { BsCircleFill } from 'react-icons/bs';
 import './RepoItem.css';
 import { useUser } from '../../hooks/use-user';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 
 export const RepoItem: React.FC<any> = ({ repo, setRepos }) => {
   const [numOfBranches, setNumOfBranches] = useState(0);
   const { user } = useUser();
+
+  const navigate = useNavigate();
 
   const handleDelete = async () => {
     console.log(repo.full_name.toLowerCase());
@@ -42,6 +45,10 @@ export const RepoItem: React.FC<any> = ({ repo, setRepos }) => {
     setNumOfBranches(branches.length);
   };
 
+  const handleNavigation = () => {
+    navigate('/workspace');
+  };
+
   // const obj = {
   //   JavaScript: 'js',
   //   TypeScript: 'ts',
@@ -54,7 +61,9 @@ export const RepoItem: React.FC<any> = ({ repo, setRepos }) => {
   return (
     <div className="repo-item-container">
       <div className="top-line">
-        <h3 className="repo-name">{repo.name}</h3>
+        <h3 className="repo-name" onClick={handleNavigation}>
+          {repo.name}
+        </h3>
         <div className="owner-cont">
           <img src={repo.owner.avatar_url} alt="" />
           <p className="repo-owner">{repo.owner.login}</p>
