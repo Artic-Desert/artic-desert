@@ -11,19 +11,23 @@ export const Time: React.FC = () => {
 
   return (
     <div className="time-container">
-      <p>
+      <p className="time-date">
+        {dateState
+          .toLocaleDateString('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true,
+          })
+          .split(' ')
+          .slice(1)
+          .join(' ')}
+      </p>
+      <p className="time-nums">
         {dateState.toLocaleDateString('en-GB', {
           day: 'numeric',
           month: 'short',
           year: 'numeric',
-        })}
-      </p>
-      <p>
-        {dateState.toLocaleDateString('en-US', {
-          hour: 'numeric',
-          minute: 'numeric',
-          second: 'numeric',
-          hour12: true,
         })}
       </p>
     </div>
