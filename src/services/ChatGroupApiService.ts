@@ -1,22 +1,4 @@
-export type ChatGroupToCreate = {
-  name: string;
-  admin: string;
-  repo_id: string;
-};
-
-export type ChatGroup = {
-  id: string;
-  name: string;
-  members: string[];
-  admin: string;
-  messages: string[];
-  repo_id: string;
-};
-
-export type MemberToEdit = {
-  repo_id: string;
-  member: string;
-};
+import { ChatGroup, ChatGroupToCreate, MemberToEdit } from '../types/Types';
 
 const BASE_URL = 'https://arctic-desert.herokuapp.com/chatgroup';
 
