@@ -1,29 +1,100 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoGitBranch } from 'react-icons/go';
 import { AiFillCaretDown } from 'react-icons/ai';
 import './Header.css';
 import { useUser } from '../../../hooks/use-user';
+import { useRepo } from '../../../hooks/use-repo';
+import { AuthService } from '../../../services/AuthService';
 
 export const Header: React.FC = () => {
+  const [repoInfo, setRepoInfo] = useState<{
+    branches: any;
+    collaborators: any;
+  }>({
+    branches: undefined,
+    collaborators: undefined,
+  });
   const { user } = useUser();
+  const { repo } = useRepo();
+
+  const fetchInfoOfRepo = async () => {
+    console.log('REPO IN FETCH : ', repo);
+    const branchesResponse = await fetch(
+      repo.branches_url.slice(0, repo.branches_url.length - 9),
+    );
+    const branches = await branchesResponse.json();
+
+    const body = {
+      repo: repo.name,
+      owner: repo.owner.login,
+      token: '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',
+    };
+
+    console.log('BODY : ---------------->', body);
+
+    const collaboratorsResponse = await fetch(
+      'https://arctic-desert.herokuapp.com/filter',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      },
+    );
+    const collaborators = await collaboratorsResponse.json();
+
+    setRepoInfo({ branches, collaborators });
+  };
+
+  useEffect(() => {
+    console.log('REPO OUTSIDE OF FETCH : ', repo);
+    fetchInfoOfRepo();
+  }, []);
+
+  useEffect(() => {
+    console.log('BRANACHES AND COLLABORATORS : ', repoInfo);
+  }, [repoInfo]);
 
   return (
     <div className="kanban-header">
       <div className="left">
-        <div className="branch-name">
+        {/* <div className="branch-name">
           <GoGitBranch />
           <span>main</span>
           <AiFillCaretDown fontSize="14px" />
-        </div>
-        <div className="num-branches">
-          <GoGitBranch />
-          <span>7 branches</span>
-        </div>
+        </div> */}
+        {repoInfo.branches && (
+          <select>
+            {repoInfo.branches.map((branch: any) => {
+              return (
+                <option key={branch.name} value={branch.name}>
+                  {branch.name}
+                </option>
+              );
+            })}
+          </select>
+        )}
+        {repoInfo.branches && (
+          <div className="num-branches">
+            <GoGitBranch />
+            <span>
+              {repoInfo.branches.length}
+              {repoInfo.branches.length > 1 ? ' branches' : ' branch'}
+            </span>
+          </div>
+        )}
         <div className="collaborators">
-          <img src={require('../../../assets/andres.jpeg')} alt="" />
-          <img src={require('../../../assets/xavi.png')} alt="" />
-          <img src={require('../../../assets/sebas.png')} alt="" />
-          <img src={require('../../../assets/alex.png')} alt="" />
+          {repoInfo.collaborators &&
+            repoInfo.collaborators.map((collaborator: any) => {
+              return (
+                <img
+                  key={collaborator.id}
+                  src={collaborator.avatar_url}
+                  alt=""
+                />
+              );
+            })}
         </div>
       </div>
       <div className="right">
