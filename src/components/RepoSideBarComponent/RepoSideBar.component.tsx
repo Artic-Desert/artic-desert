@@ -6,10 +6,12 @@ import './RepoSideBar.css';
 
 export const RepoSideBar: React.FC = () => {
   const [repos, setRepos] = useState<any>([]); //eslint-disable-line
+  const [loading, setLoading] = useState(false); //eslint-disable-line
 
   const { user } = useUser();
 
   const fetchUserRepos = async () => {
+    setLoading(true);
     const response = await fetch(
       `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${user.login}}`,
     );
@@ -21,6 +23,7 @@ export const RepoSideBar: React.FC = () => {
         return [...prevState, data];
       });
     }
+    setLoading(false);
     return data;
   };
 

@@ -4,6 +4,9 @@
   height: 100%;
   justify-content: space-around;
   align-items: center;
+  position: sticky;
+  top: 0px;
+  background-color: --background-color;
 }
 
 input {
@@ -70,6 +73,8 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border-bottom: 3px solid black;
+  border-bottom: 1px solid #c8d1d9;
   position: sticky;
+  top: 0px;
+  background: #00111c;
 }
