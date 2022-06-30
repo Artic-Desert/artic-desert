@@ -8,6 +8,7 @@
   -moz-box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
   position: relative;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .item-drag {
@@ -38,6 +39,17 @@
   transform: rotate(25deg);
 }
 
+.item-title {
+  width: 90%;
+  cursor: text;
+  padding: 4px;
+}
+
+.item-body {
+  padding: 4px;
+  cursor: text;
+}
+
 .item-edit {
   position: absolute;
   top: 5px;
@@ -45,9 +57,31 @@
   background-color: transparent;
   border: none;
   cursor: crosshair;
-  font-size: 18px;
+  font-size: 23px;
   opacity: 0.56;
   transition: 200ms linear all;
+}
+
+.save-button-container {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  margin-left: 10px;
+}
+
+.save-button {
+  background-color: var(--blue2-body);
+  border-color: transparent;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  font-weight: bolder;
+  height: 30px;
+  width: 120px;
+}
+
+.save-button:hover {
+  background-color: var(--blue3-body);
 }
 
 .item-edit:hover {
@@ -74,11 +108,13 @@
 
 .creator-time {
   display: flex;
+  justify-content: flex-start;
   width: 100%;
   align-items: 'center';
 }
 
 .item-timestamp {
+  margin-top: 5px;
   margin-left: 10px;
   font-size: 12px;
 }

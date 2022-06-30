@@ -41,7 +41,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
       ...task,
       title: taskTitle,
       body: taskBody,
-      timestamp: Date.now(),
+      timestamp: new Date(Date.now()).toLocaleString(),
     };
     dispatch(updateTask(editedTask, column, index));
     setEditing(false);
@@ -73,13 +73,19 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
             <FiEdit />
           </button>
           <div>
-            {editing && <button onClick={handleSubmitEdit}>save</button>}
             <h3
               contentEditable={editing}
               onInput={e => handleTitleChange(e)}
               className="item-title">
               {task.title}
             </h3>
+            {editing && (
+              <div className="save-button-container">
+                <button className="save-button" onClick={handleSubmitEdit}>
+                  Save Changes
+                </button>
+              </div>
+            )}
 
             <div
               contentEditable={editing}
@@ -95,7 +101,6 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
               style={{ width: '25px', height: '25px', borderRadius: '50px' }}
             />
             {/* <p>{task.creator.split('').slice(0, 1).join(' ').toUpperCase()}</p> */}
-
             <p className="item-timestamp">{date}</p>
           </div>
         </div>
