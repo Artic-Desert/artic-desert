@@ -13,9 +13,8 @@ import { AuthService } from '../../services/AuthService';
 import './Dashboard.css';
 
 export const Dashboard: React.FC = () => {
-  // const { user } = useUser();
-  let user: any = sessionStorage.getItem('user');
-  user = JSON.parse(user);
+  const { user } = useUser();
+
   const navigate = useNavigate();
 
   const handleLogout = () => {

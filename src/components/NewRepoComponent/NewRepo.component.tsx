@@ -48,9 +48,7 @@ export const NewRepo: React.FC<{
     return data;
   };
 
-  // const { user } = useUser();
-  let user: any = sessionStorage.getItem('user');
-  user = JSON.parse(user);
+  const { user } = useUser();
 
   const updateUserRepos = async (owner: string, repo: string) => {
     if (!owner || !repo) return;

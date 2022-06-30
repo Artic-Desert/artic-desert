@@ -9,9 +9,7 @@ export const RepoSideBar: React.FC = () => {
   const [repos, setRepos] = useState<GithubRepo[]>([]); //eslint-disable-line
   const [loading, setLoading] = useState(false); //eslint-disable-line
 
-  // const { user } = useUser();
-  let user: any = sessionStorage.getItem('user');
-  user = JSON.parse(user);
+  const { user } = useUser();
 
   const fetchUser = async (): Promise<DynamoUser | undefined> => {
     try {

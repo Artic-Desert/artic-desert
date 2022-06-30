@@ -3,7 +3,9 @@ import { useActions } from './use-actions';
 import { setUser } from '../redux/user/actions';
 
 export const useUser = () => {
-  const user = useSelector(state => state.users.user);
+  const user =
+    useSelector(state => state.users.user) ||
+    JSON.parse(sessionStorage.getItem('user'));
   const actions = useActions({ setUser });
   return { user, ...actions };
 };

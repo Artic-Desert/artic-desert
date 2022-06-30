@@ -7,9 +7,7 @@ export const ChatInput: React.FC<{
   setMessages: React.Dispatch<React.SetStateAction<any[]>>; //eslint-disable-line
 }> = ({ setMessages }) => {
   const [message, setMessage] = useState('');
-  // const { user } = useUser();
-  let user: any = sessionStorage.getItem('user');
-  user = JSON.parse(user);
+  const { user } = useUser();
 
   const handleSendMessage = () => {
     const messageBody = {
