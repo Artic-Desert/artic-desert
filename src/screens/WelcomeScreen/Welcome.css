@@ -3,6 +3,7 @@
 .welcome-wrapper {
   background-image: url('../../assets/animatedback2.svg');
   background-size: contain;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;

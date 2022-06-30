@@ -1,6 +1,19 @@
 .time-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  border: 1px solid red;
+  justify-content: space-between;
+  width: 40%;
+  position: absolute;
+  top: 5%;
+}
+
+.time-date {
+  font-size: 5vw;
+  color: var(--gray-accent);
+}
+
+.time-nums {
+  font-size: 2vw;
+  color: var(--gray-accent);
 }
