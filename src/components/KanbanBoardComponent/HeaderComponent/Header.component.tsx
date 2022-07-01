@@ -5,8 +5,12 @@ import './Header.css';
 import { useUser } from '../../../hooks/use-user';
 import { useRepo } from '../../../hooks/use-repo';
 import { AuthService } from '../../../services/AuthService';
+import { setBranch } from '../../../redux/branch/actions';
 
 export const Header: React.FC = () => {
+  const { user } = useUser();
+  const { repo } = useRepo();
+
   const [repoInfo, setRepoInfo] = useState<{
     branches: any;
     collaborators: any;
@@ -14,8 +18,10 @@ export const Header: React.FC = () => {
     branches: undefined,
     collaborators: undefined,
   });
-  const { user } = useUser();
-  const { repo } = useRepo();
+
+  const [currentBranch, setCurrentBranch] = useState(
+    '{sebastianfdz:by:nanji:by:main}',
+  );
 
   const fetchInfoOfRepo = async () => {
     console.log('REPO IN FETCH : ', repo);
@@ -52,9 +58,14 @@ export const Header: React.FC = () => {
     fetchInfoOfRepo();
   }, []);
 
-  useEffect(() => {
-    console.log('BRANACHES AND COLLABORATORS : ', repoInfo);
-  }, [repoInfo]);
+  const handleBranchChange = (e: any) => {
+    e.preventDefault();
+    setCurrentBranch(e.target.selectedOptions);
+  };
+
+  // useEffect(() => {
+  //   console.log('BRANACHES AND COLLABORATORS : ', repoInfo);
+  // }, [repoInfo]);
 
   return (
     <div className="kanban-header">
@@ -65,7 +76,10 @@ export const Header: React.FC = () => {
           <AiFillCaretDown fontSize="14px" />
         </div> */}
         {repoInfo.branches && (
-          <select>
+          <select
+            onChange={e => {
+              console.log('BRANCHHH', e.target.selectedOptions);
+            }}>
             {repoInfo.branches.map((branch: any) => {
               return (
                 <option key={branch.name} value={branch.name}>
