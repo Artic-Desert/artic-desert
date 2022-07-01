@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './ChatInput.css';
 import { MdSend } from 'react-icons/md';
 import { BiMailSend } from 'react-icons/bi';
@@ -6,12 +6,15 @@ import { useUser } from '../../hooks/use-user';
 import { ChatGroup, Message, MessageToCreate } from '../../types/Types';
 import { useRepo } from '../../hooks/use-repo';
 import { postMessage } from '../../services/MessagesApiService';
+import io from 'socket.io-client';
+
 export const ChatInput: React.FC<{
   setMessages: React.Dispatch<React.SetStateAction<any[]>>; //eslint-disable-line
   chatGroup: ChatGroup;
 }> = ({ setMessages, chatGroup }) => {
   const [message, setMessage] = useState('');
   const { user } = useUser();
+  const socketRef = useRef<any>();
 
   const handleSendMessage = async () => {
     const messageBody = {
@@ -23,9 +26,12 @@ export const ChatInput: React.FC<{
     // TODO: Send message to the backend get it back and update new State with the created message
     const messageCreated = await postMessage(messageBody);
 
-    setMessages(prevState => {
-      return [...prevState, messageCreated];
-    });
+    socketRef.current = io('https://arctic-desert.herokuapp.com');
+    socketRef.current.emit('message', messageCreated);
+
+    // setMessages(prevState => {
+    //   return [...prevState, messageCreated];
+    // });
     setMessage('');
   };
 
