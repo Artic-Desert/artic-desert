@@ -1,15 +1,8 @@
-import React, {
-  BaseSyntheticEvent,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
-import { RiDeleteBin6Line } from 'react-icons/ri';
-import { FiEdit } from 'react-icons/fi';
+import { FiEdit, FiCheckSquare, FiTrash2 } from 'react-icons/fi';
 import { deleteTask, updateTask } from '../../../redux/kanban/actions';
-import { GithubApiService } from '../../../services/GithubApiService';
 import { useUser } from '../../../hooks/use-user';
 import { Task } from '../../../types/Types';
 import './ListItem.css';
@@ -22,19 +15,41 @@ interface ItemProps {
 
 export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
   const { user } = useUser();
+  const dispatch = useDispatch();
+  const titleref = useRef<HTMLHeadingElement>(null);
 
-  console.log('inside taks');
-
-  const isEditable = user.login === task.creator;
   const [editing, setEditing] = useState(false);
   const [taskTitle, setTaskTitle] = useState(task.title);
   const [taskBody, setTaskBody] = useState(task.body);
 
-  const dispatch = useDispatch();
+  const isEditable = user.login === task.creator || task.creator === 'default';
 
-  const handleEdit = () => {
+  const handleEdit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     isEditable && setEditing(true);
   };
+
+  useEffect(() => {
+    if (task.new) {
+      setEditing(true);
+      task.new = false;
+    }
+  }, []);
+
+  useEffect(() => {
+    titleref.current && titleref.current.focus();
+    const inputTitle = document.getElementById(
+      String(task.timestamp) + 'title',
+    );
+    const inputBody = document.getElementById(String(task.timestamp) + 'body');
+    inputTitle?.addEventListener('keypress', e => {
+      e.key === 'Enter' &&
+        document.getElementById(String(task.timestamp) + 'button')?.click();
+    });
+    inputBody?.addEventListener('keypress', e => {
+      e.key === 'Enter' &&
+        document.getElementById(String(task.timestamp) + 'button')?.click();
+    });
+  }, [editing]);
 
   const handleSubmitEdit = () => {
     const editedTask = {
@@ -47,15 +62,18 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
     setEditing(false);
   };
 
-  const handleTitleChange = (event: any) => {
-    setTaskTitle(event.target.innerText);
+  const handleTitleChange = (event: React.FormEvent<HTMLHeadingElement>) => {
+    const input = event.target as HTMLElement;
+    setTaskTitle(input.innerText);
   };
 
-  const handleBodyChange = (event: any) => {
-    setTaskBody(event.target.innerText);
+  const handleBodyChange = (event: React.FormEvent<HTMLDivElement>) => {
+    const input = event.target as HTMLElement;
+    setTaskBody(input.innerText);
   };
 
   const date = new Date(Number(task.timestamp)).toDateString();
+
   return (
     <Draggable draggableId={String(task.timestamp)} index={index}>
       {provided => (
@@ -65,32 +83,54 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}>
           <button
-            className="item-delete"
-            onClick={() => dispatch(deleteTask(column, index))}>
-            <RiDeleteBin6Line />
+            name="delete"
+            className={
+              isEditable ? 'item-delete' : 'item-delete item-not-allowed'
+            }
+            onClick={() => isEditable && dispatch(deleteTask(column, index))}>
+            <FiTrash2 />
           </button>
-          <button className="item-edit" onClick={handleEdit}>
-            <FiEdit />
-          </button>
+          {!editing && (
+            <button
+              name="edit"
+              className={
+                isEditable ? 'item-edit' : 'item-edit item-not-allowed'
+              }
+              onClick={e => handleEdit(e)}>
+              <FiEdit />
+            </button>
+          )}
           <div>
+            {editing && (
+              <button
+                name="submit"
+                type="submit"
+                id={task.timestamp + 'button'}
+                className={
+                  isEditable ? 'item-edit' : 'item-edit item-not-allowed'
+                }
+                onClick={handleSubmitEdit}>
+                <FiCheckSquare />
+              </button>
+            )}
             <h3
+              id={String(task.timestamp) + 'title'}
+              ref={titleref}
               contentEditable={editing}
               onInput={e => handleTitleChange(e)}
-              className="item-title">
+              className={
+                isEditable ? 'item-title' : 'item-title item-currently-editing'
+              }>
               {task.title}
             </h3>
-            {editing && (
-              <div className="save-button-container">
-                <button className="save-button" onClick={handleSubmitEdit}>
-                  Save Changes
-                </button>
-              </div>
-            )}
 
             <div
+              id={String(task.timestamp) + 'body'}
               contentEditable={editing}
               onInput={e => handleBodyChange(e)}
-              className="item-body">
+              className={
+                isEditable ? 'item-body' : 'item-body item-currently-editing'
+              }>
               {task.body}
             </div>
           </div>
@@ -100,7 +140,6 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
               alt=""
               style={{ width: '25px', height: '25px', borderRadius: '50px' }}
             />
-            {/* <p>{task.creator.split('').slice(0, 1).join(' ').toUpperCase()}</p> */}
             <p className="item-timestamp">{date}</p>
           </div>
         </div>
