@@ -12,8 +12,7 @@ import { setBranch } from '../../redux/branch/actions';
 
 export const RepoItem: React.FC<{
   repo: GithubRepo;
-  setRepos: React.Dispatch<React.SetStateAction<GithubRepo[]>>;
-}> = ({ repo, setRepos }) => {
+}> = ({ repo }) => {
   console.log('repo input from repo item: ', repo);
   const [numOfBranches, setNumOfBranches] = useState(0);
   const { user } = useUser();
@@ -22,32 +21,32 @@ export const RepoItem: React.FC<{
   const navigate = useNavigate();
 
   //eslint-disable-next-line
-  const handleDelete = async () => {
-    console.log(repo.full_name.toLowerCase());
-    const body = JSON.stringify({
-      repo: repo.full_name.toLowerCase(),
-      action: 'remove',
-    });
-    const response = await fetch(
-      `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${user.login}}`,
-      {
-        method: 'PATCH',
-        body,
-      },
-    );
-    const data = await response.json();
+  // const handleDelete = async () => {
+  //   console.log(repo.full_name.toLowerCase());
+  //   const body = JSON.stringify({
+  //     repo: repo.full_name.toLowerCase(),
+  //     action: 'remove',
+  //   });
+  //   const response = await fetch(
+  //     `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${user.login}}`,
+  //     {
+  //       method: 'PATCH',
+  //       body,
+  //     },
+  //   );
+  //   const data = await response.json();
 
-    if (!data.message) {
-      //eslint-disable-next-line
-      setRepos((prevState: any) => {
-        //eslint-disable-next-line
-        const newState = prevState.filter((el: any) => el.id !== repo.id);
-        return newState;
-      });
-    }
+  //   if (!data.message) {
+  //     //eslint-disable-next-line
+  //     setRepos((prevState: any) => {
+  //       //eslint-disable-next-line
+  //       const newState = prevState.filter((el: any) => el.id !== repo.id);
+  //       return newState;
+  //     });
+  //   }
 
-    return data;
-  };
+  //   return data;
+  // };
 
   const fetchNumOfBranches = async () => {
     try {

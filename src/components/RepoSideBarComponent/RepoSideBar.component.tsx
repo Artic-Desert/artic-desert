@@ -4,11 +4,16 @@ import { NewRepo } from '../NewRepoComponent/NewRepo.component';
 import { RepoItem } from '../RepoItemComponent/RepoItem.component';
 import { DynamoUser, GithubRepo } from '../../types/Types';
 import './RepoSideBar.css';
+import { useDispatch } from 'react-redux';
+import { addRepo, setRepos } from '../../redux/repos/actions';
+import { useRepos } from '../../hooks/use-repos';
 
 export const RepoSideBar: React.FC = () => {
-  const [repos, setRepos] = useState<GithubRepo[]>([]); //eslint-disable-line
+  // const [repos, setRepos] = useState<GithubRepo[]>([]); //eslint-disable-line
   const [loading, setLoading] = useState(false); //eslint-disable-line
+  const dispatch = useDispatch();
 
+  const { repos } = useRepos();
   const { user } = useUser();
 
   const fetchUser = async (): Promise<DynamoUser | undefined> => {
@@ -37,9 +42,9 @@ export const RepoSideBar: React.FC = () => {
               Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
             },
           });
-          const data = await response.json();
+          const data: GithubRepo = await response.json();
           console.log('repo data: ', data);
-          setRepos((prevState: GithubRepo[]) => [...prevState, data]); // Type of prevstate is github repo response
+          dispatch(addRepo(data));
         } catch (error) {
           console.log(
             'Error in repo side bar fetching repos from github: ',
@@ -57,10 +62,10 @@ export const RepoSideBar: React.FC = () => {
 
   return (
     <div className="repoSideBarWrapper">
-      <NewRepo setRepos={setRepos} repos={repos} />
+      <NewRepo />
       {repos &&
         repos.map((repo: GithubRepo) => {
-          return <RepoItem repo={repo} key={repo.id} setRepos={setRepos} />;
+          return <RepoItem repo={repo} key={repo.id} />;
         })}
     </div>
   );
