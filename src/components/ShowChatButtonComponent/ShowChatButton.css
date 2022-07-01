@@ -30,19 +30,21 @@
   border: none;
   transition: all linear 0.1s;
 }
-
 .chat-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
-
 .chat-left-arrow {
   position: absolute;
   left: -5%;
-  top: 38%;
-  transform: translateY(-50%);
+  top: 32%;
   animation: bounce 2s infinite;
 }
-
+.chat-right-arrow {
+  position: absolute;
+  left: -5%;
+  top: 32%;
+  transform: rotate(180deg);
+}
 @keyframes bounce {
   0%,
   20%,
@@ -58,7 +60,6 @@
     -webkit-transform: translateX(-2px);
   }
 }
-
 .chat-icon {
   color: var(--backgound-color);
 }
