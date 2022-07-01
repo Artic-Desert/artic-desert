@@ -81,15 +81,18 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: 4px;
-  border-radius: 6px;
-  border: 2px solid #c8d1d952;
   width: 80%;
   height: 34px;
-  background-color: #30363c;
   color: #c8d1d9a3;
   cursor: pointer;
   font-family: 'Ubuntu', sans-serif;
   align-self: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .logout-button:hover {

@@ -17,7 +17,7 @@ export const Time: React.FC = () => {
             hour: 'numeric',
             minute: 'numeric',
             second: 'numeric',
-            hour12: true,
+            hour12: false,
           })
           .split(' ')
           .slice(1)

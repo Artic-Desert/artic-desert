@@ -1,43 +1,51 @@
 .random-quote-container {
-  margin-top: 30px;
+  margin: 30px 0 80px 0;
   max-width: 70%;
+  position: relative;
+  justify-content: center;
 }
 
 .quote-main-p {
   color: var(--gray-accent);
-  font-size: 1.5vw;
+  font-size: 1.1vw;
 }
 
 .quote-author {
   color: var(--gray-accent);
   float: right;
-  font-size: 1.5vw;
+  font-size: 1vw;
   margin-right: 50px;
   margin-top: 10px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
 .quote-button {
-  position: absolute;
-  top: 55%;
-  width: 140px;
-  right: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  text-align: center;
   background-color: transparent;
   padding: 10px;
   cursor: pointer;
   color: var(--gray-accent);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: bold;
-  border: 2px solid var(--gray-accent);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 5px;
-  box-shadow: 0 6px #999;
+  box-shadow: 0 2px rgba(255, 255, 255, 0.15);
+  color: #c8d1d9d9;
 }
 
 .quote-button:hover {
-  background-color: var(--gray-accent);
-  color: #00111c;
+  border: 2px solid #c8d1d9d9;
+  color: #c8d1d9d9;
 }
 
 .quote-button:active {
-  transform: translateY(4px);
   box-shadow: 0 4px #666;
 }
