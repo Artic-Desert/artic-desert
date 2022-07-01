@@ -12,9 +12,18 @@ import { useUser } from '../../hooks/use-user';
 import { AuthService } from '../../services/AuthService';
 import ades from '../../assets/ades.svg';
 import './Dashboard.css';
+import { useDispatch } from 'react-redux';
+import { setRepo } from '../../redux/repo/actions';
+import { setBranch } from '../../redux/branch/actions';
 
 export const Dashboard: React.FC = () => {
   const { user } = useUser();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setRepo({}));
+    dispatch(setBranch('all-branches'));
+  }, []);
 
   const navigate = useNavigate();
 

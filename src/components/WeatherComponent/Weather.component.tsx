@@ -100,14 +100,18 @@ export const Weather: React.FC = () => {
     <div className="weather-container">
       {data ? (
         <div>
-          <div className="location">
-            <p>{data.name}</p>
-          </div>
-          <div className="temp">
-            {data.main ? <p>{(data.main.temp - 273.15).toFixed()}°C</p> : null}
-          </div>
-          <div className="description">
-            {data.weather ? <p>{data.weather[0].main}</p> : null}
+          <div className="weather-top">
+            <div className="temp">
+              {data.main ? (
+                <p>{(data.main.temp - 273.15).toFixed()}°C</p>
+              ) : null}
+            </div>
+            <div className="location">
+              <p>{data.name}</p>
+            </div>
+            <div className="description">
+              {data.weather ? <p>{data.weather[0].main}</p> : null}
+            </div>
           </div>
           <div>
             {data.name !== undefined && (
