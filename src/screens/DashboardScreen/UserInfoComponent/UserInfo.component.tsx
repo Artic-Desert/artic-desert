@@ -3,7 +3,8 @@ import { GoMarkGithub } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../../hooks/use-user';
 import { AuthService } from '../../../services/AuthService';
-import { BsPeopleFill } from 'react-icons/bs';
+import { BsPeopleFill, BsPeople } from 'react-icons/bs';
+import { AiOutlineRead } from 'react-icons/ai';
 import './UserInfo.css';
 
 export const UserInfo: React.FC = () => {
@@ -29,27 +30,36 @@ export const UserInfo: React.FC = () => {
           className="githubLink"
           target="_blank"
           rel="noreferrer">
-          <GoMarkGithub className="git-logo" />
+          <GoMarkGithub className="git-logo" size={30} color="#d2d8dd" />
         </a>
+      </div>
+      <div className="user-info-block">
+        <div className="followers">
+          <p>
+            Followers • <BsPeopleFill color="#d2d8dd" />{' '}
+            <span className="user-highlight">{user.followers}</span>
+          </p>
+          <p>
+            Following • <BsPeople color="#d2d8dd" />{' '}
+            <span className="user-highlight">{user.following}</span>
+          </p>
+        </div>
+        <div className="public-repos">
+          <p>
+            Public repos •{' '}
+            <span className="user-highlight">{user.public_repos}</span>
+          </p>
+        </div>
+        <div className="public-bio">
+          <p>
+            Bio <AiOutlineRead color="#d2d8dd" />
+            <p className="bio-cont"> • {user.bio}</p>
+          </p>
+        </div>
       </div>
       <button className="logout-button" onClick={handleLogout}>
         Log Out
       </button>
-      <div className="user-info-block">
-        <div className="followers">
-          <p>
-            {' '}
-            followers <BsPeopleFill /> {user.followers}
-          </p>
-          <p> following: {user.following}</p>
-        </div>
-        <div className="public-repos">
-          <p>public repos:{user.public_repos}</p>
-        </div>
-        <div className="public-bio">
-          <p>bio:{user.bio}</p>
-        </div>
-      </div>
     </div>
   );
 };

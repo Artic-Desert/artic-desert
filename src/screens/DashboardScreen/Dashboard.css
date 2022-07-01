@@ -5,7 +5,8 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: url('../../assets/dashback2.svg');
+  /* background: url('../../assets/dashback2.svg'); */
+  background-color: var(--background-color);
 }
 
 .dashboard-left {
@@ -13,28 +14,42 @@
   width: 20vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: transparent;
+  padding: 5px 5px 15px 15px;
+}
+
+.dashboard-left::before {
+  content: '';
+  height: 80%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.322);
+  position: absolute;
+  top: 10vh;
+  left: 20vw;
+  z-index: 1000;
 }
 
 .dashboard-middle {
   width: 55vw;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dashboard-right {
   width: 25vw;
-  background-color: transparent;
 }
 
 /* HEADER CSS */
 
 .header {
-  width: 50vw;
+  width: 100%;
   height: 20vh;
   display: flex;
   justify-content: space-between;
-  background-color: #00111c;
-  padding-left: 20px;
 }
 
 .add-new {
@@ -82,16 +97,15 @@
 
 .hero {
   display: flex;
-  height: 80vh;
+  height: 100vh;
   width: 100%;
 }
 
 .productivity {
   width: 100%;
+  height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  border-top: 1px solid #c8d1d9;
-  border-right: 1px solid #c8d1d9;
   display: flex;
   flex-direction: column;
   align-items: center;

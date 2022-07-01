@@ -1,0 +1,25 @@
+.collapse-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #c8d1d9a3;
+  padding: 10px;
+  background-color: #30363c;
+  border: 2px solid #c8d1d952;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.collapse-container:hover {
+  border: 2px solid #c8d1d9d9;
+  color: #c8d1d9d9;
+}
+
+.collapse-icon {
+  border-radius: 5px;
+}
+
+.collapse-icon2 {
+  transform: rotate(-90deg);
+}

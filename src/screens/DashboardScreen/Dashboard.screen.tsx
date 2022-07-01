@@ -47,15 +47,15 @@ export const Dashboard: React.FC = () => {
           <UserInfo />
         </div>
         <div className="dashboard-middle">
-          <div className="header">
-            {/* <div className="title-logo-cont">
+          {/* <div className="header">
+            <div className="title-logo-cont">
               <img className="header-logo" src={ades} alt="" />
               <h1 className="header-title">Dashboard</h1>
             </div>
             <div className="add-new">
               <h4>Add a new repository to your Dashboard</h4>
-            </div> */}
-          </div>
+            </div>
+          </div> */}
           <div className="hero">
             <div className="productivity">
               <Time />
