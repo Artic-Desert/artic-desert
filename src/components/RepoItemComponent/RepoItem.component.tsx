@@ -94,7 +94,6 @@ export const RepoItem: React.FC<{
           <BsCircleFill
             className={`${obj[repo.language || 'lang-ball-default']}`}
           />
-
           <span className="language">{repo.language}</span>
         </div>
         {numOfBranches && (

@@ -4,6 +4,7 @@ import { NewRepo } from '../NewRepoComponent/NewRepo.component';
 import { RepoItem } from '../RepoItemComponent/RepoItem.component';
 import { DynamoUser, GithubRepo } from '../../types/Types';
 import './RepoSideBar.css';
+import { Collapasible } from '../CollapsibleComponent/Collapsible.component';
 
 export const RepoSideBar: React.FC = () => {
   const [repos, setRepos] = useState<GithubRepo[]>([]); //eslint-disable-line
@@ -57,7 +58,9 @@ export const RepoSideBar: React.FC = () => {
 
   return (
     <div className="repoSideBarWrapper">
-      <NewRepo setRepos={setRepos} repos={repos} />
+      <Collapasible open title="Add a new repository">
+        <NewRepo setRepos={setRepos} repos={repos} />
+      </Collapasible>
       {repos &&
         repos.map((repo: GithubRepo) => {
           return <RepoItem repo={repo} key={repo.id} setRepos={setRepos} />;

@@ -5,11 +5,11 @@
   justify-content: space-between;
   width: 40%;
   position: absolute;
-  top: 5%;
+  top: 25%;
 }
 
 .time-date {
-  font-size: 3.5vw;
+  font-size: 3vw;
   color: var(--gray-accent);
 }
 
