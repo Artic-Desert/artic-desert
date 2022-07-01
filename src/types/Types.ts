@@ -4,6 +4,7 @@ export type Task = {
   body: string;
   timestamp: string;
   avatar_url: string;
+  new: boolean | undefined;
 };
 
 export type ColumnProps = {
