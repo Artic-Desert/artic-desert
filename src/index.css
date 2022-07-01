@@ -26,3 +26,18 @@ code {
   --blue3-body: #277197;
   --white-body: #f3f0f0;
 }
+
+*::-webkit-scrollbar {
+  width: 0.3vw;
+  height: 5px;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background-color: rgb(169, 169, 169);
+}
+
+*::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(169, 169, 169, 0);
+}
