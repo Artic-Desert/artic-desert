@@ -39,7 +39,7 @@ export const Chat: React.FC = () => {
   }, [branch]);
 
   useEffect(() => {
-    socketRef.current = io('https://arctic-desert.herokuapp.com/');
+    socketRef.current = io('https://arctic-desert.herokuapp.com');
     socketRef.current.on('message', (message: Message) => {
       console.log(message.chatgroup_id, chatGroup?.id);
       if (message.chatgroup_id === chatGroup?.id) {
