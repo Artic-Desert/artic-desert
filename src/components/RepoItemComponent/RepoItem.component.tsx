@@ -6,6 +6,8 @@ import { useUser } from '../../hooks/use-user';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import { GithubRepo } from '../../types/Types';
+import { useDispatch } from 'react-redux';
+import { setRepo } from '../../redux/repo/actions';
 
 export const RepoItem: React.FC<{
   repo: GithubRepo;
@@ -15,6 +17,7 @@ export const RepoItem: React.FC<{
   const [numOfBranches, setNumOfBranches] = useState(0);
   const { user } = useUser();
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleDelete = async () => {
@@ -57,8 +60,9 @@ export const RepoItem: React.FC<{
     }
   };
 
-  const handleNavigation = () => {
-    navigate('/workspace', { state: repo });
+  const handleNavigation = (repo: GithubRepo) => {
+    dispatch(setRepo(repo));
+    navigate('/workspace', { state: { repo } });
   };
 
   const obj: any = {
@@ -71,12 +75,11 @@ export const RepoItem: React.FC<{
     fetchNumOfBranches();
   }, []);
 
-  return repo.message ? (
-    <div style={{ color: 'white' }}>There was an error in repo fetching</div>
-  ) : (
+  return repo.message ? // <div style={{ color: 'white' }}>There was an error in repo fetching</div>
+  null : (
     <div className="repo-item-container">
       <div className="top-line">
-        <h3 className="repo-name" onClick={handleNavigation}>
+        <h3 className="repo-name" onClick={() => handleNavigation(repo)}>
           {repo.name}
         </h3>
         <div className="owner-cont">

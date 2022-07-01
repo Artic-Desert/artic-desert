@@ -6,10 +6,17 @@ import { useUser } from '../../../hooks/use-user';
 import { useRepo } from '../../../hooks/use-repo';
 import { AuthService } from '../../../services/AuthService';
 import { setBranch } from '../../../redux/branch/actions';
+import { useDispatch } from 'react-redux';
+import { useBranch } from '../../../hooks/use-branch';
 
 export const Header: React.FC = () => {
   const { user } = useUser();
   const { repo } = useRepo();
+  const { branch } = useBranch();
+  const dispatch = useDispatch();
+
+  console.log('<Header> current repo: ', repo);
+  console.log('<Header> current branch: ', branch);
 
   const [repoInfo, setRepoInfo] = useState<{
     branches: any;
@@ -20,52 +27,76 @@ export const Header: React.FC = () => {
   });
 
   const [currentBranch, setCurrentBranch] = useState(
-    '{sebastianfdz:by:nanji:by:main}',
+    'sebastianfdz:by:nanji:by:main',
   );
 
-  const fetchInfoOfRepo = async () => {
-    console.log('REPO IN FETCH : ', repo);
-    const branchesResponse = await fetch(
-      repo.branches_url.slice(0, repo.branches_url.length - 9),
-    );
-    const branches = await branchesResponse.json();
+  const getBranches = async () => {
+    try {
+      const branchesResponse = await fetch(
+        repo.branches_url &&
+          repo.branches_url.slice(0, repo.branches_url.length - 9),
+        {
+          headers: {
+            Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
+          },
+        },
+      );
+      const branch = await branchesResponse.json();
+      console.log('<Header> response from getBranches: ', branch);
+      return branch;
+    } catch (error) {
+      console.error('Error inside <Header> getBranches(): ', error);
+    }
+  };
 
+  const getCollaborators = async () => {
     const body = {
       repo: repo.name,
       owner: repo.owner.login,
-      token: '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',
+      token: process.env.REACT_APP_GHP_TOKEN,
     };
-
-    console.log('BODY : ---------------->', body);
-
-    const collaboratorsResponse = await fetch(
-      'https://arctic-desert.herokuapp.com/filter',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    try {
+      const collaboratorsResponse = await fetch(
+        'https://arctic-desert.herokuapp.com/filter',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
         },
-        body: JSON.stringify(body),
-      },
-    );
-    const collaborators = await collaboratorsResponse.json();
+      );
+      const collaborators = await collaboratorsResponse.json();
+      console.log('<Header> response from getCollaborators: ', collaborators);
+      return collaborators;
+    } catch (error) {
+      console.error('Error inside <Header> getCollaborators(): ', error);
+    }
+  };
 
-    setRepoInfo({ branches, collaborators });
+  const fetchInfoOfRepo = async () => {
+    try {
+      const branches = await getBranches();
+      const collaborators = await getCollaborators();
+      setRepoInfo({ branches, collaborators });
+    } catch (error) {
+      console.error('Error inside <Header> fetchInfoOfRepo(): ', error);
+    }
   };
 
   useEffect(() => {
-    console.log('REPO OUTSIDE OF FETCH : ', repo);
+    console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
     fetchInfoOfRepo();
   }, []);
 
   const handleBranchChange = (e: any) => {
     e.preventDefault();
-    setCurrentBranch(e.target.selectedOptions);
+    setCurrentBranch(e.target.selectedOptions[0].value);
   };
 
-  // useEffect(() => {
-  //   console.log('BRANACHES AND COLLABORATORS : ', repoInfo);
-  // }, [repoInfo]);
+  useEffect(() => {
+    dispatch(setBranch(currentBranch));
+  }, [currentBranch]);
 
   return (
     <div className="kanban-header">
@@ -76,10 +107,7 @@ export const Header: React.FC = () => {
           <AiFillCaretDown fontSize="14px" />
         </div> */}
         {repoInfo.branches && (
-          <select
-            onChange={e => {
-              console.log('BRANCHHH', e.target.selectedOptions);
-            }}>
+          <select onChange={handleBranchChange}>
             {repoInfo.branches.map((branch: any) => {
               return (
                 <option key={branch.name} value={branch.name}>

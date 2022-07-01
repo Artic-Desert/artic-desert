@@ -26,9 +26,9 @@ export const Workspace: React.FC = () => {
   const [flipArrow, setFlipArrow] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(setRepo(location.state));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(setRepo(location.state));
+  // }, []);
 
   const onClick = () => setKanbanSize(500);
   const location = useLocation();
