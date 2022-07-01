@@ -1,11 +1,12 @@
 .main-chat-container {
   width: 100%;
-  padding: 50px;
   min-width: 30vw;
-  padding-right: 100px;
   padding-left: 80px;
   margin-bottom: 90px;
+  margin-right: 78px;
+  padding-right: 20px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .input-container {

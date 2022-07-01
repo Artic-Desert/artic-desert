@@ -14,7 +14,7 @@ export const ChatMessage: React.FC<any> = ({ message }) => {
   };
   return (
     <div className="container">
-      <div className={isMyMessage() ? 'usersMessageBox' : 'messageBox'}>
+      <div className={isMyMessage() ? 'usersMessageBox' : 'message-Box'}>
         {/* {!isMyMessage() && <h5 className="author">{message.username}</h5>} */}
         <h5 className="author">{message.username}</h5>
         <div className="content">{message.content}</div>

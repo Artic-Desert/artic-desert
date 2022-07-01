@@ -11,12 +11,13 @@
   border-radius: 10px;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 1.2vw;
-  opacity: 1 !important;
   padding: 8px;
+  margin-top: 3%;
   max-width: 60%;
-  min-width: 20%;
+  width: fit-content;
+  min-width: 200px;
   word-wrap: break-word;
   align-self: flex-end;
   -webkit-box-shadow: 9px 9px 12px 1px rgba(0, 0, 0, 0.75);
@@ -24,22 +25,22 @@
   box-shadow: 9px 9px 12px 1px rgba(0, 0, 0, 0.75);
 }
 
-.messageBox {
+.message-Box {
   background-color: #95f00d;
-  font-size: 1.2vw;
-  margin-bottom: 30px;
-  font-weight: bold;
-  padding: 8px;
   color: black;
-  opacity: 1 !important;
+  border-radius: 10px 10px 10px 10px !important;
   font-family: 'Source Sans Pro', sans-serif;
-  opacity: 1;
+  font-weight: bold;
+  font-size: 1.2vw;
+  margin-bottom: 15px;
+  padding: 8px;
+  word-wrap: break-word;
   align-self: flex-start;
   margin-right: 5%;
   max-width: 60%;
-  min-width: 20%;
+  width: fit-content;
+  min-width: 200px;
   margin-top: 3%;
-  border-radius: 10px;
   border-bottom-right-radius: 0;
   -webkit-box-shadow: -13px 11px 12px -2px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -13px 11px 12px -2px rgba(0, 0, 0, 0.75);
