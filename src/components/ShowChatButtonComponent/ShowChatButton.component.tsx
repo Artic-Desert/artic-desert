@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ResizableChat } from '../ResizableChatComponent/ResizableChat.component';
-import { GrChatOption } from 'react-icons/gr';
-import { IoMdArrowDropleft } from 'react-icons/io';
+import { IoMdArrowDropleft, IoMdChatbubbles } from 'react-icons/io';
 
 import './ShowChatButton.css';
 
@@ -13,8 +12,8 @@ export const ShowChatButton: React.FC = () => {
   return (
     <div className="show-chat-button-main-container">
       <div className="chat-container">{chat ? <ResizableChat /> : null}</div>
-      <button title="Chat" className="chat-button" onClick={onClick}>
-        <GrChatOption className="chat-icon" size={30} />
+      <button title="Show Chat" className="chat-button" onClick={onClick}>
+        <IoMdChatbubbles className="chat-icon" size={30} color="white" />
         <p>Team Chat</p>
         {!chat ? (
           <IoMdArrowDropleft className="chat-left-arrow" size={30} />

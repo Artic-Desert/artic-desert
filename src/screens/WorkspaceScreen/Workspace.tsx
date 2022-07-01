@@ -30,7 +30,13 @@ export const Workspace: React.FC = () => {
   //   dispatch(setRepo(location.state));
   // }, []);
 
-  const onClick = () => setKanbanSize(500);
+  const onClick = () => {
+    if (kanbanSize <= 85) {
+      setKanbanSize(vh * 0.9);
+    } else {
+      setKanbanSize(85);
+    }
+  };
   const location = useLocation();
 
   console.log('LOCATION: ', location.state);
@@ -62,14 +68,13 @@ export const Workspace: React.FC = () => {
         <div className="timeline">
           <div
             className="expand-icon-div"
-            // draggable={true}
-            // onDrag={e => {
-            //   setKanbanSize(e.clientY);
-            // }}
-            // onDragEnd={e => {
-            //   setKanbanSize(e.clientY);
-            // }}
-          >
+            draggable={true}
+            onDrag={e => {
+              setKanbanSize(e.clientY);
+            }}
+            onDragEnd={e => {
+              setKanbanSize(e.clientY);
+            }}>
             {flipArrow ? (
               <BsArrowBarUp
                 title="Shrink Kanban"
