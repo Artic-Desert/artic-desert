@@ -3,6 +3,8 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { Column } from './ColumnComponent/Column.component';
 import { ApiClientService } from '../../services/ApiClientService';
 import { useKanban } from '../../hooks/use-kanban';
+import { useBranch } from '../../hooks/use-branch';
+import { useRepo } from '../../hooks/use-repo';
 
 import './KanbanBoard.css';
 import { useDispatch } from 'react-redux';
@@ -14,6 +16,9 @@ import {
 
 const KANBAN_BOARD_ID = '{sebastianfdz:by:nanji:by:main}'; // will be changed to be dynamic
 export const KanbanBoard: React.FC = () => {
+  const { branch } = useBranch();
+  const { repo } = useRepo();
+
   const { kanban } = useKanban();
   const dispatch = useDispatch();
   const [currentBranch, setCurrentBranch] = useState(
@@ -22,15 +27,12 @@ export const KanbanBoard: React.FC = () => {
 
   useEffect(() => {
     ApiClientService.getKanbanBoard(KANBAN_BOARD_ID).then(data => {
-      console.log(' 8===========D~~~~~ Initial get of kanban board: ', data),
-        dispatch(setKanban(data.board));
+      dispatch(setKanban(data.board));
     });
   }, []);
 
   useEffect(() => {
-    ApiClientService.updateKanbanBoard(KANBAN_BOARD_ID, kanban).then(data =>
-      console.log('8===========D~~~~~ Making an update to kanbanboard: ', data),
-    );
+    ApiClientService.updateKanbanBoard(KANBAN_BOARD_ID, kanban);
   }, [kanban]);
 
   const onDragEnd = ({ source, destination }: DropResult) => {

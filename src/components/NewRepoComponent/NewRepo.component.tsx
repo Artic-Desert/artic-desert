@@ -16,7 +16,6 @@ export const NewRepo: React.FC<{
 
   const repoFetchRequest = async (owner: string, repo: string) => {
     setMessage('');
-    // const token = AuthService.getToken();
     console.log(`${BASE_URL}/repos/${owner}/${repo}`);
     const repsonse = await fetch(`${BASE_URL}/repos/${owner}/${repo}`, {
       // headers: {
