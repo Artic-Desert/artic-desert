@@ -16,6 +16,9 @@ const KANBAN_BOARD_ID = '{sebastianfdz:by:nanji:by:main}'; // will be changed to
 export const KanbanBoard: React.FC = () => {
   const { kanban } = useKanban();
   const dispatch = useDispatch();
+  const [currentBranch, setCurrentBranch] = useState(
+    '{sebastianfdz:by:nanji:by:main}',
+  );
 
   useEffect(() => {
     ApiClientService.getKanbanBoard(KANBAN_BOARD_ID).then(data => {
