@@ -109,6 +109,9 @@ export const Header: React.FC = () => {
         </div> */}
         {repoInfo.branches && (
           <select onChange={e => handleBranchChange(e)}>
+            <option key={'repo-board'} value="repo-board">
+              repo-board
+            </option>
             {repoInfo.branches.map((branch: RepoBranch) => {
               return (
                 <option key={branch.name} value={branch.name}>
