@@ -17,7 +17,7 @@ export const Collapasible: React.FC<IProps> = ({ open, children, title }) => {
   };
 
   return (
-    <>
+    <div className="container-container">
       <div className="collapse-container">
         <button type="button" className="btn" onClick={handleFilterOpening}>
           {!isOpen ? (
@@ -34,6 +34,6 @@ export const Collapasible: React.FC<IProps> = ({ open, children, title }) => {
       <div className="border-bottom">
         <div>{isOpen && <div className="p-3">{children}</div>}</div>
       </div>
-    </>
+    </div>
   );
 };
