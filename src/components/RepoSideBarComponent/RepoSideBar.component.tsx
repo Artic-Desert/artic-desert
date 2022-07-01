@@ -58,7 +58,6 @@ export const RepoSideBar: React.FC = () => {
 
   return (
     <div className="repoSideBarWrapper">
-      {/* <NewRepo setRepos={setRepos} repos={repos} /> */}
       <Collapasible open title="Add a new repository">
         <NewRepo setRepos={setRepos} repos={repos} />
       </Collapasible>

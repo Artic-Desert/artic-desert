@@ -13,39 +13,41 @@ input {
   width: 95%;
   height: 40px;
   border-radius: 4px;
-  padding: 2px;
+  padding: 5px;
   padding-left: 8px;
-  border: 1px solid rgba(255, 228, 196, 0.9);
-  color: rgba(255, 228, 196, 0.9);
+  border: 1px solid #c8d1d9;
+  color: #c8d1d9b4;
   margin-bottom: 10px;
   background-color: transparent;
 }
 
 input::placeholder {
-  color: rgba(255, 228, 196, 0.5);
+  color: #c8d1d982;
 }
 
 .or {
   font-size: x-large;
-  color: rgba(255, 228, 196, 0.9);
+  color: #c8d1d9b5;
 }
 
 .dashboard-submit-button {
   font-size: 18px;
   font-weight: bold;
   margin-top: 4px;
-  width: 80%;
-  height: 44px;
-  background-color: rgb(255, 228, 196);
-  color: #00111c;
-  cursor: pointer;
   border-radius: 6px;
+  border: 2px solid #c8d1d952;
+  width: 80%;
+  height: 45px;
+  background-color: #30363c;
+  color: #c8d1d9a3;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+  align-self: center;
 }
 
 .dashboard-submit-button:hover {
-  background-color: #00111c;
-  border: 2px solid rgb(255, 228, 196);
-  color: rgba(255, 228, 196, 0.9);
+  border: 2px solid #c8d1d9d9;
+  color: #c8d1d9d9;
 }
 
 .error-message {
