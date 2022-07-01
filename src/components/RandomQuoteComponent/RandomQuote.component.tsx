@@ -40,14 +40,16 @@ export const RandomQuote: React.FC = () => {
     <div className="random-quote-container">
       <div className="quote-main">
         <p className="quote-main-p">
-          {dataError ? 'Oops... Something went wrong' : data.content}
+          {dataError ? 'Oops... Something went wrong' : `"${data.content}"`}
         </p>
-        <p className="quote-author"> -{data.author}- </p>
+        <p className="quote-author"> - {data.author} - </p>
+        <br />
+        <br />
       </div>
       <div className="button-container">
-        {/* <button className="quote-button" onClick={updateQuote}>
+        <button className="quote-button" onClick={updateQuote}>
           New Quote
-        </button> */}
+        </button>
       </div>
     </div>
   );
