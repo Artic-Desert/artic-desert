@@ -123,3 +123,10 @@
   overflow: scroll;
   overflow-x: hidden;
 }
+
+.the-block {
+  color: white;
+  background-color: red;
+  position: sticky;
+  top: 0;
+}
