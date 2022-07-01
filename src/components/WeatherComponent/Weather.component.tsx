@@ -1,4 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import {
+  TiWeatherDownpour,
+  TiWeatherShower,
+  TiWeatherPartlySunny,
+  TiWeatherCloudy,
+  TiWeatherSunny,
+  TiWeatherSnow,
+  TiWeatherStormy,
+} from 'react-icons/ti';
 import './Weather.css';
 
 interface Data {
@@ -101,10 +110,29 @@ export const Weather: React.FC = () => {
       {data ? (
         <div>
           <div className="weather-top">
-            <div className="temp">
-              {data.main ? (
-                <p>{(data.main.temp - 273.15).toFixed()}°C</p>
-              ) : null}
+            <div className="icon-and-temp-container">
+              <div className="weather-icon">
+                {data.weather[0].main === 'Clear' ? <TiWeatherSunny /> : null}
+                {data.weather[0].main === 'Rain' ? <TiWeatherDownpour /> : null}
+                {data.weather[0].main === 'Drizzle' ? (
+                  <TiWeatherShower />
+                ) : null}
+                {data.weather[0].main === 'Mist' ? <TiWeatherCloudy /> : null}
+                {data.weather[0].main === 'Haze' ? <TiWeatherCloudy /> : null}
+                {data.weather[0].main === 'Fog' ? <TiWeatherCloudy /> : null}
+                {data.weather[0].main === 'Snow' ? <TiWeatherSnow /> : null}
+                {data.weather[0].main === 'Thunderstorm' ? (
+                  <TiWeatherStormy />
+                ) : null}
+                {data.weather[0].main === 'Clouds' ? (
+                  <TiWeatherPartlySunny />
+                ) : null}
+              </div>
+              <div className="temp">
+                {data.main ? (
+                  <p>{(data.main.temp - 273.15).toFixed()}°C</p>
+                ) : null}
+              </div>
             </div>
             <div className="location">
               <p>{data.name}</p>

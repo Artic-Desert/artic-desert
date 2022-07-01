@@ -23,26 +23,46 @@
   font-size: 15px;
   font-weight: bold;
   z-index: 100;
-  background-color: var(--gray-accent);
+  background-color: transparent;
+  color: white;
   opacity: 0.8;
   padding: 10px;
   border-radius: 6px;
   border: none;
   transition: all linear 0.1s;
 }
-
+.chat-button-open {
+  position: absolute;
+  right: 7px;
+  width: 80px;
+  top: -49px;
+  font-size: 15px;
+  font-weight: bold;
+  z-index: 100;
+  background-color: transparent;
+  color: black;
+  opacity: 0.8;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  transition: all linear 0.1s;
+}
 .chat-button:hover {
   transform: scale(1.1);
 }
-
 .chat-left-arrow {
   position: absolute;
   left: -5%;
-  top: 38%;
-  transform: translateY(-50%);
+  top: 32%;
   animation: bounce 2s infinite;
 }
-
+.chat-right-arrow {
+  position: absolute;
+  left: -5%;
+  top: 32%;
+  transform: rotate(180deg);
+  color: black;
+}
 @keyframes bounce {
   0%,
   20%,
@@ -58,7 +78,6 @@
     -webkit-transform: translateX(-2px);
   }
 }
-
 .chat-icon {
   color: var(--backgound-color);
 }

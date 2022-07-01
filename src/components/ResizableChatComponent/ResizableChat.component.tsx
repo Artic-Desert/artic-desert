@@ -34,15 +34,13 @@ export const ResizableChat: React.FC = () => {
       <motion.div
         className="resizable-div"
         animate={{
-          width: [0, vw * 0.47, vw * 0.47 * 0.9],
+          width: [0, vw * 0.35, vw * 0.35 * 0.9],
           position: 'relative',
           transitionEnd: {
             display: 'flex',
           },
         }}
         transition={{
-          // ease: "easeOut",
-          // duration: 1.5,
           type: 'spring',
           stiffness: 200,
           damping: 5,
