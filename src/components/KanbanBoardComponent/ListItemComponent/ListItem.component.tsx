@@ -37,8 +37,15 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
 
   useEffect(() => {
     titleref.current && titleref.current.focus();
-    const input = document.getElementById(String(task.timestamp));
-    input?.addEventListener('keypress', e => {
+    const inputTitle = document.getElementById(
+      String(task.timestamp) + 'title',
+    );
+    const inputBody = document.getElementById(String(task.timestamp) + 'body');
+    inputTitle?.addEventListener('keypress', e => {
+      e.key === 'Enter' &&
+        document.getElementById(String(task.timestamp) + 'button')?.click();
+    });
+    inputBody?.addEventListener('keypress', e => {
       e.key === 'Enter' &&
         document.getElementById(String(task.timestamp) + 'button')?.click();
     });
@@ -107,7 +114,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
               </button>
             )}
             <h3
-              id={String(task.timestamp)}
+              id={String(task.timestamp) + 'title'}
               ref={titleref}
               contentEditable={editing}
               onInput={e => handleTitleChange(e)}
@@ -118,6 +125,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
             </h3>
 
             <div
+              id={String(task.timestamp) + 'body'}
               contentEditable={editing}
               onInput={e => handleBodyChange(e)}
               className={
