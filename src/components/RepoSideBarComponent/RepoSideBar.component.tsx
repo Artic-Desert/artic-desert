@@ -32,7 +32,11 @@ export const RepoSideBar: React.FC = () => {
     user &&
       user.repos.map(async repo => {
         try {
-          const response = await fetch(`https://api.github.com/repos/${repo}`);
+          const response = await fetch(`https://api.github.com/repos/${repo}`, {
+            headers: {
+              Authorization: 'token ',
+            },
+          });
           const data = await response.json();
           console.log('repo data: ', data);
           setRepos((prevState: GithubRepo[]) => [...prevState, data]); // Type of prevstate is github repo response

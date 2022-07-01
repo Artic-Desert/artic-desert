@@ -47,7 +47,7 @@ const initialKanban = {
 export const kanbanReducer = (state = initialKanban, action) => {
   if (action.type === SET_KANBAN) {
     console.log('inside set kanban');
-    console.log('action payload: ', action.payload);
+    console.log('Kanban action payload: ', action.payload);
     const newState = { ...action.payload };
     console.log('new state: ', newState);
     return newState;

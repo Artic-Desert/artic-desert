@@ -11,11 +11,7 @@ import './Column.css';
 export const Column: React.FC<ColumnProps> = ({ col }) => {
   const dispatch = useDispatch();
   const { user } = useUser();
-
   const { repo } = useRepo();
-
-  console.log('USER inside column:', user);
-  console.log('REPO FROM REDUX STORE: ', repo);
 
   const newTask = {
     creator: user.login,
@@ -42,7 +38,6 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
             {...provided.droppableProps}
             ref={provided.innerRef}>
             {col.tasks.map((task, index) => {
-              // console.log(task, index);
               return (
                 <ListItem
                   key={task.timestamp}
@@ -50,7 +45,6 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
                   index={index}
                   column={col.id}
                 />
-                // <></>
               );
             })}
             {provided.placeholder}

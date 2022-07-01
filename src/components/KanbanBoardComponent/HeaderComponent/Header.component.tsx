@@ -7,11 +7,16 @@ import { useRepo } from '../../../hooks/use-repo';
 import { AuthService } from '../../../services/AuthService';
 import { setBranch } from '../../../redux/branch/actions';
 import { useDispatch } from 'react-redux';
+import { useBranch } from '../../../hooks/use-branch';
 
 export const Header: React.FC = () => {
   const { user } = useUser();
   const { repo } = useRepo();
+  const { branch } = useBranch();
   const dispatch = useDispatch();
+
+  console.log('<Header> current repo: ', repo);
+  console.log('<Header> current branch: ', branch);
 
   const [repoInfo, setRepoInfo] = useState<{
     branches: any;
@@ -22,15 +27,23 @@ export const Header: React.FC = () => {
   });
 
   const [currentBranch, setCurrentBranch] = useState(
-    '{sebastianfdz:by:nanji:by:main}',
+    'sebastianfdz:by:nanji:by:main',
   );
 
   const getBranches = async () => {
     try {
       const branchesResponse = await fetch(
-        repo.branches_url.slice(0, repo.branches_url.length - 9),
+        repo.branches_url &&
+          repo.branches_url.slice(0, repo.branches_url.length - 9),
+        {
+          headers: {
+            Authorization: 'token ',
+          },
+        },
       );
-      return await branchesResponse.json();
+      const branch = await branchesResponse.json();
+      console.log('<Header> response from getBranches: ', branch);
+      return branch;
     } catch (error) {
       console.error('Error inside <Header> getBranches(): ', error);
     }
@@ -40,9 +53,8 @@ export const Header: React.FC = () => {
     const body = {
       repo: repo.name,
       owner: repo.owner.login,
-      token: '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',
+      token: '',
     };
-
     try {
       const collaboratorsResponse = await fetch(
         'https://arctic-desert.herokuapp.com/filter',
@@ -54,7 +66,9 @@ export const Header: React.FC = () => {
           body: JSON.stringify(body),
         },
       );
-      return await collaboratorsResponse.json();
+      const collaborators = await collaboratorsResponse.json();
+      console.log('<Header> response from getCollaborators: ', collaborators);
+      return collaborators;
     } catch (error) {
       console.error('Error inside <Header> getCollaborators(): ', error);
     }
