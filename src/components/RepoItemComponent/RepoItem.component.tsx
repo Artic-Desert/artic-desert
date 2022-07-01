@@ -21,6 +21,7 @@ export const RepoItem: React.FC<{
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  //eslint-disable-next-line
   const handleDelete = async () => {
     console.log(repo.full_name.toLowerCase());
     const body = JSON.stringify({
@@ -37,7 +38,9 @@ export const RepoItem: React.FC<{
     const data = await response.json();
 
     if (!data.message) {
+      //eslint-disable-next-line
       setRepos((prevState: any) => {
+        //eslint-disable-next-line
         const newState = prevState.filter((el: any) => el.id !== repo.id);
         return newState;
       });
@@ -67,6 +70,7 @@ export const RepoItem: React.FC<{
     navigate('/workspace', { state: { repo } });
   };
 
+  //eslint-disable-next-line
   const obj: any = {
     JavaScript: 'lang-ball-yellow',
     TypeScript: 'lang-ball-blue',
