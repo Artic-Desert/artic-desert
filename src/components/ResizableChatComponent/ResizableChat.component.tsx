@@ -74,7 +74,7 @@ export const ResizableChat: React.FC = () => {
           <MdOutlineDragIndicator
             className="chat-dragger"
             size={40}
-            color="black"
+            color="#00111c"
           />
         </motion.div>
       </motion.div>

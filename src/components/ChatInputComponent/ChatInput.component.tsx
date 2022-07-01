@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ChatInput.css';
 import { MdSend } from 'react-icons/md';
+import { BiMailSend } from 'react-icons/bi';
 import { useUser } from '../../hooks/use-user';
 
 export const ChatInput: React.FC<{
@@ -25,18 +26,21 @@ export const ChatInput: React.FC<{
 
   return (
     <div className="inputContainer">
-      <div className="mainContainer">
-        <input
-          placeholder="Type your message here ..."
-          className="textInput"
-          aria-multiline
-          value={message}
-          onChange={event => setMessage(event.target.value)}
-        />
-        <button onClick={handleSendMessage} className="send-button">
-          <MdSend size={23} color={'white'} />
-        </button>
-      </div>
+      <input
+        placeholder="Type your message here ..."
+        className="textInput"
+        aria-multiline
+        value={message}
+        onChange={event => setMessage(event.target.value)}
+        onKeyPress={event => {
+          if (event.key === 'Enter') {
+            handleSendMessage();
+          }
+        }}
+      />
+      <button onClick={handleSendMessage} className="send-button">
+        <BiMailSend className="send-icon" size={40} color={'#00111c'} />
+      </button>
     </div>
   );
 };
