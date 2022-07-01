@@ -4,6 +4,8 @@
   position: absolute;
   top: -50%;
   min-height: 80vh;
+  max-height: 90vh;
+  max-width: 75vw;
   transition: all linear 0.1s;
   border-radius: 7px 0 0 7px;
   display: flex;
