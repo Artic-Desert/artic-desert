@@ -41,6 +41,7 @@ export const Chat: React.FC = () => {
   useEffect(() => {
     socketRef.current = io('https://arctic-desert.herokuapp.com/');
     socketRef.current.on('message', (message: Message) => {
+      console.log(message.chatgroup_id, chatGroup?.id);
       if (message.chatgroup_id === chatGroup?.id) {
         setMessages(prevState => [...prevState, message]);
       }
