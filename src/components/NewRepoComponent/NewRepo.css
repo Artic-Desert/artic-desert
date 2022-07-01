@@ -5,16 +5,11 @@
   justify-content: space-around;
   align-items: center;
   position: sticky;
-  font-family: 'Ubuntu', sans-serif;
-
   top: 0px;
-  background-color: --background-color;
 }
 
 input {
   font-size: 18px;
-  font-family: 'Ubuntu', sans-serif;
-
   width: 95%;
   height: 40px;
   border-radius: 4px;
@@ -41,17 +36,10 @@ input::placeholder {
   margin-top: 4px;
   width: 80%;
   height: 44px;
-  background-color: #ffe4c4;
+  background-color: rgb(255, 228, 196);
   color: #00111c;
   cursor: pointer;
   border-radius: 6px;
-  box-shadow: 0 4px #999;
-  font-family: 'Ubuntu', sans-serif;
-}
-
-.dashboard-submit-button:active {
-  transform: translateY(4px);
-  box-shadow: 0 4px #ffe4c4;
 }
 
 .dashboard-submit-button:hover {
