@@ -4,6 +4,7 @@
   width: 250px;
   top: 3%;
   right: 1.8%;
+  margin-right: 5px;
 }
 
 .weather-data {
@@ -18,14 +19,12 @@
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   display: flex;
-  border: 1px solid blue;
 }
 
 .weather-top {
   display: flex;
   flex-direction: column;
   align-items: end;
-
   text-align: end;
 }
 .temp {
@@ -38,8 +37,14 @@
   justify-content: space-between;
   text-align: center;
   width: 100%;
-  margin-top: 1rem;
+  margin: 1rem;
+  padding: 5px;
   border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 .bold {
   font-weight: bold;
