@@ -31,6 +31,22 @@
   border: none;
   transition: all linear 0.1s;
 }
+.chat-button-open {
+  position: absolute;
+  right: 7px;
+  width: 80px;
+  top: -49px;
+  font-size: 15px;
+  font-weight: bold;
+  z-index: 100;
+  background-color: transparent;
+  color: black;
+  opacity: 0.8;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  transition: all linear 0.1s;
+}
 .chat-button:hover {
   transform: scale(1.1);
 }
@@ -45,7 +61,7 @@
   left: -5%;
   top: 32%;
   transform: rotate(180deg);
-  color: white;
+  color: black;
 }
 @keyframes bounce {
   0%,
