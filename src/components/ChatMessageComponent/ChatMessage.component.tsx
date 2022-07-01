@@ -15,9 +15,12 @@ export const ChatMessage: React.FC<any> = ({ message }) => {
   return (
     <div className="container">
       <div className={isMyMessage() ? 'usersMessageBox' : 'messageBox'}>
-        {!isMyMessage() && <h5 className="author">{message.username}</h5>}
+        {/* {!isMyMessage() && <h5 className="author">{message.username}</h5>} */}
+        <h5 className="author">{message.username}</h5>
         <div className="content">{message.content}</div>
-        <div className="time">{moment(message.timestamp).format('HH:MM')}</div>
+        <div className="time">
+          {moment(parseInt(message.timestamp)).format('HH:MM')}
+        </div>
       </div>
     </div>
   );

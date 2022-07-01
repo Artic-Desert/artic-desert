@@ -1,6 +1,5 @@
 .resizable-div {
   background-color: var(--gray-accent);
-  opacity: 0.8;
   position: absolute;
   top: -50%;
   min-height: 80vh;
@@ -9,6 +8,7 @@
   transition: all linear 0.1s;
   border-radius: 7px 0 0 7px;
   display: flex;
+  overflow-y: scroll;
 }
 .dragger {
   position: absolute;
