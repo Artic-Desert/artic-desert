@@ -8,6 +8,7 @@ import { AuthService } from '../../../services/AuthService';
 import { setBranch } from '../../../redux/branch/actions';
 import { useDispatch } from 'react-redux';
 import { useBranch } from '../../../hooks/use-branch';
+import { GithubUser, RepoBranch } from '../../../types/Types';
 
 export const Header: React.FC = () => {
   const { user } = useUser();
@@ -19,8 +20,8 @@ export const Header: React.FC = () => {
   console.log('<Header> current branch: ', branch);
 
   const [repoInfo, setRepoInfo] = useState<{
-    branches: any;
-    collaborators: any;
+    branches: RepoBranch[] | undefined;
+    collaborators: GithubUser[] | undefined;
   }>({
     branches: undefined,
     collaborators: undefined,
@@ -89,7 +90,7 @@ export const Header: React.FC = () => {
     fetchInfoOfRepo();
   }, []);
 
-  const handleBranchChange = (e: any) => {
+  const handleBranchChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     setCurrentBranch(e.target.selectedOptions[0].value);
   };
@@ -107,8 +108,8 @@ export const Header: React.FC = () => {
           <AiFillCaretDown fontSize="14px" />
         </div> */}
         {repoInfo.branches && (
-          <select onChange={handleBranchChange}>
-            {repoInfo.branches.map((branch: any) => {
+          <select onChange={e => handleBranchChange(e)}>
+            {repoInfo.branches.map((branch: RepoBranch) => {
               return (
                 <option key={branch.name} value={branch.name}>
                   {branch.name}
@@ -128,7 +129,7 @@ export const Header: React.FC = () => {
         )}
         <div className="collaborators">
           {repoInfo.collaborators &&
-            repoInfo.collaborators.map((collaborator: any) => {
+            repoInfo.collaborators.map((collaborator: GithubUser) => {
               return (
                 <img
                   key={collaborator.id}
