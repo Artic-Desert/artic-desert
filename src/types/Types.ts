@@ -96,6 +96,7 @@ export type Message = {
 };
 
 export type ChatGroupToCreate = {
+  id: string;
   name: string;
   admin: string;
   repo_id: string;
@@ -106,7 +107,7 @@ export type ChatGroup = {
   name: string;
   members: string[];
   admin: string;
-  messages: string[];
+  messages: Message[];
   repo_id: string;
 };
 

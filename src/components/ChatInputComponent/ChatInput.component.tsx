@@ -3,23 +3,28 @@ import './ChatInput.css';
 import { MdSend } from 'react-icons/md';
 import { BiMailSend } from 'react-icons/bi';
 import { useUser } from '../../hooks/use-user';
-
+import { ChatGroup, Message, MessageToCreate } from '../../types/Types';
+import { useRepo } from '../../hooks/use-repo';
+import { postMessage } from '../../services/MessagesApiService';
 export const ChatInput: React.FC<{
   setMessages: React.Dispatch<React.SetStateAction<any[]>>; //eslint-disable-line
-}> = ({ setMessages }) => {
+  chatGroup: ChatGroup;
+}> = ({ setMessages, chatGroup }) => {
   const [message, setMessage] = useState('');
   const { user } = useUser();
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     const messageBody = {
       content: message,
       timestamp: Date.now(),
       username: user.login,
-      chatgroup_id: 'testrepo/branchname',
+      chatgroup_id: chatGroup.id,
     };
     // TODO: Send message to the backend get it back and update new State with the created message
+    const messageCreated = await postMessage(messageBody);
+
     setMessages(prevState => {
-      return [...prevState, messageBody];
+      return [...prevState, messageCreated];
     });
     setMessage('');
   };
