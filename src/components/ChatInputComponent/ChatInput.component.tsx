@@ -1,20 +1,17 @@
 import React, { useRef, useState } from 'react';
 import './ChatInput.css';
-import { MdSend } from 'react-icons/md';
 import { BiMailSend } from 'react-icons/bi';
 import { useUser } from '../../hooks/use-user';
-import { ChatGroup, Message, MessageToCreate } from '../../types/Types';
-import { useRepo } from '../../hooks/use-repo';
+import { ChatGroup } from '../../types/Types';
 import { postMessage } from '../../services/MessagesApiService';
 import io from 'socket.io-client';
 
 export const ChatInput: React.FC<{
-  setMessages: React.Dispatch<React.SetStateAction<any[]>>; //eslint-disable-line
   chatGroup: ChatGroup;
-}> = ({ setMessages, chatGroup }) => {
+}> = ({ chatGroup }) => {
   const [message, setMessage] = useState('');
   const { user } = useUser();
-  const socketRef = useRef<any>();
+  const socketRef = useRef<any>(); // eslint-disable-line
 
   const handleSendMessage = async () => {
     const messageBody = {

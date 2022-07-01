@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { EventEmitter } from 'stream';
+import { useDispatch } from 'react-redux';
+import { useRepos } from '../../hooks/use-repos';
 import { useUser } from '../../hooks/use-user';
+import { addRepo } from '../../redux/repos/actions';
 // import { AuthService } from '../../services/AuthService';
 import './NewRepo.css';
 
-export const NewRepo: React.FC<{
-  setRepos: React.Dispatch<React.SetStateAction<any[]>>;
-  repos: any[];
-}> = ({ setRepos, repos }) => {
+export const NewRepo: React.FC = () => {
   const [ownerName, setOwnerName] = useState('');
   const [repoName, setRepoName] = useState('');
   const [message, setMessage] = useState('');
+
+  const { repos } = useRepos();
+  const dispatch = useDispatch();
 
   const BASE_URL = 'https://api.github.com';
 
@@ -40,7 +42,7 @@ export const NewRepo: React.FC<{
         return;
       } else {
         if (data.id) {
-          setRepos((prevState: any[]) => [...prevState, data]);
+          dispatch(addRepo(data));
         } else {
           setMessage(
             `Error 🚫 \nWe weren't able to find a repository called: ${repo} with author: ${owner}. Check your input and please try again.`,
