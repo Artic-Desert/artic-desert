@@ -27,9 +27,7 @@ export const Header: React.FC = () => {
     collaborators: undefined,
   });
 
-  const [currentBranch, setCurrentBranch] = useState(
-    'sebastianfdz:by:nanji:by:main',
-  );
+  const [currentBranch, setCurrentBranch] = useState('repo-board');
 
   const getBranches = async () => {
     try {
