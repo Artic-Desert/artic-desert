@@ -29,14 +29,15 @@
   right: 10px;
   background-color: transparent;
   border: none;
-  cursor: not-allowed;
+  cursor: pointer;
   font-size: 23px;
   opacity: 0.56;
   transition: 200ms linear all;
 }
 
 .item-delete:hover {
-  transform: rotate(25deg);
+  transform: rotate(5deg);
+  color: red;
 }
 
 .item-title {
@@ -56,20 +57,31 @@
   right: 10px;
   background-color: transparent;
   border: none;
-  cursor: crosshair;
-  font-size: 23px;
+  cursor: pointer;
+  font-size: 21px;
   opacity: 0.56;
   transition: 200ms linear all;
+}
+
+.item-edit:hover {
+  transform: translateX(-2px);
+  color: var(--blue3-body);
+}
+
+.item-not-allowed {
+  cursor: not-allowed;
 }
 
 .save-button-container {
   margin-top: 5px;
   margin-bottom: 5px;
   width: 100%;
-  margin-left: 10px;
 }
 
 .save-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
   background-color: var(--blue2-body);
   border-color: transparent;
   border-radius: 4px;
@@ -77,15 +89,19 @@
   font-size: 14px;
   font-weight: bolder;
   height: 30px;
-  width: 120px;
+  width: auto;
+  padding-right: 3px;
+  padding-left: 3px;
 }
 
 .save-button:hover {
   background-color: var(--blue3-body);
+  cursor: pointer;
 }
 
-.item-edit:hover {
-  transform: translateX(-5px);
+.item-body item-currently-editing {
+  border: solid 1px;
+  border-color: black;
 }
 
 .item-creator {

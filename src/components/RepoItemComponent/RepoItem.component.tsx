@@ -94,24 +94,6 @@ export const RepoItem: React.FC<{
           <BsCircleFill
             className={`${obj[repo.language || 'lang-ball-default']}`}
           />
-          {/* {repo.language === 'JavaScript' && (
-            <BsCircleFill className="lang-ball-yellow" />
-          )}
-          {repo.language === 'TypeScript' && (
-            <BsCircleFill className="lang-ball-blue" />
-          )}
-          {repo.language === 'CSS' && (
-            <BsCircleFill className="lang-ball-purple" />
-          )}
-          {repo.language === 'HTML' && (
-            <BsCircleFill className="lang-ball-red" />
-          )}
-          {repo.language !== 'HTML' ||
-            'CSS' ||
-            'TypeScript' ||
-            ('JavaScript' && <BsCircleFill className="lang-ball-default" />)} */}
-          {/* {!obj[repo.language] && <BsCircleFill className="lang-ball" />} */}
-
           <span className="language">{repo.language}</span>
         </div>
         {numOfBranches && (

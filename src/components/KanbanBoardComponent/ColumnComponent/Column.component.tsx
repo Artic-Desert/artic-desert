@@ -14,9 +14,10 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
   const { repo } = useRepo();
 
   const newTask = {
+    new: true,
     creator: user.login,
-    title: 'This is an example new task',
-    body: 'You can delete this task and create you own!',
+    title: 'New task',
+    body: 'Description',
     timestamp: Date.now(),
     avatar_url: user.avatar_url,
   };

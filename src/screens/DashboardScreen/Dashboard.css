@@ -5,17 +5,51 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  /* background: url('../../assets/dashback2.svg'); */
+  background-color: var(--background-color);
+}
+
+.dashboard-left {
+  height: 100vw;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding: 5px 5px 15px 15px;
+}
+
+.dashboard-left::before {
+  content: '';
+  height: 80%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.322);
+  position: absolute;
+  top: 10vh;
+  left: 20vw;
+  z-index: 1000;
+}
+
+.dashboard-middle {
+  width: 55vw;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-right {
+  width: 25vw;
 }
 
 /* HEADER CSS */
 
 .header {
-  width: 80vw;
+  width: 100%;
   height: 20vh;
   display: flex;
   justify-content: space-between;
-  background-color: #00111c;
-  padding-left: 20px;
 }
 
 .add-new {
@@ -56,112 +90,6 @@
   height: 80px;
 }
 
-.dashboard-left {
-  height: 100vw;
-  width: 80vw;
-  display: flex;
-  flex-direction: column;
-}
-
-.dashboard-right {
-  width: 30vw;
-}
-
-/* USER INFO CSS */
-.dashboard-user-info {
-  width: 33.3%;
-  display: flex;
-  color: rgb(255, 228, 196);
-  flex-direction: column;
-}
-
-.dashboard-user-info img {
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  overflow: hidden;
-  margin: 10px 0;
-}
-
-.avatar > img {
-  height: 100px;
-  width: 100px;
-}
-
-.name {
-  font-family: 'Lobster Two', cursive;
-}
-
-.name-pic {
-  display: flex;
-  align-items: center;
-}
-
-.git-link {
-  display: flex;
-  width: 100%;
-  opacity: 0.8;
-  font-weight: bold;
-  font-family: 'Ubuntu', sans-serif;
-
-  /* justify-content: right; */
-}
-
-.git-logo {
-  color: rgb(255, 228, 196);
-  margin-left: 10px;
-}
-
-.name {
-  margin-left: 20px;
-  font-size: larger;
-  font-weight: bold;
-  font-size: 1.5vw;
-  margin-bottom: 5px;
-}
-
-.githubName {
-  font-size: 1.5vw;
-  font-weight: lighter;
-}
-
-.githubLink {
-  text-decoration: none;
-  color: black;
-  font-size: xx-large;
-}
-
-.githubInfo {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-around;
-  width: 20%;
-  margin-top: 10px;
-}
-
-.logout-button {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 4px;
-  width: 40%;
-  height: 34px;
-  background-color: rgb(255, 228, 196);
-  color: #00111c;
-  cursor: pointer;
-  font-family: 'Ubuntu', sans-serif;
-
-  /* align-self: flex-end; */
-  border-radius: 6px;
-  box-shadow: 0 4px rgba(255, 228, 196, 0.65);
-}
-
-.logout-button:hover {
-  background-color: #00111c;
-  border: 2px solid rgb(255, 228, 196);
-  color: rgba(255, 228, 196, 0.9);
-}
-
 .quote-button:active {
   transform: translateY(4px);
   box-shadow: 0 4px #666;
@@ -169,18 +97,15 @@
 
 .hero {
   display: flex;
-  height: 80vh;
-  width: 100vw;
+  height: 100vh;
+  width: 100%;
 }
 
 .productivity {
-  background-image: url('../../assets/heroback.svg');
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  border-top: 1px solid #c8d1d9;
-  border-right: 1px solid #c8d1d9;
-  width: 80vw;
-  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -189,12 +114,19 @@
 }
 
 .dashboard-column {
-  background-color: #00111c;
-  height: 100vh;
-  width: 20vw;
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: scroll;
   overflow-x: hidden;
+}
+
+.the-block {
+  color: white;
+  background-color: red;
+  position: sticky;
+  top: 0;
 }

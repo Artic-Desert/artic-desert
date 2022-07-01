@@ -1,0 +1,110 @@
+/* USER INFO CSS */
+.dashboard-user-info {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  color: #c8d1d9;
+  flex-direction: column;
+}
+
+.dashboard-user-info img {
+  border-radius: 50%;
+  width: 100%;
+  /* width: 40px; */
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.name {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.name-pic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.git-link {
+  display: flex;
+  width: 100%;
+  font-weight: bold;
+  font-family: 'Ubuntu', sans-serif;
+  align-items: center;
+  /* justify-content: right; */
+}
+
+.user-highlight {
+  color: #d2d8dd;
+}
+
+.git-logo {
+  color: #c8d1d9;
+  margin-left: 10px;
+}
+
+.bio-cont {
+  margin-top: 10px;
+  border: 1px solid #c8d1d9a3;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.name {
+  font-size: larger;
+  font-weight: bold;
+  font-size: 1.5vw;
+}
+
+.githubName {
+  font-size: 1.5vw;
+  font-weight: lighter;
+}
+
+.githubLink {
+  text-decoration: none;
+  color: black;
+  font-size: xx-large;
+}
+
+.githubInfo {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+  width: 20%;
+  margin-top: 10px;
+}
+
+.logout-button {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 2px solid #c8d1d952;
+  width: 80%;
+  height: 34px;
+  background-color: #30363c;
+  color: #c8d1d9a3;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+  align-self: center;
+}
+
+.logout-button:hover {
+  border: 2px solid #c8d1d9d9;
+  color: #c8d1d9d9;
+}
+
+.user-info-block {
+  margin-top: 10px;
+  font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.2vw;
+  color: #c8d1d9c3;
+}
+
+.user-info-block p {
+  margin-bottom: 10px;
+}

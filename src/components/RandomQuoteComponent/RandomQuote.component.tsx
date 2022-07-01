@@ -45,9 +45,9 @@ export const RandomQuote: React.FC = () => {
         <p className="quote-author"> -{data.author}- </p>
       </div>
       <div className="button-container">
-        <button className="quote-button" onClick={updateQuote}>
+        {/* <button className="quote-button" onClick={updateQuote}>
           New Quote
-        </button>
+        </button> */}
       </div>
     </div>
   );

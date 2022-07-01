@@ -9,7 +9,9 @@
   height: fit-content;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #c8d1d9;
+  border: 2px solid #c8d1d952;
+
+  background-color: #0e1117;
 }
 
 .owner-cont {

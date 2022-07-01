@@ -4,6 +4,7 @@ export type Task = {
   body: string;
   timestamp: string;
   avatar_url: string;
+  new: boolean | undefined;
 };
 
 export type ColumnProps = {
@@ -37,6 +38,26 @@ export type GithubRepo = {
   full_name: string;
   pushed_at: string;
   message?: { message: string }; // This is not a repo property, it only exists with there is an error message from the fetch.
+};
+
+export type GithubUser = {
+  id: number;
+  avatar_url: string;
+  name: string;
+  login: string;
+  follower: number;
+  following: number;
+  public_repos: number;
+  bio: string;
+};
+
+export type RepoBranch = {
+  name: string;
+  commit: {
+    sha: string;
+    url: string;
+  };
+  protected: boolean;
 };
 
 export type OrganizationToCreate = {
