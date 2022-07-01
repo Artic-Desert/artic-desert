@@ -82,15 +82,17 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}>
-          <button
-            name="delete"
-            className={
-              isEditable ? 'item-delete' : 'item-delete item-not-allowed'
-            }
-            onClick={() => isEditable && dispatch(deleteTask(column, index))}>
-            <FiTrash2 />
-          </button>
-          {!editing && (
+          {isEditable && (
+            <button
+              name="delete"
+              className={
+                isEditable ? 'item-delete' : 'item-delete item-not-allowed'
+              }
+              onClick={() => isEditable && dispatch(deleteTask(column, index))}>
+              <FiTrash2 />
+            </button>
+          )}
+          {!editing && isEditable && (
             <button
               name="edit"
               className={
@@ -101,14 +103,12 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
             </button>
           )}
           <div>
-            {editing && (
+            {editing && isEditable && (
               <button
                 name="submit"
                 type="submit"
                 id={task.timestamp + 'button'}
-                className={
-                  isEditable ? 'item-edit' : 'item-edit item-not-allowed'
-                }
+                className="item-edit"
                 onClick={handleSubmitEdit}>
                 <FiCheckSquare />
               </button>
@@ -118,9 +118,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
               ref={titleref}
               contentEditable={editing}
               onInput={e => handleTitleChange(e)}
-              className={
-                isEditable ? 'item-title' : 'item-title item-currently-editing'
-              }>
+              className="item-title">
               {task.title}
             </h3>
 
@@ -128,9 +126,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
               id={String(task.timestamp) + 'body'}
               contentEditable={editing}
               onInput={e => handleBodyChange(e)}
-              className={
-                isEditable ? 'item-body' : 'item-body item-currently-editing'
-              }>
+              className="item-body">
               {task.body}
             </div>
           </div>
