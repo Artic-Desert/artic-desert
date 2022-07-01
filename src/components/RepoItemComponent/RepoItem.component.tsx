@@ -75,9 +75,8 @@ export const RepoItem: React.FC<{
     fetchNumOfBranches();
   }, []);
 
-  return repo.message ? (
-    <div style={{ color: 'white' }}>There was an error in repo fetching</div>
-  ) : (
+  return repo.message ? // <div style={{ color: 'white' }}>There was an error in repo fetching</div>
+  null : (
     <div className="repo-item-container">
       <div className="top-line">
         <h3 className="repo-name" onClick={() => handleNavigation(repo)}>

@@ -15,36 +15,44 @@ export const NewRepo: React.FC<{
   const BASE_URL = 'https://api.github.com';
 
   const repoFetchRequest = async (owner: string, repo: string) => {
-    setMessage('');
-    console.log(`${BASE_URL}/repos/${owner}/${repo}`);
-    const repsonse = await fetch(`${BASE_URL}/repos/${owner}/${repo}`, {
-      // headers: {
-      //   Authorization: `token ${process.env.GHP_TOKEN}`,
-      // },
-    });
-    const data = await repsonse.json();
-    if (
-      repos.find(
-        (el: any) =>
-          el.full_name.toLowerCase() === `${owner}/${repo}`.toLowerCase(),
-      )
-    ) {
-      setMessage(
-        'The Repository you are trying to add already exists in your workspace!',
-      );
-      return;
-    } else {
-      if (data.id) {
-        setRepos((prevState: any[]) => [...prevState, data]);
-      } else {
+    try {
+      setMessage('');
+      console.log(`${BASE_URL}/repos/${owner}/${repo}`);
+      const repsonse = await fetch(`${BASE_URL}/repos/${owner}/${repo}`, {
+        headers: {
+          Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
+        },
+      });
+      const data = await repsonse.json();
+      if (
+        repos.find((el: any) => {
+          console.log('EL FULLNAME : ', el);
+          console.log('REPO FULLNAME : ', `${owner}/${repo}`);
+
+          return (
+            el.full_name.toLowerCase() === `${owner}/${repo}`.toLowerCase()
+          );
+        })
+      ) {
         setMessage(
-          `Error 🚫 \nWe weren't able to find a repository called: ${repo} with author: ${owner}. Check your input and please try again.`,
+          'The Repository you are trying to add already exists in your workspace!',
         );
         return;
+      } else {
+        if (data.id) {
+          setRepos((prevState: any[]) => [...prevState, data]);
+        } else {
+          setMessage(
+            `Error 🚫 \nWe weren't able to find a repository called: ${repo} with author: ${owner}. Check your input and please try again.`,
+          );
+          return;
+        }
       }
+      setMessage('Repository added successfully!');
+      return data;
+    } catch (err) {
+      console.log(err);
     }
-    setMessage('Repository added successfully!');
-    return data;
   };
 
   const { user } = useUser();

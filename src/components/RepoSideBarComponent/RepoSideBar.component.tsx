@@ -34,7 +34,7 @@ export const RepoSideBar: React.FC = () => {
         try {
           const response = await fetch(`https://api.github.com/repos/${repo}`, {
             headers: {
-              Authorization: 'token ',
+              Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
             },
           });
           const data = await response.json();

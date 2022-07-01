@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
           repo.branches_url.slice(0, repo.branches_url.length - 9),
         {
           headers: {
-            Authorization: 'token ',
+            Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
           },
         },
       );
@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
     const body = {
       repo: repo.name,
       owner: repo.owner.login,
-      token: '',
+      token: process.env.REACT_APP_GHP_TOKEN,
     };
     try {
       const collaboratorsResponse = await fetch(
