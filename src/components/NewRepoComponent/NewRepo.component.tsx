@@ -20,7 +20,7 @@ export const NewRepo: React.FC<{
     console.log(`${BASE_URL}/repos/${owner}/${repo}`);
     const repsonse = await fetch(`${BASE_URL}/repos/${owner}/${repo}`, {
       // headers: {
-      //   Authorization: `token ${token}`,
+      //   Authorization: `token ${process.env.GHP_TOKEN}`,
       // },
     });
     const data = await repsonse.json();
