@@ -19,20 +19,27 @@ export const KanbanBoard: React.FC = () => {
   const { branch } = useBranch();
   const { repo } = useRepo();
 
+  console.log('<KanbanBoard> current branch: ', branch);
+  console.log('<KanbanBoard> current repo: ', repo);
+
   const { kanban } = useKanban();
   const dispatch = useDispatch();
-  const [currentBranch, setCurrentBranch] = useState(
-    '{sebastianfdz:by:nanji:by:main}',
-  );
+
+  const kanban_board_id =
+    repo &&
+    branch &&
+    `{${repo.owner.login}:slash:${repo.name}:slash:${branch}}`;
 
   useEffect(() => {
-    ApiClientService.getKanbanBoard(KANBAN_BOARD_ID).then(data => {
-      dispatch(setKanban(data.board));
-    });
-  }, []);
+    kanban_board_id &&
+      ApiClientService.getKanbanBoard(kanban_board_id).then(data => {
+        dispatch(setKanban(data.board));
+      });
+  }, [branch]);
 
   useEffect(() => {
-    ApiClientService.updateKanbanBoard(KANBAN_BOARD_ID, kanban);
+    kanban_board_id &&
+      ApiClientService.updateKanbanBoard(kanban_board_id, kanban);
   }, [kanban]);
 
   const onDragEnd = ({ source, destination }: DropResult) => {

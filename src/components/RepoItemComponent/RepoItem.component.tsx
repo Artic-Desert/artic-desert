@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { GithubRepo } from '../../types/Types';
 import { useDispatch } from 'react-redux';
 import { setRepo } from '../../redux/repo/actions';
+import { setBranch } from '../../redux/branch/actions';
 
 export const RepoItem: React.FC<{
   repo: GithubRepo;
@@ -62,6 +63,7 @@ export const RepoItem: React.FC<{
 
   const handleNavigation = (repo: GithubRepo) => {
     dispatch(setRepo(repo));
+    dispatch(setBranch('all-branches')); // this should be dynamic or checked for the first branch of the repo
     navigate('/workspace', { state: { repo } });
   };
 
@@ -75,8 +77,7 @@ export const RepoItem: React.FC<{
     fetchNumOfBranches();
   }, []);
 
-  return repo.message ? // <div style={{ color: 'white' }}>There was an error in repo fetching</div>
-  null : (
+  return repo.message ? null : ( // <div style={{ color: 'white' }}>There was an error in repo fetching</div>
     <div className="repo-item-container">
       <div className="top-line">
         <h3 className="repo-name" onClick={() => handleNavigation(repo)}>
