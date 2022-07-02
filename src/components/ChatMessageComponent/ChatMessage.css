@@ -1,20 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Finlandica:wght@400;500&family=Source+Sans+Pro:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600;700&display=swap');
 .container {
   display: flex;
   flex-direction: column;
 }
 
+.message-author-pic {
+  display: flex;
+  width: fit-content;
+}
+
+.author {
+  font-family: 'Ubuntu', sans-serif;
+
+  font-weight: 600;
+}
+
+.author::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 40px;
+  background-color: #00111c;
+  margin-left: 5px;
+}
+
+.message-author-pic img {
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
 .usersMessageBox {
-  background-color: antiquewhite;
-  align-self: flex-end;
-  margin-right: 5%;
-  min-width: 20%;
-  margin-top: 3%;
+  background-color: #f3f0f0;
+  color: black;
   border-radius: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-bottom: 20px;
+  font-size: 1vw;
+  padding: 8px;
+  margin-top: 3%;
+  max-width: 60%;
+  width: fit-content;
+  min-width: 200px;
+  word-wrap: break-word;
+  z-index: 100;
+  align-self: flex-end;
+  -webkit-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+  position: relative;
+  /* border: 2px solid black; */
+}
+
+.usersMessageBox::after {
+  content: '';
+  z-index: 50;
+  display: block;
+  width: 13px;
+  height: 13px;
+  border: 0px solid black;
+  border-radius: 50%;
+  background-color: #f3f0f0;
+  position: absolute;
+  right: -4px;
+  -webkit-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+}
+
+.message-Box {
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #00111c;
+  color: white;
+  border-radius: 10px 10px 10px 10px !important;
+  font-size: 1vw;
+  margin-bottom: 15px;
+  padding: 8px;
+  word-wrap: break-word;
+  align-self: flex-start;
+  margin-right: 5%;
+  max-width: 60%;
+  width: fit-content;
+  min-width: 200px;
+  margin-top: 3%;
   border-bottom-right-radius: 0;
+  border: 2px solid black;
+
+  position: relative;
+  -webkit-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+}
+
+.message-Box::after {
+  content: '';
+  display: block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: #00111c;
+  position: absolute;
+  left: -4px;
+  -webkit-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
 }
 
 .content {
-  margin: 0 5%;
+  padding: 10px;
 }
 
 .time {
