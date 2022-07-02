@@ -1,16 +1,25 @@
 .modal {
-  width: clamp(30%, 500px, 70%);
-  height: min(60%, 400px);
-  margin: auto;
-  padding: 0 2rem;
-  border-radius: 12px;
+  width: clamp(45%, 700px, 70%);
+  height: min(70%, 450px);
+  z-index: 10;
+  color: #c8d1d9;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  z-index: 10;
-  background: orange;
+  justify-content: space-evenly;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #c8d1d952;
 }
 
 .background {
-  background: orange;
+  background-color: #0e1117;
+}
+
+/* REPO PREVIEW MODAL */
+
+.preview-modal-wrapper {
+  text-align: center;
+  height: 100%;
+  width: 100%;
 }
