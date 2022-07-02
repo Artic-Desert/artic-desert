@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const Collapasible: React.FC<IProps> = ({ open, children, title }) => {
-  const [isOpen, setIsOpen] = useState(open);
+  const [isOpen, setIsOpen] = useState(!open);
 
   const handleFilterOpening = () => {
     setIsOpen(prev => !prev);

@@ -77,7 +77,6 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border-bottom: 1px solid #c8d1d9;
   position: sticky;
   top: 0px;
 }

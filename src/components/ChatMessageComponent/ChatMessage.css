@@ -86,8 +86,6 @@
   min-width: 200px;
   margin-top: 3%;
   border-bottom-right-radius: 0;
-  border: 2px solid black;
-
   position: relative;
   -webkit-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
@@ -99,7 +97,6 @@
   display: block;
   width: 13px;
   height: 13px;
-  border: 2px solid black;
   border-radius: 50%;
   background-color: #00111c;
   position: absolute;
