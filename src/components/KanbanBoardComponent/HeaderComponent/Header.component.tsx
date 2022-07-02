@@ -9,6 +9,9 @@ import { setBranch } from '../../../redux/branch/actions';
 import { useDispatch } from 'react-redux';
 import { useBranch } from '../../../hooks/use-branch';
 import { GithubUser, RepoBranch } from '../../../types/Types';
+import Select from 'react-select';
+import { Z_FIXED } from 'zlib';
+import { isWhiteSpaceLike } from 'typescript';
 
 export const Header: React.FC = () => {
   const { user } = useUser();
@@ -88,34 +91,46 @@ export const Header: React.FC = () => {
     fetchInfoOfRepo();
   }, []);
 
-  const handleBranchChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault();
-    setCurrentBranch(e.target.selectedOptions[0].value);
+  const handleBranchChange = (e: any) => {
+    // e.preventDefault();
+    setCurrentBranch(e.value);
   };
 
   useEffect(() => {
     dispatch(setBranch(currentBranch));
   }, [currentBranch]);
 
+  const options = repoInfo.branches?.map((branch: RepoBranch) => {
+    return { value: branch.name, label: branch.name };
+  });
+
+  const customStyles = {
+    option: (provided: any, { isFocused, isSelected }: any) => ({
+      ...provided,
+      color: isSelected ? 'white' : isFocused ? '#00111c' : '##f3f0f0',
+      backgroundColor: isSelected
+        ? '#00111c'
+        : isFocused
+        ? '#57a6ff'
+        : '#f3f0f0',
+    }),
+    menu: (provided: any, state: any) => ({
+      ...provided,
+      postion: 'fixed',
+      zindex: '10',
+    }),
+  };
   return (
     <div className="kanban-header">
       <div className="left">
-        {repoInfo.branches && (
-          <select
-            className="branch-selector"
-            onChange={e => handleBranchChange(e)}>
-            <option key={'repo-board'} value="repo-board">
-              branch
-            </option>
-            {repoInfo.branches.map((branch: RepoBranch) => {
-              return (
-                <option key={branch.name} value={branch.name}>
-                  {branch.name}
-                </option>
-              );
-            })}
-          </select>
-        )}
+        <div className="select">
+          {repoInfo.branches && (
+            <Select
+              options={options}
+              styles={customStyles}
+              onChange={e => handleBranchChange(e)}></Select>
+          )}
+        </div>
         {repoInfo.branches && (
           <div className="num-branches">
             <GoGitBranch />
@@ -129,15 +144,34 @@ export const Header: React.FC = () => {
           {repoInfo.collaborators &&
             repoInfo.collaborators.map((collaborator: GithubUser) => {
               return (
-                <img
+                <a
+                  title="GitHub Profile"
                   key={collaborator.id}
-                  src={collaborator.avatar_url}
-                  alt=""
-                />
+                  href={collaborator.html_url}
+                  target="_blank"
+                  rel="noreferrer">
+                  <img
+                    key={collaborator.id}
+                    src={collaborator.avatar_url}
+                    alt=""
+                  />
+                </a>
               );
             })}
         </div>
       </div>
+      {repo && (
+        <div className="current-repo">
+          <a
+            title="GitHub Repo"
+            key={repo.name}
+            href={repo.html_url}
+            target="blank"
+            rel="noreferrer">
+            {repo.name}
+          </a>
+        </div>
+      )}
       <div className="right">
         <div className="user-info">
           <span>Hello {user.name.split(' ')[0]}!</span>

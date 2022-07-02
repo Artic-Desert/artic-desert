@@ -29,7 +29,8 @@ export const UserInfo: React.FC = () => {
           href={user.html_url}
           className="githubLink"
           target="_blank"
-          rel="noreferrer">
+          rel="noreferrer"
+          title="GitHub profile">
           <GoMarkGithub className="git-logo" size={30} color="#d2d8dd" />
         </a>
       </div>

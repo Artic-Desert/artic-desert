@@ -3,8 +3,10 @@
 .kanban-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 10%;
   padding: 20px 60px;
+  margin-top: 23px;
 }
 .left {
   width: fit-content;
@@ -12,19 +14,15 @@
   display: flex;
   justify-content: space-between;
 }
-.branch-selector {
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 5px;
-  backdrop-filter: blur(6.1px);
-  -webkit-backdrop-filter: blur(6.1px);
-  padding: 0 5px 0 10px;
-  color: #c8d1d9d9;
-  font-size: 1rem;
+.select {
   width: fit-content;
+  min-width: 250px;
 }
 .branch-selector:hover {
-  border: 1px solid #c8d1d9d9;
+  border: 1px solid #c8d1d9;
+}
+.branch-option {
+  background-color: #fff;
 }
 .num-branches {
   color: #c8d1d9;
@@ -46,7 +44,18 @@
 .collaborators img {
   height: 47px;
   border-radius: 50%;
-  padding: 0 4px;
+  padding: 0 3px;
+  transition: 0.15s linear;
+}
+
+.collaborators img:hover {
+  margin: 0 5px;
+  transform: scale(1.15);
+}
+.current-repo a {
+  color: #c8d1d9;
+  font-size: xx-large;
+  text-decoration: none;
 }
 .right {
   height: 47px;
