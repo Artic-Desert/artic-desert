@@ -53,8 +53,9 @@ export const GitTimeline: React.FC = () => {
             return arrays.map((array, index) => {
               return (
                 array.includes(branch) && (
-                  <circle
+                  <motion.circle
                     key={index}
+                    onClick={() => (modalOpen ? close() : open())}
                     fill={branchProps[branch][1]}
                     stroke="#56FB08"
                     cx={index * 50}

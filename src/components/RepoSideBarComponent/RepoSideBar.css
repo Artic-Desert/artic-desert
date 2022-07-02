@@ -2,6 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 95%;
-  height: 100vh;
+  height: fit-content;
   background-color: transparent;
 }

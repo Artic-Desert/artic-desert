@@ -60,6 +60,36 @@
   color: #c8d1d987;
 }
 
+.repo-button-time-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.preview-button {
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 4px;
+  width: 40%;
+  height: 30px;
+  color: #c8d1d9a3;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+  align-self: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.preview-button:hover {
+  border: 2px solid #c8d1d99c;
+  color: #c8d1d9d9;
+}
+
 .lang-ball-default {
   color: #ffe4c4;
   margin-right: 5px;

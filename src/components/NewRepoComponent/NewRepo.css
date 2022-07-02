@@ -54,21 +54,42 @@ input::placeholder {
 }
 
 .error-message {
-  height: fit-content;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 70%;
   width: 90%;
+  color: #c8d1d9cf;
   padding: 10px;
-  background-color: rgb(255, 228, 196);
+  background-color: #00111c;
   border-radius: 5px;
   position: absolute;
-  bottom: -25%;
+  bottom: 25%;
+  border: 1px solid #c8d1d9ad;
 }
 
 .error-message button {
-  display: block;
-  width: 40%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 14px;
+  width: 60%;
+  height: 30px;
+  color: #c8d1d9a3;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.error-message button:hover {
+  border: 2px solid #c8d1d9d9;
+  color: #c8d1d9d9;
 }
 
 .formWrapper {

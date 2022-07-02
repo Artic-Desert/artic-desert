@@ -41,6 +41,7 @@
 
 .dashboard-right {
   width: 25vw;
+  overflow-y: scroll;
 }
 
 /* HEADER CSS */
