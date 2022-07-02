@@ -3,68 +3,54 @@
 .kanban-header {
   display: flex;
   justify-content: space-between;
-  color: bisque;
   height: 10%;
   padding: 20px 60px;
 }
-
 .left {
-  width: 40%;
+  width: fit-content;
   height: fit-content;
   display: flex;
   justify-content: space-between;
 }
-
-.branch-name {
-  border: 1.8px solid #c8d1d9;
-  color: #c8d1d9;
-  background-color: #30363c;
-  padding: 10px;
-  vertical-align: middle;
-  text-align: center;
-  height: 47px;
-  width: 22%;
+.branch-selector {
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 5px;
-  font-size: 1.4rem;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  padding: 0 5px 0 10px;
+  color: #c8d1d9d9;
+  font-size: 1rem;
+  width: fit-content;
 }
-
-.branch-name:hover {
-  border: 1px solid rgb(255, 228, 196);
-  color: rgb(255, 228, 196);
+.branch-selector:hover {
+  border: 1px solid #c8d1d9d9;
 }
-
 .num-branches {
   color: #c8d1d9;
-  font-size: 1.15rem;
+  font-size: 1rem;
   letter-spacing: 0.5px;
   cursor: pointer;
   height: 47px;
-  width: 22%;
+  width: fit-content;
+  margin: 0 20px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-
 .collaborators {
   display: flex;
-  justify-content: center;
-  width: 40%;
+  justify-content: space-around;
+  width: fit-content;
 }
-
 .collaborators img {
   height: 47px;
   border-radius: 50%;
+  padding: 0 4px;
 }
-
 .right {
   height: 47px;
 }
-
 .user-info {
   width: fit-content;
   display: flex;
@@ -74,7 +60,6 @@
   font-size: 1.4rem;
   color: #c8d1d9;
 }
-
 .user-info img {
   height: 47px;
   border-radius: 50%;
