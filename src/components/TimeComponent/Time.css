@@ -10,12 +10,12 @@
 }
 
 .time-date {
-  font-size: 3vw;
+  font-size: 2.5vw;
   color: var(--gray-accent);
 }
 
 .time-nums {
-  font-size: 2vw;
+  font-size: 1.6vw;
   color: var(--gray-accent);
   transform: scale(0.7);
 }

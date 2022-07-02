@@ -4,6 +4,7 @@
   color: #c8d1d9;
   margin-bottom: 15px;
   display: flex;
+  opacity: 0.92;
   flex-direction: column;
   justify-content: space-evenly;
   height: fit-content;

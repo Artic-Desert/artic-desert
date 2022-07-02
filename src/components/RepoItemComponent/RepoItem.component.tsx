@@ -70,7 +70,7 @@ export const RepoItem: React.FC<{
   };
 
   //eslint-disable-next-line
-  const obj: any = {
+  const langDict: { [key: string]: string } = {
     JavaScript: 'lang-ball-yellow',
     TypeScript: 'lang-ball-blue',
     CSS: 'lang-ball-purple',
@@ -95,7 +95,7 @@ export const RepoItem: React.FC<{
       <div className="bot-line">
         <div className="lang-cont">
           <BsCircleFill
-            className={`${obj[repo.language || 'lang-ball-default']}`}
+            className={`${langDict[repo.language || 'lang-ball-default']}`}
           />
           <span className="language">{repo.language}</span>
         </div>

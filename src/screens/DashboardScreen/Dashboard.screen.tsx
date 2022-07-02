@@ -15,6 +15,7 @@ import './Dashboard.css';
 import { UserInfo } from './UserInfoComponent/UserInfo.component';
 import { useDispatch } from 'react-redux';
 import { setRepo } from '../../redux/repo/actions';
+import { addRepo } from '../../redux/repos/actions';
 import { setBranch } from '../../redux/branch/actions';
 import { Collapasible } from '../../components/CollapsibleComponent/Collapsible.component';
 import { NewRepo } from '../../components/NewRepoComponent/NewRepo.component';
@@ -77,10 +78,9 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
         <div className="dashboard-right">
-          {/* <Collapasible open title="Add a new repository">
-            <NewRepo setRepos={setRepos} repos={repos} />
-          </Collapasible> */}
-          <h1 className="the-block">HELLO IM THE BLOCK</h1>
+          <Collapasible open title="Add a new repository">
+            <NewRepo />
+          </Collapasible>
           <div className="dashboard-column">
             <RepoSideBar />
           </div>
