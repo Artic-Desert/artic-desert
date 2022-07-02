@@ -49,6 +49,7 @@ export type GithubUser = {
   following: number;
   public_repos: number;
   bio: string;
+  html_url: string;
 };
 
 export type RepoBranch = {
