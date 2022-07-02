@@ -19,6 +19,7 @@ export const ChatInput: React.FC<{
       timestamp: Date.now(),
       username: user.login,
       chatgroup_id: chatGroup.id,
+      avatar_url: user.avatar_url,
     };
     // TODO: Send message to the backend get it back and update new State with the created message
     const messageCreated = await postMessage(messageBody);
