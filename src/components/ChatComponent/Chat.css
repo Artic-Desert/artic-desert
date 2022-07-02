@@ -4,9 +4,17 @@
   padding-left: 80px;
   margin-bottom: 90px;
   margin-right: 78px;
+  margin-top: 10px;
   padding-right: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
+  -webkit-box-shadow: inset 7px -21px 22px -17px rgba(0, 0, 0, 0.65);
+  -moz-box-shadow: inset 7px -21px 22px -17px rgba(0, 0, 0, 0.65);
+  box-shadow: inset 7px -21px 22px -17px rgba(0, 0, 0, 0.65);
+}
+
+.main-chat-container::-webkit-scrollbar {
+  display: none;
 }
 
 .input-container {

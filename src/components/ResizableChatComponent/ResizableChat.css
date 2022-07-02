@@ -4,7 +4,7 @@
   top: -50%;
   min-height: 80vh;
   max-height: 90vh;
-  min-width: 35vw;
+  /* min-width: 35vw; */
   max-width: 75vw;
   transition: all linear 0.1s;
   border-radius: 7px 0 0 7px;
@@ -12,6 +12,11 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.resizable-div::-webkit-scrollbar {
+  display: none;
+}
+
 .dragger {
   position: absolute;
   left: 0;

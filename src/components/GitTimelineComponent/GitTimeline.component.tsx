@@ -9,6 +9,22 @@ export const GitTimeline: React.FC = () => {
 
   const close = () => setModalOpen(false);
   const open = () => setModalOpen(true);
+  const arrays = [
+    ['main', 'alex', 'andres', '0'],
+    ['main', '0', 'andres', 'xavi'],
+    ['main', 'alex', 'andres', 'xavi'],
+    ['main', 'alex', '0', 'xavi'],
+    ['main', 'alex', 'andres', 'xavi'],
+    ['main', '0', 'andres', '0'],
+  ];
+
+  const branchProps: any = {
+    main: ['250', '#56FB08'],
+    alex: ['200', '#F8C300'],
+    andres: ['150', '#df1bfd'],
+    xavi: ['100', '#ff8c00'],
+  };
+  const branchArray = ['main', 'alex', 'andres', 'xavi'];
 
   // const ease = [0.6, 0.05, -0.01, 0.99];
   const x = useMotionValue(0);
@@ -33,12 +49,28 @@ export const GitTimeline: React.FC = () => {
           //according to the lenght of git commit history
           viewBox="0 0 5000 500"
           preserveAspectRatio="xMidYMid meet">
-          <line
+          {branchArray.map(branch => {
+            return arrays.map((array, index) => {
+              return (
+                array.includes(branch) && (
+                  <circle
+                    key={index}
+                    fill={branchProps[branch][1]}
+                    stroke="#56FB08"
+                    cx={index * 50}
+                    cy={branchProps[branch][0]}
+                    r="10"
+                  />
+                )
+              );
+            });
+          })}
+          {/* <line
             fill="none"
             stroke="#56FB08"
             x1="0"
             y1="250"
-            x2="4000"
+            x2="5000"
             y2="250"
           />
           <circle fill="#56FB08" stroke="#56FB08" cx="0" cy="250" r="15" />
@@ -109,7 +141,7 @@ export const GitTimeline: React.FC = () => {
             y1="110"
             x2="800"
             y2="250"
-          />
+          /> */}
         </motion.svg>
       </motion.div>
       {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
