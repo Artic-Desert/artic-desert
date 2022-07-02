@@ -15,3 +15,11 @@
 .background {
   background-color: #0e1117;
 }
+
+/* REPO PREVIEW MODAL */
+
+.preview-modal-wrapper {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}

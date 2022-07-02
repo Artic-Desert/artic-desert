@@ -38,6 +38,8 @@ const Modal: React.FC<{
   modalOpen: boolean;
   //eslint-disable-next-line
 }> = ({ handleClose, text, modalOpen, repo }) => {
+  console.log('repo input from modal: ', repo);
+
   return repo ? (
     <>
       <Backdrop onClick={handleClose}>
@@ -48,7 +50,7 @@ const Modal: React.FC<{
           animate="visible"
           exit="exit"
           onClick={e => e.stopPropagation()}>
-          <div className="wrapper">
+          <div className="preview-modal-wrapper">
             <h1>{repo.name}</h1>
           </div>
         </motion.div>
