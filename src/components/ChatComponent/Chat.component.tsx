@@ -10,11 +10,11 @@ import io from 'socket.io-client';
 import './Chat.css';
 
 export const Chat: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([]); //eslint-disable-line
+  const [messages, setMessages] = useState<Message[]>([]);
   const [chatGroup, setChatGroup] = useState<ChatGroup>();
   const { branch } = useBranch();
   const { repo } = useRepo();
-  const socketRef = useRef<any>();
+  const socketRef = useRef<any>(); //eslint-disable-line
 
   const createChatIfNotExist = async (
     repo_name: string,
@@ -59,7 +59,7 @@ export const Chat: React.FC = () => {
           })
         : null}
       <div className="input-container">
-        <ChatInput setMessages={setMessages} chatGroup={chatGroup} />
+        <ChatInput chatGroup={chatGroup} />
       </div>
     </div>
   ) : null;

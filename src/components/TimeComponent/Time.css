@@ -6,6 +6,7 @@
   width: 40%;
   position: absolute;
   top: 25%;
+  transform: scale(2);
 }
 
 .time-date {
@@ -16,4 +17,5 @@
 .time-nums {
   font-size: 2vw;
   color: var(--gray-accent);
+  transform: scale(0.7);
 }

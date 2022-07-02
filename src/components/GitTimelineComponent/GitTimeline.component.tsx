@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  motion,
-  useMotionValue,
-  useTransform,
-  AnimatePresence,
-} from 'framer-motion';
+import { motion, useMotionValue, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import './GitTimeline.css';
 import Modal from './ModalComponent/Modal.component';

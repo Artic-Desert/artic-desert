@@ -14,7 +14,6 @@ import {
   updateTwoColumns,
 } from '../../redux/kanban/actions';
 
-const KANBAN_BOARD_ID = '{sebastianfdz:by:nanji:by:main}'; // will be changed to be dynamic
 export const KanbanBoard: React.FC = () => {
   const { branch } = useBranch();
   const { repo } = useRepo();

@@ -10,11 +10,14 @@
   justify-content: space-between;
   color: #c8d1d9a3;
   padding: 10px;
-  background-color: #30363c;
-  border: 2px solid #c8d1d952;
-  border-radius: 6px;
   margin-bottom: 10px;
   margin-top: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .collapse-container:hover {

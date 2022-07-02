@@ -18,8 +18,8 @@ export const Collapasible: React.FC<IProps> = ({ open, children, title }) => {
 
   return (
     <div className="container-container">
-      <div className="collapse-container">
-        <button type="button" className="btn" onClick={handleFilterOpening}>
+      <div className="collapse-container" onClick={handleFilterOpening}>
+        <button type="button" className="btn">
           {!isOpen ? (
             <AiOutlineFolderAdd className="collapse-icon" size={30} />
           ) : (

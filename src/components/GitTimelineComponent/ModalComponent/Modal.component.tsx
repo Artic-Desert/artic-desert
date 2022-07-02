@@ -28,6 +28,7 @@ const Modal: React.FC<{
   handleClose: () => void;
   text?: string;
   modalOpen: boolean;
+  //eslint-disable-next-line
 }> = ({ handleClose, text, modalOpen }) => {
   return (
     <Backdrop onClick={handleClose}>
