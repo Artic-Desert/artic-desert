@@ -102,15 +102,12 @@ export const Header: React.FC = () => {
   return (
     <div className="kanban-header">
       <div className="left">
-        {/* <div className="branch-name">
-          <GoGitBranch />
-          <span>main</span>
-          <AiFillCaretDown fontSize="14px" />
-        </div> */}
         {repoInfo.branches && (
-          <select onChange={e => handleBranchChange(e)}>
+          <select
+            className="branch-selector"
+            onChange={e => handleBranchChange(e)}>
             <option key={'repo-board'} value="repo-board">
-              repo-board
+              branch
             </option>
             {repoInfo.branches.map((branch: RepoBranch) => {
               return (

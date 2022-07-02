@@ -43,7 +43,6 @@ export const RandomQuote: React.FC = () => {
           {dataError ? 'Oops... Something went wrong' : `"${data.content}"`}
         </p>
         <p className="quote-author"> - {data.author} - </p>
-        {/* <br /> */}
       </div>
       <div className="button-container">
         <GiCardRandom className="random-icon" onClick={updateQuote} />

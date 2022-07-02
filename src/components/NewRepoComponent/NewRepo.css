@@ -45,7 +45,7 @@ input::placeholder {
   border-radius: 5px;
   backdrop-filter: blur(6.1px);
   -webkit-backdrop-filter: blur(6.1px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .dashboard-submit-button:hover {
