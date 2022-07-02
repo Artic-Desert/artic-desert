@@ -9,6 +9,8 @@ import { GithubRepo } from '../../types/Types';
 import { useDispatch } from 'react-redux';
 import { setRepo } from '../../redux/repo/actions';
 import { setBranch } from '../../redux/branch/actions';
+import { motion, useMotionValue, AnimatePresence } from 'framer-motion';
+import Modal from '../GitTimelineComponent/ModalComponent/Modal.component';
 
 export const RepoItem: React.FC<{
   repo: GithubRepo;
@@ -20,6 +22,10 @@ export const RepoItem: React.FC<{
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const close = () => setModalOpen(false);
+  const open = () => setModalOpen(true);
   //eslint-disable-next-line
   // const handleDelete = async () => {
   //   console.log(repo.full_name.toLowerCase());
@@ -70,7 +76,7 @@ export const RepoItem: React.FC<{
   };
 
   //eslint-disable-next-line
-  const obj: any = {
+  const langDict: { [key: string]: string } = {
     JavaScript: 'lang-ball-yellow',
     TypeScript: 'lang-ball-blue',
     CSS: 'lang-ball-purple',
@@ -81,32 +87,49 @@ export const RepoItem: React.FC<{
   }, []);
 
   return repo.message ? null : ( // <div style={{ color: 'white' }}>There was an error in repo fetching</div>
-    <div className="repo-item-container">
-      <div className="top-line">
-        <h3 className="repo-name" onClick={() => handleNavigation(repo)}>
-          {repo.name}
-        </h3>
-        <div className="owner-cont">
-          <img src={repo.owner.avatar_url} alt="" />
-          <p className="repo-owner">{repo.owner.login}</p>
-        </div>
-        <span className="privacy">{repo.private ? 'Private' : 'Public'}</span>
-      </div>
-      <div className="bot-line">
-        <div className="lang-cont">
-          <BsCircleFill
-            className={`${obj[repo.language || 'lang-ball-default']}`}
-          />
-          <span className="language">{repo.language}</span>
-        </div>
-        {numOfBranches && (
-          <div className="branches">
-            <GoGitBranch />
-            <span className="num-branch">{numOfBranches}</span>
+    <>
+      <div className="repo-item-container">
+        <div className="top-line">
+          <h3 className="repo-name" onClick={() => handleNavigation(repo)}>
+            {repo.name}
+          </h3>
+          <div className="owner-cont">
+            <img src={repo.owner.avatar_url} alt="" />
+            <p className="repo-owner">{repo.owner.login}</p>
           </div>
-        )}
-        <span className="updated">{moment(repo.pushed_at).fromNow()}</span>
+          <span className="privacy">{repo.private ? 'Private' : 'Public'}</span>
+        </div>
+        <div className="bot-line">
+          <div className="lang-cont">
+            <BsCircleFill
+              className={`${langDict[repo.language || 'lang-ball-default']}`}
+            />
+            <span className="language">{repo.language}</span>
+          </div>
+          {numOfBranches && (
+            <div className="branches">
+              <GoGitBranch />
+              <span className="num-branch">{numOfBranches}</span>
+            </div>
+          )}
+          <div className="repo-button-time-container">
+            <span className="updated">{moment(repo.pushed_at).fromNow()}</span>
+            <button
+              className="preview-button"
+              onClick={() => (modalOpen ? close() : open())}>
+              Repo Preview
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+      <AnimatePresence
+        initial={false}
+        exitBeforeEnter={true}
+        onExitComplete={() => null}>
+        {modalOpen && (
+          <Modal repo={repo} modalOpen={modalOpen} handleClose={close} />
+        )}
+      </AnimatePresence>
+    </>
   );
 };

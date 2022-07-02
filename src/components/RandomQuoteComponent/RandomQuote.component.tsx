@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { GiCardRandom } from 'react-icons/gi';
 import './RandomQuote.css';
 
 interface Data {
@@ -43,13 +43,9 @@ export const RandomQuote: React.FC = () => {
           {dataError ? 'Oops... Something went wrong' : `"${data.content}"`}
         </p>
         <p className="quote-author"> - {data.author} - </p>
-        <br />
-        <br />
       </div>
       <div className="button-container">
-        <button className="quote-button" onClick={updateQuote}>
-          New Quote
-        </button>
+        <GiCardRandom className="random-icon" onClick={updateQuote} />
       </div>
     </div>
   );

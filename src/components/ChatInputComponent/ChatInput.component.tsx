@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react';
-import './ChatInput.css';
 import { BiMailSend } from 'react-icons/bi';
 import { useUser } from '../../hooks/use-user';
 import { ChatGroup } from '../../types/Types';
 import { postMessage } from '../../services/MessagesApiService';
 import io from 'socket.io-client';
+import { useBranch } from '../../hooks/use-branch';
+import { GoGitBranch } from 'react-icons/go';
+import './ChatInput.css';
 
 export const ChatInput: React.FC<{
   chatGroup: ChatGroup;
@@ -36,11 +38,13 @@ export const ChatInput: React.FC<{
     // });
     setMessage('');
   };
+  const branch = useBranch();
+  console.log('LA BRANCA', branch);
 
   return (
     <div className="inputContainer">
       <input
-        placeholder="Type your message here ..."
+        placeholder={`Message Branch ● ${branch.branch}`}
         className="textInput"
         aria-multiline
         value={message}

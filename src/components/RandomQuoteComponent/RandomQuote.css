@@ -4,48 +4,26 @@
   position: relative;
   justify-content: center;
 }
-
 .quote-main-p {
-  color: var(--gray-accent);
+  color: white;
   font-size: 1.1vw;
+  text-align: center;
 }
-
 .quote-author {
-  color: var(--gray-accent);
-  float: right;
-  font-size: 1vw;
-  margin-right: 50px;
+  color: white;
+  text-align: center;
+  font-size: 0.9vw;
   margin-top: 10px;
 }
-
 .button-container {
   display: flex;
   justify-content: center;
+  margin-top: 7px;
 }
-
-.quote-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  text-align: center;
-  background-color: transparent;
-  padding: 10px;
-  cursor: pointer;
-  color: var(--gray-accent);
-  font-size: 14px;
-  font-weight: bold;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 5px;
-  box-shadow: 0 2px rgba(255, 255, 255, 0.15);
-  color: #c8d1d9d9;
+.button-container:hover {
+  transform: scale(1.2);
 }
-
-.quote-button:hover {
-  border: 2px solid #c8d1d9d9;
-  color: #c8d1d9d9;
-}
-
-.quote-button:active {
-  box-shadow: 0 4px #666;
+.random-icon {
+  color: white;
+  transform: scale(1.5);
 }
