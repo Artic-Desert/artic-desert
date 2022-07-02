@@ -105,6 +105,7 @@ export type MessageToCreate = {
   edited_timestamp?: number;
   username: string;
   chatgroup_id: string;
+  avatar_url: string;
 };
 
 export type Message = {
@@ -114,6 +115,7 @@ export type Message = {
   timestamp: number;
   username: string;
   chatgroup_id: string;
+  avatar_url?: string;
 };
 
 export type ChatGroupToCreate = {
