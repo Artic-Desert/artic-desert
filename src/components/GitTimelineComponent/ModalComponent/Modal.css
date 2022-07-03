@@ -19,7 +19,26 @@
 /* REPO PREVIEW MODAL */
 
 .preview-modal-wrapper {
-  text-align: center;
   height: 100%;
   width: 100%;
+}
+
+.name-visibility {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-repo-name {
+  color: #57a6ff;
+  margin-right: 50px;
+}
+
+.modal-repo-visibility {
+  color: rgba(255, 228, 196, 0.794);
+  border: 1px solid rgba(255, 228, 196, 0.742);
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 20px;
+  width: fit-content;
 }
