@@ -127,7 +127,7 @@ export const RepoItem: React.FC<{
         exitBeforeEnter={true}
         onExitComplete={() => null}>
         {modalOpen && (
-          <Modal repo={repo} modalOpen={modalOpen} handleClose={close} />
+          <Modal repoPreview={repo} modalOpen={modalOpen} handleClose={close} />
         )}
       </AnimatePresence>
     </>

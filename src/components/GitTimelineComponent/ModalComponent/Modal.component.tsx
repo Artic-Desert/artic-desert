@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Backdrop from '../BackdropComponent/Backdrop.component';
 import './Modal.css';
 import { GithubRepo } from '../../../types/Types';
+import { useRepo } from '../../../hooks/use-repo';
 
 const dropIn = {
   hidden: {
@@ -31,17 +32,32 @@ const dropIn = {
   },
 };
 
-const Modal: React.FC<{
+export const Modal: React.FC<{
   handleClose: () => void;
   text?: string;
-  repo?: GithubRepo;
+  repoPreview?: GithubRepo;
   modalOpen: boolean;
   commit?: string;
   //eslint-disable-next-line
-}> = ({ handleClose, text, modalOpen, repo, commit }) => {
-  console.log('MODAL FOR REPO!!!!!!! ', repo);
+}> = ({ handleClose, text, modalOpen, repoPreview, commit }) => {
+  const { repo } = useRepo();
+  console.log('MODAL FOR REPO!!!!!!! ', repoPreview);
 
-  return repo ? (
+  const [commitInfo, setCommitInfo] = useState('');
+
+  const fetchCommitUrl = `https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits/${commit}`;
+
+  useEffect(() => {
+    // console.log(fetchCommitUrl);
+    !repoPreview &&
+      fetch(fetchCommitUrl, {
+        headers: { Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}` },
+      })
+        .then(res => res.json())
+        .then(data => setCommitInfo(data));
+  }, []);
+
+  return repoPreview ? (
     <>
       <Backdrop onClick={handleClose}>
         <motion.div
@@ -52,13 +68,13 @@ const Modal: React.FC<{
           exit="exit"
           onClick={e => e.stopPropagation()}>
           <div className="preview-modal-wrapper">
-            <h1>{repo.name}</h1>
-            <p>{repo.default_branch}</p>
-            <p>{repo.owner.login}</p>
-            {/* <img src={repo.owner.avatar_url} alt="" /> */}
-            <p>{repo.watchers}</p>
-            <p>{repo.updated_at}</p>
-            <p>{repo.clone_url}</p>
+            <h1>{repoPreview.name}</h1>
+            <p>{repoPreview.default_branch}</p>
+            <p>{repoPreview.owner.login}</p>
+            {/* <img src={repoPreview.owner.avatar_url} alt="" /> */}
+            <p>{repoPreview.watchers}</p>
+            <p>{repoPreview.updated_at}</p>
+            <p>{repoPreview.clone_url}</p>
           </div>
         </motion.div>
       </Backdrop>
@@ -72,7 +88,7 @@ const Modal: React.FC<{
         animate="visible"
         exit="exit"
         onClick={e => e.stopPropagation()}>
-        <p>commit: {commit}</p>
+        <p style={{ color: 'white' }}>commit: {JSON.stringify(commitInfo)}</p>
       </motion.div>
     </Backdrop>
   );

@@ -8,6 +8,7 @@ import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
 
 export const GitTimeline: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [currentCommit, setCurrentCommit] = useState('');
 
   const close = () => setModalOpen(false);
   const open = () => setModalOpen(true);
@@ -71,24 +72,17 @@ export const GitTimeline: React.FC = () => {
               // console.log(commit);
               return (
                 commit && (
-                  <>
-                    <TimeliineDot
-                      key={`${indexX}${indexY}`}
-                      indexX={indexX}
-                      indexY={indexY}
-                      branchProps={branchProps}
-                      branchesOrdered={branchesOrdered}
-                    />
-                    {/* <motion.circle
-                      key={`${indexX}${indexY}`}
-                      onClick={() => (modalOpen ? close() : open())}
-                      fill={branchProps[branchesOrdered[indexY]]}
-                      stroke="#56FB08"
-                      cx={indexX * 50}
-                      cy={String(550 - indexY * 50)}
-                      r="10"
-                    /> */}
-                  </>
+                  <TimeliineDot
+                    key={`${indexX}${indexY}`}
+                    indexX={indexX}
+                    indexY={indexY}
+                    branchProps={branchProps}
+                    branchesOrdered={branchesOrdered}
+                    commit={commit}
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                    setCurrentCommit={setCurrentCommit}
+                  />
                 )
               );
             });
@@ -113,12 +107,18 @@ export const GitTimeline: React.FC = () => {
         </motion.svg>
       </motion.div>
       {/* {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />} */}
-      {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+      {/* {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />} */}
       <AnimatePresence
         initial={false}
         exitBeforeEnter={true}
         onExitComplete={() => null}>
-        {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+        {modalOpen && (
+          <Modal
+            commit={currentCommit}
+            modalOpen={modalOpen}
+            handleClose={close}
+          />
+        )}
       </AnimatePresence>
     </>
   );
