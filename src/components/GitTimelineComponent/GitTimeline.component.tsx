@@ -4,6 +4,7 @@ import { useState } from 'react';
 import './GitTimeline.css';
 import Modal from './ModalComponent/Modal.component';
 import { gitTimelineData } from '../../mocks/GitTimeline/gitTimeline';
+import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
 
 export const GitTimeline: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -71,7 +72,14 @@ export const GitTimeline: React.FC = () => {
               return (
                 commit && (
                   <>
-                    <motion.circle
+                    <TimeliineDot
+                      key={`${indexX}${indexY}`}
+                      indexX={indexX}
+                      indexY={indexY}
+                      branchProps={branchProps}
+                      branchesOrdered={branchesOrdered}
+                    />
+                    {/* <motion.circle
                       key={`${indexX}${indexY}`}
                       onClick={() => (modalOpen ? close() : open())}
                       fill={branchProps[branchesOrdered[indexY]]}
@@ -79,14 +87,7 @@ export const GitTimeline: React.FC = () => {
                       cx={indexX * 50}
                       cy={String(550 - indexY * 50)}
                       r="10"
-                    />
-                    {modalOpen && (
-                      <Modal
-                        commit={commit}
-                        modalOpen={modalOpen}
-                        handleClose={close}
-                      />
-                    )}
+                    /> */}
                   </>
                 )
               );
@@ -112,6 +113,7 @@ export const GitTimeline: React.FC = () => {
         </motion.svg>
       </motion.div>
       {/* {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />} */}
+      {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
       <AnimatePresence
         initial={false}
         exitBeforeEnter={true}
