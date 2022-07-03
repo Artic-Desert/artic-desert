@@ -29,6 +29,11 @@ export const Header: React.FC = () => {
 
   const [currentBranch, setCurrentBranch] = useState('repo-board');
 
+  useEffect(() => {
+    console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
+    fetchInfoOfRepo();
+  }, []);
+
   const getBranches = async () => {
     try {
       const branchesResponse = await fetch(
@@ -76,17 +81,12 @@ export const Header: React.FC = () => {
   const fetchInfoOfRepo = async () => {
     try {
       const branches = await getBranches();
-      const collaborators = await getCollaborators();
+      const collaborators = branches && (await getCollaborators());
       setRepoInfo({ branches, collaborators });
     } catch (error) {
       console.error('Error inside <Header> fetchInfoOfRepo(): ', error);
     }
   };
-
-  useEffect(() => {
-    console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
-    fetchInfoOfRepo();
-  }, []);
 
   const handleBranchChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
