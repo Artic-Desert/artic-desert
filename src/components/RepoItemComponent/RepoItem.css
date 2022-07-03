@@ -11,7 +11,7 @@
   padding: 10px;
   border-radius: 5px;
   border: 2px solid #c8d1d952;
-
+  overflow: hidden;
   background-color: #0e1117;
 }
 

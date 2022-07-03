@@ -42,6 +42,10 @@ export type GithubRepo = {
   watchers: number;
   updated_at: string;
   clone_url: string;
+  size: number;
+  stargazers_count: number;
+  languages_url: string;
+  visibility: string;
 };
 
 export type GithubUser = {
