@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Backdrop from '../BackdropComponent/Backdrop.component';
 import './Modal.css';
-import { GithubRepo } from '../../../types/Types';
+import { GithubCommit, GithubRepo } from '../../../types/Types';
 import { useRepo } from '../../../hooks/use-repo';
 
 const dropIn = {
@@ -43,13 +43,15 @@ export const Modal: React.FC<{
   const { repo } = useRepo();
   console.log('MODAL FOR REPO!!!!!!! ', repoPreview);
 
-  const [commitInfo, setCommitInfo] = useState('');
+  const [commitInfo, setCommitInfo] = useState<GithubCommit>();
 
-  const fetchCommitUrl = `https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits/${commit}`;
+  const fetchCommitUrl = !repoPreview
+    ? `https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits/${commit}`
+    : undefined;
 
   useEffect(() => {
     // console.log(fetchCommitUrl);
-    !repoPreview &&
+    fetchCommitUrl &&
       fetch(fetchCommitUrl, {
         headers: { Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}` },
       })
@@ -81,15 +83,24 @@ export const Modal: React.FC<{
     </>
   ) : (
     <Backdrop onClick={handleClose}>
-      <motion.div
-        variants={dropIn}
-        className="modal background"
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        onClick={e => e.stopPropagation()}>
-        <p style={{ color: 'white' }}>commit: {JSON.stringify(commitInfo)}</p>
-      </motion.div>
+      {commitInfo && (
+        <motion.div
+          variants={dropIn}
+          className="modal background"
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          onClick={e => e.stopPropagation()}>
+          <p style={{ color: 'white' }}>commit: {commitInfo.sha}</p>
+          <p style={{ color: 'white' }}>Message: {commitInfo.commit.message}</p>
+          <p style={{ color: 'white' }}>
+            Author: {commitInfo.commit.author.name}
+          </p>
+          <p style={{ color: 'white' }}>
+            Files Changed: {commitInfo.files.length}
+          </p>
+        </motion.div>
+      )}
     </Backdrop>
   );
 };

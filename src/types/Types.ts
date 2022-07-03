@@ -151,3 +151,42 @@ export type PremiumUser = {
   time_added: string;
   user_id: string;
 };
+
+export type GithubCommit = {
+  sha: string;
+  commit: {
+    author: {
+      name: string;
+      email: string;
+      date: string;
+    };
+    message: string;
+    url: string;
+  };
+  url: string;
+  html_url: string;
+  author: GithubUser;
+  commiter: GithubUser;
+  parents: {
+    sha: string;
+    url: string;
+    html_url: string;
+  }[];
+  stats: {
+    total: number;
+    additions: number;
+    deletions: number;
+  };
+  files: {
+    sha: string;
+    filename: string;
+    status: string;
+    additions: number;
+    deletions: number;
+    changes: number;
+    blob_url: string;
+    raw_url: string;
+    contents_url: string;
+    patch: string;
+  }[];
+};
