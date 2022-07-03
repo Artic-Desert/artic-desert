@@ -38,7 +38,7 @@ const Modal: React.FC<{
   modalOpen: boolean;
   //eslint-disable-next-line
 }> = ({ handleClose, text, modalOpen, repo }) => {
-  console.log('MODL REPO!!!!!!! ', repo);
+  console.log('MODAL FOR REPO!!!!!!! ', repo);
 
   return repo ? (
     <>
@@ -52,6 +52,12 @@ const Modal: React.FC<{
           onClick={e => e.stopPropagation()}>
           <div className="preview-modal-wrapper">
             <h1>{repo.name}</h1>
+            <p>{repo.default_branch}</p>
+            <p>{repo.owner.login}</p>
+            {/* <img src={repo.owner.avatar_url} alt="" /> */}
+            <p>{repo.watchers}</p>
+            <p>{repo.updated_at}</p>
+            <p>{repo.clone_url}</p>
           </div>
         </motion.div>
       </Backdrop>
