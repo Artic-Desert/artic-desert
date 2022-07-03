@@ -36,8 +36,9 @@ const Modal: React.FC<{
   text?: string;
   repo?: GithubRepo;
   modalOpen: boolean;
+  commit?: string;
   //eslint-disable-next-line
-}> = ({ handleClose, text, modalOpen, repo }) => {
+}> = ({ handleClose, text, modalOpen, repo, commit }) => {
   console.log('MODAL FOR REPO!!!!!!! ', repo);
 
   return repo ? (
@@ -70,7 +71,9 @@ const Modal: React.FC<{
         initial="hidden"
         animate="visible"
         exit="exit"
-        onClick={e => e.stopPropagation()}></motion.div>
+        onClick={e => e.stopPropagation()}>
+        <p>commit: {commit}</p>
+      </motion.div>
     </Backdrop>
   );
 };
