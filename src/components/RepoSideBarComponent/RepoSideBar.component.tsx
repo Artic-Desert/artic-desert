@@ -73,9 +73,6 @@ export const RepoSideBar: React.FC = () => {
 
   return (
     <div className="repoSideBarWrapper">
-      {/* <Collapasible open title="Add a new repository">
-        <NewRepo />
-      </Collapasible> */}
       {repos &&
         repos.map((repo: GithubRepo) => {
           return <RepoItem repo={repo} key={repo.id} />;

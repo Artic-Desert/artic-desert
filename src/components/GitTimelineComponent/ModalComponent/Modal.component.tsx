@@ -38,7 +38,7 @@ const Modal: React.FC<{
   modalOpen: boolean;
   //eslint-disable-next-line
 }> = ({ handleClose, text, modalOpen, repo }) => {
-  console.log('repo input from modal: ', repo);
+  console.log('MODL REPO!!!!!!! ', repo);
 
   return repo ? (
     <>
