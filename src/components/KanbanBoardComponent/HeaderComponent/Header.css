@@ -52,11 +52,25 @@
   padding: 0 3px;
   transition: 0.15s linear;
 }
-
 .collaborators img:hover {
   margin: 0 5px;
   transform: scale(1.15);
 }
+.curent-repo {
+  display: flex;
+  flex-direction: row;
+}
+.current-repo-prefix {
+  color: #c8d1d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .go-git {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
 .current-repo a {
   color: #c8d1d9;
   font-size: xx-large;

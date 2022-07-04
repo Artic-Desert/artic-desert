@@ -177,6 +177,9 @@ export const Header: React.FC = () => {
       </div>
       {repo && (
         <div className="current-repo">
+          <span className="current-repo-prefix">
+            <GoGitBranch /> current repo:{'               '}
+          </span>
           <a
             title="GitHub Repo"
             key={repo.name}
