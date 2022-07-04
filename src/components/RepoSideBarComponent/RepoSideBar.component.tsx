@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '../../hooks/use-user';
-import { NewRepo } from '../NewRepoComponent/NewRepo.component';
 import { RepoItem } from '../RepoItemComponent/RepoItem.component';
 import { DynamoUser, GithubRepo } from '../../types/Types';
 import './RepoSideBar.css';
-import { Collapasible } from '../CollapsibleComponent/Collapsible.component';
 import { useDispatch } from 'react-redux';
-import { addRepo, setRepos } from '../../redux/repos/actions';
+import { setRepos } from '../../redux/repos/actions';
 import { useRepos } from '../../hooks/use-repos';
 
 export const RepoSideBar: React.FC = () => {

@@ -21,7 +21,10 @@ export const ResizableChat: React.FC = () => {
   const mWidth = useMotionValue(0);
 
   const handleDrag = React.useCallback(
-    (event: MouseEvent | TouchEvent | PointerEvent, info: any) => {
+    (
+      event: MouseEvent | TouchEvent | PointerEvent,
+      info: { delta: { x: number; y: number } },
+    ) => {
       mWidth.set(mWidth.get() - info.delta.x);
       mHeight.set(mHeight.get() + info.delta.y);
       // }

@@ -5,7 +5,6 @@ import { ChatGroup } from '../../types/Types';
 import { postMessage } from '../../services/MessagesApiService';
 import io from 'socket.io-client';
 import { useBranch } from '../../hooks/use-branch';
-import { GoGitBranch } from 'react-icons/go';
 import './ChatInput.css';
 
 export const ChatInput: React.FC<{

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { GoGitBranch } from 'react-icons/go';
 import { BsCircleFill } from 'react-icons/bs';
 import './RepoItem.css';
-import { useUser } from '../../hooks/use-user';
+// import { useUser } from '../../hooks/use-user';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import { GithubRepo } from '../../types/Types';
 import { useDispatch } from 'react-redux';
 import { setRepo } from '../../redux/repo/actions';
 import { setBranch } from '../../redux/branch/actions';
-import { motion, useMotionValue, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Modal from '../GitTimelineComponent/ModalComponent/Modal.component';
 
 export const RepoItem: React.FC<{
@@ -17,7 +17,7 @@ export const RepoItem: React.FC<{
 }> = ({ repo }) => {
   console.log('repo input from repo item: ', repo);
   const [numOfBranches, setNumOfBranches] = useState(0);
-  const { user } = useUser();
+  // const { user } = useUser();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -75,7 +75,6 @@ export const RepoItem: React.FC<{
     navigate('/workspace', { state: { repo } });
   };
 
-  //eslint-disable-next-line
   const langDict: { [key: string]: string } = {
     JavaScript: 'lang-ball-yellow',
     TypeScript: 'lang-ball-blue',
