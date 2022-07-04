@@ -59,9 +59,11 @@ export const UserInfo: React.FC = () => {
               </p>
             </div>
           </div>
-          <button className="logout-button" onClick={handleLogout}>
-            Log Out
-          </button>
+          <div className="user-info-logout-button-container">
+            <button className="logout-button" onClick={handleLogout}>
+              Log Out
+            </button>
+          </div>
         </div>
       </div>
     </div>
