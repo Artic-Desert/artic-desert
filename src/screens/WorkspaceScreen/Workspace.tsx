@@ -92,7 +92,22 @@ export const Workspace: React.FC = () => {
               />
             )}
           </div>
-          <GitTimeline />
+          <div className="label-timeline-container">
+            <div className="label-container">
+              <h3 className="branch-label">branch name goes here</h3>
+              <h3 className="branch-label">branch name goes here</h3>
+              <h3 className="branch-label">branch name goes here</h3>
+              <h3 className="branch-label">branch name goes here</h3>
+              <h3 className="branch-label">branch name goes here</h3>
+              <h3 className="branch-label">branch name goes here</h3>
+              <h3 className="branch-label">branch name goes here</h3>
+              <h3 className="branch-label">branch name goes here</h3>
+            </div>
+            <div className="timeline-svg-container">
+              <GitTimeline />
+            </div>
+          </div>
+
           <ShowChatButton />
         </div>
       </Pane>
