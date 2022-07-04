@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { Column } from './ColumnComponent/Column.component';
 import { ApiClientService } from '../../services/ApiClientService';
@@ -64,6 +64,7 @@ export const KanbanBoard: React.FC = () => {
       // Move the item within the list
       // Start by making a new list without the dragged item
       const newList = start.tasks.filter(
+        //eslint-disable-next-line
         (_: any, idx: number) => idx !== source.index,
       );
 
@@ -82,6 +83,7 @@ export const KanbanBoard: React.FC = () => {
       // If start is different from end, we need to update multiple columns
       // Filter the start list like before
       const newStartList = start.tasks.filter(
+        // eslint-disable-next-line
         (_: any, idx: number) => idx !== source.index,
       );
 
