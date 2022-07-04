@@ -133,7 +133,7 @@ export const Header: React.FC = () => {
             <Select
               options={options}
               styles={customStyles}
-              onChange={e => handleBranchChange(e)}></Select>
+              onChange={(e: any) => handleBranchChange(e)}></Select>
           )}
         </div>
         {repoInfo.branches && (

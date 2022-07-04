@@ -5,14 +5,13 @@ import { ListItem } from '../ListItemComponent/ListItem.component';
 import { addTask } from '../../../redux/kanban/actions';
 import { useUser } from '../../../hooks/use-user';
 import { ColumnProps } from '../../../types/Types';
-import { useRepo } from '../../../hooks/use-repo.js';
+// import { useRepo } from '../../../hooks/use-repo.js';
 import './Column.css';
 
 export const Column: React.FC<ColumnProps> = ({ col }) => {
   const dispatch = useDispatch();
   const { user } = useUser();
-  const { repo } = useRepo();
-  console.log('COL AT COLUMNS:', col);
+  // const { repo } = useRepo();
 
   const newTask = {
     new: true,

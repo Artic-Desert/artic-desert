@@ -5,11 +5,11 @@ import { TbLayoutSidebarRightCollapse } from 'react-icons/tb';
 
 interface IProps {
   open?: boolean;
-  title: string;
+  title?: string;
   children: React.ReactNode;
 }
 
-export const Collapasible: React.FC<IProps> = ({ open, children, title }) => {
+export const Collapasible: React.FC<IProps> = ({ open, children }) => {
   const [isOpen, setIsOpen] = useState(!open);
 
   const handleFilterOpening = () => {

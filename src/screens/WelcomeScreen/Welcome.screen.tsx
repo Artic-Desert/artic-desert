@@ -4,20 +4,20 @@ import { AiOutlineGithub } from 'react-icons/ai';
 import mask from '../../assets/mask.svg';
 import './Welcome.css';
 
-const pathVariants = {
-  hidden: {
-    opacity: 0,
-    pathLength: 0,
-  },
-  visible: {
-    opacity: 1,
-    pathLength: 1,
-    transition: {
-      duration: 2,
-      ease: 'easeInOut',
-    },
-  },
-};
+// const pathVariants = {
+//   hidden: {
+//     opacity: 0,
+//     pathLength: 0,
+//   },
+//   visible: {
+//     opacity: 1,
+//     pathLength: 1,
+//     transition: {
+//       duration: 2,
+//       ease: 'easeInOut',
+//     },
+//   },
+// };
 
 export const Welcome: React.FC = () => {
   const client_id = '71c6863d3d338f86fe07';
