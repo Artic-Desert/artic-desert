@@ -42,11 +42,15 @@ export const GitTimeline: React.FC = () => {
       'https://arctic-desert.herokuapp.com/timeline',
       {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body,
       },
     );
 
     const responseParsed: any[] = await response.json(); //eslint-disable-line
+    console.log(`responseParsed  : `, responseParsed);
 
     setGitTimelineData(responseParsed);
   };
@@ -77,8 +81,8 @@ export const GitTimeline: React.FC = () => {
 
   const constraintsRef = useRef(null);
 
-  const height = 50 * arrays[0].length;
-  const width = 50 * arrays.length;
+  const height = arrays && 50 * arrays[0].length;
+  const width = arrays && 50 * arrays.length;
   return gitTimelineData?.length ? (
     <>
       <motion.div className="svg-cont" ref={constraintsRef}>
