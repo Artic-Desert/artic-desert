@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { GoGitBranch } from 'react-icons/go';
-import { AiFillCopy } from 'react-icons/ai';
-
+import { GoGitBranch, GoRepoForked } from 'react-icons/go';
+import { AiFillCopy, AiOutlineStar } from 'react-icons/ai';
+import { BsFillEyeFill } from 'react-icons/bs';
+import { MdOutlineMemory } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Backdrop from '../BackdropComponent/Backdrop.component';
 import { GithubCommit, GithubRepo } from '../../../types/Types';
 import { useRepo } from '../../../hooks/use-repo';
+import { setRepo } from '../../../redux/repo/actions';
+import { setBranch } from '../../../redux/branch/actions';
+
 import './Modal.css';
 
 const dropIn = {
@@ -74,6 +80,15 @@ export const Modal: React.FC<{
         .then(data => setCommitInfo(data));
   }, []);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleNavigation = (repo: GithubRepo) => {
+    dispatch(setRepo(repo));
+    dispatch(setBranch('all-branches')); // this should be dynamic or checked for the first branch of the repo
+    navigate('/workspace', { state: { repo } });
+  };
+
   console.log('THIS', repoPreview);
 
   return repoPreview ? (
@@ -114,6 +129,7 @@ export const Modal: React.FC<{
                     <span>{repoPreview.default_branch}</span>
                   </p>
                 </div>
+                <p className="preview-cloneurl">Clone URL</p>
                 <div className="copy-clip">
                   <input
                     type="text"
@@ -124,11 +140,43 @@ export const Modal: React.FC<{
                 </div>
               </div>
               <div className="preview-right-col">
-                <p>{repoPreview.watchers}</p>
-                <p>{repoPreview.size}</p>
-                <p>{repoPreview.stargazers_count}</p>
-                <p>{repoPreview.size}</p>
-                <p>{repoPreview.forks}</p>
+                <p className="repo-stats-title">Repo Stats</p>
+                <div className="repo-stats-container">
+                  <p>
+                    Watchers •{' '}
+                    <span>
+                      {' '}
+                      <BsFillEyeFill /> {repoPreview.watchers}{' '}
+                    </span>
+                  </p>
+                  <p>
+                    Size •{' '}
+                    <span>
+                      {' '}
+                      <MdOutlineMemory /> {repoPreview.size}{' '}
+                    </span>
+                  </p>
+                  <p>
+                    Stars •{' '}
+                    <span>
+                      {' '}
+                      <AiOutlineStar />{' '}
+                    </span>
+                    {repoPreview.stargazers_count}
+                  </p>
+                  <p>
+                    Forked •{' '}
+                    <span>
+                      {' '}
+                      <GoRepoForked /> {repoPreview.forks} times{' '}
+                    </span>
+                  </p>
+                </div>
+                <button
+                  className="go-to-workspace"
+                  onClick={() => handleNavigation(repo)}>
+                  <span>Go to workspace</span>
+                </button>
               </div>
             </div>
           </div>

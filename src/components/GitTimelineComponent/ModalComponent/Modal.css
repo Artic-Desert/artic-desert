@@ -75,7 +75,7 @@
   height: 90%;
 }
 .preview-right-col {
-  width: 40%;
+  width: 50%;
   height: 90%;
 }
 
@@ -121,6 +121,15 @@
   border-radius: 20px;
 }
 
+.preview-cloneurl {
+  color: #c8d1d9d5;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
 .copy-clip {
   display: flex;
   align-items: center;
@@ -128,7 +137,7 @@
   width: 80%;
   border: 2px solid #c8d1d952;
   color: #c8d1d9;
-  margin-top: 20px;
+  margin-top: 5px;
   border-radius: 5px;
 }
 
@@ -141,6 +150,67 @@
   margin-top: 8px;
 }
 
+.copy-icon {
+  border-left: 2px solid #c8d1d952;
+}
+
 .copy-icon:hover {
-  color: green;
+  color: rgb(13, 173, 13);
+}
+
+.repo-stats-title {
+  color: #c8d1d9d5;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.repo-stats-container {
+  margin: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  color: #c8d1d9c0;
+  border: 2px solid #c8d1d952;
+  padding: 10px;
+  font-weight: 400;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.repo-stats-container p {
+  margin-bottom: 10px;
+}
+
+.repo-stats-container span {
+  color: #c8d1d9;
+}
+
+.go-to-workspace {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 4px;
+  width: 80%;
+  height: 40px;
+  color: #c8d1d9a3;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+  align-self: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.go-to-workspace:hover {
+  border: 2px solid #c8d1d99c;
+  color: #c8d1d9d9;
 }
