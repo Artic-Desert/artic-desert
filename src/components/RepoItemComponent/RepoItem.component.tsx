@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { GithubRepo } from '../../types/Types';
 import { useDispatch } from 'react-redux';
 import { setRepo } from '../../redux/repo/actions';
-import { removeRepo, setRepos } from '../../redux/repos/actions';
+import { removeRepo } from '../../redux/repos/actions';
 import { setBranch } from '../../redux/branch/actions';
 import { AnimatePresence } from 'framer-motion';
 import Modal from '../GitTimelineComponent/ModalComponent/Modal.component';
