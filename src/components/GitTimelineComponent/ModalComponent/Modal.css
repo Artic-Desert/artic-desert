@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 50px;
+  padding: 25px 50px 50px 50px;
   border-radius: 10px;
   border: 1px solid #c8d1d952;
   /* -webkit-box-shadow: 0px 0px 6px 3px rgb(53, 54, 70, 1);
@@ -125,7 +125,7 @@
   border: 2px solid #c8d1d952;
   color: #c8d1d9;
   margin-top: 5px;
-  margin-left: 5px;
+  margin-left: 4px;
   border-radius: 5px;
 }
 .copy-clip input {
