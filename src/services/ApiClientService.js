@@ -30,4 +30,22 @@ export const ApiClientService = {
       body: body,
     }).then(res => res.json());
   },
+
+  getGithubRepo: async (owner, repo, ghpToken) => {
+    return fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+      headers: {
+        Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
+      },
+    }).then(res => res.json());
+  },
+
+  updateDynamoUser: async (username, body) => {
+    return fetch(
+      `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${username}}`,
+      {
+        method: 'PATCH',
+        body,
+      },
+    ).then(res => res.json());
+  },
 };
