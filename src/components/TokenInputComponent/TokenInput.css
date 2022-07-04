@@ -1,0 +1,18 @@
+.token-input-container {
+  margin-top: 10%;
+  max-width: 20%;
+}
+
+.info-text {
+  margin-bottom: 5%;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+}
+
+.wrong-input-message {
+  color: red;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 5%;
+}

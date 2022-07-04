@@ -20,5 +20,6 @@ export const AuthService = {
   resetUserSession: function () {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('GHP_TOKEN');
   },
 };
