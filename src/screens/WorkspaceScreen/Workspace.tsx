@@ -26,7 +26,7 @@ export const Workspace: React.FC = () => {
   };
 
   useEffect(() => {
-    if (kanbanSize > 500) {
+    if (kanbanSize > 85) {
       setFlipArrow(true);
     } else {
       setFlipArrow(false);
