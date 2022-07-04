@@ -1,14 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const BranchLine: React.FC = () => {
+export const BranchLine: React.FC<{
+  width: number;
+  height: number;
+  //eslint-disable-next-line
+  pathVariants: any;
+  color: string;
+}> = ({ width, pathVariants, height, color }) => {
   return (
     <>
-      {/* <motion.path
-        stroke="#56FB08"
-        d={`M0 550, ${width} 550`}
+      <motion.path
+        stroke={color}
+        d={`M0 ${height - 50}, ${width} ${height - 50}`}
         variants={pathVariants}
-      /> */}
+      />
     </>
   );
 };

@@ -1,18 +1,22 @@
 .modal {
   width: clamp(45%, 700px, 70%);
-  height: min(70%, 450px);
+  min-height: min(70%, 450px);
+  height: auto;
   z-index: 10;
   color: #c8d1d9;
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 10px;
-  border-radius: 5px;
-  border: 2px solid #c8d1d952;
+  padding: 50px;
+  border-radius: 10px;
+  border: 1px solid #c8d1d952;
+  /* -webkit-box-shadow: 0px 0px 6px 3px rgb(53, 54, 70, 1);
+  -moz-box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1);
+  box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1); */
 }
 .background {
-  background-color: #0e1117;
+  background-color: #082032;
 }
 
 /* REPO PREVIEW MODAL */
@@ -54,6 +58,7 @@
   padding-right: 12px;
   border-radius: 20px;
   width: fit-content;
+  padding-bottom: 2px;
 }
 .column-containers {
   display: flex;
@@ -76,7 +81,7 @@
   height: 100px;
   border-radius: 50%;
   margin-right: 25px;
-  border: 2px solid #c8d1d952;
+  border: 2px solid #ffffff97;
 }
 .preview-created-container {
   margin: 10px 5px 5px 5px;
@@ -141,8 +146,7 @@
   font-family: 'Ubuntu', sans-serif;
   font-weight: 600;
   font-size: 20px;
-  margin-top: 20px;
-  padding-top: 20px;
+  margin-top: 35px;
   margin-left: 10px;
 }
 .repo-stats-container {
@@ -170,7 +174,7 @@
 .go-to-workspace {
   font-size: 18px;
   font-weight: bold;
-  margin-top: 4px;
+  margin-top: 15px;
   width: 80%;
   height: 40px;
   color: #c8d1d9a3;
@@ -183,6 +187,9 @@
   backdrop-filter: blur(6.1px);
   -webkit-backdrop-filter: blur(6.1px);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .go-to-workspace:hover {
   border: 2px solid #c8d1d99c;

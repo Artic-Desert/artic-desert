@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { GoGitBranch, GoRepoForked } from 'react-icons/go';
 import { AiFillCopy, AiOutlineStar } from 'react-icons/ai';
-import { BsFillEyeFill } from 'react-icons/bs';
-import { MdOutlineMemory } from 'react-icons/md';
+import { BsFillEyeFill, BsArrowBarRight } from 'react-icons/bs';
+import { MdOutlineMemory, MdArrowForwardIos } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Backdrop from '../BackdropComponent/Backdrop.component';
@@ -183,7 +183,8 @@ export const Modal: React.FC<{
                 <button
                   className="go-to-workspace"
                   onClick={() => handleNavigation(repo)}>
-                  <span>Go to workspace</span>
+                  <span>Go to workspace </span>
+                  <MdArrowForwardIos />
                 </button>
               </div>
             </div>
