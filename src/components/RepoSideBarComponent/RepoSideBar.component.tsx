@@ -6,6 +6,8 @@ import './RepoSideBar.css';
 import { useDispatch } from 'react-redux';
 import { setRepos } from '../../redux/repos/actions';
 import { useRepos } from '../../hooks/use-repos';
+import { useGhpToken } from '../../hooks/use-ghpToken';
+import { ApiClientService } from '../../services/ApiClientService';
 
 export const RepoSideBar: React.FC = () => {
   // const [repos, setRepos] = useState<GithubRepo[]>([]); //eslint-disable-line
@@ -14,6 +16,7 @@ export const RepoSideBar: React.FC = () => {
 
   const { repos } = useRepos();
   const { user } = useUser();
+  const { ghpToken } = useGhpToken();
 
   const fetchUser = async (): Promise<DynamoUser | undefined> => {
     try {
@@ -37,18 +40,13 @@ export const RepoSideBar: React.FC = () => {
       Promise.all(
         user.repos.map(async repo => {
           try {
-            const response = await fetch(
-              `https://api.github.com/repos/${repo}`,
-              {
-                headers: {
-                  Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
-                },
-              },
+            const owner = repo.split('/')[0];
+            const repo_name = repo.split('/')[1];
+            return await ApiClientService.getGithubRepo(
+              owner,
+              repo_name,
+              ghpToken,
             );
-            const data: GithubRepo = await response.json();
-            console.log('repo data: ', data);
-            return data;
-            // dispatch(addRepo(data));
           } catch (error) {
             console.log(
               'Error in repo side bar fetching repos from github: ',

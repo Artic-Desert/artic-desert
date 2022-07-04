@@ -16,7 +16,7 @@ export type ColumnProps = {
 
 export type DynamoUser = {
   username: string;
-  repos: DynamoRepo[];
+  repos: string[];
 };
 
 export type DynamoRepo = {

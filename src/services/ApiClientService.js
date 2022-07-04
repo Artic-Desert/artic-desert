@@ -34,6 +34,7 @@ export const ApiClientService = {
   getGithubRepo: async (owner, repo, ghpToken) => {
     return fetch(`https://api.github.com/repos/${owner}/${repo}`, {
       headers: {
+        // eslint-disable-next-line no-undef
         Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
       },
     }).then(res => res.json());
