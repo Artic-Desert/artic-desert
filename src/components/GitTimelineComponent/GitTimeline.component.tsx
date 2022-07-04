@@ -6,24 +6,24 @@ import Modal from './ModalComponent/Modal.component';
 // import { gitTimelineData } from '../../mocks/GitTimeline/gitTimeline';
 import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
 import { useRepo } from '../../hooks/use-repo';
-import { BranchLine } from './BranchLineComponent/BranchLine.component';
+// import { BranchLine } from './BranchLineComponent/BranchLine.component';
 import { useDispatch } from 'react-redux';
 import { setBranches } from '../../redux/branches/actions';
 
-const pathVariants = {
-  hidden: {
-    opacity: 0,
-    pathLength: 0,
-  },
-  visible: {
-    opacity: 1,
-    pathLength: 1,
-    transition: {
-      duration: 3,
-      ease: 'easeInOut',
-    },
-  },
-};
+// const pathVariants = {
+//   hidden: {
+//     opacity: 0,
+//     pathLength: 0,
+//   },
+//   visible: {
+//     opacity: 1,
+//     pathLength: 1,
+//     transition: {
+//       duration: 3,
+//       ease: 'easeInOut',
+//     },
+//   },
+// };
 
 export const GitTimeline: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);

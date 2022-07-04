@@ -7,7 +7,7 @@ import { ImFilesEmpty } from 'react-icons/im';
 import { BiMessageSquareDetail, BiPlus, BiMinus } from 'react-icons/bi';
 import {
   BsFillEyeFill,
-  BsArrowBarRight,
+  // BsArrowBarRight,
   BsFillPersonLinesFill,
   BsFillCalendar2DateFill,
 } from 'react-icons/bs';
