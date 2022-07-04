@@ -4,7 +4,7 @@
   color: #c8d1d9;
   margin-bottom: 10px;
   display: flex;
-  opacity: 0.85;
+  opacity: 0.8;
   flex-direction: column;
   justify-content: space-evenly;
   height: fit-content;
@@ -12,14 +12,12 @@
   border-radius: 5px;
   border: 2px solid #c8d1d952;
   overflow: hidden;
-  background-color: #0e1117;
+  background-color: #00111c;
   /* -webkit-box-shadow: 0px 0px 6px 3px rgba(69, 69, 69, 1);
   -moz-box-shadow: 0px 0px 6px 3px rgba(69, 69, 69, 1);
   box-shadow: 0px 0px 6px 3px rgba(69, 69, 69, 1); */
-
   margin-top: 5px;
 }
-
 .owner-cont {
   display: flex;
   align-items: center;
@@ -30,13 +28,11 @@
   margin-right: 10px;
   margin-bottom: 10px;
 }
-
 .repo-name {
   color: #57a6ff;
   margin-bottom: 15px;
   cursor: pointer;
 }
-
 .privacy {
   color: rgba(255, 228, 196, 0.794);
   border: 1px solid rgba(255, 228, 196, 0.742);
@@ -44,11 +40,9 @@
   padding-right: 12px;
   border-radius: 20px;
 }
-
 .repo-owner {
   margin-bottom: 9px;
 }
-
 .lang-cont {
   margin-top: 15px;
   margin-bottom: 10px;
@@ -56,22 +50,18 @@
   justify-content: flex-start;
   align-items: center;
 }
-
 .branches {
   margin-top: 5px;
 }
-
 .updated {
   color: #c8d1d987;
 }
-
 .repo-button-time-container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .preview-button {
   font-size: 13px;
   font-weight: bold;
@@ -89,17 +79,14 @@
   -webkit-backdrop-filter: blur(6.1px);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
-
 .preview-button:hover {
   border: 2px solid #c8d1d99c;
   color: #c8d1d9d9;
 }
-
 .lang-ball-default {
   color: #ffe4c4;
   margin-right: 5px;
 }
-
 .lang-ball-purple {
   color: #563d7c;
   margin-right: 5px;

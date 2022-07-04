@@ -16,13 +16,12 @@
   flex-direction: column;
   border-radius: 6px;
   background-color: #00111c;
-  border: 1px solid #c8d1d952;
+  border: 2px solid #c8d1d952;
   z-index: 10;
 }
 .dashboard-user-info img {
   border-radius: 50%;
   width: 100%;
-  /* width: 40px; */
   overflow: hidden;
   margin-bottom: 15px;
   border: 2px solid #c8d1d952;
@@ -81,6 +80,14 @@
   justify-content: space-around;
   width: 20%;
   margin-top: 10px;
+}
+.public-bio {
+  position: relative;
+}
+.bio-icon {
+  position: absolute;
+  margin-left: 4px;
+  top: 3px;
 }
 .user-info-logout-button-container {
   display: flex;

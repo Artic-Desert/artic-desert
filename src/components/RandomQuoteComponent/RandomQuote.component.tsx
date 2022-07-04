@@ -35,7 +35,11 @@ export const RandomQuote: React.FC = () => {
         <p className="quote-author"> - {data.author} - </p>
       </div>
       <div className="button-container">
-        <GiCardRandom className="random-icon" onClick={updateQuote} />
+        <GiCardRandom
+          className="random-icon"
+          title="Random Quote"
+          onClick={updateQuote}
+        />
       </div>
     </div>
   );

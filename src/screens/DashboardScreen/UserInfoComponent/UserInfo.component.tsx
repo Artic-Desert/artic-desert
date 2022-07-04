@@ -69,7 +69,7 @@ export const UserInfo: React.FC = () => {
             </div>
             <div className="public-bio">
               <p>
-                Bio <AiOutlineRead color="#d2d8dd" />
+                Bio <AiOutlineRead className="bio-icon" color="#d2d8dd" />
                 <p className="bio-cont"> • {user.bio}</p>
               </p>
             </div>

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Trispace&display=swap');
-
 .welcome-wrapper {
   background-image: url('../../assets/animatedback2.svg');
   background-size: contain;
@@ -12,7 +11,6 @@
   overflow: hidden;
   position: relative;
 }
-
 .company-name {
   font-size: 3.5vw;
   font-family: 'Trispace', sans-serif;
@@ -22,33 +20,32 @@
   left: 10%;
   top: 14%;
 }
-
 .bot {
   margin-left: 100px;
 }
-
+.title-login-container {
+  display: flex;
+  align-items: center;
+}
 .main-title {
   background-image: url('../../assets/ice.svg');
   background-clip: text;
   -webkit-background-clip: text;
-  width: 40%;
+  width: 35%;
   color: transparent;
   position: absolute;
-  bottom: 26%;
+  bottom: 22%;
   right: 0%;
   font-family: 'Kdam Thmor Pro', sans-serif;
-  font-size: 2.7vw;
-  line-height: 120px;
+  font-size: 2.2vw;
   z-index: 10;
 }
-
 .mask {
   width: 100%;
   position: absolute;
   bottom: -5%;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
 }
-
 .ades {
   z-index: 10;
   height: 60vh;
@@ -57,7 +54,6 @@
   top: 2%;
   opacity: 0.4;
 }
-
 .login-button {
   border: 3px solid #277197;
   color: #277197;
@@ -71,23 +67,17 @@
   font-weight: bold;
   cursor: pointer;
   position: absolute;
-  bottom: 18%;
+  bottom: 13%;
   right: 12%;
   z-index: 10;
   -webkit-box-shadow: 3px 4px 34px -14px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 4px 34px -14px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 4px 34px -14px rgba(0, 0, 0, 0.75);
 }
-
 .a-tag {
   color: #277197;
   text-decoration: none;
 }
-/* .a-tag:hover {
-  background-color: #277197;
-  color: #ffffff;
-} */
-
 .a-tag:visited {
   color: #277197;
 }
