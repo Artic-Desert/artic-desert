@@ -15,6 +15,17 @@ export const Chat: React.FC = () => {
   const { branch } = useBranch();
   const { repo } = useRepo();
   const socketRef = useRef<any>(); //eslint-disable-line
+  const ref = useChatScroll(messages);
+
+  function useChatScroll<T>(dep: T) {
+    const ref = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+      if (ref.current) {
+        ref.current.scrollTop = ref.current.scrollHeight;
+      }
+    }, [dep]);
+    return ref;
+  }
 
   const createChatIfNotExist = async (
     repo_name: string,
@@ -52,7 +63,7 @@ export const Chat: React.FC = () => {
   }, [messages]);
 
   return chatGroup ? (
-    <div className="main-chat-container">
+    <div className="main-chat-container" ref={ref}>
       {messages.length
         ? messages.map(message => {
             return <ChatMessage message={message} key={message.id} />;

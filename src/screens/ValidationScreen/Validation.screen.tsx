@@ -1,4 +1,3 @@
-import axios from 'axios'; //eslint-disable-line
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GoMarkGithub } from 'react-icons/go';
@@ -6,7 +5,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { setUser } from '../../redux/user/actions';
 import { AuthService } from '../../services/AuthService';
 import dots from '../../assets/loaddots.svg';
-// require('dotenv').config('../../../.env'); //eslint-disable-line
 
 import './Validation.css';
 
@@ -33,7 +31,6 @@ export const Validation: React.FC = () => {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          // 'access-control-allow-origin': '*',
         },
         body,
       },

@@ -1,11 +1,11 @@
 .main-chat-container {
   width: 100%;
   min-width: 30vw;
-  padding-left: 80px;
-  margin-bottom: 90px;
-  margin-right: 78px;
+  padding-left: 60px;
+  margin-bottom: 70px;
+  margin-right: 65px;
   margin-top: 10px;
-  padding-right: 20px;
+  padding-right: 15px;
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-box-shadow: inset 7px -21px 22px -17px rgba(0, 0, 0, 0.65);

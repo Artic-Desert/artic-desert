@@ -4,43 +4,38 @@
   display: flex;
   flex-direction: column;
 }
-
 .message-author-pic {
   display: flex;
   width: fit-content;
 }
-
 .author {
   font-family: 'Ubuntu', sans-serif;
-
   font-weight: 600;
+  margin-top: 4px;
 }
-
 .author::after {
   content: '';
   display: block;
   height: 2px;
-  width: 40px;
-  background-color: #00111c;
-  margin-left: 5px;
+  width: 38px;
+  background-color: #57a6ff;
+  margin-left: 6px;
+  margin-top: 2px;
 }
-
 .message-author-pic img {
-  height: 25px;
+  height: 28px;
   margin-right: 10px;
   border-radius: 50%;
   border: 2px solid black;
 }
-
 .usersMessageBox {
   background-color: #f3f0f0;
   color: black;
   border-radius: 10px;
   font-family: 'Ubuntu', sans-serif;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   font-size: 1vw;
   padding: 8px;
-  margin-top: 3%;
   max-width: 60%;
   width: fit-content;
   min-width: 200px;
@@ -51,32 +46,28 @@
   -moz-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
   position: relative;
-  /* border: 2px solid black; */
 }
-
 .usersMessageBox::after {
   content: '';
   z-index: 50;
   display: block;
   width: 13px;
   height: 13px;
-  border: 0px solid black;
   border-radius: 50%;
   background-color: #f3f0f0;
   position: absolute;
-  right: -4px;
+  right: -5px;
   -webkit-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
 }
-
 .message-Box {
   font-family: 'Ubuntu', sans-serif;
   background-color: #00111c;
   color: white;
   border-radius: 10px 10px 10px 10px !important;
   font-size: 1vw;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   padding: 8px;
   word-wrap: break-word;
   align-self: flex-start;
@@ -84,14 +75,12 @@
   max-width: 60%;
   width: fit-content;
   min-width: 200px;
-  margin-top: 3%;
   border-bottom-right-radius: 0;
   position: relative;
   -webkit-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
 }
-
 .message-Box::after {
   content: '';
   display: block;
@@ -100,16 +89,14 @@
   border-radius: 50%;
   background-color: #00111c;
   position: absolute;
-  left: -4px;
+  left: -5px;
   -webkit-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 4px 4px 6px 1px rgba(0, 0, 0, 0.75);
 }
-
 .content {
   padding: 10px;
 }
-
 .time {
   text-align: end;
   margin: 0 5%;

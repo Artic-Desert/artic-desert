@@ -55,8 +55,8 @@ export const ResizableChat: React.FC = () => {
         }}
         onDoubleClick={() => {
           console.log('Dbl click');
-          mWidth.set(500);
-          mHeight.set(500);
+          mWidth.set(vw * 0.5 * 0.9);
+          mHeight.set(vw * 0.35);
         }}>
         <Chat />
         <motion.div

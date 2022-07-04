@@ -25,18 +25,13 @@
   position: absolute;
   top: 0;
   left: 50%;
-}
-.expand-icon {
-  transform: rotate(90deg);
-}
-.shrink-icon {
-  transform: rotate(270deg);
+  cursor: pointer;
 }
 .expand-icon-div:hover {
   transform: scale(1.2) translateY(5px);
 }
 .shrink-icon:hover {
-  transform: scale(1.2) rotate(-90deg);
+  transform: scale(1.2) translateY(-5px);
 }
 @keyframes verticalBounce {
   0%,

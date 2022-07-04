@@ -18,10 +18,11 @@
 .button-container {
   display: flex;
   justify-content: center;
-  margin-top: 7px;
+  margin-top: 10px;
 }
 .button-container:hover {
   transform: scale(1.2);
+  cursor: pointer;
 }
 .random-icon {
   color: white;

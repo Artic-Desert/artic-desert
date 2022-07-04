@@ -4,7 +4,7 @@ import { GitTimeline } from '../../components/GitTimelineComponent/GitTimeline.c
 import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/Header.component';
 import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.component';
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
-import { TbLayoutSidebarLeftExpand } from 'react-icons/tb';
+import { TbArrowBarUp, TbArrowBarDown } from 'react-icons/tb';
 
 import './Workspace.css';
 
@@ -60,7 +60,7 @@ export const Workspace: React.FC = () => {
               setKanbanSize(e.clientY);
             }}>
             {flipArrow ? (
-              <TbLayoutSidebarLeftExpand
+              <TbArrowBarUp
                 title="Shrink Kanban"
                 className="shrink-icon"
                 size={30}
@@ -68,7 +68,7 @@ export const Workspace: React.FC = () => {
                 onClick={onClick}
               />
             ) : (
-              <TbLayoutSidebarLeftExpand
+              <TbArrowBarDown
                 title="Expand Kanban"
                 className="expand-icon"
                 size={30}
