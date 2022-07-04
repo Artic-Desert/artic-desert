@@ -83,3 +83,25 @@
 .Resizer.disabled:hover {
   border-color: transparent;
 }
+
+.label-timeline-container {
+  width: 100%;
+  display: flex;
+}
+
+.label-container {
+  border: 1px solid red;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-bottom: 15px;
+}
+
+.branch-label {
+  color: white;
+  /* margin-bottom: 50px; */
+  height: 50px;
+  border: 1px solid red;
+}
