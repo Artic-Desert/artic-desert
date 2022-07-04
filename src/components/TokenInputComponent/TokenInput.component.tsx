@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../redux/token/actions';
+import { FiLink } from 'react-icons/fi';
 import './TokenInput.css';
 export const TokenInput: React.FC = () => {
   const [ghpToken, setGhpToken] = useState('');
@@ -19,29 +20,36 @@ export const TokenInput: React.FC = () => {
   };
   return (
     <div className="token-input-container">
-      <p className="info-text">
-        You can generate a new token{' '}
-        <a
-          href="https://github.com/settings/tokens/new"
-          target="_blank"
-          rel="noreferrer">
-          here
-        </a>
-      </p>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter your token here..."
-          value={ghpToken}
-          onChange={event => setGhpToken(event.target.value)}
-        />
-        <input type="submit" value={'Enter'} />
-      </form>
-      {message && (
-        <div>
-          <p className="wrong-input-message">{message}</p>
-        </div>
-      )}
+      <div className="token-container">
+        <p className="info-text">
+          Enter your GitHub Personal Access Token, or generate a new token{' '}
+          <span className="token-a-cont">
+            <a
+              href="https://github.com/settings/tokens/new"
+              target="_blank"
+              rel="noreferrer">
+              here • <FiLink />
+            </a>
+          </span>
+        </p>
+        <form onSubmit={handleSubmit}>
+          <input
+            className="token-input-field"
+            type="text"
+            placeholder="Enter your token"
+            value={ghpToken}
+            onChange={event => setGhpToken(event.target.value)}
+          />
+          <div className="token-submit-cont">
+            <input className="token-submit" type="submit" value={'Submit'} />
+          </div>
+        </form>
+        {message && (
+          <div>
+            <p className="wrong-input-message">{message}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
