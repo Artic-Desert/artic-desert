@@ -89,7 +89,10 @@ export const RepoItem: React.FC<{
     <>
       <div className="repo-item-container">
         <div className="top-line">
-          <h3 className="repo-name" onClick={() => handleNavigation(repo)}>
+          <h3
+            className="repo-name"
+            title={`${repo.name} Workspace`}
+            onClick={() => handleNavigation(repo)}>
             {repo.name}
           </h3>
           <div className="owner-cont">
