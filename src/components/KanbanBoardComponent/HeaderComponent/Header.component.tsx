@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { GoGitBranch } from 'react-icons/go';
-// import { AiFillCaretDown } from 'react-icons/ai';
+import { MdOutlineDashboard } from 'react-icons/md';
 import './Header.css';
 import { useUser } from '../../../hooks/use-user';
 import { useRepo } from '../../../hooks/use-repo';
-// import { AuthService } from '../../../services/AuthService';
 import { setBranch } from '../../../redux/branch/actions';
 import { useDispatch } from 'react-redux';
 import { useBranch } from '../../../hooks/use-branch';
 import { GithubUser, RepoBranch } from '../../../types/Types';
 import Select, { SingleValue } from 'react-select';
 import { useNavigate } from 'react-router-dom';
-// import { Z_FIXED } from 'zlib';
-// import { isWhiteSpaceLike } from 'typescript';
 
 export const Header: React.FC = () => {
   const { user } = useUser();
@@ -184,7 +181,7 @@ export const Header: React.FC = () => {
       {repo && (
         <div className="current-repo">
           <span className="current-repo-prefix">
-            <GoGitBranch /> current repo:{'               '}
+            <GoGitBranch /> current repo:
           </span>
           <a
             title="GitHub Repo"
@@ -196,9 +193,6 @@ export const Header: React.FC = () => {
           </a>
         </div>
       )}
-      <div className="navigate-dashboard">
-        <button onClick={handleNavigation}>Back To Dashboard</button>
-      </div>
       <div className="right">
         <div className="user-info">
           <span>Hello {user.name.split(' ')[0]}!</span>
@@ -210,6 +204,12 @@ export const Header: React.FC = () => {
             rel="noreferrer">
             <img src={user.avatar_url} alt="" />
           </a>
+          <div title="Dashboard" className="navigate-dashboard">
+            <p onClick={handleNavigation}>
+              {' '}
+              <MdOutlineDashboard />
+            </p>
+          </div>
         </div>
       </div>
     </div>

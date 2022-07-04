@@ -56,25 +56,19 @@
   margin: 0 5px;
   transform: scale(1.15);
 }
-.curent-repo {
-  display: flex;
-  flex-direction: row;
-}
 .current-repo-prefix {
   color: #c8d1d9;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* .go-git {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 .current-repo a {
   color: #c8d1d9;
   font-size: xx-large;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .right {
   height: 47px;
@@ -92,4 +86,21 @@
   height: 47px;
   border-radius: 50%;
   margin-left: 20px;
+  transition: 0.15s linear;
+}
+.user-info img:hover {
+  transform: scale(1.15);
+}
+.navigate-dashboard {
+  margin-left: 15px;
+  transform: scale(1.6);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  transition-property: transform;
+}
+.navigate-dashboard:hover {
+  margin-left: 15px;
+  transform: scale(1.8) rotate(360deg);
+  cursor: pointer;
 }
