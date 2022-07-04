@@ -10,7 +10,7 @@ import {
 } from 'react-icons/ti';
 import { Data } from '../../types/Types';
 import './Weather.css';
-
+import spinner from '../../assets/spinnergen.svg';
 export const Weather: React.FC = () => {
   const [data, setData] = useState<Data | null>(null);
   const [url, setUrl] = useState('');
@@ -121,7 +121,9 @@ export const Weather: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div></div>
+        <div className="weather-container">
+          <img src={spinner} alt="" />
+        </div>
       )}
     </div>
   );
