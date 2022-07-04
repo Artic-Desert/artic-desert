@@ -1,3 +1,4 @@
+//eslint-disable-next-line
 export const gitTimelineData: any = [
   [
     'master',
