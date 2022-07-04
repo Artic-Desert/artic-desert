@@ -2,9 +2,9 @@
 
 .repo-item-container {
   color: #c8d1d9;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   display: flex;
-  opacity: 0.92;
+  opacity: 0.85;
   flex-direction: column;
   justify-content: space-evenly;
   height: fit-content;
@@ -13,6 +13,11 @@
   border: 2px solid #c8d1d952;
   overflow: hidden;
   background-color: #0e1117;
+  /* -webkit-box-shadow: 0px 0px 6px 3px rgba(69, 69, 69, 1);
+  -moz-box-shadow: 0px 0px 6px 3px rgba(69, 69, 69, 1);
+  box-shadow: 0px 0px 6px 3px rgba(69, 69, 69, 1); */
+
+  margin-top: 5px;
 }
 
 .owner-cont {
