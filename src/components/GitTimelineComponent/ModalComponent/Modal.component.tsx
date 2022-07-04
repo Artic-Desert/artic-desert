@@ -11,7 +11,7 @@ import { GithubCommit, GithubRepo } from '../../../types/Types';
 import { useRepo } from '../../../hooks/use-repo';
 import { setRepo } from '../../../redux/repo/actions';
 import { setBranch } from '../../../redux/branch/actions';
-
+import moment from 'moment';
 import './Modal.css';
 
 const dropIn = {
@@ -114,11 +114,19 @@ export const Modal: React.FC<{
                 </div>
                 <div className="preview-created-container">
                   <p className="preview-created">
-                    Repo created at • <span>{repoPreview.created_at}</span>
+                    Repo created at •{' '}
+                    <span>
+                      {moment(new Date(repoPreview.created_at)).format(
+                        'DD/MMM/YYYY HH:MM',
+                      )}
+                    </span>
                   </p>
                   <p className="preview-created">
                     {' '}
-                    Last updated • <span>{repoPreview.updated_at}</span>
+                    Last updated •{' '}
+                    <span>
+                      {moment(new Date(repoPreview.updated_at)).fromNow()}
+                    </span>
                   </p>
                   <p className="default-branch">
                     {' '}

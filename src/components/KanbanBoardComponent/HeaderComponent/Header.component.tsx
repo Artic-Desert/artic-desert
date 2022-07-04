@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { GoGitBranch } from 'react-icons/go';
-import { AiFillCaretDown } from 'react-icons/ai';
+// import { AiFillCaretDown } from 'react-icons/ai';
 import './Header.css';
 import { useUser } from '../../../hooks/use-user';
 import { useRepo } from '../../../hooks/use-repo';
-import { AuthService } from '../../../services/AuthService';
+// import { AuthService } from '../../../services/AuthService';
 import { setBranch } from '../../../redux/branch/actions';
 import { useDispatch } from 'react-redux';
 import { useBranch } from '../../../hooks/use-branch';
 import { GithubUser, RepoBranch } from '../../../types/Types';
-import Select from 'react-select';
-import { Z_FIXED } from 'zlib';
-import { isWhiteSpaceLike } from 'typescript';
+import Select, { SingleValue } from 'react-select';
+// import { Z_FIXED } from 'zlib';
+// import { isWhiteSpaceLike } from 'typescript';
 
 export const Header: React.FC = () => {
   const { user } = useUser();
@@ -96,9 +96,14 @@ export const Header: React.FC = () => {
     fetchInfoOfRepo();
   }, []);
 
-  const handleBranchChange = (e: any) => {
+  const handleBranchChange = (
+    e: SingleValue<{
+      value: string;
+      label: string;
+    }>,
+  ) => {
     // e.preventDefault();
-    setCurrentBranch(e.value);
+    setCurrentBranch(e ? e.value : '');
   };
 
   useEffect(() => {
@@ -110,7 +115,11 @@ export const Header: React.FC = () => {
   });
 
   const customStyles = {
-    option: (provided: any, { isFocused, isSelected }: any) => ({
+    option: (
+      //eslint-disable-next-line
+      provided: any,
+      { isFocused, isSelected }: { isFocused: boolean; isSelected: boolean },
+    ) => ({
       ...provided,
       color: isSelected ? 'white' : isFocused ? '#00111c' : '##f3f0f0',
       backgroundColor: isSelected
@@ -119,7 +128,8 @@ export const Header: React.FC = () => {
         ? '#57a6ff'
         : '#f3f0f0',
     }),
-    menu: (provided: any, state: any) => ({
+    //eslint-disable-next-line
+    menu: (provided: any) => ({
       ...provided,
       postion: 'fixed',
       zindex: '10',
@@ -133,7 +143,7 @@ export const Header: React.FC = () => {
             <Select
               options={options}
               styles={customStyles}
-              onChange={(e: any) => handleBranchChange(e)}></Select>
+              onChange={e => handleBranchChange(e)}></Select>
           )}
         </div>
         {repoInfo.branches && (
