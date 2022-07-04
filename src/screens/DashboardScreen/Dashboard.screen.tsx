@@ -34,7 +34,7 @@ export const Dashboard: React.FC = () => {
   useEffect(() => {
     console.log('EL USER 8===D', user);
 
-    fetch(`https://api.github.com/users/${user.username}`, {
+    fetch(`https://api.github.com/users/${user.login}`, {
       headers: {
         Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
       },

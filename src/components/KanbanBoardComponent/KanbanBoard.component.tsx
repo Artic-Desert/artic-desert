@@ -110,17 +110,19 @@ export const KanbanBoard: React.FC = () => {
   };
 
   return (
-    kanban && (
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className="columns-cont">
-          {Object.keys(kanban)
-            .sort()
-            .reverse()
-            .map(col => {
-              return <Column col={kanban[col]} key={kanban[col].id} />;
-            })}
-        </div>
-      </DragDropContext>
-    )
+    <>
+      {kanban && (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className="columns-cont">
+            {Object.keys(kanban)
+              .sort()
+              .reverse()
+              .map(col => {
+                return <Column col={kanban[col]} key={kanban[col].id} />;
+              })}
+          </div>
+        </DragDropContext>
+      )}
+    </>
   );
 };
