@@ -215,7 +215,14 @@ export const Modal: React.FC<{
           onClick={e => e.stopPropagation()}>
           <div className="commit-info-container">
             <div className="commit-author-name">
-              <img src={commitInfo.author.avatar_url} alt="" />
+              <img
+                src={
+                  commitInfo.author
+                    ? commitInfo.author.avatar_url
+                    : 'https://camo.githubusercontent.com/cc6db406f60bc356022df89c92deda2a218d8e5e5efd9de54911d55e52eae4b1/68747470733a2f2f7261772e6769746875622e636f6d2f736568726775742f6e6f64652d7265747269636f6e2f6d61737465722f6578616d706c65732f696d616765732f30362e706e67'
+                }
+                alt=""
+              />
               <div className="cont-plus-title">
                 <h3>Commiter Info</h3>
                 <div className="commit-author-info-cont">
@@ -230,7 +237,10 @@ export const Modal: React.FC<{
                     GitHub username •
                     <span>
                       {' '}
-                      <FiGithub /> {commitInfo.author.login}
+                      <FiGithub />{' '}
+                      {commitInfo.author
+                        ? commitInfo.author.login
+                        : 'Not Found'}
                     </span>
                   </p>
                   <p>
