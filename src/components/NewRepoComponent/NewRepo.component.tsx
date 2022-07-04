@@ -26,7 +26,10 @@ export const NewRepo: React.FC = () => {
         },
       });
       const data = await repsonse.json();
+      console.log('NEW LOG!!', repos);
+
       if (
+        repos &&
         repos.find((el: any) => {
           console.log('EL FULLNAME : ', el);
           console.log('REPO FULLNAME : ', `${owner}/${repo}`);
