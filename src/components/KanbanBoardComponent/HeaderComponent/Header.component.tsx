@@ -127,15 +127,15 @@ export const Header: React.FC = () => {
   };
   return (
     <div className="kanban-header">
+      <div className="select">
+        {repoInfo.branches && (
+          <Select
+            options={options}
+            styles={customStyles}
+            onChange={e => handleBranchChange(e)}></Select>
+        )}
+      </div>
       <div className="left">
-        <div className="select">
-          {repoInfo.branches && (
-            <Select
-              options={options}
-              styles={customStyles}
-              onChange={e => handleBranchChange(e)}></Select>
-          )}
-        </div>
         {repoInfo.branches && (
           <div className="num-branches">
             <GoGitBranch />

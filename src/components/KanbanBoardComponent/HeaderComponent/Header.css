@@ -13,10 +13,14 @@
   height: fit-content;
   display: flex;
   justify-content: space-between;
+  margin-left: 200px;
 }
 .select {
+  position: fixed;
+  z-index: 1000;
   width: fit-content;
-  min-width: 250px;
+  min-width: 200px;
+  max-width: 300px;
 }
 .branch-selector:hover {
   border: 1px solid #c8d1d9;
