@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Modal } from '../ModalComponent/Modal.component';
 
 export const TimeliineDot: React.FC<{
   indexX: number;
   indexY: number;
-  branchProps: any;
-  branchesOrdered: any;
-  commit: any;
-  modalOpen: any;
-  setModalOpen: any;
-  setCurrentCommit: any;
+  branchProps: { [key: string]: string };
+  branchesOrdered: string[];
+  commit: string | number;
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentCommit: React.Dispatch<React.SetStateAction<string | number>>;
 }> = ({
   indexX,
   indexY,
@@ -21,7 +20,6 @@ export const TimeliineDot: React.FC<{
   setModalOpen,
   setCurrentCommit,
 }) => {
-  // const [modalOpen, setModalOpen] = useState(false);
   const close = () => {
     setCurrentCommit('');
     setModalOpen(false);

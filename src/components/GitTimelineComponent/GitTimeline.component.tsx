@@ -8,7 +8,7 @@ import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
 
 export const GitTimeline: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [currentCommit, setCurrentCommit] = useState('');
+  const [currentCommit, setCurrentCommit] = useState<string | number>('');
 
   const close = () => setModalOpen(false);
 

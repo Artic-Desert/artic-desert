@@ -46,7 +46,7 @@ export const Modal: React.FC<{
   text?: string;
   repoPreview?: GithubRepo;
   modalOpen: boolean;
-  commit?: string;
+  commit?: string | number;
   //eslint-disable-next-line
 }> = ({ handleClose, text, modalOpen, repoPreview, commit }) => {
   const { repo } = useRepo();
