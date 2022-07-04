@@ -42,7 +42,6 @@ export const GitTimeline: React.FC = () => {
       token: process.env.REACT_APP_GHP_TOKEN,
     });
 
-    console.log('BEFORE FETCHING.... body: ', body);
     const response = await fetch(
       'https://arctic-desert.herokuapp.com/timeline',
       {

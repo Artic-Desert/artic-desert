@@ -21,4 +21,12 @@ export const ApiClientService = {
       },
     ).then(res => res.json());
   },
+
+  getTimelineData: async body => {
+    return fetch('https://arctic-desert.herokuapp.com/timeline', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body,
+    }).then(res => res.json());
+  },
 };
