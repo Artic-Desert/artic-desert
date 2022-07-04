@@ -195,3 +195,10 @@
   border: 2px solid #c8d1d99c;
   color: #c8d1d9d9;
 }
+
+/* COMMIT INFO MODAL  */
+
+.commit-info-container {
+  height: 100%;
+  width: 100%;
+}
