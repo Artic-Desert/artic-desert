@@ -101,26 +101,6 @@ export const Workspace: React.FC = () => {
                     </h3>
                   );
                 })}
-                {/* <h3 className="branch8">branch name goes here</h3>
-              <h3 className="branch7">branch name goes here</h3>
-              <h3 className="branch6">
-                <em>Xavi</em>
-              </h3>
-              <h3 className="branch5">
-                <em>Alex</em>
-              </h3>
-              <h3 className="branch4">
-                <em>Sebastian</em>
-              </h3>
-              <h3 className="branch3">
-                <em>Andres</em>
-              </h3>
-              <h3 className="branch2">
-                <em>Development</em>
-              </h3>
-              <h3 className="main-branch">
-                <em>Main / Master</em>
-              </h3> */}
               </div>
             )}
             <div className="timeline-svg-container">
