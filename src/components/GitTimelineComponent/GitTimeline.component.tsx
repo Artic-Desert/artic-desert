@@ -6,7 +6,7 @@ import Modal from './ModalComponent/Modal.component';
 // import { gitTimelineData } from '../../mocks/GitTimeline/gitTimeline';
 import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
 import { useRepo } from '../../hooks/use-repo';
-import { BranchLine } from './BranchLineComponent/BranchLine.component';
+// import { BranchLine } from './BranchLineComponent/BranchLine.component';
 import { useDispatch } from 'react-redux';
 import { setBranches } from '../../redux/branches/actions';
 
