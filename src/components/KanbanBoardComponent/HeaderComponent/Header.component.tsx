@@ -160,7 +160,7 @@ export const Header: React.FC = () => {
             repoInfo.collaborators.map((collaborator: GithubUser) => {
               return (
                 <a
-                  title="GitHub Profile"
+                  title={`${collaborator.login}'s GitHub`}
                   key={collaborator.id}
                   href={collaborator.html_url}
                   target="_blank"

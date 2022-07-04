@@ -20,14 +20,29 @@ export const UserInfo: React.FC = () => {
   return (
     <div className="dashboard-user-info">
       <div className="name-pic">
-        <img src={user.avatar_url} alt="user profile pics" />
+        <a
+          title="GitHub Profile"
+          href={user.html_url}
+          className="githubLink"
+          target="_blank"
+          rel="noreferrer">
+          <img src={user.avatar_url} alt="user profile pics" />
+        </a>
       </div>
       <div className="visibility-container">
         <div className="blur-layer">
           <div className="name">{user.name}</div>
           <div className="git-link">
-            <div className="githubName">{user.login}</div>
             <a
+              title="GitHub Profile"
+              href={user.html_url}
+              className="githubLink"
+              target="_blank"
+              rel="noreferrer">
+              <div className="githubName">{user.login}</div>
+            </a>
+            <a
+              title="GitHub Profile"
               href={user.html_url}
               className="githubLink"
               target="_blank"
