@@ -7,6 +7,7 @@ import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowCha
 import { TbArrowBarUp, TbArrowBarDown } from 'react-icons/tb';
 
 import './Workspace.css';
+import { useBranches } from '../../hooks/use-branches';
 
 const vh = Math.max(
   document.documentElement.clientHeight || 0,
@@ -16,6 +17,16 @@ const vh = Math.max(
 export const Workspace: React.FC = () => {
   const [kanbanSize, setKanbanSize] = useState(vh * 0.95);
   const [flipArrow, setFlipArrow] = useState(false);
+  const { branches } = useBranches();
+
+  const colors = [
+    '#56FB08',
+    '#00ffff',
+    '#df1bfd',
+    '#ff0000',
+    '#ffff00',
+    '#ff8400',
+  ];
 
   const onClick = () => {
     if (kanbanSize <= 85) {
@@ -78,8 +89,19 @@ export const Workspace: React.FC = () => {
             )}
           </div>
           <div className="label-timeline-container">
-            <div className="label-container">
-              <h3 className="branch8">branch name goes here</h3>
+            {branches && (
+              <div className="label-container">
+                {branches.map((branch: string, index: number) => {
+                  return (
+                    <h3
+                      key={branch}
+                      className="branch"
+                      style={{ color: colors[branches.length - 1 - index] }}>
+                      <em>{branch}</em>
+                    </h3>
+                  );
+                })}
+                {/* <h3 className="branch8">branch name goes here</h3>
               <h3 className="branch7">branch name goes here</h3>
               <h3 className="branch6">
                 <em>Xavi</em>
@@ -98,8 +120,9 @@ export const Workspace: React.FC = () => {
               </h3>
               <h3 className="main-branch">
                 <em>Main / Master</em>
-              </h3>
-            </div>
+              </h3> */}
+              </div>
+            )}
             <div className="timeline-svg-container">
               <GitTimeline />
             </div>
