@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { GiCardRandom } from 'react-icons/gi';
+import { randomQuoteData } from '../../types/Types';
 import './RandomQuote.css';
 
-interface Data {
-  id: string;
-  tags: [];
-  content: string;
-  author: string;
-  authorSlug: string;
-  length: number;
-  dateAdded: string;
-  dateModified: string;
-}
-
 export const RandomQuote: React.FC = () => {
-  const [data, setData] = useState<Data | null>();
+  const [data, setData] = useState<randomQuoteData | null>();
   const [dataError, setDataError] = useState(false);
 
   async function updateQuote() {

@@ -197,6 +197,7 @@ export type GithubCommit = {
     patch: string;
   }[];
 };
+
 export type Data = {
   base: string;
   clouds: clouds;
@@ -246,4 +247,15 @@ export type weather_breakdown = {
 export type wind = {
   speed: number;
   deg: number;
+};
+
+export type randomQuoteData = {
+  id: string;
+  tags: [];
+  content: string;
+  author: string;
+  authorSlug: string;
+  length: number;
+  dateAdded: string;
+  dateModified: string;
 };
