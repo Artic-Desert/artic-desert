@@ -8,58 +8,8 @@ import {
   TiWeatherSnow,
   TiWeatherStormy,
 } from 'react-icons/ti';
+import { Data } from '../../types/Types';
 import './Weather.css';
-
-interface Data {
-  base: string;
-  clouds: clouds;
-  cod: 200;
-  coord: coord;
-  dt: number;
-  id: number;
-  main: main;
-  name: string;
-  sys: sys;
-  timezone: number;
-  visibilitu: number;
-  weather: weather;
-  wind: wind;
-}
-interface clouds {
-  all: number;
-}
-interface coord {
-  lon: number;
-  lat: number;
-}
-interface main {
-  feels_like: number;
-  humidity: number;
-  pressure: number;
-  temp: number;
-  temp_min: number;
-  temp_max: number;
-}
-interface sys {
-  type: number;
-  id: number;
-  country: string;
-  sunrise: number;
-  sunset: number;
-}
-interface weather {
-  0: weather_breakdown;
-}
-interface weather_breakdown {
-  id: number;
-  main: string;
-  description: string;
-  icon: string;
-}
-interface wind {
-  speed: number;
-  deg: number;
-}
 
 export const Weather: React.FC = () => {
   const [data, setData] = useState<Data | null>(null);
