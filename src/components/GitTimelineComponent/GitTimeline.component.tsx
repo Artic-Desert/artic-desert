@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion, useMotionValue, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import './GitTimeline.css';
@@ -11,41 +11,18 @@ export const GitTimeline: React.FC = () => {
   const [currentCommit, setCurrentCommit] = useState('');
 
   const close = () => setModalOpen(false);
-  const open = () => setModalOpen(true);
-  // const arrays = [
-  //   ['main', 'alex', 'andres', '0'],
-  //   ['main', '0', 'andres', 'xavi'],
-  //   ['main', 'alex', 'andres', 'xavi'],
-  //   ['main', 'alex', '0', 'xavi'],
-  //   ['main', 'alex', 'andres', 'xavi'],
-  //   ['main', '0', 'andres', '0'],
-  // ];
 
   const branchesOrdered: string[] = gitTimelineData[0];
-  const arrays: any = gitTimelineData[1];
-  useEffect(() => {
-    console.log('GitTimeLine', arrays);
-  }, []);
+  const arrays: (number | string)[][] = gitTimelineData[1];
 
   const colors = ['#56FB08', '#F8C300', '#df1bfd', '#ff8c00'];
 
-  const branchProps: any = {};
+  const branchProps: { [key: string]: string } = {};
   branchesOrdered.forEach((branch: string, index: number) => {
     branchProps[branch] = colors[index];
   });
-
-  // const branchProps: any = {
-  //   main: ['250', '#56FB08'],
-  //   alex: ['200', '#F8C300'],
-  //   andres: ['150', '#df1bfd'],
-  //   xavi: ['100', '#ff8c00'],
-  // };
-  // const branchArray = ['main', 'alex', 'andres', 'xavi'];
-
-  // const ease = [0.6, 0.05, -0.01, 0.99];
   const x = useMotionValue(0);
-  // const x = useMotionValue(0, { stiffness: 300, damping: 200, ease: ease });
-  // const scale = useTransform(x, [-200, 0], [1.25, 1]);
+
   const height = 50 * arrays[0].length;
   const width = 50 * arrays.length;
   return (
@@ -67,9 +44,8 @@ export const GitTimeline: React.FC = () => {
           //according to the lenght of git commit history
           viewBox={`0 0 ${width} ${height}`}
           preserveAspectRatio="xMidYMid meet">
-          {arrays.map((array: any, indexX: number) => {
-            return array.map((commit: string, indexY: number) => {
-              // console.log(commit);
+          {arrays.map((array: (string | number)[], indexX: number) => {
+            return array.map((commit: string | number, indexY: number) => {
               return (
                 commit && (
                   <TimeliineDot
@@ -87,27 +63,8 @@ export const GitTimeline: React.FC = () => {
               );
             });
           })}
-          {/* {branchesOrdered.map((branch) => {
-            return arrays.map(array => {
-              return (
-                array[index] != 0 && (
-                  <motion.circle
-                    key={index}
-                    onClick={() => (modalOpen ? close() : open())}
-                    fill={branchProps[branch.toString()][1]}
-                    stroke="#56FB08"
-                    cx={index * 50}
-                    cy={branchProps[branch.toString()][0]}
-                    r="10"
-                  />
-                )
-              );
-            });
-          })} */}
         </motion.svg>
       </motion.div>
-      {/* {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />} */}
-      {/* {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />} */}
       <AnimatePresence
         initial={false}
         exitBeforeEnter={true}
