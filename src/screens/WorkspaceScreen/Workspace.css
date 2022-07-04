@@ -1,15 +1,8 @@
 /* KANBAN BOARD CSS */
 .kanban {
   width: 100vw;
-  /* background: #0e1117; */
   background-image: url('../../assets/oceanback2.svg');
   background-size: cover;
-  /* background: linear-gradient(
-    180deg,
-    #0e1117 0%,
-    rgba(9, 9, 121, 1) 65%,
-    rgb(36, 95, 214) 100%
-  ); */
   overflow: hidden;
   position: relative;
 }
@@ -32,15 +25,20 @@
   position: absolute;
   top: 0;
   left: 50%;
-  animation: bounce 2s infinite;
+}
+.expand-icon {
+  transform: rotate(90deg);
 }
 .shrink-icon {
-  position: absolute;
+  transform: rotate(270deg);
 }
 .expand-icon-div:hover {
-  transform: scale(1.2) translateY(2px);
+  transform: scale(1.2) translateY(5px);
 }
-@keyframes bounce {
+.shrink-icon:hover {
+  transform: scale(1.2) rotate(-90deg);
+}
+@keyframes verticalBounce {
   0%,
   20%,
   50%,
@@ -90,12 +88,10 @@
 .Resizer.disabled:hover {
   border-color: transparent;
 }
-
 .label-timeline-container {
   width: 100%;
   display: flex;
 }
-
 .label-container {
   border: 1px solid red;
   min-width: 200px;
@@ -105,7 +101,6 @@
   justify-content: flex-end;
   padding-bottom: 15px;
 }
-
 .branch-label {
   color: white;
   /* margin-bottom: 50px; */
