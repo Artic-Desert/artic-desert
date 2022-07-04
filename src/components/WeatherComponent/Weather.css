@@ -5,6 +5,9 @@
   top: 3%;
   right: 1.8%;
   margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .weather-data {
   height: 70px;
@@ -53,4 +56,10 @@
 }
 .bold {
   font-weight: bold;
+}
+
+.weather-container img {
+  height: 60px;
+  margin-left: 100px;
+  margin-top: 40px;
 }
