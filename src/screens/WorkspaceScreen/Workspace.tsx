@@ -6,16 +6,15 @@ import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.c
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
 import { BsArrowBarDown } from 'react-icons/bs';
 import { BsArrowBarUp } from 'react-icons/bs';
-import { setRepo } from '../../redux/repo/actions';
 
 import './Workspace.css';
-import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useLocation } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
 
-const vw = Math.max(
-  document.documentElement.clientWidth || 0,
-  window.innerWidth || 0,
-);
+// const vw = Math.max(
+//   document.documentElement.clientWidth || 0,
+//   window.innerWidth || 0,
+// );
 const vh = Math.max(
   document.documentElement.clientHeight || 0,
   window.innerHeight || 0,
@@ -24,7 +23,7 @@ const vh = Math.max(
 export const Workspace: React.FC = () => {
   const [kanbanSize, setKanbanSize] = useState(vh * 0.95);
   const [flipArrow, setFlipArrow] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   dispatch(setRepo(location.state));
@@ -37,9 +36,9 @@ export const Workspace: React.FC = () => {
       setKanbanSize(85);
     }
   };
-  const location = useLocation();
+  // const location = useLocation();
 
-  console.log('LOCATION: ', location.state);
+  // console.log('LOCATION: ', location.state);
 
   useEffect(() => {
     if (kanbanSize > 500) {
