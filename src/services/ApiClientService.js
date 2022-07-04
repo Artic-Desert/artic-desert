@@ -67,4 +67,32 @@ export const ApiClientService = {
       .then(res => res.json())
       .catch(err => console.log(err));
   },
+
+  getCollaboratorsOfRepo: async (repo, ghpToken) => {
+    const body = {
+      repo: repo.name,
+      owner: repo.owner.login,
+      // eslint-disable-next-line no-undef
+      token: process.env.REACT_APP_GHP_TOKEN || ghpToken,
+    };
+    return fetch('https://arctic-desert.herokuapp.com/filter', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then(res => res.json())
+      .catch(err => console.log(err));
+  },
+  getBranches: async (branchUrl, ghpToken) => {
+    return await fetch(branchUrl, {
+      headers: {
+        // eslint-disable-next-line no-undef
+        Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
+      },
+    })
+      .then(res => res.json())
+      .catch(err => console.log(err));
+  },
 };
