@@ -71,7 +71,7 @@ export const RepoItem: React.FC<{
 
   const handleNavigation = (repo: GithubRepo) => {
     dispatch(setRepo(repo));
-    dispatch(setBranch('all-branches')); // this should be dynamic or checked for the first branch of the repo
+    dispatch(setBranch('repo-board')); // this should be dynamic or checked for the first branch of the repo
     navigate('/workspace', { state: { repo } });
   };
 
@@ -115,7 +115,11 @@ export const RepoItem: React.FC<{
             <span className="updated">{moment(repo.pushed_at).fromNow()}</span>
             <button
               className="preview-button"
-              onClick={() => (modalOpen ? close() : open())}>
+              onClick={() => {
+                dispatch(setRepo(repo));
+                dispatch(setBranch('repo-board'));
+                modalOpen ? close() : open();
+              }}>
               Repo Preview
             </button>
           </div>

@@ -85,7 +85,7 @@ export const Modal: React.FC<{
 
   const handleNavigation = (repo: GithubRepo) => {
     dispatch(setRepo(repo));
-    dispatch(setBranch('all-branches')); // this should be dynamic or checked for the first branch of the repo
+    dispatch(setBranch('repo-board')); // this should be dynamic or checked for the first branch of the repo
     navigate('/workspace', { state: { repo } });
   };
 
@@ -182,7 +182,10 @@ export const Modal: React.FC<{
                 </div>
                 <button
                   className="go-to-workspace"
-                  onClick={() => handleNavigation(repo)}>
+                  onClick={() => {
+                    console.log('HERE IS THE REPO:::::::>', repo);
+                    handleNavigation(repo);
+                  }}>
                   <span>Go to workspace </span>
                   <MdArrowForwardIos />
                 </button>
