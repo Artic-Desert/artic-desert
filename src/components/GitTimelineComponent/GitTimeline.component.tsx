@@ -10,6 +10,7 @@ import { useRepo } from '../../hooks/use-repo';
 import { useDispatch } from 'react-redux';
 import { setBranches } from '../../redux/branches/actions';
 import { ApiClientService } from '../../services/ApiClientService';
+import { useGhpToken } from '../../hooks/use-ghpToken';
 
 // const pathVariants = {
 //   hidden: {
@@ -35,12 +36,13 @@ export const GitTimeline: React.FC = () => {
   const dispatch = useDispatch();
 
   const { repo } = useRepo();
+  const { ghpToken } = useGhpToken();
 
   const getTimeLineData = async () => {
     const body = JSON.stringify({
       repo_name: repo.name,
       repo_owner: repo.owner.login,
-      token: process.env.REACT_APP_GHP_TOKEN,
+      token: process.env.REACT_APP_GHP_TOKEN || ghpToken,
     });
 
     body &&
