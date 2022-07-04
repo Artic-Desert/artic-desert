@@ -6,9 +6,8 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-image: url('../../assets/valiback.svg');
+  background-image: url('../../assets/validationBackground.svg');
 }
-
 .validation-main-container {
   display: flex;
   flex-direction: column;
@@ -28,28 +27,6 @@
   font-size: 2vw;
   color: var(--white-body);
 }
-
 .load-dots {
   margin-top: -50px;
 }
-
-/* .git-spin {
-  animation: spin 0.5s linear;
-}
-
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-} */
