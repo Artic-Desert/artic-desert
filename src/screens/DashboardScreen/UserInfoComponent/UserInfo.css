@@ -92,6 +92,13 @@
   margin-top: 10px;
 }
 
+.user-info-logout-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .logout-button {
   font-size: 18px;
   font-weight: bold;
@@ -101,7 +108,6 @@
   color: #c8d1d9a3;
   cursor: pointer;
   font-family: 'Ubuntu', sans-serif;
-  align-self: center;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 5px;
