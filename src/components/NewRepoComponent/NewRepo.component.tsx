@@ -9,6 +9,7 @@ import './NewRepo.css';
 export const NewRepo: React.FC = () => {
   const [ownerName, setOwnerName] = useState('');
   const [repoName, setRepoName] = useState('');
+  const [repoUrl, setRepoUrl] = useState('');
   const [message, setMessage] = useState('');
 
   const { repos } = useRepos();
@@ -93,8 +94,18 @@ export const NewRepo: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // repoFetchRequest(ownerName, repoName);
-    updateUserRepos(ownerName, repoName);
+    setMessage('');
+    if (ownerName && repoName) {
+      updateUserRepos(ownerName, repoName);
+    } else if (repoUrl) {
+      const repoInfo = repoUrl.split('/');
+      const owner = repoInfo[3];
+      const name = repoInfo[4];
+      updateUserRepos(owner, name);
+    } else {
+      setMessage("Please, enter either the repo's name and owner or a url!");
+    }
+    setRepoUrl('');
     setOwnerName('');
     setRepoName('');
   };
@@ -119,7 +130,12 @@ export const NewRepo: React.FC = () => {
           onChange={event => setRepoName(event.target.value)}
         />
         <span className="or">or ...</span>
-        <input type="text" placeholder="Paste Github URL" />
+        <input
+          type="text"
+          placeholder="Paste Github URL"
+          value={repoUrl}
+          onChange={event => setRepoUrl(event.target.value)}
+        />
         <button className="dashboard-submit-button" type="submit">
           Add repo to dashboard
         </button>
