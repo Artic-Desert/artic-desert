@@ -7,6 +7,8 @@ import Modal from './ModalComponent/Modal.component';
 import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
 import { useRepo } from '../../hooks/use-repo';
 import { BranchLine } from './BranchLineComponent/BranchLine.component';
+import { useDispatch } from 'react-redux';
+import { setBranches } from '../../redux/branches/actions';
 
 const pathVariants = {
   hidden: {
@@ -29,6 +31,7 @@ export const GitTimeline: React.FC = () => {
   const [gitTimelineData, setGitTimelineData] = useState<any>([]); //eslint-disable-line
 
   const close = () => setModalOpen(false);
+  const dispatch = useDispatch();
 
   const { repo } = useRepo();
 
@@ -60,8 +63,13 @@ export const GitTimeline: React.FC = () => {
 
   const branchesOrdered: string[] =
     gitTimelineData?.length && gitTimelineData[0];
+
   const arrays: (number | string)[][] =
     gitTimelineData?.length && gitTimelineData[1];
+
+  useEffect(() => {
+    dispatch(setBranches(branchesOrdered ? branchesOrdered : []));
+  }, [branchesOrdered]);
 
   const colors = [
     '#56FB08',

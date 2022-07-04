@@ -4,6 +4,7 @@ import { kanbanReducer } from './kanban/reducer';
 import { repoReducer } from './repo/reducer';
 import { branchReducer } from './branch/reducer';
 import { reposReducer } from './repos/reducer';
+import { branchesReducer } from './branches/reducer';
 
 const reducer = combineReducers({
   users: userReducer,
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   repo: repoReducer, //this is the repo selected for the workspace
   branch: branchReducer,
   repos: reposReducer, //this are the repos in the sidebar
+  branches: branchesReducer, //this is for the branch name in the git timelien
 });
 
 export const store = createStore(
