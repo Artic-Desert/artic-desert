@@ -193,7 +193,7 @@ export const Modal: React.FC<{
     </>
   ) : (
     <Backdrop onClick={handleClose}>
-      {commitInfo && (
+      {commitInfo?.commit && (
         <motion.div
           variants={dropIn}
           className="modal background"
