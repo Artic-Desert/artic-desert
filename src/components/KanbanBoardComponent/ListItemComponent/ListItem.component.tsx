@@ -24,7 +24,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
 
   const isEditable = user.login === task.creator || task.creator === 'default';
 
-  const handleEdit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleEdit = () => {
     isEditable && setEditing(true);
   };
 
@@ -98,7 +98,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
               className={
                 isEditable ? 'item-edit' : 'item-edit item-not-allowed'
               }
-              onClick={e => handleEdit(e)}>
+              onClick={handleEdit}>
               <FiEdit />
             </button>
           )}

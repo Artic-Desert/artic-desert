@@ -30,7 +30,7 @@ export const NewRepo: React.FC = () => {
 
       if (
         repos &&
-        repos.find((el: any) => {
+        repos.find((el: { full_name: string }) => {
           console.log('EL FULLNAME : ', el);
           console.log('REPO FULLNAME : ', `${owner}/${repo}`);
 
@@ -91,7 +91,7 @@ export const NewRepo: React.FC = () => {
     return data;
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // repoFetchRequest(ownerName, repoName);
     updateUserRepos(ownerName, repoName);
