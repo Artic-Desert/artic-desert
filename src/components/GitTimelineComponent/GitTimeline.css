@@ -1,5 +1,5 @@
 .svg-cont {
-  width: 90%;
+  width: fit-content;
   overflow: hidden;
   position: relative;
   /* overflow-x: scroll; */
@@ -10,4 +10,5 @@
   border-top: 1px solid #c8d1d9ae;
   border-bottom: 1px solid #c8d1d9ae;
   border-radius: 10px;
+  position: relative;
 }

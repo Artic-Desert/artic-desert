@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap');
+
 /* KANBAN BOARD CSS */
 .kanban {
   width: 100vw;
@@ -88,17 +90,43 @@
   display: flex;
 }
 .label-container {
-  border: 1px solid red;
   min-width: 200px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
   padding-bottom: 15px;
+  text-align: right;
 }
-.branch-label {
-  color: white;
+
+.label-container h3 {
+  height: 50px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-right: 10px;
+}
+
+.main-branch {
+  color: #56fb08;
   /* margin-bottom: 50px; */
   height: 50px;
-  border: 1px solid red;
+}
+
+.branch2 {
+  color: #00ffff;
+}
+.branch3 {
+  color: #df1bfd;
+}
+.branch4 {
+  color: #ff0000;
+}
+.branch5 {
+  color: #ffff00;
+}
+.branch6 {
+  color: #ff8400;
+}
+.branch7 {
+}
+.branch8 {
 }
