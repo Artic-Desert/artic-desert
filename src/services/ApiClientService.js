@@ -26,8 +26,13 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
 
-  getTimelineData: async body => {
-    console.log('ApiClientService getTimelineData inital body: ', body);
+  getTimelineData: async (repo, ghpToken) => {
+    const body = JSON.stringify({
+      repo_name: repo.name,
+      repo_owner: repo.owner.login,
+      // eslint-disable-next-line no-undef
+      token: process.env.REACT_APP_GHP_TOKEN || ghpToken,
+    });
     return fetch('https://arctic-desert.herokuapp.com/timeline', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },

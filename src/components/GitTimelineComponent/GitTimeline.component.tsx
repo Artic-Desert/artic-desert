@@ -39,16 +39,9 @@ export const GitTimeline: React.FC = () => {
   const { ghpToken } = useGhpToken();
 
   const getTimeLineData = async () => {
-    const body = JSON.stringify({
-      repo_name: repo.name,
-      repo_owner: repo.owner.login,
-      token: process.env.REACT_APP_GHP_TOKEN || ghpToken,
-    });
-
-    body &&
-      ApiClientService.getTimelineData(body).then(data =>
-        setGitTimelineData(data),
-      );
+    ApiClientService.getTimelineData(repo, ghpToken).then(data =>
+      setGitTimelineData(data),
+    );
   };
 
   useEffect(() => {
