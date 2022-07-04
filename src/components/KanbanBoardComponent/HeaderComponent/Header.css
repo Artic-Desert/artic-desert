@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 10%;
+  height: 50px;
   padding: 20px 60px;
   margin-top: 23px;
 }
@@ -21,6 +21,7 @@
   width: fit-content;
   min-width: 200px;
   max-width: 300px;
+  font-size: large;
 }
 .branch-selector:hover {
   border: 1px solid #c8d1d9;
