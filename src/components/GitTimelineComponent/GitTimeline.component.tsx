@@ -6,7 +6,7 @@ import Modal from './ModalComponent/Modal.component';
 // import { gitTimelineData } from '../../mocks/GitTimeline/gitTimeline';
 import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
 import { useRepo } from '../../hooks/use-repo';
-// import { BranchLine } from './BranchLineComponent/BranchLine.component';
+import { BranchLine } from './BranchLineComponent/BranchLine.component';
 
 const pathVariants = {
   hidden: {
@@ -38,16 +38,19 @@ export const GitTimeline: React.FC = () => {
       repo_owner: repo.owner.login,
       token: process.env.REACT_APP_GHP_TOKEN,
     });
+
+    console.log('BEFORE FETCHING.... body: ', body);
     const response = await fetch(
       'https://arctic-desert.herokuapp.com/timeline',
       {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body,
       },
     );
 
     const responseParsed: any[] = await response.json(); //eslint-disable-line
-
+    console.log('RESPONSE PARSED: ', responseParsed);
     setGitTimelineData(responseParsed);
   };
 
@@ -77,89 +80,104 @@ export const GitTimeline: React.FC = () => {
 
   const constraintsRef = useRef(null);
 
-  const height = 50 * arrays[0].length;
-  const width = 50 * arrays.length;
-  return gitTimelineData?.length ? (
-    <>
-      <motion.div className="svg-cont" ref={constraintsRef}>
-        <motion.svg
-          variants={pathVariants}
-          drag={'x'}
-          dragConstraints={{ left: -width, right: 0 }}
-          // dragConstraints={constraintsRef}
-          dragElastic={0.001}
-          className="the-svg"
-          xmlns="http://www.w3.org/2000/svg"
-          width={String(width) + 'px'}
-          height={String(height) + 'px'}
-          viewBox={`0 0 ${width} ${height}`}
-          preserveAspectRatio="xMidYMid meet"
-          initial="hidden"
-          animate="visible">
-          <motion.path
-            stroke="#ff0000"
-            d={`M0 400, ${width} 400`}
+  const height = 50 * (arrays && arrays[0].length);
+  const width = 50 * (arrays && arrays.length);
+  return (
+    gitTimelineData?.length && (
+      <>
+        <motion.div className="svg-cont" ref={constraintsRef}>
+          <motion.svg
             variants={pathVariants}
-          />
-          <motion.path
-            stroke="#df1bfd"
-            d={`M0 450, ${width} 450`}
-            variants={pathVariants}
-          />
-          <motion.path
-            stroke="#00ffff"
-            d={`M0 500, ${width} 500`}
-            variants={pathVariants}
-          />
-          <motion.path
-            stroke="#56FB08"
-            d={`M0 550, ${width} 550`}
-            variants={pathVariants}
-          />
-          <motion.path
-            stroke="#ffff00"
-            d={`M0 350, ${width} 350`}
-            variants={pathVariants}
-          />
-          <motion.path
-            stroke="#ff8400"
-            d={`M0 300, ${width} 300`}
-            variants={pathVariants}
-          />
-          {/* <BranchLine /> */}
-          {arrays.map((array: (string | number)[], indexX: number) => {
-            return array.map((commit: string | number, indexY: number) => {
-              return (
-                commit && (
-                  <TimeliineDot
-                    key={`${indexX}${indexY}`}
-                    indexX={indexX}
-                    indexY={indexY}
-                    branchProps={branchProps}
-                    branchesOrdered={branchesOrdered}
-                    commit={commit}
-                    modalOpen={modalOpen}
-                    setModalOpen={setModalOpen}
-                    setCurrentCommit={setCurrentCommit}
+            drag={'x'}
+            dragConstraints={{ left: -width, right: 0 }}
+            // dragConstraints={constraintsRef}
+            dragElastic={0.001}
+            className="the-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            width={String(width) + 'px'}
+            height={String(height) + 'px'}
+            viewBox={`0 0 ${width} ${height}`}
+            preserveAspectRatio="xMidYMid meet"
+            initial="hidden"
+            animate="visible">
+            {/* <motion.path
+              stroke="#ff0000"
+              d={`M0 400, ${width} 400`}
+              variants={pathVariants}
+            />
+            <motion.path
+              stroke="#df1bfd"
+              d={`M0 450, ${width} 450`}
+              variants={pathVariants}
+            />
+            <motion.path
+              stroke="#00ffff"
+              d={`M0 500, ${width} 500`}
+              variants={pathVariants}
+            />
+            <motion.path
+              stroke="#56FB08"
+              d={`M0 550, ${width} 550`}
+              variants={pathVariants}
+            />
+            <motion.path
+              stroke="#ffff00"
+              d={`M0 350, ${width} 350`}
+              variants={pathVariants}
+            />
+            <motion.path
+              stroke="#ff8400"
+              d={`M0 300, ${width} 300`}
+              variants={pathVariants}
+            /> */}
+            {arrays.map(array => {
+              return array.map((commit: string | number, indexY: number) => {
+                return (
+                  <BranchLine
+                    key={colors[indexY] + indexY}
+                    color={colors[indexY]}
+                    width={width}
+                    height={height - 50 * indexY}
+                    pathVariants={pathVariants}
                   />
-                )
-              );
-            });
-          })}
-        </motion.svg>
-      </motion.div>
-      <AnimatePresence
-        initial={false}
-        exitBeforeEnter={true}
-        onExitComplete={() => null}>
-        {modalOpen && (
-          <Modal
-            commit={currentCommit}
-            modalOpen={modalOpen}
-            handleClose={close}
-          />
-        )}
-      </AnimatePresence>
-    </>
-  ) : null;
+                );
+              });
+            })}
+
+            {arrays.map((array: (string | number)[], indexX: number) => {
+              return array.map((commit: string | number, indexY: number) => {
+                return (
+                  commit && (
+                    <TimeliineDot
+                      key={`${indexX}${indexY}`}
+                      indexX={indexX}
+                      indexY={indexY}
+                      branchProps={branchProps}
+                      branchesOrdered={branchesOrdered}
+                      commit={commit}
+                      modalOpen={modalOpen}
+                      setModalOpen={setModalOpen}
+                      setCurrentCommit={setCurrentCommit}
+                    />
+                  )
+                );
+              });
+            })}
+          </motion.svg>
+        </motion.div>
+        <AnimatePresence
+          initial={false}
+          exitBeforeEnter={true}
+          onExitComplete={() => null}>
+          {modalOpen && (
+            <Modal
+              commit={currentCommit}
+              modalOpen={modalOpen}
+              handleClose={close}
+            />
+          )}
+        </AnimatePresence>
+      </>
+    )
+  );
 };
