@@ -4,17 +4,10 @@ import { GitTimeline } from '../../components/GitTimelineComponent/GitTimeline.c
 import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/Header.component';
 import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.component';
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
-import { BsArrowBarDown } from 'react-icons/bs';
-import { BsArrowBarUp } from 'react-icons/bs';
+import { TbLayoutSidebarLeftExpand } from 'react-icons/tb';
 
 import './Workspace.css';
-// import { useLocation } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
 
-// const vw = Math.max(
-//   document.documentElement.clientWidth || 0,
-//   window.innerWidth || 0,
-// );
 const vh = Math.max(
   document.documentElement.clientHeight || 0,
   window.innerHeight || 0,
@@ -23,11 +16,6 @@ const vh = Math.max(
 export const Workspace: React.FC = () => {
   const [kanbanSize, setKanbanSize] = useState(vh * 0.95);
   const [flipArrow, setFlipArrow] = useState(false);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(setRepo(location.state));
-  // }, []);
 
   const onClick = () => {
     if (kanbanSize <= 85) {
@@ -36,9 +24,6 @@ export const Workspace: React.FC = () => {
       setKanbanSize(85);
     }
   };
-  // const location = useLocation();
-
-  // console.log('LOCATION: ', location.state);
 
   useEffect(() => {
     if (kanbanSize > 500) {
@@ -75,7 +60,7 @@ export const Workspace: React.FC = () => {
               setKanbanSize(e.clientY);
             }}>
             {flipArrow ? (
-              <BsArrowBarUp
+              <TbLayoutSidebarLeftExpand
                 title="Shrink Kanban"
                 className="shrink-icon"
                 size={30}
@@ -83,8 +68,9 @@ export const Workspace: React.FC = () => {
                 onClick={onClick}
               />
             ) : (
-              <BsArrowBarDown
+              <TbLayoutSidebarLeftExpand
                 title="Expand Kanban"
+                className="expand-icon"
                 size={30}
                 color="lightgrey"
                 onClick={onClick}
@@ -106,7 +92,6 @@ export const Workspace: React.FC = () => {
               <GitTimeline />
             </div>
           </div>
-
           <ShowChatButton />
         </div>
       </Pane>
