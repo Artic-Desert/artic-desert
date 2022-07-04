@@ -89,7 +89,7 @@ export const Modal: React.FC<{
     navigate('/workspace', { state: { repo } });
   };
 
-  console.log('THIS', repoPreview);
+  console.log('THIS', commitInfo);
 
   return repoPreview ? (
     <>
@@ -201,14 +201,23 @@ export const Modal: React.FC<{
           animate="visible"
           exit="exit"
           onClick={e => e.stopPropagation()}>
-          <p style={{ color: 'white' }}>commit: {commitInfo.sha}</p>
-          <p style={{ color: 'white' }}>Message: {commitInfo.commit.message}</p>
-          <p style={{ color: 'white' }}>
-            Author: {commitInfo.commit.author.name}
-          </p>
-          <p style={{ color: 'white' }}>
-            Files Changed: {commitInfo.files.length}
-          </p>
+          <div className="commit-info-container">
+            <div className="commit-author-name">
+              <img src={commitInfo.author.avatar_url} alt="" />
+              <p>{commitInfo.author.login}</p>
+              <p>{commitInfo.commit.author.email}</p>
+            </div>
+            <div className="commit-details">
+              <p>Author: {commitInfo.commit.author.name}</p>
+              <p>Date: {commitInfo.commit.author.date}</p>
+              <p>Message: {commitInfo.commit.message}</p>
+              <p>Files Changed: {commitInfo.files.length}</p>
+            </div>
+            <div className="commit-stats">
+              <p>Additions:{commitInfo.stats.additions}</p>
+              <p>Deletions:{commitInfo.stats.deletions}</p>
+            </div>
+          </div>
         </motion.div>
       )}
     </Backdrop>
