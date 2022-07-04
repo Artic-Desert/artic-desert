@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 export const BranchLine: React.FC<{
   width: number;
   height: number;
+  //eslint-disable-next-line
   pathVariants: any;
   color: string;
 }> = ({ width, pathVariants, height, color }) => {
