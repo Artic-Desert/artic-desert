@@ -197,3 +197,53 @@ export type GithubCommit = {
     patch: string;
   }[];
 };
+export type Data = {
+  base: string;
+  clouds: clouds;
+  cod: 200;
+  coord: coord;
+  dt: number;
+  id: number;
+  main: main;
+  name: string;
+  sys: sys;
+  timezone: number;
+  visibilitu: number;
+  weather: weather;
+  wind: wind;
+};
+export type clouds = {
+  all: number;
+};
+export type coord = {
+  lon: number;
+  lat: number;
+};
+export type main = {
+  feels_like: number;
+  humidity: number;
+  pressure: number;
+  temp: number;
+  temp_min: number;
+  temp_max: number;
+};
+export type sys = {
+  type: number;
+  id: number;
+  country: string;
+  sunrise: number;
+  sunset: number;
+};
+export type weather = {
+  0: weather_breakdown;
+};
+export type weather_breakdown = {
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
+};
+export type wind = {
+  speed: number;
+  deg: number;
+};
