@@ -50,6 +50,7 @@
 .modal-repo-name {
   color: #57a6ff;
   margin-right: 20px;
+  margin-bottom: 20px;
 }
 .modal-repo-visibility {
   color: rgba(255, 228, 196, 0.794);
