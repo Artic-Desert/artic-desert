@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoGitBranch } from 'react-icons/go';
 import { BsCircleFill } from 'react-icons/bs';
+import { FiTrash2 } from 'react-icons/fi';
 import './RepoItem.css';
 // import { useUser } from '../../hooks/use-user';
 import moment from 'moment';
@@ -8,9 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import { GithubRepo } from '../../types/Types';
 import { useDispatch } from 'react-redux';
 import { setRepo } from '../../redux/repo/actions';
+import { removeRepo, setRepos } from '../../redux/repos/actions';
 import { setBranch } from '../../redux/branch/actions';
 import { AnimatePresence } from 'framer-motion';
 import Modal from '../GitTimelineComponent/ModalComponent/Modal.component';
+import { ApiClientService } from '../../services/ApiClientService';
+import { useRepos } from '../../hooks/use-repos';
+import { useUser } from '../../hooks/use-user';
 
 export const RepoItem: React.FC<{
   repo: GithubRepo;
@@ -21,46 +26,34 @@ export const RepoItem: React.FC<{
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { repos } = useRepos();
+  const { user } = useUser();
 
   const [modalOpen, setModalOpen] = useState(false);
 
   const close = () => setModalOpen(false);
   const open = () => setModalOpen(true);
   //eslint-disable-next-line
-  // const handleDelete = async () => {
-  //   console.log(repo.full_name.toLowerCase());
-  //   const body = JSON.stringify({
-  //     repo: repo.full_name.toLowerCase(),
-  //     action: 'remove',
-  //   });
-  //   const response = await fetch(
-  //     `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${user.login}}`,
-  //     {
-  //       method: 'PATCH',
-  //       body,
-  //     },
-  //   );
-  //   const data = await response.json();
+  const handleDelete = async () => {
+    const body =
+      repos &&
+      JSON.stringify({
+        repo: repo.full_name.toLowerCase(),
+        action: 'remove',
+      });
 
-  //   if (!data.message) {
-  //     //eslint-disable-next-line
-  //     setRepos((prevState: any) => {
-  //       //eslint-disable-next-line
-  //       const newState = prevState.filter((el: any) => el.id !== repo.id);
-  //       return newState;
-  //     });
-  //   }
-
-  //   return data;
-  // };
+    ApiClientService.updateDynamoUser(user.login, body).then(data => {
+      if (!data.message) {
+        repos && dispatch(removeRepo(repo));
+      }
+    });
+  };
 
   const fetchNumOfBranches = async () => {
     try {
-      const response = await fetch(
-        `https://api.github.com/repos/${repo.full_name}/branches`,
+      ApiClientService.getRepoBranches(repo.full_name).then(data =>
+        setNumOfBranches(data.length),
       );
-      const branches = await response.json();
-      setNumOfBranches(branches.length);
     } catch (error) {
       console.log(
         'Error fetching repo branches from github inside repo item component: ',
@@ -89,9 +82,14 @@ export const RepoItem: React.FC<{
     <>
       <div className="repo-item-container">
         <div className="top-line">
-          <h3 className="repo-name" onClick={() => handleNavigation(repo)}>
-            {repo.name}
-          </h3>
+          <div className="repo-header-container">
+            <h3 className="repo-name" onClick={() => handleNavigation(repo)}>
+              {repo.name}
+            </h3>
+            <button onClick={handleDelete} className="repo-delete">
+              <FiTrash2 />
+            </button>
+          </div>
           <div className="owner-cont">
             <img src={repo.owner.avatar_url} alt="" />
             <p className="repo-owner">{repo.owner.login}</p>

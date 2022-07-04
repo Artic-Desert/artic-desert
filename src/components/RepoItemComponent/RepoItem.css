@@ -20,6 +20,9 @@
   margin-top: 5px;
 }
 
+.repo-header-container {
+  display: flex;
+}
 .owner-cont {
   display: flex;
   align-items: center;
@@ -115,4 +118,24 @@
 .lang-ball-red {
   color: #e34c25;
   margin-right: 5px;
+}
+
+.repo-delete {
+  color: white;
+  /* position: absolute; */
+  margin-left: auto;
+  /* top: 5px; */
+  /* right: 20px; */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  opacity: 0.75;
+  transition: 200ms linear all;
+}
+
+.repo-delete:hover {
+  transform: rotate(5deg);
+  color: #57a6ff;
+  opacity: 0.75;
 }

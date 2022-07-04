@@ -48,4 +48,10 @@ export const ApiClientService = {
       },
     ).then(res => res.json());
   },
+
+  getRepoBranches: async repo_name => {
+    return fetch(`https://api.github.com/repos/${repo_name}/branches`).then(
+      res => res.json(),
+    );
+  },
 };
