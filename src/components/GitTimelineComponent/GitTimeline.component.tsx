@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
-import { motion, useMotionValue, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import './GitTimeline.css';
 import Modal from './ModalComponent/Modal.component';
-import { gitTimelineData } from '../../mocks/GitTimeline/gitTimeline';
+// import { gitTimelineData } from '../../mocks/GitTimeline/gitTimeline';
 import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
+import { useRepo } from '../../hooks/use-repo';
 // import { BranchLine } from './BranchLineComponent/BranchLine.component';
 
 const pathVariants = {
@@ -25,11 +26,39 @@ const pathVariants = {
 export const GitTimeline: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentCommit, setCurrentCommit] = useState<string | number>('');
+  const [gitTimelineData, setGitTimelineData] = useState<any>([]); //eslint-disable-line
 
   const close = () => setModalOpen(false);
 
-  const branchesOrdered: string[] = gitTimelineData[0];
-  const arrays: (number | string)[][] = gitTimelineData[1];
+  const { repo } = useRepo();
+
+  const getTimeLineData = async () => {
+    const body = JSON.stringify({
+      repo_name: repo.name,
+      repo_owner: repo.owner.login,
+      token: process.env.REACT_APP_GHP_TOKEN,
+    });
+    const response = await fetch(
+      'https://arctic-desert.herokuapp.com/timeline',
+      {
+        method: 'POST',
+        body,
+      },
+    );
+
+    const responseParsed: any[] = await response.json(); //eslint-disable-line
+
+    setGitTimelineData(responseParsed);
+  };
+
+  useEffect(() => {
+    getTimeLineData();
+  }, []);
+
+  const branchesOrdered: string[] =
+    gitTimelineData?.length && gitTimelineData[0];
+  const arrays: (number | string)[][] =
+    gitTimelineData?.length && gitTimelineData[1];
 
   const colors = [
     '#56FB08',
@@ -41,15 +70,16 @@ export const GitTimeline: React.FC = () => {
   ];
 
   const branchProps: { [key: string]: string } = {};
-  branchesOrdered.forEach((branch: string, index: number) => {
-    branchProps[branch] = colors[index];
-  });
+  branchesOrdered &&
+    branchesOrdered.forEach((branch: string, index: number) => {
+      branchProps[branch] = colors[index];
+    });
 
   const constraintsRef = useRef(null);
 
   const height = 50 * arrays[0].length;
   const width = 50 * arrays.length;
-  return (
+  return gitTimelineData?.length ? (
     <>
       <motion.div className="svg-cont" ref={constraintsRef}>
         <motion.svg
@@ -131,5 +161,5 @@ export const GitTimeline: React.FC = () => {
         )}
       </AnimatePresence>
     </>
-  );
+  ) : null;
 };
