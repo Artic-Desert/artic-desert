@@ -9,36 +9,41 @@ import {
 } from './actions';
 
 const initialKanban = {
-  todo: {
-    id: 'todo',
+  // board_id: 'default-owner/default-kanban-board/default-branch',
+
+  'To do': {
+    id: 'To do',
     tasks: [
       {
-        creator: 'arod80',
-        title: 'This is an example task',
-        body: 'You can delete this task and create you own!',
         timestamp: '1656430001000',
+        creator: 'default',
+        avatar_url: 'https://source.unsplash.com/random/200x200?sig=1',
+        title: 'Update db schema',
+        body: 'You can delete this task and create you own!',
       },
     ],
   },
-  doing: {
-    id: 'doing',
+  'In Progress': {
+    id: 'In Progress',
     tasks: [
       {
-        creator: 'arod80',
-        title: 'This is an example task',
+        timestamp: '1656450031000',
+        creator: 'default',
+        avatar_url: 'https://source.unsplash.com/random/200x200?sig=1',
+        title: 'Fix redux task reducer',
         body: 'You can delete this task and create you own!',
-        timestamp: '1656430001002',
       },
     ],
   },
-  done: {
-    id: 'done',
+  Done: {
+    id: 'Done',
     tasks: [
       {
-        creator: 'arod80',
-        title: 'This is an example task',
+        timestamp: '1656430531000',
+        creator: 'default',
+        avatar_url: 'https://source.unsplash.com/random/200x200?sig=1',
+        title: 'Renew website domain',
         body: 'You can delete this task and create you own!',
-        timestamp: '1656430001001',
       },
     ],
   },

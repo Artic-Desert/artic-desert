@@ -91,7 +91,6 @@ export const Header: React.FC = () => {
     }
   };
 
-<<<<<<< HEAD
   useEffect(() => {
     console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
     fetchInfoOfRepo();
@@ -100,11 +99,6 @@ export const Header: React.FC = () => {
   const handleBranchChange = (e: any) => {
     // e.preventDefault();
     setCurrentBranch(e.value);
-=======
-  const handleBranchChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault();
-    setCurrentBranch(e.target.selectedOptions[0].value);
->>>>>>> development
   };
 
   useEffect(() => {

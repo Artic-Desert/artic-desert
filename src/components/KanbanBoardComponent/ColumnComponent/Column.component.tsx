@@ -12,6 +12,7 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
   const dispatch = useDispatch();
   const { user } = useUser();
   const { repo } = useRepo();
+  console.log('COL AT COLUMNS:', col);
 
   const newTask = {
     new: true,
@@ -38,16 +39,17 @@ export const Column: React.FC<ColumnProps> = ({ col }) => {
             className="list"
             {...provided.droppableProps}
             ref={provided.innerRef}>
-            {col.tasks.map((task, index) => {
-              return (
-                <ListItem
-                  key={task.timestamp}
-                  task={task}
-                  index={index}
-                  column={col.id}
-                />
-              );
-            })}
+            {col.tasks &&
+              col.tasks.map((task, index) => {
+                return (
+                  <ListItem
+                    key={task.timestamp}
+                    task={task}
+                    index={index}
+                    column={col.id}
+                  />
+                );
+              })}
             {provided.placeholder}
           </div>
         </div>
