@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useGhpToken } from '../../hooks/use-ghpToken';
 import { useRepos } from '../../hooks/use-repos';
 import { useUser } from '../../hooks/use-user';
 import { addRepo } from '../../redux/repos/actions';
+import { ApiClientService } from '../../services/ApiClientService';
 // import { AuthService } from '../../services/AuthService';
 import './NewRepo.css';
 
@@ -13,83 +15,73 @@ export const NewRepo: React.FC = () => {
   const [message, setMessage] = useState('');
 
   const { repos } = useRepos();
+  const { user } = useUser();
+  const { ghpToken } = useGhpToken();
   const dispatch = useDispatch();
 
-  const BASE_URL = 'https://api.github.com';
+  const handleRepoAlreadyExists = () => {
+    setMessage(
+      'The Repository you are trying to add already exists in your workspace!',
+    );
+  };
+
+  const handleRepoNotFound = (repo: string, owner: string) => {
+    setMessage(
+      `Error 🚫 \nWe weren't able to find a repository called: ${repo} with author: ${owner}. Check your input and please try again.`,
+    );
+  };
 
   const repoFetchRequest = async (owner: string, repo: string) => {
     try {
       setMessage('');
-      console.log(`${BASE_URL}/repos/${owner}/${repo}`);
-      const repsonse = await fetch(`${BASE_URL}/repos/${owner}/${repo}`, {
-        headers: {
-          Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
-        },
-      });
-      const data = await repsonse.json();
-      console.log('NEW LOG!!', repos);
 
-      if (
+      const repoAlreadyExists =
         repos &&
-        repos.find((el: { full_name: string }) => {
-          console.log('EL FULLNAME : ', el);
-          console.log('REPO FULLNAME : ', `${owner}/${repo}`);
-
-          return (
-            el.full_name.toLowerCase() === `${owner}/${repo}`.toLowerCase()
-          );
-        })
-      ) {
-        setMessage(
-          'The Repository you are trying to add already exists in your workspace!',
+        repos.find(
+          (el: { full_name: string }) =>
+            el.full_name.toLowerCase() === `${owner}/${repo}`.toLowerCase(),
         );
-        console.log(message);
-        return;
-      } else {
-        if (data.id) {
-          dispatch(addRepo(data));
-        } else {
-          setMessage(
-            `Error 🚫 \nWe weren't able to find a repository called: ${repo} with author: ${owner}. Check your input and please try again.`,
-          );
-          console.log(message);
 
-          return;
-        }
-      }
-      setMessage('Repository added successfully!');
-      console.log(message);
+      return (
+        repos &&
+        ApiClientService.getGithubRepo(owner, repo, ghpToken).then(data => {
+          if (repoAlreadyExists) {
+            handleRepoAlreadyExists();
+            return;
+          } else {
+            if (data.id) {
+              dispatch(addRepo(data));
+            } else {
+              handleRepoNotFound(repo, owner);
+              return;
+            }
+            console.log('<NewRepo> repo fullname : ', `${owner}/${repo}`);
 
-      return data;
+            setMessage('Repository added successfully!');
+            console.log(message);
+
+            return data;
+          }
+        })
+      );
     } catch (err) {
       console.log(err);
     }
   };
 
-  const { user } = useUser();
-
   const updateUserRepos = async (owner: string, repo: string) => {
     if (!owner || !repo) return;
 
-    const repoFromGH = await repoFetchRequest(owner, repo);
+    const repoFromGithub = await repoFetchRequest(owner, repo);
 
-    console.log(repoFromGH);
-
-    if (!repoFromGH) return;
+    if (!repoFromGithub) return;
 
     const body = JSON.stringify({
       repo: `${owner}/${repo}`,
       action: 'add',
     });
-    const response = await fetch(
-      `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${user.login}}`,
-      {
-        method: 'PATCH',
-        body,
-      },
-    );
-    const data = await response.json();
-    return data;
+
+    return body && ApiClientService.updateDynamoUser(user.login, body);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

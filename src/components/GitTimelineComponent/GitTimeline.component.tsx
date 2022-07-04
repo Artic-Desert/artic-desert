@@ -9,6 +9,7 @@ import { useRepo } from '../../hooks/use-repo';
 // import { BranchLine } from './BranchLineComponent/BranchLine.component';
 import { useDispatch } from 'react-redux';
 import { setBranches } from '../../redux/branches/actions';
+import { ApiClientService } from '../../services/ApiClientService';
 
 // const pathVariants = {
 //   hidden: {
@@ -42,18 +43,10 @@ export const GitTimeline: React.FC = () => {
       token: process.env.REACT_APP_GHP_TOKEN,
     });
 
-    const response = await fetch(
-      'https://arctic-desert.herokuapp.com/timeline',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body,
-      },
-    );
-
-    const responseParsed: any[] = await response.json(); //eslint-disable-line
-    console.log('RESPONSE PARSED: ', responseParsed);
-    setGitTimelineData(responseParsed);
+    body &&
+      ApiClientService.getTimelineData(body).then(data =>
+        setGitTimelineData(data),
+      );
   };
 
   useEffect(() => {
