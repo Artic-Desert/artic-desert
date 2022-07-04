@@ -10,11 +10,14 @@ import { useBranch } from '../../../hooks/use-branch';
 import { GithubUser, RepoBranch } from '../../../types/Types';
 import Select, { SingleValue } from 'react-select';
 import { useNavigate } from 'react-router-dom';
+import { ApiClientService } from '../../../services/ApiClientService';
+import { useGhpToken } from '../../../hooks/use-ghpToken';
 
 export const Header: React.FC = () => {
   const { user } = useUser();
   const { repo } = useRepo();
   const { branch } = useBranch();
+  const { ghpToken } = useGhpToken();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -38,43 +41,20 @@ export const Header: React.FC = () => {
 
   const getBranches = async () => {
     try {
-      const branchesResponse = await fetch(
+      return (
         repo.branches_url &&
+        (await ApiClientService.getBranches(
           repo.branches_url.slice(0, repo.branches_url.length - 9),
-        {
-          headers: {
-            Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
-          },
-        },
+        ))
       );
-      const branch = await branchesResponse.json();
-      console.log('<Header> response from getBranches: ', branch);
-      return branch;
     } catch (error) {
       console.error('Error inside <Header> getBranches(): ', error);
     }
   };
 
   const getCollaborators = async () => {
-    const body = {
-      repo: repo.name,
-      owner: repo.owner.login,
-      token: process.env.REACT_APP_GHP_TOKEN,
-    };
     try {
-      const collaboratorsResponse = await fetch(
-        'https://arctic-desert.herokuapp.com/filter',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(body),
-        },
-      );
-      const collaborators = await collaboratorsResponse.json();
-      console.log('<Header> response from getCollaborators: ', collaborators);
-      return collaborators;
+      return await ApiClientService.getCollaboratorsOfRepo(repo, ghpToken);
     } catch (error) {
       console.error('Error inside <Header> getCollaborators(): ', error);
     }
