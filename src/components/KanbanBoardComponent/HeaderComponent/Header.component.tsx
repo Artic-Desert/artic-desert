@@ -146,8 +146,6 @@ export const Header: React.FC = () => {
         )}
       </div>
       <div className="left">
-<<<<<<< HEAD
-=======
         <div className="select">
           {repoInfo.branches && (
             <Select
@@ -156,7 +154,6 @@ export const Header: React.FC = () => {
               onChange={e => handleBranchChange(e)}></Select>
           )}
         </div>
->>>>>>> xavi
         {repoInfo.branches && (
           <div className="num-branches">
             <GoGitBranch />
