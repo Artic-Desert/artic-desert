@@ -19,39 +19,21 @@ import { setRepo } from '../../redux/repo/actions';
 import { setBranch } from '../../redux/branch/actions';
 import { Collapasible } from '../../components/CollapsibleComponent/Collapsible.component';
 import { NewRepo } from '../../components/NewRepoComponent/NewRepo.component';
+import { useGhpToken } from '../../hooks/use-ghpToken';
+import { TokenInput } from '../../components/TokenInputComponent/TokenInput.component';
 
 export const Dashboard: React.FC = () => {
   const { user } = useUser();
   // const [gitHubUser, setGitHubUser] = React.useState<any>();
+  const { ghpToken } = useGhpToken();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('ghpToken : ', ghpToken);
     dispatch(setRepo({}));
     dispatch(setBranch('all-branches'));
   }, []);
-
-  // useEffect(() => {
-  //   console.log('EL USER 8===D', user);
-
-  //   fetch(`https://api.github.com/users/${user.username}`, {
-  //     headers: {
-  //       Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}`,
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log('EL LOG 8===D', data);
-  //       setGitHubUser(data);
-  //     });
-  // }, []);
-
-  // const navigate = useNavigate();
-
-  // const handleLogout = () => {
-  //   AuthService.resetUserSession();
-  //   navigate('/');
-  // };
 
   return (
     user && (
@@ -60,15 +42,6 @@ export const Dashboard: React.FC = () => {
           <UserInfo />
         </div>
         <div className="dashboard-middle">
-          {/* <div className="header">
-            <div className="title-logo-cont">
-              <img className="header-logo" src={ades} alt="" />
-              <h1 className="header-title">Dashboard</h1>
-            </div>
-            <div className="add-new">
-              <h4>Add a new repository to your Dashboard</h4>
-            </div>
-          </div> */}
           <div className="hero">
             <div className="productivity">
               <Time />
@@ -77,14 +50,18 @@ export const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="dashboard-right">
-          <Collapasible open title="Add a new repository">
-            <NewRepo />
-          </Collapasible>
-          <div className="dashboard-column">
-            <RepoSideBar />
+        {!ghpToken ? (
+          <TokenInput />
+        ) : (
+          <div className="dashboard-right">
+            <Collapasible open title="Add a new repository">
+              <NewRepo />
+            </Collapasible>
+            <div className="dashboard-column">
+              <RepoSideBar />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     )
   );
