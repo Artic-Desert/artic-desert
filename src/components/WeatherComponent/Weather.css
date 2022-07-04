@@ -22,7 +22,7 @@
 .weather-top {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   text-align: end;
 }
 .icon-and-temp-container {
