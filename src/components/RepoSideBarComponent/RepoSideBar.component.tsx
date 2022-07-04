@@ -62,7 +62,7 @@ export const RepoSideBar: React.FC = () => {
 
   useEffect(() => {
     fetchUserRepos();
-  }, []);
+  }, [repos]);
 
   return (
     <div className="repoSideBarWrapper">
