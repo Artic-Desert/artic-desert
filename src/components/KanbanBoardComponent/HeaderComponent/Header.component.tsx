@@ -161,7 +161,7 @@ export const Header: React.FC = () => {
               return (
                 <a
                   title={`${collaborator.login}'s GitHub`}
-                  key={collaborator.id}
+                  key={`${collaborator.id}_key`}
                   href={collaborator.html_url}
                   target="_blank"
                   rel="noreferrer">
