@@ -22,7 +22,7 @@ const vh = Math.max(
 );
 
 export const Workspace: React.FC = () => {
-  const [kanbanSize, setKanbanSize] = useState(85);
+  const [kanbanSize, setKanbanSize] = useState(vh * 0.95);
   const [flipArrow, setFlipArrow] = useState(false);
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ export const Workspace: React.FC = () => {
 
   const onClick = () => {
     if (kanbanSize <= 85) {
-      setKanbanSize(vh * 0.6);
+      setKanbanSize(vh * 0.95);
     } else {
       setKanbanSize(85);
     }
