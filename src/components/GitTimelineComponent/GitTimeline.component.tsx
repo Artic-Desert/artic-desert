@@ -42,7 +42,6 @@ export const GitTimeline: React.FC = () => {
       token: process.env.REACT_APP_GHP_TOKEN,
     });
 
-    console.log('BEFORE FETCHING.... body: ', body);
     const response = await fetch(
       'https://arctic-desert.herokuapp.com/timeline',
       {
@@ -138,7 +137,7 @@ export const GitTimeline: React.FC = () => {
               d={`M0 300, ${width} 300`}
               variants={pathVariants}
             /> */}
-            {arrays.map(array => {
+            {/* {arrays.map(array => {
               return array.map((commit: string | number, indexY: number) => {
                 return (
                   <BranchLine
@@ -150,7 +149,7 @@ export const GitTimeline: React.FC = () => {
                   />
                 );
               });
-            })}
+            })} */}
 
             {arrays.map((array: (string | number)[], indexX: number) => {
               return array.map((commit: string | number, indexY: number) => {
