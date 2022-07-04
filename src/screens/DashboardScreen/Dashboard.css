@@ -7,6 +7,8 @@
   overflow: hidden;
   background: url('../../assets/dash-back.svg');
   background-color: var(--background-color);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .dashboard-left {

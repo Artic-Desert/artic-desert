@@ -40,12 +40,14 @@ export type GithubRepo = {
   message?: { message: string }; // This is not a repo property, it only exists with there is an error message from the fetch.
   default_branch: string;
   watchers: number;
+  created_at: string;
   updated_at: string;
   clone_url: string;
   size: number;
   stargazers_count: number;
   languages_url: string;
   visibility: string;
+  forks: number;
 };
 
 export type GithubUser = {

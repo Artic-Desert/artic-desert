@@ -26,7 +26,10 @@ export const NewRepo: React.FC = () => {
         },
       });
       const data = await repsonse.json();
+      console.log('NEW LOG!!', repos);
+
       if (
+        repos &&
         repos.find((el: any) => {
           console.log('EL FULLNAME : ', el);
           console.log('REPO FULLNAME : ', `${owner}/${repo}`);
@@ -39,6 +42,7 @@ export const NewRepo: React.FC = () => {
         setMessage(
           'The Repository you are trying to add already exists in your workspace!',
         );
+        console.log(message);
         return;
       } else {
         if (data.id) {
@@ -47,10 +51,14 @@ export const NewRepo: React.FC = () => {
           setMessage(
             `Error 🚫 \nWe weren't able to find a repository called: ${repo} with author: ${owner}. Check your input and please try again.`,
           );
+          console.log(message);
+
           return;
         }
       }
       setMessage('Repository added successfully!');
+      console.log(message);
+
       return data;
     } catch (err) {
       console.log(err);
