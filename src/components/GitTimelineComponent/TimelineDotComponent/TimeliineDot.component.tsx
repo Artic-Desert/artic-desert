@@ -38,7 +38,7 @@ export const TimeliineDot: React.FC<{
         fill={branchProps[branchesOrdered[indexY]]}
         // stroke="#56FB08"+
         cx={indexX * 50}
-        cy={String(400 - indexY * 50)}
+        cy={String(350 - indexY * 50)}
         r="10"
       />
     </>

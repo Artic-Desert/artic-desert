@@ -11,7 +11,7 @@ export const BranchLine: React.FC<{
     <>
       <motion.path
         stroke={color}
-        d={`M0 ${height}, ${width} ${height}`}
+        d={`M0 ${height - 50}, ${width} ${height - 50}`}
         variants={pathVariants}
       />
     </>
