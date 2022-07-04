@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { useBranch } from '../../../hooks/use-branch';
 import { GithubUser, RepoBranch } from '../../../types/Types';
 import Select, { SingleValue } from 'react-select';
+import { useNavigate } from 'react-router-dom';
 // import { Z_FIXED } from 'zlib';
 // import { isWhiteSpaceLike } from 'typescript';
 
@@ -17,6 +18,7 @@ export const Header: React.FC = () => {
   const { user } = useUser();
   const { repo } = useRepo();
   const { branch } = useBranch();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   console.log('<Header> current repo: ', repo);
@@ -106,6 +108,10 @@ export const Header: React.FC = () => {
     setCurrentBranch(e ? e.value : '');
   };
 
+  const handleNavigation = () => {
+    navigate('/dashboard');
+  };
+
   useEffect(() => {
     dispatch(setBranch(currentBranch));
   }, [currentBranch]);
@@ -190,6 +196,9 @@ export const Header: React.FC = () => {
           </a>
         </div>
       )}
+      <div className="navigate-dashboard">
+        <button onClick={handleNavigation}>Back To Dashboard</button>
+      </div>
       <div className="right">
         <div className="user-info">
           <span>Hello {user.name.split(' ')[0]}!</span>
