@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { GoGitBranch, GoRepoForked } from 'react-icons/go';
-import { AiFillCopy, AiOutlineStar } from 'react-icons/ai';
-import { BsFillEyeFill, BsArrowBarRight } from 'react-icons/bs';
+import { AiFillCopy, AiOutlineStar, AiOutlineMail } from 'react-icons/ai';
+import { FiGithub } from 'react-icons/fi';
+import { ImFilesEmpty } from 'react-icons/im';
+import { BiMessageSquareDetail, BiPlus, BiMinus } from 'react-icons/bi';
+import {
+  BsFillEyeFill,
+  BsArrowBarRight,
+  BsFillPersonLinesFill,
+  BsFillCalendar2DateFill,
+} from 'react-icons/bs';
 import { MdOutlineMemory, MdArrowForwardIos } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -197,7 +205,7 @@ export const Modal: React.FC<{
       {commitInfo?.commit && (
         <motion.div
           variants={dropIn}
-          className="modal background"
+          className="modalCommit background"
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -205,18 +213,81 @@ export const Modal: React.FC<{
           <div className="commit-info-container">
             <div className="commit-author-name">
               <img src={commitInfo.author.avatar_url} alt="" />
-              <p>{commitInfo.author.login}</p>
-              <p>{commitInfo.commit.author.email}</p>
+              <div className="cont-plus-title">
+                <h3>Commiter Info</h3>
+                <div className="commit-author-info-cont">
+                  <p>
+                    Commit author •
+                    <span>
+                      {' '}
+                      <BsFillPersonLinesFill /> {commitInfo.commit.author.name}
+                    </span>
+                  </p>
+                  <p>
+                    GitHub username •
+                    <span>
+                      {' '}
+                      <FiGithub /> {commitInfo.author.login}
+                    </span>
+                  </p>
+                  <p>
+                    E-mail •
+                    <span>
+                      {' '}
+                      <AiOutlineMail /> {commitInfo.commit.author.email}
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="commit-details">
-              <p>Author: {commitInfo.commit.author.name}</p>
-              <p>Date: {commitInfo.commit.author.date}</p>
-              <p>Message: {commitInfo.commit.message}</p>
-              <p>Files Changed: {commitInfo.files.length}</p>
+            <div className="commit-details-title">
+              <h3>Commit Details</h3>
+              <div className="commit-details">
+                <p>
+                  Date •{' '}
+                  <span>
+                    {' '}
+                    <BsFillCalendar2DateFill /> {commitInfo.commit.author.date}
+                  </span>
+                </p>
+                <p>
+                  Files Changed •{' '}
+                  <span>
+                    {' '}
+                    <ImFilesEmpty /> {commitInfo.files.length}
+                  </span>
+                </p>
+                <p>
+                  Commit message •{' '}
+                  <span>
+                    {' '}
+                    <BiMessageSquareDetail /> <q>{commitInfo.commit.message}</q>
+                  </span>
+                </p>
+              </div>
             </div>
-            <div className="commit-stats">
-              <p>Additions:{commitInfo.stats.additions}</p>
-              <p>Deletions:{commitInfo.stats.deletions}</p>
+            <div className="commit-stats-title">
+              <h3>File changes</h3>
+              <div className="commit-stats">
+                <p>
+                  Additions •{' '}
+                  <span>
+                    {' '}
+                    <BiPlus color="green" />
+                    <BiPlus color="green" />
+                    {commitInfo.stats.additions}
+                  </span>
+                </p>
+                <p>
+                  Deletions •{' '}
+                  <span>
+                    {' '}
+                    <BiMinus color="red" />
+                    <BiMinus color="red" />
+                    {commitInfo.stats.deletions}
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>

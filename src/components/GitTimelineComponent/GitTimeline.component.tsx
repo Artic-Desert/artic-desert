@@ -87,7 +87,6 @@ export const GitTimeline: React.FC = () => {
       <>
         <motion.div className="svg-cont" ref={constraintsRef}>
           <motion.svg
-            variants={pathVariants}
             drag={'x'}
             dragConstraints={{ left: -width, right: 0 }}
             // dragConstraints={constraintsRef}
@@ -96,41 +95,14 @@ export const GitTimeline: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             width={String(width) + 'px'}
             height={String(height) + 'px'}
-            viewBox={`0 0 ${width} ${height}`}
-            preserveAspectRatio="xMidYMid meet"
-            initial="hidden"
-            animate="visible">
-            {/* <motion.path
-              stroke="#ff0000"
-              d={`M0 400, ${width} 400`}
-              variants={pathVariants}
-            />
-            <motion.path
-              stroke="#df1bfd"
-              d={`M0 450, ${width} 450`}
-              variants={pathVariants}
-            />
-            <motion.path
-              stroke="#00ffff"
-              d={`M0 500, ${width} 500`}
-              variants={pathVariants}
-            />
-            <motion.path
-              stroke="#56FB08"
-              d={`M0 550, ${width} 550`}
-              variants={pathVariants}
-            />
-            <motion.path
-              stroke="#ffff00"
-              d={`M0 350, ${width} 350`}
-              variants={pathVariants}
-            />
-            <motion.path
-              stroke="#ff8400"
-              d={`M0 300, ${width} 300`}
-              variants={pathVariants}
-            /> */}
-            {arrays.map(array => {
+            viewBox={`0 0 ${width} ${height}`}>
+            <path stroke="#ff0000" d={`M0 400, ${width} 400`} />
+            <path stroke="#df1bfd" d={`M0 450, ${width} 450`} />
+            <path stroke="#00ffff" d={`M0 500, ${width} 500`} />
+            <path stroke="#56FB08" d={`M0 550, ${width} 550`} />
+            <path stroke="#ffff00" d={`M0 350, ${width} 350`} />
+            <path stroke="#ff8400" d={`M0 300, ${width} 300`} />
+            {/* {arrays.map(array => {
               return array.map((commit: string | number, indexY: number) => {
                 return (
                   <BranchLine
@@ -142,7 +114,7 @@ export const GitTimeline: React.FC = () => {
                   />
                 );
               });
-            })}
+            })} */}
 
             {arrays.map((array: (string | number)[], indexX: number) => {
               return array.map((commit: string | number, indexY: number) => {

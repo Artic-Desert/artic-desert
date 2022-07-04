@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
 export const TimeliineDot: React.FC<{
   indexX: number;
   indexY: number;
@@ -31,6 +30,7 @@ export const TimeliineDot: React.FC<{
   return (
     <>
       <motion.circle
+        className="commit-circle"
         key={`${indexX}${indexY}`}
         onClick={() => {
           modalOpen ? close() : open();
