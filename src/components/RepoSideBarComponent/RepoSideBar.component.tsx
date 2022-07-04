@@ -20,10 +20,7 @@ export const RepoSideBar: React.FC = () => {
 
   const fetchUser = async (): Promise<DynamoUser | undefined> => {
     try {
-      const response = await fetch(
-        `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${user.login}}`,
-      );
-      return await response.json();
+      return ApiClientService.getUser(user.login);
     } catch (error) {
       console.log('Error in repo side bar fetching user from dynamo: ', error);
     }

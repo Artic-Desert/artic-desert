@@ -8,7 +8,9 @@ export const ApiClientService = {
         method: 'GET',
         headers: { 'content-type': 'application/json' },
       },
-    ).then(res => res.json());
+    )
+      .then(res => res.json())
+      .catch(err => console.log(err));
   },
 
   updateKanbanBoard: async (board_id, columns) => {
@@ -19,7 +21,9 @@ export const ApiClientService = {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ board: columns }),
       },
-    ).then(res => res.json());
+    )
+      .then(res => res.json())
+      .catch(err => console.log(err));
   },
 
   getTimelineData: async body => {
@@ -28,7 +32,9 @@ export const ApiClientService = {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: body,
-    }).then(res => res.json());
+    })
+      .then(res => res.json())
+      .catch(err => console.log(err));
   },
 
   getGithubRepo: async (owner, repo, ghpToken) => {
@@ -37,7 +43,17 @@ export const ApiClientService = {
         // eslint-disable-next-line no-undef
         Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
       },
-    }).then(res => res.json());
+    })
+      .then(res => res.json())
+      .catch(err => console.log(err));
+  },
+
+  getUser: async username => {
+    return fetch(
+      `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${username}}`,
+    )
+      .then(res => res.json())
+      .catch(err => console.log(err));
   },
 
   updateDynamoUser: async (username, body) => {
@@ -47,6 +63,8 @@ export const ApiClientService = {
         method: 'PATCH',
         body,
       },
-    ).then(res => res.json());
+    )
+      .then(res => res.json())
+      .catch(err => console.log(err));
   },
 };
