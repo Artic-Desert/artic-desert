@@ -6,22 +6,50 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-image: url('../../assets/matrixV3.svg');
+  background-image: url('../../assets/valiback.svg');
 }
+
 .validation-main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: transparent;
-  z-index: 5;
 }
 .validation-screen-h1 {
+  width: 60%;
+  text-align: center;
   font-family: 'Trispace', sans-serif;
-  font-size: 6vw;
+  font-size: 5vw;
   color: var(--white-body);
+  margin-top: 200px;
 }
 .validation-loading {
   font-family: 'Trispace', sans-serif;
   font-size: 2vw;
   color: var(--white-body);
 }
+
+.load-dots {
+  margin-top: -50px;
+}
+
+/* .git-spin {
+  animation: spin 0.5s linear;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+} */

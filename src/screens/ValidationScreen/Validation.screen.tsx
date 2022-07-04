@@ -1,9 +1,11 @@
 import axios from 'axios'; //eslint-disable-line
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { GoMarkGithub } from 'react-icons/go';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { setUser } from '../../redux/user/actions';
 import { AuthService } from '../../services/AuthService';
+import dots from '../../assets/loaddots.svg';
 // require('dotenv').config('../../../.env'); //eslint-disable-line
 
 import './Validation.css';
@@ -89,7 +91,13 @@ export const Validation: React.FC = () => {
   return (
     <div className="validation-wrapper">
       <div className="validation-main-container">
-        <h1 className="validation-screen-h1">Validating token</h1>
+        <h1 className="validation-screen-h1">
+          Connecting to Github{' '}
+          <span className="git-spin">
+            <GoMarkGithub className="git-spin" size={60} />
+          </span>
+        </h1>
+        <img className="load-dots" src={dots} alt="" />
         {loading ? <div className="validation-loading">Please wait</div> : null}
       </div>
     </div>
