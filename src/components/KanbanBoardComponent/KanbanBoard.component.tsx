@@ -34,11 +34,13 @@ export const KanbanBoard: React.FC = () => {
       ApiClientService.getKanbanBoard(kanban_board_id).then(data => {
         dispatch(setKanban(data.board));
       });
+    console.log('Kanban Board: getting board');
   }, [branch]);
 
   useEffect(() => {
     kanban_board_id &&
       ApiClientService.updateKanbanBoard(kanban_board_id, kanban);
+    console.log('Kanban Board: updating board');
   }, [kanban]);
 
   const onDragEnd = ({ source, destination }: DropResult) => {

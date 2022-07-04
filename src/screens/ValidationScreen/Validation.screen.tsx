@@ -31,7 +31,7 @@ export const Validation: React.FC = () => {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          'access-control-allow-origin': '*',
+          // 'access-control-allow-origin': '*',
         },
         body,
       },

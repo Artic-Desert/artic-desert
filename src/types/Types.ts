@@ -38,6 +38,14 @@ export type GithubRepo = {
   full_name: string;
   pushed_at: string;
   message?: { message: string }; // This is not a repo property, it only exists with there is an error message from the fetch.
+  default_branch: string;
+  watchers: number;
+  updated_at: string;
+  clone_url: string;
+  size: number;
+  stargazers_count: number;
+  languages_url: string;
+  visibility: string;
 };
 
 export type GithubUser = {
@@ -106,6 +114,7 @@ export type MessageToCreate = {
   edited_timestamp?: number;
   username: string;
   chatgroup_id: string;
+  avatar_url: string;
 };
 
 export type Message = {
@@ -115,6 +124,7 @@ export type Message = {
   timestamp: number;
   username: string;
   chatgroup_id: string;
+  avatar_url?: string;
 };
 
 export type ChatGroupToCreate = {
@@ -145,4 +155,43 @@ export type UserToAddToPremium = {
 export type PremiumUser = {
   time_added: string;
   user_id: string;
+};
+
+export type GithubCommit = {
+  sha: string;
+  commit: {
+    author: {
+      name: string;
+      email: string;
+      date: string;
+    };
+    message: string;
+    url: string;
+  };
+  url: string;
+  html_url: string;
+  author: GithubUser;
+  commiter: GithubUser;
+  parents: {
+    sha: string;
+    url: string;
+    html_url: string;
+  }[];
+  stats: {
+    total: number;
+    additions: number;
+    deletions: number;
+  };
+  files: {
+    sha: string;
+    filename: string;
+    status: string;
+    additions: number;
+    deletions: number;
+    changes: number;
+    blob_url: string;
+    raw_url: string;
+    contents_url: string;
+    patch: string;
+  }[];
 };
