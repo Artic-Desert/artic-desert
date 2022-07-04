@@ -193,7 +193,14 @@ export const Header: React.FC = () => {
       <div className="right">
         <div className="user-info">
           <span>Hello {user.name.split(' ')[0]}!</span>
-          <img src={user.avatar_url} alt="" />
+          <a
+            title="GitHub Profile"
+            key={user.id}
+            href={user.html_url}
+            target="_blank"
+            rel="noreferrer">
+            <img src={user.avatar_url} alt="" />
+          </a>
         </div>
       </div>
     </div>
