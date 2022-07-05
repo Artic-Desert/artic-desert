@@ -34,7 +34,7 @@ export const GitTimeline: React.FC = () => {
   const [arrays, setArrays] = useState<any>([]);
   const [branchesOrdered, setBranchesOrdered] = useState<string[]>([]);
 
-  const close = () => setModalOpen(false);
+  // const close = () => setModalOpen(false);
   const dispatch = useDispatch();
 
   const { repo } = useRepo();
@@ -50,26 +50,19 @@ export const GitTimeline: React.FC = () => {
     getTimeLineData();
   }, []);
 
-  console.log('HEY THERE, I WAS RENDERED!' + Math.random());
-  // const branchesOrdered: string[] = gitTimelineData?.length
-  //   ? gitTimelineData[0]
-  //   : null;
-
-  // const arrays: (number | string)[][] = gitTimelineData?.length
-  //   ? gitTimelineData[1]
-  //   : null;
-
   useEffect(() => {
     dispatch(setBranches(branchesOrdered ? branchesOrdered : []));
   }, [branchesOrdered]);
 
   const colors = [
-    '#56FB08',
+    '#ffab91',
     '#00ffff',
-    '#df1bfd',
-    '#ff0000',
-    '#ffff00',
+    '#e91e63',
+    '#ab47bc',
+    '#f48fb1',
     '#ff8400',
+    '#6592b7',
+    '#57a6ff',
   ];
 
   const branchProps: { [key: string]: string } = {};
@@ -82,73 +75,70 @@ export const GitTimeline: React.FC = () => {
 
   // const height = 50 * (arrays && arrays[0].length);
   const width = 50 * (arrays && arrays.length);
+  const dataIsLoaded = gitTimelineData?.length && branchesOrdered && arrays;
   return (
-    gitTimelineData?.length && (
+    dataIsLoaded && (
       <>
-        <div ref={constraintsRef} style={{ width: 'fitContent' }}>
-          <motion.div className="svg-cont">
-            <motion.svg
-              drag={'x'}
-              dragConstraints={{ left: -width, right: 0 }}
-              // dragConstraints={constraintsRef}
-              // ref={constraintsRef}
-              dragElastic={0.001}
-              className="the-svg"
-              xmlns="http://www.w3.org/2000/svg"
-              width={String(width) + 'px'}
-              height="500px"
-              viewBox={`0 0 ${width + 1000} 500`}>
-              <path stroke="#ff0000" d={`M0 300, ${width} 300`} />
-              <path stroke="#df1bfd" d={`M0 350, ${width} 350`} />
-              <path stroke="#00ffff" d={`M0 400, ${width} 400`} />
-              <path stroke="#56FB08" d={`M0 450, ${width} 450`} />
-              <path stroke="#ffff00" d={`M0 250, ${width} 250`} />
-              <path stroke="#ff8400" d={`M0 200, ${width} 200`} />
-              {/* {arrays.map(array => {
-              return array.map((commit: string | number, indexY: number) => {
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginRight: '10%',
+            position: 'fixed',
+          }}>
+          <h1 style={{ color: 'white', fontSize: 50 }}>GIT COMMIT TIMELINE</h1>
+          <h3 style={{ color: 'white' }}>
+            White commits are where merges have occurred
+          </h3>
+          <h4 style={{ color: 'white' }}>
+            Some other helpful text goes here...
+          </h4>
+        </div>
+        {/* <div ref={constraintsRef} style={{ width: 'fitContent' }}> */}
+        <motion.div className="svg-cont">
+          <motion.svg
+            drag={'x'}
+            dragConstraints={{ left: -width, right: 0 }}
+            // dragConstraints={constraintsRef}
+            // ref={constraintsRef}
+            dragElastic={0.001}
+            className="the-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            width={String(width) + 'px'}
+            height="500px"
+            viewBox={`0 0 ${width} 500`}>
+            <path stroke="#ffab91" d={`M0 450, ${width} 450`} />
+            <path stroke="#00ffff" d={`M0 400, ${width} 400`} />
+            <path stroke="#e91e63" d={`M0 350, ${width} 350`} />
+            <path stroke="#ab47bc" d={`M0 300, ${width} 300`} />
+            <path stroke="#f48fb1" d={`M0 250, ${width} 250`} />
+            <path stroke="#ff8400" d={`M0 200, ${width} 200`} />
+            <path stroke="#6592b7" d={`M0 150, ${width} 150`} />
+            <path stroke="#57a6ff" d={`M0 100, ${width} 100`} />
+            {/* eslint-disable-next-line */}
+            {console.log('HEY THERE IM INSIDE ARRAYS.MAP:', Math.random())};
+            {arrays.map((array: any[], indexX: number) => {
+              return array.map((commit: any[] | number, indexY: number) => {
+                //eslint-disable-next-line
                 return (
-                  <BranchLine
-                    key={colors[indexY] + indexY}
-                    color={colors[indexY]}
-                    width={width}
-                    height={height - 50 * indexY}
-                    pathVariants={pathVariants}
-                  />
+                  typeof commit !== 'number' && (
+                    <TimeliineDot
+                      key={`${indexX}${indexY}`}
+                      indexX={indexX}
+                      indexY={Math.abs(indexY - array.length + 1)}
+                      branchProps={branchProps}
+                      branchesOrdered={branchesOrdered}
+                      commit={commit[0]}
+                      isMerge={commit[1]}
+                    />
+                  )
                 );
               });
-            })} */}
-
-              {/* eslint-disable-next-line */}
-              {arrays.map((array: any[], indexX: number) => {
-                array = array.reverse();
-                return (
-                  array
-                    // .reverse()
-                    //eslint-disable-next-line
-                    .map((commit: any[] | number, indexY: number) => {
-                      console.log('HEY THERE AGAIN ;)');
-                      return (
-                        typeof commit !== 'number' && (
-                          <TimeliineDot
-                            key={`${indexX}${indexY}`}
-                            indexX={indexX}
-                            indexY={indexY}
-                            branchProps={branchProps}
-                            branchesOrdered={branchesOrdered}
-                            commit={commit[0]}
-                            isMerge={commit[1]}
-                            // modalOpen={modalOpen}
-                            // setModalOpen={setModalOpen}
-                            // setCurrentCommit={setCurrentCommit}
-                          />
-                        )
-                      );
-                    })
-                );
-              })}
-            </motion.svg>
-          </motion.div>
-        </div>
+            })}
+          </motion.svg>
+        </motion.div>
+        {/* </div> */}
         {/* <AnimatePresence
           initial={false}
           exitBeforeEnter={true}

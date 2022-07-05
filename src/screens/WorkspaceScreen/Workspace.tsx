@@ -21,12 +21,14 @@ export const Workspace: React.FC = () => {
   const [flipArrow, setFlipArrow] = useState(false);
   const { branches } = useBranches();
   const colors = [
-    '#56FB08',
+    '#ffab91',
     '#00ffff',
-    '#df1bfd',
-    '#ff0000',
-    '#ffff00',
+    '#e91e63',
+    '#ab47bc',
+    '#f48fb1',
     '#ff8400',
+    '#6592b7',
+    '#57a6ff',
   ];
 
   const onClick = () => {
@@ -98,7 +100,7 @@ export const Workspace: React.FC = () => {
                       key={branch}
                       className="branch"
                       style={{ color: colors[branches.length - 1 - index] }}>
-                      <em>{branch}</em>
+                      {branch}
                     </h3>
                   );
                 })}

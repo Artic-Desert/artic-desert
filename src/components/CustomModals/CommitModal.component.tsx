@@ -46,28 +46,22 @@ const dropIn = {
 export const CommitModal: React.FC = () => {
   const { repo } = useRepo();
   const { ghpToken } = useGhpToken();
+  const { commitModal } = useCommitModal(); // has to be state that is triggered by svg click
   const [commitInfo, setCommitInfo] = useState<GithubCommit>();
-  // const { commitModal } = useCommitModal();
-  const { commitModal } = useCommitModal(); // has to be state that is triggewred by svg click
-  const commit = commitModal;
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log('repo.owner.login:', repo.owner.login);
-    console.log('repo.name:', repo.name);
-    console.log('commit:', commit);
     repo &&
       ApiClientService.getCommitBySha(
         repo.owner.login,
         repo.name,
         ghpToken,
-        commit,
+        commitModal,
       ).then(data => {
         console.log(data);
         setCommitInfo(data);
       });
   }, [commitModal]);
 
-  console.log(commitModal);
   const handleClose = () => {
     dispatch(setCommitModal(''));
   }; // has to be a redux state
@@ -77,8 +71,18 @@ export const CommitModal: React.FC = () => {
     commitModal &&
     commitInfo &&
     commitInfo.commit && (
+      // <AnimatePresence
+      //   initial={false}
+      //   exitBeforeEnter={true}
+      //   onExitComplete={() => null}>
       <Backdrop onClick={handleClose}>
-        <div className="modalCommit background">
+        <motion.div
+          variants={dropIn}
+          className="modal background"
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          onClick={e => e.stopPropagation()}>
           <div className="commit-info-container">
             <div className="commit-author-name">
               <img
@@ -173,8 +177,9 @@ export const CommitModal: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Backdrop>
+      // </AnimatePresence>
     )
   );
 };
