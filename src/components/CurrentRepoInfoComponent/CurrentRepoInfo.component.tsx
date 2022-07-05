@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRepo } from '../../hooks/use-repo';
-import { GoGitBranch, GoRepoForked } from 'react-icons/go';
+import { GoRepoForked } from 'react-icons/go';
 import { AiFillCopy, AiOutlineStar } from 'react-icons/ai';
 import { BsFillEyeFill } from 'react-icons/bs';
 import { MdOutlineMemory } from 'react-icons/md';
@@ -19,8 +19,6 @@ export const CurrentRepoInfo: React.FC = () => {
     repo && (await navigator.clipboard.writeText(repo.clone_url));
     setTimeout(() => setCopiedToClipboard(false), 2000);
   };
-
-  console.log('repooooooooooo', repo);
 
   return (
     <div className="current-repo-info-container">

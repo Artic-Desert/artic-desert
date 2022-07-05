@@ -2,6 +2,7 @@
 .dashboard-user-info {
   padding: 10px;
   width: 100%;
+  margin-left: 2vw;
   height: 100%;
   display: flex;
   flex-direction: column;
