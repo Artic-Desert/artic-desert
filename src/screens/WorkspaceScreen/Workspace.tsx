@@ -18,7 +18,7 @@ const vh = Math.max(
 );
 
 export const Workspace: React.FC = () => {
-  const [kanbanSize, setKanbanSize] = useState(vh * 0.9);
+  const [kanbanSize, setKanbanSize] = useState(vh * 0.875);
   const [flipArrow, setFlipArrow] = useState(false);
   const { branches } = useBranches();
   const colors = [
@@ -33,15 +33,15 @@ export const Workspace: React.FC = () => {
   ];
 
   const onClick = () => {
-    if (kanbanSize <= 100) {
+    if (kanbanSize <= 115) {
       setKanbanSize(vh * 0.9);
     } else {
-      setKanbanSize(100);
+      setKanbanSize(115);
     }
   };
 
   useEffect(() => {
-    if (kanbanSize > 100) {
+    if (kanbanSize > 115) {
       setFlipArrow(true);
     } else {
       setFlipArrow(false);

@@ -29,6 +29,14 @@
   left: 50%;
   cursor: pointer;
   z-index: 100;
+  animation: beat 0.7s infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes beat {
+  to {
+    transform: scale(1.1);
+  }
 }
 .expand-icon-div:hover {
   transform: scale(1.1);
