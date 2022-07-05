@@ -112,7 +112,18 @@
   height: 50px;
 }
 
-.branch2 {
+.branch {
+  font-size: 20px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  color: white;
+}
+
+.timeline-svg-container {
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+/* .branch2 {
   color: #00ffff;
 }
 .branch3 {
