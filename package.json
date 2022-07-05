@@ -15,6 +15,7 @@
     "dotenv": "^16.0.1",
     "framer-motion": "^6.3.16",
     "immer": "^9.0.15",
+    "lottie-web": "^5.9.6",
     "moment": "^2.29.3",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.0",

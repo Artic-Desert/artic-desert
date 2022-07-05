@@ -19,13 +19,13 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  margin: 0 10px 0 30px;
+  margin: 0 0 0 10px;
 }
 
 .dashboard-left::before {
   content: '';
   height: 80%;
-  width: 1px;
+  width: 1.2px;
   background-color: rgba(255, 255, 255, 0.322);
   position: absolute;
   top: 10vh;

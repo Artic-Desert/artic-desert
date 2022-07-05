@@ -13,7 +13,7 @@ import {
 import { MdOutlineMemory, MdArrowForwardIos } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Backdrop from '../BackdropComponent/Backdrop.component';
+import Backdrop from '../../BackdropComponent/Backdrop.component';
 import { GithubCommit, GithubRepo } from '../../../types/Types';
 import { useRepo } from '../../../hooks/use-repo';
 import { setRepo } from '../../../redux/repo/actions';

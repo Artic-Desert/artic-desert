@@ -11,7 +11,8 @@ export const AuthService = {
   },
 
   getToken: function () {
-    return sessionStorage.getItem('token');
+    // ADDED || process.env.REACT_APP_GHP_TOKEN
+    return process.env.REACT_APP_GHP_TOKEN || sessionStorage.getItem('token');
   },
 
   setUserSession: function (user: GithubUser, token: string | undefined) {
