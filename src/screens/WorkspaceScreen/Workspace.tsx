@@ -4,6 +4,7 @@ import { GitTimeline } from '../../components/GitTimelineComponent/GitTimeline.c
 import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/Header.component';
 import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.component';
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
+import { CurrentRepoInfo } from '../../components/CurrentRepoInfoComponent/CurrentRepoInfo.component';
 import { TbArrowBarUp, TbArrowBarDown } from 'react-icons/tb';
 
 import './Workspace.css';
@@ -29,15 +30,15 @@ export const Workspace: React.FC = () => {
   ];
 
   const onClick = () => {
-    if (kanbanSize <= 85) {
+    if (kanbanSize <= 100) {
       setKanbanSize(vh * 0.9);
     } else {
-      setKanbanSize(85);
+      setKanbanSize(100);
     }
   };
 
   useEffect(() => {
-    if (kanbanSize > 85) {
+    if (kanbanSize > 100) {
       setFlipArrow(true);
     } else {
       setFlipArrow(false);
@@ -50,7 +51,7 @@ export const Workspace: React.FC = () => {
       {/* @ts-ignore */}
       <Pane
         split="horizontal"
-        minSize={85}
+        minSize={100}
         maxSize={vh * 0.9}
         size={kanbanSize}
         onDragFinished={e => {
@@ -88,6 +89,7 @@ export const Workspace: React.FC = () => {
               />
             )}
           </div>
+          <CurrentRepoInfo />
           <div className="label-timeline-container">
             {branches && (
               <div className="label-container">

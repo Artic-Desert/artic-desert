@@ -28,6 +28,7 @@
   top: 0;
   left: 50%;
   cursor: pointer;
+  z-index: 100;
 }
 .expand-icon-div:hover {
   transform: scale(1.2) translateY(5px);
@@ -125,8 +126,4 @@
 }
 .branch6 {
   color: #ff8400;
-}
-.branch7 {
-}
-.branch8 {
 }

@@ -170,14 +170,17 @@ export const Header: React.FC = () => {
           <span className="current-repo-prefix">
             <GoGitBranch /> current repo:
           </span>
-          <a
-            title="GitHub Repo"
-            key={repo.name}
-            href={repo.html_url}
-            target="blank"
-            rel="noreferrer">
-            {repo.name}
-          </a>
+          <span>
+            <a
+              title="GitHub Repo"
+              key={repo.name}
+              href={repo.html_url}
+              target="blank"
+              rel="noreferrer">
+              {repo.name}
+              <p className="repo-privacy"> {repo.visibility}</p>
+            </a>
+          </span>
         </div>
       )}
       <div className="right">
