@@ -217,13 +217,13 @@ export const Modal: React.FC<{
                 alt=""
               />
               <div className="cont-plus-title">
-                <h3>Commiter Info</h3>
+                <h3>Commit Author</h3>
                 <div className="commit-author-info-cont">
                   <p>
-                    Commit author •
                     <span>
                       {' '}
-                      <BsFillPersonLinesFill /> {commitInfo.commit.author.name}
+                      {commitInfo.commit.author.name}{' '}
+                      <BsFillPersonLinesFill className="commit-author-icon" />
                     </span>
                   </p>
                   <p>
@@ -240,7 +240,8 @@ export const Modal: React.FC<{
                     E-mail •
                     <span>
                       {' '}
-                      <AiOutlineMail /> {commitInfo.commit.author.email}
+                      <AiOutlineMail className="commit-autor-email-icon" />{' '}
+                      {commitInfo.commit.author.email}
                     </span>
                   </p>
                 </div>
@@ -253,7 +254,10 @@ export const Modal: React.FC<{
                   Date •{' '}
                   <span>
                     {' '}
-                    <BsFillCalendar2DateFill /> {commitInfo.commit.author.date}
+                    <BsFillCalendar2DateFill />{' '}
+                    {moment(commitInfo.commit.author.date).format(
+                      'DD/MMM/YY HH:MM:SS',
+                    )}
                   </span>
                 </p>
                 <p>
@@ -279,8 +283,8 @@ export const Modal: React.FC<{
                   Additions •{' '}
                   <span>
                     {' '}
-                    <BiPlus color="green" />
-                    <BiPlus color="green" />
+                    <BiPlus className="commit-stats-plus-minus" color="green" />
+                    <BiPlus className="commit-stats-plus-minus" color="green" />
                     {commitInfo.stats.additions}
                   </span>
                 </p>
@@ -288,8 +292,8 @@ export const Modal: React.FC<{
                   Deletions •{' '}
                   <span>
                     {' '}
-                    <BiMinus color="red" />
-                    <BiMinus color="red" />
+                    <BiMinus className="commit-stats-plus-minus" color="red" />
+                    <BiMinus className="commit-stats-plus-minus" color="red" />
                     {commitInfo.stats.deletions}
                   </span>
                 </p>
