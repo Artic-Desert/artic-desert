@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './TimelineDot.css';
+import { useDispatch } from 'react-redux';
+import { setCommitModal } from '../../../redux/commitModal/actions';
 export const TimeliineDot: React.FC<{
   indexX: number;
   indexY: number;
@@ -8,9 +10,9 @@ export const TimeliineDot: React.FC<{
   branchesOrdered: string[];
   commit: string;
   isMerge: boolean;
-  modalOpen: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentCommit: React.Dispatch<React.SetStateAction<string | number>>;
+  modalOpen?: boolean;
+  setModalOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentCommit?: React.Dispatch<React.SetStateAction<string | number>>;
 }> = ({
   indexX,
   indexY,
@@ -23,13 +25,15 @@ export const TimeliineDot: React.FC<{
   setCurrentCommit,
 }) => {
   const close = () => {
-    setCurrentCommit('');
-    setModalOpen(false);
+    setCurrentCommit && setCurrentCommit('');
+    setModalOpen && setModalOpen(false);
   };
   const open = () => {
-    setCurrentCommit(commit);
-    setModalOpen(true);
+    setCurrentCommit && setCurrentCommit(commit);
+    setModalOpen && setModalOpen(true);
   };
+
+  const dispatch = useDispatch();
   return (
     <>
       {/* <div className="commit-circle"> */}
@@ -38,7 +42,8 @@ export const TimeliineDot: React.FC<{
         className="commit-circle"
         key={`${indexX}${indexY}`}
         onClick={() => {
-          modalOpen ? close() : open();
+          // modalOpen ? close() : open();
+          dispatch(setCommitModal(commit));
         }}
         fill={isMerge ? '#ffffff' : branchProps[branchesOrdered[indexY]]}
         // stroke="#56FB08"+

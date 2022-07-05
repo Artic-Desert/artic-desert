@@ -1,0 +1,344 @@
+.modal {
+  width: clamp(45%, 780px, 70%);
+  min-height: min(70%, 450px);
+  height: auto;
+  z-index: 10;
+  color: #c8d1d9;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 25px 50px 50px 50px;
+  border-radius: 10px;
+  border: 1px solid #c8d1d952;
+  /* -webkit-box-shadow: 0px 0px 6px 3px rgb(53, 54, 70, 1);
+  -moz-box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1);
+  box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1); */
+}
+.background {
+  background-color: #082032;
+}
+
+/* REPO PREVIEW MODAL */
+.preview-modal-wrapper {
+  height: 100%;
+  width: 100%;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  overflow: hidden;
+}
+.name-visibility {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.preview-owner {
+  color: #c8d1d9d5;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+}
+.preview-owner::after {
+  content: '';
+  margin-top: 3px;
+  display: block;
+  height: 2px;
+  width: 60px;
+  background-color: #c8d1d9d5;
+  margin-left: 25px;
+}
+.modal-repo-name {
+  color: #57a6ff;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.modal-repo-visibility {
+  color: rgba(255, 228, 196, 0.794);
+  border: 1px solid rgba(255, 228, 196, 0.742);
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 20px;
+  width: fit-content;
+  padding-bottom: 2px;
+}
+.column-containers {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.preview-left-col {
+  width: 100%;
+  height: 90%;
+}
+.preview-right-col {
+  width: 50%;
+  height: 90%;
+}
+.preview-owner-container {
+  display: flex;
+  align-items: center;
+}
+.preview-owner-container img {
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 25px;
+  border: 2px solid #ffffff97;
+}
+.preview-created-container {
+  margin: 10px 5px 5px 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  color: #c8d1d9c0;
+  border: 2px solid #c8d1d952;
+  padding: 10px;
+  font-weight: 400;
+  width: fit-content;
+  height: 120px;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.preview-created-container span {
+  color: #c8d1d9;
+}
+.default-branch span {
+  color: rgba(255, 228, 196, 0.794);
+  border: 1px solid rgba(255, 228, 196, 0.742);
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 2px;
+  border-radius: 20px;
+}
+.preview-cloneurl {
+  color: #c8d1d9d5;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+.copy-clip {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  width: 80%;
+  border: 2px solid #c8d1d952;
+  color: #c8d1d9;
+  margin-top: 5px;
+  margin-left: 4px;
+  border-radius: 5px;
+}
+.copy-clip input {
+  border: none;
+  height: 100%;
+}
+.copy-clip input[type='text'] {
+  margin-top: 8px;
+}
+.copy-icon {
+  border-left: 2px solid #c8d1d952;
+  padding: 5px;
+}
+.copy-icon:hover {
+  color: #57a6ff;
+  cursor: pointer;
+  padding: 3px;
+}
+.repo-stats-title {
+  color: #c8d1d9d5;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 35px;
+  margin-left: 10px;
+}
+.repo-stats-container {
+  margin: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  color: #c8d1d9c0;
+  border: 2px solid #c8d1d952;
+  padding: 10px;
+  font-weight: 400;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.repo-stats-container p {
+  margin-bottom: 10px;
+}
+.repo-stats-container span {
+  color: #c8d1d9;
+}
+.go-to-workspace {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+  width: 80%;
+  height: 40px;
+  color: #c8d1d9a3;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+  align-self: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.go-to-workspace:hover {
+  border: 2px solid #c8d1d99c;
+  color: #c8d1d9d9;
+}
+
+/* COMMIT INFO MODAL  */
+.modalCommit {
+  width: clamp(45%, 800px, 70%);
+  min-height: min(30%, 300px);
+  /* height: fit-content; */
+  height: 500px;
+  max-height: 600px;
+  z-index: 9999;
+  color: #c8d1d9;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #c8d1d952;
+  /* -webkit-box-shadow: 0px 0px 6px 3px rgb(53, 54, 70, 1);
+  -moz-box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1);
+  box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1); */
+}
+.commit-info-container {
+  height: 100%;
+  width: 100%;
+  /* background-color: red; */
+}
+.commit-author-name {
+  display: flex;
+  align-items: center;
+}
+.commit-author-icon {
+  margin-left: 5px;
+  padding-top: 5px;
+  transform: scale(1.4);
+}
+.commit-author-name img {
+  height: 130px;
+  border-radius: 50%;
+  margin-right: 25px;
+  margin-bottom: 30px;
+  border: 2px solid #ffffff97;
+}
+.commit-author-info-cont {
+  margin: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  color: #c8d1d9c0;
+  border: 2px solid #c8d1d952;
+  padding: 10px;
+  font-weight: 400;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.commit-author-info-cont p {
+  margin-bottom: 6px;
+}
+.commit-author-info-cont span {
+  color: #c8d1d9;
+}
+.commit-autor-email-icon {
+  padding-top: 4px;
+  transform: scale(1.4);
+}
+.cont-plus-title h3 {
+  color: #c8d1d9d5;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.commit-details {
+  margin: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  color: #c8d1d9c0;
+  border: 2px solid #c8d1d952;
+  padding: 10px;
+  font-weight: 400;
+  width: fit-content;
+  height: 120px;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.commit-details span {
+  color: #c8d1d9;
+}
+.commit-details p {
+  margin-bottom: 10px;
+}
+.commit-details-title h3 {
+  color: #c8d1d9d5;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.commit-stats {
+  margin: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  color: #c8d1d9c0;
+  border: 2px solid #c8d1d952;
+  padding: 10px;
+  font-weight: 400;
+  width: fit-content;
+  height: 80px;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+.commit-stats span {
+  color: #c8d1d9;
+}
+.commit-stats-title h3 {
+  color: #c8d1d9d5;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.commit-stats-plus-minus {
+  padding-top: 4px;
+  transform: scale(1.4);
+}
+.copied-to-clipboard-alert {
+  padding: 7px;
+}
+
+.div-check-show-me-your-titties {
+  background-color: red;
+  width: 100vw;
+  height: 100vh;
+}

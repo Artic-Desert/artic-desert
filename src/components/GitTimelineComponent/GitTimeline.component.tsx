@@ -31,6 +31,8 @@ export const GitTimeline: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentCommit, setCurrentCommit] = useState<string | number>('');
   const [gitTimelineData, setGitTimelineData] = useState<any>([]); //eslint-disable-line
+  const [arrays, setArrays] = useState<any>([]);
+  const [branchesOrdered, setBranchesOrdered] = useState<string[]>([]);
 
   const close = () => setModalOpen(false);
   const dispatch = useDispatch();
@@ -39,22 +41,23 @@ export const GitTimeline: React.FC = () => {
   const { ghpToken } = useGhpToken();
 
   const getTimeLineData = async () => {
-    ApiClientService.getTimelineData(repo, ghpToken).then(data =>
-      setGitTimelineData(data),
-    );
+    ApiClientService.getTimelineData(repo, ghpToken).then(data => {
+      setGitTimelineData(data), setBranchesOrdered(data[0]), setArrays(data[1]);
+    });
   };
 
   useEffect(() => {
     getTimeLineData();
   }, []);
 
-  const branchesOrdered: string[] = gitTimelineData?.length
-    ? gitTimelineData[0]
-    : null;
+  console.log('HEY THERE, I WAS RENDERED!' + Math.random());
+  // const branchesOrdered: string[] = gitTimelineData?.length
+  //   ? gitTimelineData[0]
+  //   : null;
 
-  const arrays: (number | string)[][] = gitTimelineData?.length
-    ? gitTimelineData[1]
-    : null;
+  // const arrays: (number | string)[][] = gitTimelineData?.length
+  //   ? gitTimelineData[1]
+  //   : null;
 
   useEffect(() => {
     dispatch(setBranches(branchesOrdered ? branchesOrdered : []));
@@ -117,11 +120,13 @@ export const GitTimeline: React.FC = () => {
 
               {/* eslint-disable-next-line */}
               {arrays.map((array: any[], indexX: number) => {
+                array = array.reverse();
                 return (
                   array
-                    .reverse()
+                    // .reverse()
                     //eslint-disable-next-line
                     .map((commit: any[] | number, indexY: number) => {
+                      console.log('HEY THERE AGAIN ;)');
                       return (
                         typeof commit !== 'number' && (
                           <TimeliineDot
@@ -132,9 +137,9 @@ export const GitTimeline: React.FC = () => {
                             branchesOrdered={branchesOrdered}
                             commit={commit[0]}
                             isMerge={commit[1]}
-                            modalOpen={modalOpen}
-                            setModalOpen={setModalOpen}
-                            setCurrentCommit={setCurrentCommit}
+                            // modalOpen={modalOpen}
+                            // setModalOpen={setModalOpen}
+                            // setCurrentCommit={setCurrentCommit}
                           />
                         )
                       );
@@ -144,12 +149,12 @@ export const GitTimeline: React.FC = () => {
             </motion.svg>
           </motion.div>
         </div>
-        <AnimatePresence
+        {/* <AnimatePresence
           initial={false}
           exitBeforeEnter={true}
           onExitComplete={() => null}>
           {modalOpen && <Modal commit={currentCommit} handleClose={close} />}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </>
     )
   );

@@ -6,6 +6,7 @@ import { branchReducer } from './branch/reducer';
 import { reposReducer } from './repos/reducer';
 import { branchesReducer } from './branches/reducer';
 import { tokenReducer } from './token/reducer';
+import { commitModalReducer } from './commitModal/reducer';
 
 const reducer = combineReducers({
   users: userReducer,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   repos: reposReducer, //this are the repos in the sidebar
   branches: branchesReducer, //this is for the branch name in the git timelien
   token: tokenReducer, // for auth on github api calls
+  commitModal: commitModalReducer,
 });
 
 export const store = createStore(
