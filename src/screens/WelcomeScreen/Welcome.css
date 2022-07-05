@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Trispace&display=swap');
 .welcome-wrapper {
-  background-image: url('../../assets/animatedback2.svg');
-  background-size: contain;
+  background-image: url('../../assets/finalback.svg');
+  background-size: cover;
+  background-color: #00111c;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
@@ -11,14 +12,23 @@
   overflow: hidden;
   position: relative;
 }
+
+.lottie-container {
+  position: absolute;
+  right: -6%;
+  top: 4%;
+  height: 75vh;
+  background-repeat: no-repeat;
+}
+
 .company-name {
   font-size: 3.5vw;
   font-family: 'Trispace', sans-serif;
   color: #f3f0f0;
   width: 45%;
   position: absolute;
-  left: 10%;
-  top: 14%;
+  left: 2%;
+  top: 4%;
 }
 .bot {
   margin-left: 100px;
@@ -28,35 +38,21 @@
   align-items: center;
 }
 .main-title {
-  background-image: url('../../assets/ice.svg');
-  background-clip: text;
-  -webkit-background-clip: text;
   width: 35%;
-  color: transparent;
+  color: #f3f0f0;
   position: absolute;
-  bottom: 22%;
-  right: 0%;
+  bottom: 35%;
+  line-height: 90px;
+  left: 5%;
   font-family: 'Kdam Thmor Pro', sans-serif;
-  font-size: 2.2vw;
-  z-index: 10;
+  font-size: 2.6vw;
+  z-index: 15;
 }
-.mask {
-  width: 100%;
-  position: absolute;
-  bottom: -5%;
-  /* filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4)); */
-}
-.ades {
-  z-index: 10;
-  height: 60vh;
-  position: absolute;
-  right: -5%;
-  top: 2%;
-  opacity: 0.4;
-}
-.login-button {
-  border: 3px solid #277197;
-  color: #277197;
+
+.welcome-login-button {
+  border: 3px solid #f3f0f0;
+  color: #f3f0f0;
+  background-color: transparent;
   padding: 10px;
   display: flex;
   justify-content: space-evenly;
@@ -67,17 +63,19 @@
   font-weight: bold;
   cursor: pointer;
   position: absolute;
-  bottom: 13%;
+  bottom: 10%;
   right: 12%;
   z-index: 10;
-  -webkit-box-shadow: 3px 4px 34px -14px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 3px 4px 34px -14px rgba(0, 0, 0, 0.75);
-  box-shadow: 3px 4px 34px -14px rgba(0, 0, 0, 0.75);
 }
+
+.welcome-login-button:hover {
+  border: 3px solid #fffefe;
+}
+
 .a-tag {
-  color: #277197;
+  color: #f3f0f0;
   text-decoration: none;
 }
 .a-tag:visited {
-  color: #277197;
+  color: #f3f0f0;
 }
