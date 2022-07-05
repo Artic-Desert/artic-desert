@@ -1,14 +1,13 @@
 .svg-cont {
   width: fit-content;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
-  /* overflow-x: scroll; */
 }
 
 .the-svg {
-  background-color: #0e1117;
-  border-top: 1px solid #c8d1d9ae;
-  border-bottom: 1px solid #c8d1d9ae;
-  border-radius: 10px;
+  /* background-color: #0e1117; */
+  /* border-top: 1px solid #c8d1d9ae; */
+  /* border-bottom: 1px solid #c8d1d9ae; */
+  /* border-radius: 10px; */
   position: relative;
 }
