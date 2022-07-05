@@ -139,9 +139,12 @@
 }
 .copy-icon {
   border-left: 2px solid #c8d1d952;
+  padding: 5px;
 }
 .copy-icon:hover {
-  color: rgb(13, 173, 13);
+  color: #57a6ff;
+  cursor: pointer;
+  padding: 3px;
 }
 .repo-stats-title {
   color: #c8d1d9d5;
@@ -332,4 +335,8 @@
   font-weight: 600;
   font-size: 20px;
   margin-left: 10px;
+}
+
+.copied-to-clipboard-alert {
+  padding: 7px;
 }
