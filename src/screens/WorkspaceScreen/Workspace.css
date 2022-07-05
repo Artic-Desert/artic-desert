@@ -70,15 +70,15 @@
 }
 .Resizer.horizontal {
   height: 9px;
-  margin: -5px 0;
-  border-top: 4px solid rgba(215, 215, 215, 0.8);
-  border-bottom: 4px solid rgba(215, 215, 215, 0.8);
+  margin: -4px 0;
+  border-top: 3px solid rgba(215, 215, 215, 0.8);
+  border-bottom: 3px solid rgba(215, 215, 215, 0.8);
   cursor: row-resize;
   width: 100%;
 }
 .Resizer.horizontal:hover {
-  border-top: 6px solid rgb(215, 215, 215);
-  border-bottom: 6px solid rgb(215, 215, 215);
+  border-top: 5px solid rgb(215, 215, 215);
+  border-bottom: 5px solid rgb(215, 215, 215);
 }
 .Resizer.disabled {
   cursor: not-allowed;
