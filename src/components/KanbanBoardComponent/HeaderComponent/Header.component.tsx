@@ -112,7 +112,7 @@ export const Header: React.FC = () => {
       { isFocused, isSelected }: { isFocused: boolean; isSelected: boolean },
     ) => ({
       ...provided,
-      color: isSelected ? 'white' : isFocused ? '#00111c' : '#c8d1d9',
+      color: isSelected ? '#c8d1d9' : isFocused ? '#00111c' : '#c8d1d9',
       backgroundColor: isSelected
         ? '#00111c'
         : isFocused
@@ -124,6 +124,7 @@ export const Header: React.FC = () => {
       ...provided,
       postion: 'fixed',
       zindex: '10',
+      color: '#c8d1d9',
     }),
     //eslint-disable-next-line
     valueContainer: (provided: any) => ({
@@ -148,6 +149,7 @@ export const Header: React.FC = () => {
     singleValue: (provided: any) => ({
       ...provided,
       backgroundColor: '#161b22',
+      color: '#c8d1d9',
     }),
   };
   return (
