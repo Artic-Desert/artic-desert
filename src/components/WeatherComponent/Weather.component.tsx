@@ -14,6 +14,7 @@ import spinner from '../../assets/spinnergen.svg';
 export const Weather: React.FC = () => {
   const [data, setData] = useState<Data | null>(null);
   const [url, setUrl] = useState('');
+  const [noGeoLocation, setNoGeoLocation] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -21,7 +22,8 @@ export const Weather: React.FC = () => {
       const data = await response.json();
       setData(data);
     } catch (error) {
-      console.error(error, 'no data error');
+      setNoGeoLocation(true);
+      console.error('No data for weather error: ', error);
     }
   };
 
@@ -120,7 +122,7 @@ export const Weather: React.FC = () => {
             )}
           </div>
         </div>
-      ) : (
+      ) : noGeoLocation ? null : (
         <div className="weather-container">
           <img src={spinner} alt="" />
         </div>

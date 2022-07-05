@@ -7,7 +7,6 @@ import { ImFilesEmpty } from 'react-icons/im';
 import { BiMessageSquareDetail, BiPlus, BiMinus } from 'react-icons/bi';
 import {
   BsFillEyeFill,
-  // BsArrowBarRight,
   BsFillPersonLinesFill,
   BsFillCalendar2DateFill,
 } from 'react-icons/bs';
@@ -21,6 +20,8 @@ import { setRepo } from '../../../redux/repo/actions';
 import { setBranch } from '../../../redux/branch/actions';
 import moment from 'moment';
 import './Modal.css';
+import { ApiClientService } from '../../../services/ApiClientService';
+import { useGhpToken } from '../../../hooks/use-ghpToken';
 
 const dropIn = {
   hidden: {
@@ -28,7 +29,7 @@ const dropIn = {
     opacity: 0,
   },
   visible: {
-    y: '0',
+    y: '-7vh',
     opacity: 1,
     transition: {
       duration: 1,
@@ -51,53 +52,39 @@ const dropIn = {
 
 export const Modal: React.FC<{
   handleClose: () => void;
-  text?: string;
   repoPreview?: GithubRepo;
-  modalOpen: boolean;
   commit?: string | number;
-  //eslint-disable-next-line
-}> = ({ handleClose, text, modalOpen, repoPreview, commit }) => {
+}> = ({ handleClose, repoPreview, commit }) => {
   const { repo } = useRepo();
-  console.log('MODAL FOR REPO!!!!!!! ', repoPreview);
-
+  const { ghpToken } = useGhpToken();
   const [commitInfo, setCommitInfo] = useState<GithubCommit>();
-  const [copyText, setCopyText] = useState('');
-
-  const inputHandler = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setCopyText(e.target.value);
-  };
-
-  const copy = async () => {
-    await navigator.clipboard.writeText(copyText);
-    alert('Link copied to clipboard!');
-  };
-
-  const fetchCommitUrl = !repoPreview
-    ? `https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits/${commit}`
-    : undefined;
-
-  useEffect(() => {
-    // console.log(fetchCommitUrl);
-    fetchCommitUrl &&
-      fetch(fetchCommitUrl, {
-        headers: { Authorization: `token ${process.env.REACT_APP_GHP_TOKEN}` },
-      })
-        .then(res => res.json())
-        .then(data => setCommitInfo(data));
-  }, []);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    !repoPreview &&
+      ApiClientService.getCommitBySha(
+        repo.owner.login,
+        repo.name,
+        ghpToken,
+        commit,
+      ).then(data => setCommitInfo(data));
+  }, []);
+
+  const copy = async () => {
+    setCopiedToClipboard(true);
+    repoPreview && (await navigator.clipboard.writeText(repoPreview.clone_url));
+    setTimeout(() => setCopiedToClipboard(false), 2000);
+  };
   const handleNavigation = (repo: GithubRepo) => {
     dispatch(setRepo(repo));
     dispatch(setBranch('repo-board')); // this should be dynamic or checked for the first branch of the repo
     navigate('/workspace', { state: { repo } });
   };
 
-  console.log('THIS', commitInfo);
+  console.log('<Modal/> commit info: ', commitInfo);
 
   return repoPreview ? (
     <>
@@ -150,10 +137,17 @@ export const Modal: React.FC<{
                   <input
                     type="text"
                     value={repoPreview.clone_url}
-                    onChange={inputHandler}
+                    contentEditable={false}
+                    readOnly={true}
                   />
+
                   <AiFillCopy className="copy-icon" onClick={copy} size={35} />
                 </div>
+                {copiedToClipboard && (
+                  <div className="copied-to-clipboard-alert">
+                    Copied to clipboard
+                  </div>
+                )}
               </div>
               <div className="preview-right-col">
                 <p className="repo-stats-title">Repo Stats</p>
@@ -191,7 +185,6 @@ export const Modal: React.FC<{
                 <button
                   className="go-to-workspace"
                   onClick={() => {
-                    console.log('HERE IS THE REPO:::::::>', repo);
                     handleNavigation(repo);
                   }}>
                   <span>Go to workspace </span>
@@ -224,13 +217,13 @@ export const Modal: React.FC<{
                 alt=""
               />
               <div className="cont-plus-title">
-                <h3>Commiter Info</h3>
+                <h3>Commit Author</h3>
                 <div className="commit-author-info-cont">
                   <p>
-                    Commit author •
                     <span>
                       {' '}
-                      <BsFillPersonLinesFill /> {commitInfo.commit.author.name}
+                      {commitInfo.commit.author.name}{' '}
+                      <BsFillPersonLinesFill className="commit-author-icon" />
                     </span>
                   </p>
                   <p>
@@ -247,7 +240,8 @@ export const Modal: React.FC<{
                     E-mail •
                     <span>
                       {' '}
-                      <AiOutlineMail /> {commitInfo.commit.author.email}
+                      <AiOutlineMail className="commit-autor-email-icon" />{' '}
+                      {commitInfo.commit.author.email}
                     </span>
                   </p>
                 </div>
@@ -260,7 +254,10 @@ export const Modal: React.FC<{
                   Date •{' '}
                   <span>
                     {' '}
-                    <BsFillCalendar2DateFill /> {commitInfo.commit.author.date}
+                    <BsFillCalendar2DateFill />{' '}
+                    {moment(commitInfo.commit.author.date).format(
+                      'DD/MMM/YY HH:MM:SS',
+                    )}
                   </span>
                 </p>
                 <p>
@@ -286,8 +283,8 @@ export const Modal: React.FC<{
                   Additions •{' '}
                   <span>
                     {' '}
-                    <BiPlus color="green" />
-                    <BiPlus color="green" />
+                    <BiPlus className="commit-stats-plus-minus" color="green" />
+                    <BiPlus className="commit-stats-plus-minus" color="green" />
                     {commitInfo.stats.additions}
                   </span>
                 </p>
@@ -295,8 +292,8 @@ export const Modal: React.FC<{
                   Deletions •{' '}
                   <span>
                     {' '}
-                    <BiMinus color="red" />
-                    <BiMinus color="red" />
+                    <BiMinus className="commit-stats-plus-minus" color="red" />
+                    <BiMinus className="commit-stats-plus-minus" color="red" />
                     {commitInfo.stats.deletions}
                   </span>
                 </p>

@@ -15,7 +15,6 @@
   -moz-box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1);
   box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1); */
 }
-
 .background {
   background-color: #082032;
 }
@@ -139,9 +138,12 @@
 }
 .copy-icon {
   border-left: 2px solid #c8d1d952;
+  padding: 5px;
 }
 .copy-icon:hover {
-  color: rgb(13, 173, 13);
+  color: #57a6ff;
+  cursor: pointer;
+  padding: 3px;
 }
 .repo-stats-title {
   color: #c8d1d9d5;
@@ -199,7 +201,6 @@
 }
 
 /* COMMIT INFO MODAL  */
-
 .modalCommit {
   width: clamp(45%, 800px, 70%);
   min-height: min(30%, 300px);
@@ -212,7 +213,6 @@
   flex-direction: column;
   justify-content: space-evenly;
   font-family: 'Ubuntu', sans-serif;
-
   padding: 30px;
   border-radius: 10px;
   border: 1px solid #c8d1d952;
@@ -220,17 +220,19 @@
   -moz-box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1);
   box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1); */
 }
-
 .commit-info-container {
   height: 100%;
   width: 100%;
 }
-
 .commit-author-name {
   display: flex;
   align-items: center;
 }
-
+.commit-author-icon {
+  margin-left: 5px;
+  padding-top: 5px;
+  transform: scale(1.4);
+}
 .commit-author-name img {
   height: 130px;
   border-radius: 50%;
@@ -238,7 +240,6 @@
   margin-bottom: 30px;
   border: 2px solid #ffffff97;
 }
-
 .commit-author-info-cont {
   margin: 5px;
   font-size: 18px;
@@ -255,15 +256,16 @@
   justify-content: space-between;
   margin-bottom: 40px;
 }
-
 .commit-author-info-cont p {
   margin-bottom: 6px;
 }
-
 .commit-author-info-cont span {
   color: #c8d1d9;
 }
-
+.commit-autor-email-icon {
+  padding-top: 4px;
+  transform: scale(1.4);
+}
 .cont-plus-title h3 {
   color: #c8d1d9d5;
   font-family: 'Ubuntu', sans-serif;
@@ -271,7 +273,6 @@
   font-size: 20px;
   margin-left: 10px;
 }
-
 .commit-details {
   margin: 5px;
   font-size: 18px;
@@ -282,21 +283,18 @@
   font-weight: 400;
   width: fit-content;
   height: 120px;
-  /* overflow-x: scroll; */
   display: flex;
   align-items: left;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 40px;
 }
-
 .commit-details span {
   color: #c8d1d9;
 }
 .commit-details p {
   margin-bottom: 10px;
 }
-
 .commit-details-title h3 {
   color: #c8d1d9d5;
   font-family: 'Ubuntu', sans-serif;
@@ -304,7 +302,6 @@
   font-size: 20px;
   margin-left: 10px;
 }
-
 .commit-stats {
   margin: 5px;
   font-size: 18px;
@@ -315,21 +312,25 @@
   font-weight: 400;
   width: fit-content;
   height: 80px;
-  /* overflow-x: scroll; */
   display: flex;
   align-items: left;
   flex-direction: column;
   margin-bottom: 40px;
 }
-
 .commit-stats span {
   color: #c8d1d9;
 }
-
 .commit-stats-title h3 {
   color: #c8d1d9d5;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 600;
   font-size: 20px;
   margin-left: 10px;
+}
+.commit-stats-plus-minus {
+  padding-top: 4px;
+  transform: scale(1.4);
+}
+.copied-to-clipboard-alert {
+  padding: 7px;
 }
