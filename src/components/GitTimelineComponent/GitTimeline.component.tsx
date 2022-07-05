@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import './GitTimeline.css';
-import Modal from './ModalComponent/Modal.component';
+// import Modal from './ModalComponent/Modal.component';
 // import { gitTimelineData } from '../../mocks/GitTimeline/gitTimeline';
 import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
 import { useRepo } from '../../hooks/use-repo';
@@ -28,8 +28,8 @@ import { useGhpToken } from '../../hooks/use-ghpToken';
 // };
 
 export const GitTimeline: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentCommit, setCurrentCommit] = useState<string | number>('');
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const [currentCommit, setCurrentCommit] = useState<string | number>('');
   const [gitTimelineData, setGitTimelineData] = useState<any>([]); //eslint-disable-line
   const [arrays, setArrays] = useState<any>([]);
   const [branchesOrdered, setBranchesOrdered] = useState<string[]>([]);
@@ -71,7 +71,7 @@ export const GitTimeline: React.FC = () => {
       branchProps[branch] = colors[index];
     });
 
-  const constraintsRef = useRef(null);
+  // const constraintsRef = useRef(null);
 
   // const height = 50 * (arrays && arrays[0].length);
   const width = 50 * (arrays && arrays.length);

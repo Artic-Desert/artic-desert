@@ -121,7 +121,7 @@ export const RepoItem: React.FC<{
                 dispatch(setRepo(repo));
                 dispatch(setBranch('repo-board'));
                 // modalOpen ? close() : open();
-                dispatch(setRepoModal(true));
+                dispatch(setRepoModal(JSON.stringify(repo)));
               }}>
               Repo Preview
             </button>
