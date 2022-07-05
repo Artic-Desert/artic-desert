@@ -12,6 +12,7 @@ import Select, { SingleValue } from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { ApiClientService } from '../../../services/ApiClientService';
 import { useGhpToken } from '../../../hooks/use-ghpToken';
+import { AuthService } from '../../../services/AuthService';
 
 export const Header: React.FC = () => {
   const { user } = useUser();
@@ -20,6 +21,11 @@ export const Header: React.FC = () => {
   const { ghpToken } = useGhpToken();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    AuthService.resetUserSession();
+    navigate('/');
+  };
 
   console.log('<Header> current repo: ', repo);
   console.log('<Header> current branch: ', branch);
@@ -176,7 +182,12 @@ export const Header: React.FC = () => {
       )}
       <div className="right">
         <div className="user-info">
-          <span>Hello {user.name.split(' ')[0]}!</span>
+          <div className="hello-logout-cont">
+            <span>Hello {user.name.split(' ')[0]}!</span>
+            <button className="logout-button" onClick={handleLogout}>
+              Log Out
+            </button>
+          </div>
           <a
             title="GitHub Profile"
             key={user.id}
