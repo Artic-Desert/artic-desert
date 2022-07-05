@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Trispace&display=swap');
 .welcome-wrapper {
-  background-image: url('../../assets/animatedback2.svg');
-  background-size: contain;
+  background-image: url('../../assets/whitefluid.svg');
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: 50% 0%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,14 +12,23 @@
   overflow: hidden;
   position: relative;
 }
+
+.lottie-container {
+  position: absolute;
+  right: -5%;
+  top: 7%;
+  height: 550px;
+  background-repeat: no-repeat;
+}
+
 .company-name {
   font-size: 3.5vw;
   font-family: 'Trispace', sans-serif;
   color: #f3f0f0;
   width: 45%;
   position: absolute;
-  left: 10%;
-  top: 14%;
+  left: 5%;
+  top: 4%;
 }
 .bot {
   margin-left: 100px;
@@ -28,7 +38,7 @@
   align-items: center;
 }
 .main-title {
-  background-image: url('../../assets/ice.svg');
+  /* background-image: url('../../assets/ice.svg'); */
   background-clip: text;
   -webkit-background-clip: text;
   width: 35%;
