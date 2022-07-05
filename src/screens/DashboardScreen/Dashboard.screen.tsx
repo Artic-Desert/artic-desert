@@ -21,6 +21,7 @@ import { Collapasible } from '../../components/CollapsibleComponent/Collapsible.
 import { NewRepo } from '../../components/NewRepoComponent/NewRepo.component';
 import { useGhpToken } from '../../hooks/use-ghpToken';
 import { TokenInput } from '../../components/TokenInputComponent/TokenInput.component';
+import { RepoModal } from '../../components/CustomModals/RepoModal.component';
 
 export const Dashboard: React.FC = () => {
   const { user } = useUser();
@@ -62,6 +63,7 @@ export const Dashboard: React.FC = () => {
             </div>
           </div>
         )}
+        <RepoModal />
       </div>
     )
   );

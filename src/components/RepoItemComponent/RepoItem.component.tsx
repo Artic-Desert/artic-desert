@@ -11,11 +11,11 @@ import { useDispatch } from 'react-redux';
 import { setRepo } from '../../redux/repo/actions';
 import { removeRepo } from '../../redux/repos/actions';
 import { setBranch } from '../../redux/branch/actions';
-import { AnimatePresence } from 'framer-motion';
-import Modal from '../GitTimelineComponent/ModalComponent/Modal.component';
 import { ApiClientService } from '../../services/ApiClientService';
 import { useRepos } from '../../hooks/use-repos';
 import { useUser } from '../../hooks/use-user';
+import { setRepoModal } from '../../redux/repoModal/actions';
+import { RepoModal } from '../CustomModals/RepoModal.component';
 
 export const RepoItem: React.FC<{
   repo: GithubRepo;
@@ -23,16 +23,16 @@ export const RepoItem: React.FC<{
   console.log('repo input from repo item: ', repo);
   const [numOfBranches, setNumOfBranches] = useState(0);
   // const { user } = useUser();
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { repos } = useRepos();
   const { user } = useUser();
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const close = () => setModalOpen(false);
-  const open = () => setModalOpen(true);
+  // const [modalOpen, setModalOpen] = useState(false);
+
+  // const close = () => setModalOpen(false);
+  // const open = () => setModalOpen(true);
   //eslint-disable-next-line
   const handleDelete = async () => {
     const body =
@@ -74,11 +74,12 @@ export const RepoItem: React.FC<{
     CSS: 'lang-ball-purple',
     HTML: 'lang-ball-red',
   };
+
   useEffect(() => {
     fetchNumOfBranches();
   }, []);
 
-  return repo.message ? null : ( // <div style={{ color: 'white' }}>There was an error in repo fetching</div>
+  return repo.message ? null : (
     <>
       <div className="repo-item-container">
         <div className="top-line">
@@ -119,19 +120,21 @@ export const RepoItem: React.FC<{
               onClick={() => {
                 dispatch(setRepo(repo));
                 dispatch(setBranch('repo-board'));
-                modalOpen ? close() : open();
+                // modalOpen ? close() : open();
+                dispatch(setRepoModal(true));
               }}>
               Repo Preview
             </button>
           </div>
         </div>
       </div>
-      <AnimatePresence
+      {/* <RepoModal></RepoModal> */}
+      {/* <AnimatePresence
         initial={false}
         exitBeforeEnter={true}
         onExitComplete={() => null}>
         {modalOpen && <Modal repoPreview={repo} handleClose={close} />}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </>
   );
 };

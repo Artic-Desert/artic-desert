@@ -5,8 +5,6 @@ export const commitModalReducer = (state = '', action) => {
     const current = action.payload;
     return current;
   }
-  // if (action.type === SET_CURRENT_COMMIT_SHA){
 
-  // }
   return state;
 };
