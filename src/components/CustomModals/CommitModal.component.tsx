@@ -76,108 +76,109 @@ export const CommitModal: React.FC = () => {
       //   exitBeforeEnter={true}
       //   onExitComplete={() => null}>
       <Backdrop onClick={handleClose}>
-        <motion.div
+        {/* <motion.div
           variants={dropIn}
           className="modal background"
           initial="hidden"
           animate="visible"
           exit="exit"
-          onClick={e => e.stopPropagation()}>
-          <div className="commit-info-container">
-            <div className="commit-author-name">
-              <img
-                src={
-                  commitInfo.author
-                    ? commitInfo.author.avatar_url
-                    : 'https://camo.githubusercontent.com/cc6db406f60bc356022df89c92deda2a218d8e5e5efd9de54911d55e52eae4b1/68747470733a2f2f7261772e6769746875622e636f6d2f736568726775742f6e6f64652d7265747269636f6e2f6d61737465722f6578616d706c65732f696d616765732f30362e706e67'
-                }
-                alt=""
-              />
-              <div className="cont-plus-title">
-                <h3>Commit Author</h3>
-                <div className="commit-author-info-cont">
-                  <p>
-                    <span>
-                      {' '}
-                      {commitInfo.commit.author.name}{' '}
-                      <BsFillPersonLinesFill className="commit-author-icon" />
-                    </span>
-                  </p>
-                  <p>
-                    GitHub username •
-                    <span>
-                      {' '}
-                      <FiGithub />{' '}
-                      {commitInfo.author
-                        ? commitInfo.author.login
-                        : 'Not Found'}
-                    </span>
-                  </p>
-                  <p>
-                    E-mail •
-                    <span>
-                      {' '}
-                      <AiOutlineMail className="commit-autor-email-icon" />{' '}
-                      {commitInfo.commit.author.email}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="commit-details-title">
-              <h3>Commit Details</h3>
-              <div className="commit-details">
+          onClick={e => e.stopPropagation()}> */}
+
+        <div className="modal commit-info-container">
+          {/* <div style={{ color: 'white', marginLeft: 'auto' }}>X</div> */}
+          <div className="commit-author-name">
+            <img
+              src={
+                commitInfo.author
+                  ? commitInfo.author.avatar_url
+                  : 'https://camo.githubusercontent.com/cc6db406f60bc356022df89c92deda2a218d8e5e5efd9de54911d55e52eae4b1/68747470733a2f2f7261772e6769746875622e636f6d2f736568726775742f6e6f64652d7265747269636f6e2f6d61737465722f6578616d706c65732f696d616765732f30362e706e67'
+              }
+              alt=""
+            />
+            <div className="cont-plus-title">
+              <h3>Commit Author</h3>
+              <div className="commit-author-info-cont">
                 <p>
-                  Date •{' '}
                   <span>
                     {' '}
-                    <BsFillCalendar2DateFill />{' '}
-                    {moment(commitInfo.commit.author.date).format(
-                      'DD/MMM/YY HH:MM:SS',
-                    )}
+                    {commitInfo.commit.author.name}{' '}
+                    <BsFillPersonLinesFill className="commit-author-icon" />
                   </span>
                 </p>
                 <p>
-                  Files Changed •{' '}
+                  GitHub username •
                   <span>
                     {' '}
-                    <ImFilesEmpty /> {commitInfo.files.length}
+                    <FiGithub />{' '}
+                    {commitInfo.author ? commitInfo.author.login : 'Not Found'}
                   </span>
                 </p>
                 <p>
-                  Commit message •{' '}
+                  E-mail •
                   <span>
                     {' '}
-                    <BiMessageSquareDetail /> <q>{commitInfo.commit.message}</q>
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div className="commit-stats-title">
-              <h3>File changes</h3>
-              <div className="commit-stats">
-                <p>
-                  Additions •{' '}
-                  <span>
-                    {' '}
-                    <BiPlus className="commit-stats-plus-minus" color="green" />
-                    <BiPlus className="commit-stats-plus-minus" color="green" />
-                    {commitInfo.stats.additions}
-                  </span>
-                </p>
-                <p>
-                  Deletions •{' '}
-                  <span>
-                    {' '}
-                    <BiMinus className="commit-stats-plus-minus" color="red" />
-                    <BiMinus className="commit-stats-plus-minus" color="red" />
-                    {commitInfo.stats.deletions}
+                    <AiOutlineMail className="commit-autor-email-icon" />{' '}
+                    {commitInfo.commit.author.email}
                   </span>
                 </p>
               </div>
             </div>
           </div>
-        </motion.div>
+          <div className="commit-details-title">
+            <h3>Commit Details</h3>
+            <div className="commit-details">
+              <p>
+                Date •{' '}
+                <span>
+                  {' '}
+                  <BsFillCalendar2DateFill />{' '}
+                  {moment(commitInfo.commit.author.date).format(
+                    'DD/MMM/YY HH:MM:SS',
+                  )}
+                </span>
+              </p>
+              <p>
+                Files Changed •{' '}
+                <span>
+                  {' '}
+                  <ImFilesEmpty /> {commitInfo.files.length}
+                </span>
+              </p>
+              <p>
+                Commit message •{' '}
+                <span>
+                  {' '}
+                  <BiMessageSquareDetail /> <q>{commitInfo.commit.message}</q>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div className="commit-stats-title">
+            <h3>File changes</h3>
+            <div className="commit-stats">
+              <p>
+                Additions •{' '}
+                <span>
+                  {' '}
+                  <BiPlus className="commit-stats-plus-minus" color="green" />
+                  <BiPlus className="commit-stats-plus-minus" color="green" />
+                  {commitInfo.stats.additions}
+                </span>
+              </p>
+              <p>
+                Deletions •{' '}
+                <span>
+                  {' '}
+                  <BiMinus className="commit-stats-plus-minus" color="red" />
+                  <BiMinus className="commit-stats-plus-minus" color="red" />
+                  {commitInfo.stats.deletions}
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* </motion.div> */}
       </Backdrop>
       // </AnimatePresence>
     )

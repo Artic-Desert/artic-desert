@@ -7,10 +7,10 @@
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   padding: 25px 50px 50px 50px;
   border-radius: 10px;
-  border: 1px solid #c8d1d952;
+  /* border: 1px solid #c8d1d952; */
   /* -webkit-box-shadow: 0px 0px 6px 3px rgb(53, 54, 70, 1);
   -moz-box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1);
   box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1); */
@@ -215,14 +215,17 @@
   font-family: 'Ubuntu', sans-serif;
   padding: 30px;
   border-radius: 10px;
-  border: 1px solid #c8d1d952;
+  /* border: 1px solid #c8d1d952; */
   /* -webkit-box-shadow: 0px 0px 6px 3px rgb(53, 54, 70, 1);
   -moz-box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1);
   box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1); */
 }
 .commit-info-container {
   height: 100%;
-  width: 100%;
+  width: 45%;
+  /* display: flex; */
+  /* justify-content: 'center'; */
+  /* align-items: center; */
 }
 .commit-author-name {
   display: flex;
@@ -248,13 +251,14 @@
   border: 2px solid #c8d1d952;
   padding: 10px;
   font-weight: 400;
-  width: fit-content;
+  /* width: fit-content; */
   height: fit-content;
   display: flex;
   align-items: left;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 40px;
+  width: 100%;
 }
 .commit-author-info-cont p {
   margin-bottom: 6px;
@@ -265,6 +269,10 @@
 .commit-autor-email-icon {
   padding-top: 4px;
   transform: scale(1.4);
+}
+
+.cont-plus-title {
+  width: 100%;
 }
 .cont-plus-title h3 {
   color: #c8d1d9d5;
@@ -288,6 +296,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 40px;
+  width: 100%;
 }
 .commit-details span {
   color: #c8d1d9;
