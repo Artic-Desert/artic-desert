@@ -48,11 +48,13 @@ export const GitTimeline: React.FC = () => {
     getTimeLineData();
   }, []);
 
-  const branchesOrdered: string[] =
-    gitTimelineData?.length && gitTimelineData[0];
+  const branchesOrdered: string[] = gitTimelineData?.length
+    ? gitTimelineData[0]
+    : null;
 
-  const arrays: (number | string)[][] =
-    gitTimelineData?.length && gitTimelineData[1];
+  const arrays: (number | string)[][] = gitTimelineData?.length
+    ? gitTimelineData[1]
+    : null;
 
   useEffect(() => {
     dispatch(setBranches(branchesOrdered ? branchesOrdered : []));
@@ -115,25 +117,29 @@ export const GitTimeline: React.FC = () => {
 
               {/* eslint-disable-next-line */}
               {arrays.map((array: any[], indexX: number) => {
-                //eslint-disable-next--line
-                return array.map((commit: any[] | number, indexY: number) => {
-                  return (
-                    typeof commit !== 'number' && (
-                      <TimeliineDot
-                        key={`${indexX}${indexY}`}
-                        indexX={indexX}
-                        indexY={indexY}
-                        branchProps={branchProps}
-                        branchesOrdered={branchesOrdered}
-                        commit={commit[0]}
-                        isMerge={commit[1]}
-                        modalOpen={modalOpen}
-                        setModalOpen={setModalOpen}
-                        setCurrentCommit={setCurrentCommit}
-                      />
-                    )
-                  );
-                });
+                return (
+                  array
+                    .reverse()
+                    //eslint-disable-next-line
+                    .map((commit: any[] | number, indexY: number) => {
+                      return (
+                        typeof commit !== 'number' && (
+                          <TimeliineDot
+                            key={`${indexX}${indexY}`}
+                            indexX={indexX}
+                            indexY={indexY}
+                            branchProps={branchProps}
+                            branchesOrdered={branchesOrdered}
+                            commit={commit[0]}
+                            isMerge={commit[1]}
+                            modalOpen={modalOpen}
+                            setModalOpen={setModalOpen}
+                            setCurrentCommit={setCurrentCommit}
+                          />
+                        )
+                      );
+                    })
+                );
               })}
             </motion.svg>
           </motion.div>
