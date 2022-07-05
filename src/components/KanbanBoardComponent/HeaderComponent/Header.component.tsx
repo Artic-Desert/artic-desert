@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoGitBranch } from 'react-icons/go';
-import { MdOutlineDashboard } from 'react-icons/md';
+import { AiOutlineCode } from 'react-icons/ai';
+import { BsDoorClosed } from 'react-icons/bs';
 import './Header.css';
 import { useUser } from '../../../hooks/use-user';
 import { useRepo } from '../../../hooks/use-repo';
@@ -111,12 +112,12 @@ export const Header: React.FC = () => {
       { isFocused, isSelected }: { isFocused: boolean; isSelected: boolean },
     ) => ({
       ...provided,
-      color: isSelected ? 'white' : isFocused ? '#00111c' : '##f3f0f0',
+      color: isSelected ? 'white' : isFocused ? '#00111c' : '#c8d1d9',
       backgroundColor: isSelected
         ? '#00111c'
         : isFocused
-        ? '#57a6ff'
-        : '#f3f0f0',
+        ? '#c8d1d9'
+        : '#161b22',
     }),
     //eslint-disable-next-line
     menu: (provided: any) => ({
@@ -124,24 +125,49 @@ export const Header: React.FC = () => {
       postion: 'fixed',
       zindex: '10',
     }),
+    //eslint-disable-next-line
+    valueContainer: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#161b22',
+    }),
+    //eslint-disable-next-line
+    dropdownIndicator: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#161b22',
+    }),
+    //eslint-disable-next-line
+    control: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#161b22',
+    }),
+    //eslint-disable-next-line
+    menuList: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#161b22',
+    }),
+    singleValue: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#161b22',
+    }),
   };
   return (
     <div className="kanban-header">
-      <div className="select">
+      <div className="dropdown-select">
         {repoInfo.branches && (
           <Select
+            className="select-branch"
             options={options}
             styles={customStyles}
             onChange={e => handleBranchChange(e)}></Select>
         )}
       </div>
-      <div className="left">
+      <div className="header-left">
         {repoInfo.branches && (
           <div className="num-branches">
-            <GoGitBranch />
+            {repoInfo.branches.length} •{' '}
             <span>
-              {repoInfo.branches.length}
-              {repoInfo.branches.length > 1 ? ' branches' : ' branch'}
+              {repoInfo.branches.length > 1 ? ' branches' : ' branch'}{' '}
+              <GoGitBranch />
             </span>
           </div>
         )}
@@ -166,24 +192,21 @@ export const Header: React.FC = () => {
         </div>
       </div>
       {repo && (
-        <div className="current-repo">
-          <span className="current-repo-prefix">
-            <GoGitBranch /> current repo:
-          </span>
-          <span>
+        <div className="header-center">
+          <p className="current-repo-prefix">Current Workspace</p>
+          <span className="repo-title-icon">
             <a
-              title="GitHub Repo"
               key={repo.name}
               href={repo.html_url}
               target="blank"
               rel="noreferrer">
               {repo.name}
-              <p className="repo-privacy"> {repo.visibility}</p>
             </a>
+            <AiOutlineCode color="#c8d1d9" size={30} />
           </span>
         </div>
       )}
-      <div className="right">
+      <div className="header-right">
         <div className="user-info">
           <div className="hello-logout-cont">
             <span>Hello {user.name.split(' ')[0]}!</span>
@@ -199,12 +222,13 @@ export const Header: React.FC = () => {
             rel="noreferrer">
             <img src={user.avatar_url} alt="" />
           </a>
-          <div title="Dashboard" className="navigate-dashboard">
-            <p onClick={handleNavigation}>
-              {' '}
-              <MdOutlineDashboard />
-            </p>
-          </div>
+        </div>
+        <div
+          title="Dashboard"
+          className="navigate-dashboard"
+          onClick={handleNavigation}>
+          <p onClick={handleNavigation}>Back to Dashboard</p>
+          <BsDoorClosed size={30} />
         </div>
       </div>
     </div>

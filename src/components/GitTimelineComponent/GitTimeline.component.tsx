@@ -98,7 +98,7 @@ export const GitTimeline: React.FC = () => {
         {/* <div ref={constraintsRef} style={{ width: 'fitContent' }}> */}
         <motion.div className="svg-cont">
           <motion.svg
-            drag={'x'}
+            // drag={'x'}
             dragConstraints={{ left: -width, right: 0 }}
             // dragConstraints={constraintsRef}
             // ref={constraintsRef}
