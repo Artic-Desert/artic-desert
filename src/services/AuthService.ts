@@ -1,3 +1,5 @@
+import { GithubUser } from '../types/Types';
+
 export const AuthService = {
   getUser: function () {
     const user = sessionStorage.getItem('user');
@@ -12,9 +14,9 @@ export const AuthService = {
     return sessionStorage.getItem('token');
   },
 
-  setUserSession: function (user, token) {
+  setUserSession: function (user: GithubUser, token: string | undefined) {
     sessionStorage.setItem('user', JSON.stringify(user));
-    sessionStorage.setItem('token', token);
+    token && sessionStorage.setItem('token', token);
   },
 
   resetUserSession: function () {
