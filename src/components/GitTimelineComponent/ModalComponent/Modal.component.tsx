@@ -68,8 +68,8 @@ export const Modal: React.FC<{
       ApiClientService.getCommitBySha(
         repo.owner.login,
         repo.name,
-        commit,
         ghpToken,
+        commit,
       ).then(data => setCommitInfo(data));
   }, []);
 

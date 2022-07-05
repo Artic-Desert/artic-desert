@@ -118,8 +118,8 @@ export const ApiClientService = {
   getCommitBySha: async (
     repo_owner: string,
     repo_name: string,
-    sha: string | number,
     ghpToken: string,
+    sha?: string | number,
   ) => {
     return fetch(
       `https://api.github.com/repos/${repo_owner}/${repo_name}/commits/${sha}`,
