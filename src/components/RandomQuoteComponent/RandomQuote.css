@@ -1,8 +1,9 @@
 .random-quote-container {
+  display: flex;
   margin: 30px 0 80px 0;
   max-width: 70%;
-  position: relative;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .quote-main-p {
   color: white;
@@ -17,8 +18,8 @@
 }
 .button-container {
   display: flex;
-  justify-content: center;
   margin-top: 10px;
+  width: fit-content;
 }
 .button-container:hover {
   transform: scale(1.2);
