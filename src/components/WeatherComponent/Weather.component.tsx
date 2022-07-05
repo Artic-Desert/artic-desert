@@ -62,7 +62,9 @@ export const Weather: React.FC = () => {
           <div className="weather-top">
             <div className="icon-and-temp-container">
               <div className="weather-icon">
-                {data.weather[0].main === 'Clear' ? <TiWeatherSunny /> : null}
+                {data.weather[0].main === 'Clear' ? (
+                  <TiWeatherSunny className="sun-spin" />
+                ) : null}
                 {data.weather[0].main === 'Rain' ? <TiWeatherDownpour /> : null}
                 {data.weather[0].main === 'Drizzle' ? (
                   <TiWeatherShower />

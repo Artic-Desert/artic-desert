@@ -26,19 +26,18 @@ export const Welcome: React.FC = () => {
         <h1 className="top"> &lt;Arctic </h1>
         <h1 className="bot"> Desert/&gt; </h1>
       </div>
-      {/* <div className="main-title">
-        <h1>home of collaborative development.</h1>
-      </div> */}
+      <div className="main-title">
+        <h1>Collaboration made easy.</h1>
+      </div>
       <div className="lottie-container" ref={container}></div>
-      <button className="login-button">
+      <button className="welcome-login-button">
         <a
           className="a-tag"
           href={`https://github.com/login/oauth/authorize?client_id=${client_id}`}>
-          <span>Login with GitHub</span>
+          <span>Sign In with GitHub</span>
         </a>
         <AiOutlineGithub fontSize="45px" />
       </button>
-      {/* <img className="mask" src={mask} alt="" /> */}
     </div>
   );
 };
