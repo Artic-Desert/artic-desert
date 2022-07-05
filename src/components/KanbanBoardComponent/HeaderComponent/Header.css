@@ -94,10 +94,7 @@
 .navigate-dashboard {
   margin-left: 15px;
   transform: scale(1.6);
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  -o-transition-property: -o-transform;
-  transition-property: transform;
+  transition: 0.25s linear;
 }
 .navigate-dashboard:hover {
   margin-left: 15px;
