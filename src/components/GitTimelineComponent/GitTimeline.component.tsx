@@ -136,13 +136,7 @@ export const GitTimeline: React.FC = () => {
           initial={false}
           exitBeforeEnter={true}
           onExitComplete={() => null}>
-          {modalOpen && (
-            <Modal
-              commit={currentCommit}
-              modalOpen={modalOpen}
-              handleClose={close}
-            />
-          )}
+          {modalOpen && <Modal commit={currentCommit} handleClose={close} />}
         </AnimatePresence>
       </>
     )

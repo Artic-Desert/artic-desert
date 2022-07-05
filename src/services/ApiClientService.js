@@ -108,4 +108,19 @@ export const ApiClientService = {
         console.log('get repo branch error', error);
       });
   },
+
+  getCommitBySha: async (repo_owner, repo_name, sha, ghpToken) => {
+    return fetch(
+      `https://api.github.com/repos/${repo_owner}/${repo_name}/commits/${sha}`,
+      {
+        headers: {
+          Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
+        },
+      },
+    )
+      .then(res => res.json())
+      .catch(error =>
+        console.log('Error at ApiClientService.getCommitBySha() : ', error),
+      );
+  },
 };
