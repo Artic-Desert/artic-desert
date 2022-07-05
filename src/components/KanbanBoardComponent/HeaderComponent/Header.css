@@ -70,6 +70,17 @@
   align-items: center;
   justify-content: center;
 }
+.repo-privacy {
+  color: rgba(255, 228, 196, 0.794);
+  border: 1px solid rgba(255, 228, 196, 0.742);
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 20px;
+  width: fit-content;
+  padding-bottom: 3px;
+  margin-left: 10px;
+  transform: scale(0.8);
+}
 .right {
   height: 47px;
 }
