@@ -1,5 +1,7 @@
+import { GithubRepo } from '../types/Types';
+
 export const ApiClientService = {
-  getKanbanBoard: async board_id => {
+  getKanbanBoard: async (board_id: string) => {
     console.log('BOARD ID API CLIENT: ', board_id);
     console.log('BOARD ID API CLIENT STRINGIFIED: ', JSON.stringify(board_id));
     return fetch(
@@ -13,7 +15,11 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
 
-  updateKanbanBoard: async (board_id, columns) => {
+  updateKanbanBoard: async (
+    board_id: string,
+    // eslint-disable-next-line
+    columns: any,
+  ) => {
     return fetch(
       `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/kanban/${board_id}`,
       {
@@ -26,7 +32,7 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
 
-  getTimelineData: async (repo, ghpToken) => {
+  getTimelineData: async (repo: GithubRepo, ghpToken: string) => {
     const body = JSON.stringify({
       repo_name: repo.name,
       repo_owner: repo.owner.login,
@@ -42,7 +48,7 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
 
-  getGithubRepo: async (owner, repo, ghpToken) => {
+  getGithubRepo: async (owner: string, repo: string, ghpToken: string) => {
     return fetch(`https://api.github.com/repos/${owner}/${repo}`, {
       headers: {
         // eslint-disable-next-line no-undef
@@ -53,7 +59,7 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
 
-  getUser: async username => {
+  getUser: async (username: string) => {
     return fetch(
       `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${username}}`,
     )
@@ -61,7 +67,7 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
 
-  updateDynamoUser: async (username, body) => {
+  updateDynamoUser: async (username: string, body: string) => {
     return fetch(
       `https://ugmp3ddru7.execute-api.us-east-1.amazonaws.com/dev/users/{${username}}`,
       {
@@ -73,7 +79,7 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
 
-  getCollaboratorsOfRepo: async (repo, ghpToken) => {
+  getCollaboratorsOfRepo: async (repo: GithubRepo, ghpToken: string) => {
     const body = {
       repo: repo.name,
       owner: repo.owner.login,
@@ -90,7 +96,7 @@ export const ApiClientService = {
       .then(res => res.json())
       .catch(err => console.log(err));
   },
-  getBranches: async (branchUrl, ghpToken) => {
+  getBranches: async (branchUrl: string, ghpToken: string) => {
     return fetch(branchUrl, {
       headers: {
         // eslint-disable-next-line no-undef
@@ -101,7 +107,7 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
 
-  getRepoBranches: async repo_name => {
+  getRepoBranches: async (repo_name: string) => {
     return fetch(`https://api.github.com/repos/${repo_name}/branches`)
       .then(res => res.json())
       .catch(error => {
@@ -109,7 +115,12 @@ export const ApiClientService = {
       });
   },
 
-  getCommitBySha: async (repo_owner, repo_name, sha, ghpToken) => {
+  getCommitBySha: async (
+    repo_owner: string,
+    repo_name: string,
+    sha: string | number,
+    ghpToken: string,
+  ) => {
     return fetch(
       `https://api.github.com/repos/${repo_owner}/${repo_name}/commits/${sha}`,
       {

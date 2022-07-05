@@ -45,6 +45,7 @@ export const Header: React.FC = () => {
         repo.branches_url &&
         (await ApiClientService.getBranches(
           repo.branches_url.slice(0, repo.branches_url.length - 9),
+          ghpToken,
         ))
       );
     } catch (error) {
