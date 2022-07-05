@@ -1,7 +1,11 @@
 .commit-circle {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s;
 }
 
 .commit-circle:hover {
-  transform: scale(1.1);
+  /* transform: scale(1.3); */
+  transform: translateY(3px);
+  /* margin-top: 4px; */
+  /* transform: skewY(10); */
+  cursor: pointer;
 }

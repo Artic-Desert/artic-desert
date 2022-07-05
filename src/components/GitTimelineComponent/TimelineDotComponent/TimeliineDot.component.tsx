@@ -1,11 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import './TimelineDot.css';
 export const TimeliineDot: React.FC<{
   indexX: number;
   indexY: number;
   branchProps: { [key: string]: string };
   branchesOrdered: string[];
-  commit: string | number;
+  commit: string;
+  isMerge: boolean;
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentCommit: React.Dispatch<React.SetStateAction<string | number>>;
@@ -15,6 +17,7 @@ export const TimeliineDot: React.FC<{
   branchProps,
   branchesOrdered,
   commit,
+  isMerge,
   modalOpen,
   setModalOpen,
   setCurrentCommit,
@@ -29,18 +32,22 @@ export const TimeliineDot: React.FC<{
   };
   return (
     <>
+      {/* <div className="commit-circle"> */}
+      {/* <motion.svg > */}
       <motion.circle
         className="commit-circle"
         key={`${indexX}${indexY}`}
         onClick={() => {
           modalOpen ? close() : open();
         }}
-        fill={branchProps[branchesOrdered[indexY]]}
+        fill={isMerge ? '#ffffff' : branchProps[branchesOrdered[indexY]]}
         // stroke="#56FB08"+
         cx={indexX * 50}
-        cy={String(400 - indexY * 50)}
+        cy={String(450 - indexY * 50)}
         r="10"
       />
+      {/* </motion.svg> */}
+      {/* </div> */}
     </>
   );
 };

@@ -75,29 +75,31 @@ export const GitTimeline: React.FC = () => {
 
   const constraintsRef = useRef(null);
 
-  const height = 50 * (arrays && arrays[0].length);
+  // const height = 50 * (arrays && arrays[0].length);
   const width = 50 * (arrays && arrays.length);
   return (
     gitTimelineData?.length && (
       <>
-        <motion.div className="svg-cont" ref={constraintsRef}>
-          <motion.svg
-            drag={'x'}
-            dragConstraints={{ left: -width, right: 0 }}
-            // dragConstraints={constraintsRef}
-            dragElastic={0.001}
-            className="the-svg"
-            xmlns="http://www.w3.org/2000/svg"
-            width={String(width) + 'px'}
-            height={String(height) + 'px'}
-            viewBox={`0 0 ${width} ${height}`}>
-            <path stroke="#ff0000" d={`M0 400, ${width} 400`} />
-            <path stroke="#df1bfd" d={`M0 450, ${width} 450`} />
-            <path stroke="#00ffff" d={`M0 500, ${width} 500`} />
-            <path stroke="#56FB08" d={`M0 550, ${width} 550`} />
-            <path stroke="#ffff00" d={`M0 350, ${width} 350`} />
-            <path stroke="#ff8400" d={`M0 300, ${width} 300`} />
-            {/* {arrays.map(array => {
+        <div ref={constraintsRef} style={{ width: 'fitContent' }}>
+          <motion.div className="svg-cont">
+            <motion.svg
+              drag={'x'}
+              dragConstraints={{ left: -width, right: 0 }}
+              // dragConstraints={constraintsRef}
+              // ref={constraintsRef}
+              dragElastic={0.001}
+              className="the-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              width={String(width) + 'px'}
+              height="500px"
+              viewBox={`0 0 ${width + 1000} 500`}>
+              <path stroke="#ff0000" d={`M0 300, ${width} 300`} />
+              <path stroke="#df1bfd" d={`M0 350, ${width} 350`} />
+              <path stroke="#00ffff" d={`M0 400, ${width} 400`} />
+              <path stroke="#56FB08" d={`M0 450, ${width} 450`} />
+              <path stroke="#ffff00" d={`M0 250, ${width} 250`} />
+              <path stroke="#ff8400" d={`M0 200, ${width} 200`} />
+              {/* {arrays.map(array => {
               return array.map((commit: string | number, indexY: number) => {
                 return (
                   <BranchLine
@@ -111,27 +113,31 @@ export const GitTimeline: React.FC = () => {
               });
             })} */}
 
-            {arrays.map((array: (string | number)[], indexX: number) => {
-              return array.map((commit: string | number, indexY: number) => {
-                return (
-                  commit && (
-                    <TimeliineDot
-                      key={`${indexX}${indexY}`}
-                      indexX={indexX}
-                      indexY={indexY}
-                      branchProps={branchProps}
-                      branchesOrdered={branchesOrdered}
-                      commit={commit}
-                      modalOpen={modalOpen}
-                      setModalOpen={setModalOpen}
-                      setCurrentCommit={setCurrentCommit}
-                    />
-                  )
-                );
-              });
-            })}
-          </motion.svg>
-        </motion.div>
+              {/* eslint-disable-next-line */}
+              {arrays.map((array: any[], indexX: number) => {
+                //eslint-disable-next--line
+                return array.map((commit: any[] | number, indexY: number) => {
+                  return (
+                    typeof commit !== 'number' && (
+                      <TimeliineDot
+                        key={`${indexX}${indexY}`}
+                        indexX={indexX}
+                        indexY={indexY}
+                        branchProps={branchProps}
+                        branchesOrdered={branchesOrdered}
+                        commit={commit[0]}
+                        isMerge={commit[1]}
+                        modalOpen={modalOpen}
+                        setModalOpen={setModalOpen}
+                        setCurrentCommit={setCurrentCommit}
+                      />
+                    )
+                  );
+                });
+              })}
+            </motion.svg>
+          </motion.div>
+        </div>
         <AnimatePresence
           initial={false}
           exitBeforeEnter={true}
