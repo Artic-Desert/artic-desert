@@ -163,6 +163,8 @@ export type GithubCommit = {
   sha: string;
   commit: {
     author: {
+      html_url: string | undefined;
+      login: string;
       name: string;
       email: string;
       date: string;

@@ -125,7 +125,9 @@ export const Modal: React.FC<{
                   </p>
                   <p className="default-branch">
                     {' '}
-                    Default branch • <GoGitBranch
+                    Default branch •{' '}
+                    <GoGitBranch
+                      className="modal-preview-icons"
                       size={20}
                       color="#c8d1d9"
                     />{' '}
@@ -141,7 +143,12 @@ export const Modal: React.FC<{
                     readOnly={true}
                   />
 
-                  <AiFillCopy className="copy-icon" onClick={copy} size={35} />
+                  <AiFillCopy
+                    title="Copy"
+                    className="copy-icon"
+                    onClick={copy}
+                    size={35}
+                  />
                 </div>
                 {copiedToClipboard && (
                   <div className="copied-to-clipboard-alert">
@@ -156,29 +163,32 @@ export const Modal: React.FC<{
                     Watchers •{' '}
                     <span>
                       {' '}
-                      <BsFillEyeFill /> {repoPreview.watchers}{' '}
+                      <BsFillEyeFill className="modal-preview-icons" />{' '}
+                      {repoPreview.watchers}{' '}
                     </span>
                   </p>
                   <p>
                     Size •{' '}
                     <span>
                       {' '}
-                      <MdOutlineMemory /> {repoPreview.size}{' '}
+                      <MdOutlineMemory className="modal-preview-icons" />{' '}
+                      {repoPreview.size}{' '}
                     </span>
                   </p>
                   <p>
                     Stars •{' '}
                     <span>
                       {' '}
-                      <AiOutlineStar />{' '}
+                      <AiOutlineStar className="modal-preview-icons" />{' '}
+                      {repoPreview.stargazers_count}
                     </span>
-                    {repoPreview.stargazers_count}
                   </p>
                   <p>
                     Forked •{' '}
                     <span>
                       {' '}
-                      <GoRepoForked /> {repoPreview.forks} times{' '}
+                      <GoRepoForked className="modal-preview-icons" />{' '}
+                      {repoPreview.forks} times{' '}
                     </span>
                   </p>
                 </div>
@@ -229,11 +239,18 @@ export const Modal: React.FC<{
                   <p>
                     GitHub username •
                     <span>
-                      {' '}
-                      <FiGithub />{' '}
-                      {commitInfo.author
-                        ? commitInfo.author.login
-                        : 'Not Found'}
+                      <a
+                        title={`${commitInfo.author.login}'s GitHub`}
+                        key={`${commitInfo.author.login}_key`}
+                        href={commitInfo.author.html_url}
+                        target="_blank"
+                        rel="noreferrer">
+                        {' '}
+                        <FiGithub className="commit-auther-github-icon" />{' '}
+                        {commitInfo.author
+                          ? commitInfo.author.login
+                          : 'Not Found'}
+                      </a>
                     </span>
                   </p>
                   <p>
@@ -254,7 +271,7 @@ export const Modal: React.FC<{
                   Date •{' '}
                   <span>
                     {' '}
-                    <BsFillCalendar2DateFill />{' '}
+                    <BsFillCalendar2DateFill className="commit-date-icon" />{' '}
                     {moment(commitInfo.commit.author.date).format(
                       'DD/MMM/YY HH:MM:SS',
                     )}
@@ -271,7 +288,8 @@ export const Modal: React.FC<{
                   Commit message •{' '}
                   <span>
                     {' '}
-                    <BiMessageSquareDetail /> <q>{commitInfo.commit.message}</q>
+                    <BiMessageSquareDetail className="commit-message-icon" />{' '}
+                    <q>{commitInfo.commit.message}</q>
                   </span>
                 </p>
               </div>
