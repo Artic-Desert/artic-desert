@@ -91,7 +91,7 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
   getBranches: async (branchUrl, ghpToken) => {
-    return await fetch(branchUrl, {
+    return fetch(branchUrl, {
       headers: {
         // eslint-disable-next-line no-undef
         Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
@@ -102,8 +102,10 @@ export const ApiClientService = {
   },
 
   getRepoBranches: async repo_name => {
-    return fetch(`https://api.github.com/repos/${repo_name}/branches`).then(
-      res => res.json(),
-    );
+    return fetch(`https://api.github.com/repos/${repo_name}/branches`)
+      .then(res => res.json())
+      .catch(error => {
+        console.log('get repo branch error', error);
+      });
   },
 };
