@@ -15,7 +15,7 @@ const vh = Math.max(
 );
 
 export const Workspace: React.FC = () => {
-  const [kanbanSize, setKanbanSize] = useState(vh * 0.95);
+  const [kanbanSize, setKanbanSize] = useState(vh * 0.9);
   const [flipArrow, setFlipArrow] = useState(false);
   const { branches } = useBranches();
 
@@ -30,7 +30,7 @@ export const Workspace: React.FC = () => {
 
   const onClick = () => {
     if (kanbanSize <= 85) {
-      setKanbanSize(vh * 0.95);
+      setKanbanSize(vh * 0.9);
     } else {
       setKanbanSize(85);
     }
@@ -51,7 +51,7 @@ export const Workspace: React.FC = () => {
       <Pane
         split="horizontal"
         minSize={85}
-        maxSize={vh * 0.95}
+        maxSize={vh * 0.9}
         size={kanbanSize}
         onDragFinished={e => {
           setKanbanSize(e);
