@@ -25,16 +25,16 @@
 }
 .expand-icon-div {
   position: absolute;
-  top: 0;
+  top: 5px;
   left: 50%;
   cursor: pointer;
   z-index: 100;
 }
 .expand-icon-div:hover {
-  transform: scale(1.2) translateY(5px);
+  transform: scale(1.1);
 }
 .shrink-icon:hover {
-  transform: scale(1.2) translateY(-5px);
+  transform: scale(1.1);
 }
 @keyframes verticalBounce {
   0%,
@@ -69,10 +69,10 @@
   transition: all 0.5s ease;
 }
 .Resizer.horizontal {
-  height: 11px;
+  height: 9px;
   margin: -5px 0;
-  border-top: 4px solid rgba(215, 215, 215, 0.227);
-  border-bottom: 4px solid rgba(215, 215, 215, 0.227);
+  border-top: 4px solid rgba(215, 215, 215, 0.8);
+  border-bottom: 4px solid rgba(215, 215, 215, 0.8);
   cursor: row-resize;
   width: 100%;
 }

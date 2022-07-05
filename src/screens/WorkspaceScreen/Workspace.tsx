@@ -5,7 +5,7 @@ import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/He
 import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.component';
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
 import { CurrentRepoInfo } from '../../components/CurrentRepoInfoComponent/CurrentRepoInfo.component';
-import { TbArrowBarUp, TbArrowBarDown } from 'react-icons/tb';
+import { BsArrowUpSquare, BsArrowDownSquare } from 'react-icons/bs';
 
 import './Workspace.css';
 import { useBranches } from '../../hooks/use-branches';
@@ -75,19 +75,19 @@ export const Workspace: React.FC = () => {
               setKanbanSize(e.clientY);
             }}>
             {flipArrow ? (
-              <TbArrowBarUp
+              <BsArrowUpSquare
                 title="Shrink Kanban"
                 className="shrink-icon"
-                size={30}
-                color="lightgrey"
+                size={25}
+                color="rgba(215, 215, 215, 0.800)"
                 onClick={onClick}
               />
             ) : (
-              <TbArrowBarDown
+              <BsArrowDownSquare
                 title="Expand Kanban"
                 className="expand-icon"
-                size={30}
-                color="lightgrey"
+                size={25}
+                color="rgba(215, 215, 215, 0.800)"
                 onClick={onClick}
               />
             )}
