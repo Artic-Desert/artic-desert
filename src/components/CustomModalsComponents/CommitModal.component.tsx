@@ -49,6 +49,9 @@ export const CommitModal: React.FC = () => {
   const { ghpToken } = useGhpToken();
   const { commitModal } = useCommitModal(); // has to be state that is triggered by svg click
   const [commitInfo, setCommitInfo] = useState<GithubCommit>();
+  const [isFilesVisible, setIsFilesVisible] = useState(false);
+  const [file, setFile] = useState('');
+  const [fileContents, setFileContents] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     repo &&
@@ -67,6 +70,33 @@ export const CommitModal: React.FC = () => {
     dispatch(setCommitModal(''));
   }; // has to be a redux state
 
+  // const fetchRawFile = async () => {
+  //   if (!commitInfo) return;
+  //   const fileUrl = file.replaceAll('/', '%2F');
+  //   const response = await fetch(
+  //     `https://github.com/Artic-Desert/artic-desert/raw/${commitInfo.sha}/${fileUrl}`,
+  //     {
+  //       headers: {
+  //         Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
+  //       },
+  //     },
+  //   );
+  //   const parsedResponse = await response.json();
+  //   setFileContents(parsedResponse.content);
+  // };
+
+  const fetchContentFile = async (url: string) => {
+    if (!commitInfo) return;
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
+      },
+    });
+    const parsedResponse = await response.json();
+    console.log(parsedResponse);
+    setFileContents(parsedResponse.content);
+  };
+
   console.log('HI THERE, IM INSIDE COMMIT MODAL');
   return (
     commitModal &&
@@ -76,7 +106,7 @@ export const CommitModal: React.FC = () => {
       //   initial={false}
       //   exitBeforeEnter={true}
       //   onExitComplete={() => null}>
-      <Backdrop onClick={handleClose}>
+      <Backdrop>
         <div className="commit-modal-wrapper">
           <motion.div
             variants={dropIn}
@@ -181,7 +211,9 @@ export const CommitModal: React.FC = () => {
                     </p>
                   </div>
                   <div className="commit-stats-files-changed">
-                    <p>put the files changed hereeeeeeee</p>
+                    <button onClick={() => setIsFilesVisible(!isFilesVisible)}>
+                      Show Files Changed
+                    </button>
                   </div>
                 </div>
               </div>
@@ -191,9 +223,26 @@ export const CommitModal: React.FC = () => {
               />
             </div>
           </motion.div>
-          <div className="files-changed-container">
-            file that is changed renders here once the button is presssed
-          </div>
+          {isFilesVisible && (
+            <div className="files-changed-container">
+              <div className="side-menu-buttons">
+                {commitInfo.files.map(file => {
+                  return (
+                    <button
+                      key={file.sha}
+                      onClick={() => fetchContentFile(file.contents_url)}>
+                      {file.filename}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="file-contents-container">
+                {fileContents && (
+                  <div className="file-contents">{atob(fileContents)}</div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </Backdrop>
       // </AnimatePresence>

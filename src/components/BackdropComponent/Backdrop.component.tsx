@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import './Backdrop.css';
 
 //eslint-disable-next-line
-const Backdrop: React.FC<{ children: any; onClick: () => void }> = ({
+const Backdrop: React.FC<{ children: any; onClick?: () => void }> = ({
   children,
   onClick,
 }) => {

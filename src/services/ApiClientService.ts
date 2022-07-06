@@ -1,4 +1,4 @@
-import { GithubRepo } from '../types/Types';
+import { GithubCommit, GithubRepo } from '../types/Types';
 
 export const ApiClientService = {
   getKanbanBoard: async (board_id: string) => {
@@ -121,7 +121,7 @@ export const ApiClientService = {
     repo_name: string,
     ghpToken: string,
     sha?: string | number,
-  ) => {
+  ): Promise<GithubCommit> => {
     return fetch(
       `https://api.github.com/repos/${repo_owner}/${repo_name}/commits/${sha}`,
       {
