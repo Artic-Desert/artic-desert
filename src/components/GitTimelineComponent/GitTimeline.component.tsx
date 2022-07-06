@@ -83,7 +83,7 @@ export const GitTimeline: React.FC = () => {
                   <path
                     key={color}
                     stroke={colors[index]}
-                    d={`M0 ${height - 50 * index}, ${width} ${
+                    d={`M10 ${height - 50 * index}, ${width} ${
                       height - 50 * index
                     }`}
                   />
@@ -98,7 +98,7 @@ export const GitTimeline: React.FC = () => {
                   typeof commit !== 'number' && (
                     <TimeliineDot
                       key={`${indexX}${indexY}`}
-                      indexX={indexX + 1}
+                      indexX={indexX + 0.5}
                       indexY={Math.abs(indexY - array.length + 1)}
                       branchProps={branchProps}
                       branchesOrdered={branchesOrdered}
