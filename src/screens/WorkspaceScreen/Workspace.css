@@ -104,27 +104,34 @@
   border-color: transparent;
 }
 .label-timeline-container {
-  overflow-y: scroll;
-  max-height: 620px;
+  /* top: 0px; */
+  max-height: 500px;
   width: 90%;
   display: flex;
   align-items: center;
+  overflow-y: scroll;
+  /* background-color: violet; */
 }
 .label-container {
+  height: auto;
   width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
   margin-bottom: 35px;
+  /* background-color: cyan; */
 }
 
 .label-container h3 {
   font-family: 'Ubuntu', sans-serif;
   margin-right: 10px;
+  /* border: 3px solid red; */
 }
 
 .branch {
+  /* background-color: green; */
+  /* margin-top: 10px; */
   display: flex;
   flex-direction: flex-end;
   align-items: flex-end;
