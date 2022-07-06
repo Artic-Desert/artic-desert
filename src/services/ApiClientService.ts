@@ -97,6 +97,7 @@ export const ApiClientService = {
       .catch(err => console.log(err));
   },
   getBranches: async (branchUrl: string, ghpToken: string) => {
+    console.log('BRANCHES URL:', branchUrl);
     return fetch(branchUrl, {
       headers: {
         // eslint-disable-next-line no-undef

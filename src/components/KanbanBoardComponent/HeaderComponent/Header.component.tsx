@@ -7,7 +7,6 @@ import { useUser } from '../../../hooks/use-user';
 import { useRepo } from '../../../hooks/use-repo';
 import { setBranch } from '../../../redux/branch/actions';
 import { useDispatch } from 'react-redux';
-import { useBranch } from '../../../hooks/use-branch';
 import { GithubUser, RepoBranch } from '../../../types/Types';
 import Select, { SingleValue } from 'react-select';
 import { useNavigate } from 'react-router-dom';
@@ -15,38 +14,28 @@ import lottie from 'lottie-web';
 import { ApiClientService } from '../../../services/ApiClientService';
 import { useGhpToken } from '../../../hooks/use-ghpToken';
 import { AuthService } from '../../../services/AuthService';
+import { setBranches } from '../../../redux/branches/actions';
+import { useBranches } from '../../../hooks/use-branches';
+import { customStyles } from './Header.variables';
 
 export const Header: React.FC = () => {
   const { user } = useUser();
   const { repo } = useRepo();
-  const { branch } = useBranch();
+  const { branches } = useBranches();
   const { ghpToken } = useGhpToken();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-
-  const handleLogout = () => {
-    AuthService.resetUserSession();
-    navigate('/');
-  };
-
-  console.log('<Header> current repo: ', repo);
-  console.log('<Header> current branch: ', branch);
-
-  const [repoInfo, setRepoInfo] = useState<{
-    branches: RepoBranch[] | undefined;
-    collaborators: GithubUser[] | undefined;
-  }>({
-    branches: undefined,
-    collaborators: undefined,
-  });
-
-  const [currentBranch, setCurrentBranch] = useState('workspace');
+  const [collaborators, setCollaborators] = useState([]);
 
   useEffect(() => {
     console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
     fetchInfoOfRepo();
   }, []);
+
+  useEffect(() => {
+    branches && collaborators && setLoading(false);
+  }, [loading === true]);
 
   const container: any = useRef(null);
 
@@ -60,38 +49,9 @@ export const Header: React.FC = () => {
     });
   }, []);
 
-  const getBranches = async () => {
-    try {
-      return (
-        repo.branches_url &&
-        (await ApiClientService.getBranches(
-          repo.branches_url.slice(0, repo.branches_url.length - 9),
-          ghpToken,
-        ))
-      );
-    } catch (error) {
-      console.error('Error inside <Header> getBranches(): ', error);
-    }
-  };
-
-  const getCollaborators = async () => {
-    try {
-      return await ApiClientService.getCollaboratorsOfRepo(repo, ghpToken);
-    } catch (error) {
-      console.error('Error inside <Header> getCollaborators(): ', error);
-    }
-  };
-
-  const fetchInfoOfRepo = async () => {
-    try {
-      setLoading(true);
-      const branches = await getBranches();
-      const collaborators = branches && (await getCollaborators());
-      setRepoInfo({ branches, collaborators });
-      setLoading(false);
-    } catch (error) {
-      console.error('Error inside <Header> fetchInfoOfRepo(): ', error);
-    }
+  const handleLogout = () => {
+    AuthService.resetUserSession();
+    navigate('/');
   };
 
   const handleBranchChange = (
@@ -100,95 +60,90 @@ export const Header: React.FC = () => {
       label: string;
     }>,
   ) => {
-    // e.preventDefault();
-    setCurrentBranch(e ? e.value : '');
+    console.log('Branch change event fired. Current branch: ', e?.value);
+    dispatch(setBranch(e?.value || default_branch));
   };
 
   const handleNavigation = () => {
     navigate('/dashboard');
   };
 
-  useEffect(() => {
-    dispatch(setBranch(currentBranch));
-  }, [currentBranch]);
-
-  const options = repoInfo.branches?.map((branch: RepoBranch) => {
-    return { value: branch.name, label: branch.name };
-  });
-
-  const customStyles = {
-    option: (
-      //eslint-disable-next-line
-      provided: any,
-      { isFocused, isSelected }: { isFocused: boolean; isSelected: boolean },
-    ) => ({
-      ...provided,
-      color: isSelected ? '#c8d1d9' : isFocused ? '#00111c' : '#c8d1d9',
-      backgroundColor: isSelected
-        ? '#00111c'
-        : isFocused
-        ? '#c8d1d9'
-        : '#161b22',
-    }),
-    //eslint-disable-next-line
-    menu: (provided: any) => ({
-      ...provided,
-      postion: 'fixed',
-      zindex: '10',
-      color: '#c8d1d9',
-    }),
-    //eslint-disable-next-line
-    valueContainer: (provided: any) => ({
-      ...provided,
-      backgroundColor: '#161b22',
-    }),
-    //eslint-disable-next-line
-    dropdownIndicator: (provided: any) => ({
-      ...provided,
-      backgroundColor: '#161b22',
-    }),
-    //eslint-disable-next-line
-    control: (provided: any) => ({
-      ...provided,
-      backgroundColor: '#161b22',
-    }),
-    //eslint-disable-next-line
-    menuList: (provided: any) => ({
-      ...provided,
-      backgroundColor: '#161b22',
-    }),
-    singleValue: (provided: any) => ({
-      ...provided,
-      backgroundColor: '#161b22',
-      color: '#c8d1d9',
-    }),
+  const getBranches = async () => {
+    try {
+      const repo_url_clean =
+        repo && repo.branches_url.slice(0, repo.branches_url.length - 9);
+      return (
+        repo.branches_url &&
+        ApiClientService.getBranches(repo_url_clean, ghpToken).then(data => {
+          const newBranches = data.map(
+            (branchObj: RepoBranch) => branchObj.name,
+          );
+          dispatch(setBranches(newBranches));
+        })
+      );
+    } catch (error) {
+      console.error('Error inside <Header> getBranches(): ', error);
+    }
   };
+
+  const getCollaborators = async () => {
+    try {
+      ApiClientService.getCollaboratorsOfRepo(repo, ghpToken).then(data => {
+        setCollaborators(data);
+      });
+    } catch (error) {
+      console.error('Error inside <Header> getCollaborators(): ', error);
+    }
+  };
+
+  const fetchInfoOfRepo = async () => {
+    try {
+      setLoading(true);
+      getBranches();
+      getCollaborators();
+    } catch (error) {
+      console.error('Error inside <Header> fetchInfoOfRepo(): ', error);
+    }
+  };
+
+  const default_branch = {
+    label: repo.default_branch,
+    value: repo.default_branch,
+  };
+
+  const options =
+    branches &&
+    branches.map((branch: string) => {
+      return { value: branch, label: branch };
+    });
+
   return (
     <div className="kanban-header">
       {!loading ? (
         <>
           <div className="dropdown-select">
-            {repoInfo.branches && (
+            {branches && (
               <Select
                 className="select-branch"
                 options={options}
                 styles={customStyles}
+                defaultValue={default_branch}
                 onChange={e => handleBranchChange(e)}></Select>
             )}
           </div>
           <div className="header-left">
-            {repoInfo.branches && (
+            {branches && (
               <div className="num-branches">
-                {repoInfo.branches.length} •{' '}
+                {branches.length} •{' '}
                 <span>
-                  {repoInfo.branches.length > 1 ? ' branches' : ' branch'}{' '}
+                  {branches.length > 1 ? ' branches' : ' branch'}{' '}
                   <GoGitBranch />
                 </span>
               </div>
             )}
             <div className="collaborators">
-              {repoInfo.collaborators &&
-                repoInfo.collaborators.map((collaborator: GithubUser) => {
+              {collaborators &&
+                collaborators.map((collaborator: GithubUser) => {
                   return (
                     <a
                       title={`${collaborator.login}'s GitHub`}
@@ -215,7 +170,7 @@ export const Header: React.FC = () => {
       )}
       {repo && (
         <div className="header-center">
-          <p className="current-repo-prefix">Current Workspace</p>
+          {/* <p className="current-repo-prefix">Current Workspace</p> */}
           <span className="repo-title-icon">
             <a
               key={repo.name}

@@ -6,11 +6,10 @@ import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.c
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
 import { CurrentRepoInfo } from '../../components/CurrentRepoInfoComponent/CurrentRepoInfo.component';
 import { BsArrowUpSquare, BsArrowDownSquare } from 'react-icons/bs';
-
-import './Workspace.css';
 import { useBranches } from '../../hooks/use-branches';
 import { CommitModal } from '../../components/CustomModalsComponents/CommitModal.component';
-// import { useDispatch } from 'react-redux';
+import { colors } from '../../shared/GitTimelineColors';
+import './Workspace.css';
 
 const vh = Math.max(
   document.documentElement.clientHeight || 0,
@@ -21,24 +20,7 @@ export const Workspace: React.FC = () => {
   const [kanbanSize, setKanbanSize] = useState(vh * 0.875);
   const [flipArrow, setFlipArrow] = useState(false);
   const { branches } = useBranches();
-  const colors = [
-    '#ffab91',
-    '#00ffff',
-    '#e91e63',
-    '#ab47bc',
-    '#f48fb1',
-    '#ff8400',
-    '#6592b7',
-    '#57a6ff',
-    '#ffab91',
-    '#00ffff',
-    '#e91e63',
-    '#ab47bc',
-    '#f48fb1',
-    '#ff8400',
-    '#6592b7',
-    '#57a6ff',
-  ];
+  const [gitTimelineLoaded, setGitTimelineLoaded] = useState(false);
 
   const onClick = () => {
     if (kanbanSize <= 115) {
@@ -126,7 +108,7 @@ export const Workspace: React.FC = () => {
               </p>
             </div>
             <div className="label-timeline-container">
-              {branches && (
+              {branches && gitTimelineLoaded && (
                 <div className="label-container">
                   {branches.map((branch: string, index: number) => {
                     return (
@@ -141,7 +123,7 @@ export const Workspace: React.FC = () => {
                 </div>
               )}
               <div className="timeline-svg-container">
-                <GitTimeline />
+                <GitTimeline setGitTimelineLoaded={setGitTimelineLoaded} />
               </div>
             </div>
           </div>
