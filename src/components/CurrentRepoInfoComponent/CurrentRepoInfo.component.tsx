@@ -37,7 +37,7 @@ export const CurrentRepoInfo: React.FC = () => {
           <br />
           <span>•</span>
           <br />
-          <div className="curr-repo-center-cont">
+          <div className="current-repo-center-cont">
             <p>{repo.default_branch}</p>
           </div>
         </p>

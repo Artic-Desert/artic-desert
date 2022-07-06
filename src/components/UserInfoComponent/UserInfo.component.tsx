@@ -1,8 +1,8 @@
 import React from 'react';
 import { GoMarkGithub } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../../hooks/use-user';
-import { AuthService } from '../../../services/AuthService';
+import { useUser } from '../../hooks/use-user';
+import { AuthService } from '../../services/AuthService';
 import { BsPeopleFill, BsPeople } from 'react-icons/bs';
 import { AiOutlineRead } from 'react-icons/ai';
 import './UserInfo.css';
