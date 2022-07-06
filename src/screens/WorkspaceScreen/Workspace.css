@@ -102,8 +102,10 @@
 
 .label-container h3 {
   height: 50px;
+  /* height: calc(4.5vh); */
   font-family: 'Ubuntu', sans-serif;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .main-branch {

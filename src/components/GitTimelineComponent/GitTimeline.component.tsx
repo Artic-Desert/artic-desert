@@ -71,7 +71,12 @@ export const GitTimeline: React.FC = () => {
       branchProps[branch] = colors[index];
     });
 
-  const constraintsRef = useRef(null);
+  // const constraintsRef = useRef(null);
+
+  const vh = Math.max(
+    document.documentElement.clientHeight || 0,
+    window.innerHeight || 0,
+  );
 
   // const height = 50 * (arrays && arrays[0].length);
   const width = 50 * (arrays && arrays.length);
@@ -106,16 +111,50 @@ export const GitTimeline: React.FC = () => {
             className="the-svg"
             xmlns="http://www.w3.org/2000/svg"
             width={String(width) + 'px'}
-            height="500px"
-            viewBox={`0 0 ${width} 500`}>
-            <path stroke="#ffab91" d={`M0 450, ${width} 450`} />
+            height={`${vh * 0.5}`}
+            // height="500px"
+            viewBox={`0 0 ${width} ${vh * 0.5}`}>
+            {/* viewBox={`0 0 ${width} 500px`}> */}
+            <path
+              stroke="#ffab91"
+              d={`M0 ${vh * 0.001 + 450}, ${width} ${vh * 0.001 + 450} `}
+            />
+            <path
+              stroke="#00ffff"
+              d={`M0 ${vh * 0.001 + 400}, ${width} ${vh * 0.001 + 400} `}
+            />
+            <path
+              stroke="#e91e63"
+              d={`M0 ${vh * 0.001 + 350}), ${width} ${vh * 0.001 + 350}`}
+            />
+            <path
+              stroke="#ab47bc"
+              d={`M0 ${vh * 0.001 + 300}), ${width} ${vh * 0.001 + 300}`}
+            />
+            <path
+              stroke="#f48fb1"
+              d={`M0 ${vh * 0.001 + 250}), ${width} ${vh * 0.001 + 250}`}
+            />
+            <path
+              stroke="#ff8400"
+              d={`M0 ${vh * 0.001 + 200}, ${width} ${vh * 0.001 + 200}`}
+            />
+            <path
+              stroke="#6592b7"
+              d={`M0 ${vh * 0.001 + 150}), ${width} ${vh * 0.001 + 150}`}
+            />
+            <path
+              stroke="#57a6ff"
+              d={`M0 ${vh * 0.001 + 100}, ${width} ${vh * 0.001 + 100}`}
+            />
+            {/* <path stroke="#ffab91" d={`M0 450, ${width} 450`} />
             <path stroke="#00ffff" d={`M0 400, ${width} 400`} />
             <path stroke="#e91e63" d={`M0 350, ${width} 350`} />
             <path stroke="#ab47bc" d={`M0 300, ${width} 300`} />
             <path stroke="#f48fb1" d={`M0 250, ${width} 250`} />
             <path stroke="#ff8400" d={`M0 200, ${width} 200`} />
             <path stroke="#6592b7" d={`M0 150, ${width} 150`} />
-            <path stroke="#57a6ff" d={`M0 100, ${width} 100`} />
+            <path stroke="#57a6ff" d={`M0 100, ${width} 100`} /> */}
             {/* eslint-disable-next-line */}
             {console.log('HEY THERE IM INSIDE ARRAYS.MAP:', Math.random())};
             {arrays.map((array: any[], indexX: number) => {

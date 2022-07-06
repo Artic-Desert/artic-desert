@@ -1,5 +1,6 @@
 .svg-cont {
   width: fit-content;
+  height: 75vh;
   /* overflow: hidden; */
   position: relative;
 }
@@ -10,4 +11,5 @@
   /* border-bottom: 1px solid #c8d1d9ae; */
   /* border-radius: 10px; */
   position: relative;
+  height: 50vh;
 }
