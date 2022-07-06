@@ -134,9 +134,7 @@ export const RepoModal: React.FC = () => {
                   <AiFillCopy className="copy-icon" onClick={copy} size={35} />
                 </div>
                 {copiedToClipboard && (
-                  <div className="copied-to-clipboard-alert">
-                    Copied to clipboard
-                  </div>
+                  <div className="copied-to-clipboard-alert">Copied</div>
                 )}
               </div>
               <div className="preview-right-col">

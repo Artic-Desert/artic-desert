@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRepo } from '../../hooks/use-repo';
 import { GoRepoForked } from 'react-icons/go';
-import { AiFillCopy, AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineStar } from 'react-icons/ai';
 import { BsFillEyeFill } from 'react-icons/bs';
 import { MdOutlineMemory } from 'react-icons/md';
 import { GiSplitCross } from 'react-icons/gi';
@@ -12,13 +12,6 @@ import './CurrentRepoInfo.css';
 
 export const CurrentRepoInfo: React.FC = () => {
   const { repo } = useRepo();
-  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
-
-  const copy = async () => {
-    setCopiedToClipboard(true);
-    repo && (await navigator.clipboard.writeText(repo.clone_url));
-    setTimeout(() => setCopiedToClipboard(false), 2000);
-  };
 
   return (
     <div className="current-repo-info-container">

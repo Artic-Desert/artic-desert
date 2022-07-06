@@ -30,14 +30,13 @@ export const Welcome: React.FC = () => {
         <h1>Collaboration made easy.</h1>
       </div>
       <div className="lottie-container" ref={container}></div>
-      <button className="welcome-login-button">
-        <a
-          className="a-tag"
-          href={`https://github.com/login/oauth/authorize?client_id=${client_id}`}>
-          <span>Sign In with GitHub</span>
-        </a>
+      <a
+        type="button"
+        className="a-tag welcome-login-button"
+        href={`https://github.com/login/oauth/authorize?client_id=${client_id}`}>
+        <span>Sign In with GitHub</span>
         <AiOutlineGithub fontSize="45px" />
-      </button>
+      </a>
     </div>
   );
 };

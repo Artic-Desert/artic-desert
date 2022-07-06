@@ -29,3 +29,6 @@
   color: white;
   transform: scale(1.5);
 }
+.random-icon:active {
+  transform: scale(1.2) translateY(1px);
+}
