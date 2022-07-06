@@ -170,7 +170,7 @@ export const Header: React.FC = () => {
       )}
       {repo && (
         <div className="header-center">
-          {/* <p className="current-repo-prefix">Current Workspace</p> */}
+          <p className="current-repo-prefix">Current Workspace</p>
           <span className="repo-title-icon">
             <a
               key={repo.name}

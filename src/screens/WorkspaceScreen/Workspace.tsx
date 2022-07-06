@@ -187,18 +187,9 @@ export const Workspace: React.FC = () => {
             </div>
           </div>
           {branches && !gitTimelineLoaded && (
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                border: '1px solid red',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}>
+            <div>
               {branches.map((branch: string, index: number) => (
                 <div
-                  // style={{ border: '1px solid blue' }}
                   className="git-loading-lines"
                   ref={container}
                   key={index}></div>

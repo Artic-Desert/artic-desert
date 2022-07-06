@@ -269,3 +269,8 @@
 .timeline-svg-container {
   overflow-x: scroll;
 }
+
+.git-loading-lines {
+  border: 1px solid red;
+  height: 20%;
+}
