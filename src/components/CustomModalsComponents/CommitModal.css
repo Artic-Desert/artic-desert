@@ -147,3 +147,6 @@
   transform: scale(2.2);
   cursor: pointer;
 }
+.close-commit-modal-icon:active {
+  transform: scale(2) translateY(1px);
+}
