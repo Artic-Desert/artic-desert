@@ -1,3 +1,8 @@
+.commit-modal-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
 .commit-modal {
   width: clamp(45%, 700px, 70%);
   height: fit-content;
@@ -149,4 +154,9 @@
 }
 .close-commit-modal-icon:active {
   transform: scale(2) translateY(1px);
+}
+
+.files-changed-container {
+  color: white;
+  font-size: xx-large;
 }
