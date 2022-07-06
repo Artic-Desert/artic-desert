@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Pane from 'react-split-pane';
 import { GitTimeline } from '../../components/GitTimelineComponent/GitTimeline.component';
 import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/Header.component';
@@ -6,14 +6,13 @@ import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.c
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
 import { CurrentRepoInfo } from '../../components/CurrentRepoInfoComponent/CurrentRepoInfo.component';
 import { BsArrowUpSquare, BsArrowDownSquare } from 'react-icons/bs';
-import tutorialArrow from '../../assets/tutorial-arrow3.svg';
 import scrollArrow from '../../assets/tutorial-scroll2.svg';
 import clickArrow from '../../assets/tutorial-click2.svg';
 import './Workspace.css';
 import { useBranches } from '../../hooks/use-branches';
 import { CommitModal } from '../../components/CustomModalsComponents/CommitModal.component';
-import { useDispatch } from 'react-redux';
 import { colors } from '../../shared/GitTimelineColors';
+import lottie from 'lottie-web';
 
 const vh = Math.max(
   document.documentElement.clientHeight || 0,
@@ -41,6 +40,18 @@ export const Workspace: React.FC = () => {
       setKanbanSize(115);
     }
   };
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: container.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: require('../../assets/lottie/loading-line.json'),
+    });
+  }, []);
+
+  const container: any = useRef(null);
 
   useEffect(() => {
     if (kanbanSize > 115) {
@@ -137,13 +148,15 @@ export const Workspace: React.FC = () => {
                   <img src={scrollArrow} alt="" />
                 </div>
               </div>
-              <div
-                className="tutorial-button"
-                data-buttonDissapear={buttonDissapear}>
-                <button onClick={toggleTutorial}>
-                  {!showTutorial ? `Show me how it works ` : `Ok got it!`}
-                </button>
-              </div>
+              {gitTimelineLoaded && (
+                <div
+                  className="tutorial-button"
+                  data-buttonDissapear={buttonDissapear}>
+                  <button onClick={toggleTutorial}>
+                    {!showTutorial ? `Show me how it works ` : `Ok got it!`}
+                  </button>
+                </div>
+              )}
               {/* <div className="branch-tutorial">
                 <span>
                   This sidebar displays all the branches in the repository
@@ -173,6 +186,25 @@ export const Workspace: React.FC = () => {
               </div>
             </div>
           </div>
+          {branches && !gitTimelineLoaded && (
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                border: '1px solid red',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}>
+              {branches.map((branch: string, index: number) => (
+                <div
+                  // style={{ border: '1px solid blue' }}
+                  className="git-loading-lines"
+                  ref={container}
+                  key={index}></div>
+              ))}
+            </div>
+          )}
           <ShowChatButton />
           <CommitModal />
         </div>
