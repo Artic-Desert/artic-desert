@@ -53,8 +53,6 @@ export const RepoSideBar: React.FC = () => {
         }),
       ).then(result => dispatch(setRepos(result)));
 
-    // dispatch(setRepos(allRepos));
-
     setLoading(false);
   };
 
