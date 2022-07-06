@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { GoGitBranch } from 'react-icons/go';
 import { AiOutlineCode } from 'react-icons/ai';
 import { BsDoorClosed } from 'react-icons/bs';
@@ -11,6 +11,7 @@ import { useBranch } from '../../../hooks/use-branch';
 import { GithubUser, RepoBranch } from '../../../types/Types';
 import Select, { SingleValue } from 'react-select';
 import { useNavigate } from 'react-router-dom';
+import lottie from 'lottie-web';
 import { ApiClientService } from '../../../services/ApiClientService';
 import { useGhpToken } from '../../../hooks/use-ghpToken';
 import { AuthService } from '../../../services/AuthService';
@@ -22,6 +23,7 @@ export const Header: React.FC = () => {
   const { ghpToken } = useGhpToken();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   const handleLogout = () => {
     AuthService.resetUserSession();
@@ -44,6 +46,18 @@ export const Header: React.FC = () => {
   useEffect(() => {
     console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
     fetchInfoOfRepo();
+  }, []);
+
+  const container: any = useRef(null);
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: container.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: require('../../../assets/lottie/loading2.json'),
+    });
   }, []);
 
   const getBranches = async () => {
@@ -70,18 +84,15 @@ export const Header: React.FC = () => {
 
   const fetchInfoOfRepo = async () => {
     try {
+      setLoading(true);
       const branches = await getBranches();
       const collaborators = branches && (await getCollaborators());
       setRepoInfo({ branches, collaborators });
+      setLoading(false);
     } catch (error) {
       console.error('Error inside <Header> fetchInfoOfRepo(): ', error);
     }
   };
-
-  useEffect(() => {
-    console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
-    fetchInfoOfRepo();
-  }, []);
 
   const handleBranchChange = (
     e: SingleValue<{
@@ -154,45 +165,54 @@ export const Header: React.FC = () => {
   };
   return (
     <div className="kanban-header">
-      <div className="dropdown-select">
-        {repoInfo.branches && (
-          <Select
-            className="select-branch"
-            options={options}
-            styles={customStyles}
-            onChange={e => handleBranchChange(e)}></Select>
-        )}
-      </div>
-      <div className="header-left">
-        {repoInfo.branches && (
-          <div className="num-branches">
-            {repoInfo.branches.length} •{' '}
-            <span>
-              {repoInfo.branches.length > 1 ? ' branches' : ' branch'}{' '}
-              <GoGitBranch />
-            </span>
+      {!loading ? (
+        <>
+          <div className="dropdown-select">
+            {repoInfo.branches && (
+              <Select
+                className="select-branch"
+                options={options}
+                styles={customStyles}
+                onChange={e => handleBranchChange(e)}></Select>
+            )}
           </div>
-        )}
-        <div className="collaborators">
-          {repoInfo.collaborators &&
-            repoInfo.collaborators.map((collaborator: GithubUser) => {
-              return (
-                <a
-                  title={`${collaborator.login}'s GitHub`}
-                  key={`${collaborator.id}_key`}
-                  href={collaborator.html_url}
-                  target="_blank"
-                  rel="noreferrer">
-                  <img
-                    key={collaborator.id}
-                    src={collaborator.avatar_url}
-                    alt=""
-                  />
-                </a>
-              );
-            })}
+          <div className="header-left">
+            {repoInfo.branches && (
+              <div className="num-branches">
+                {repoInfo.branches.length} •{' '}
+                <span>
+                  {repoInfo.branches.length > 1 ? ' branches' : ' branch'}{' '}
+                  <GoGitBranch />
+                </span>
+              </div>
+            )}
+            <div className="collaborators">
+              {repoInfo.collaborators &&
+                repoInfo.collaborators.map((collaborator: GithubUser) => {
+                  return (
+                    <a
+                      title={`${collaborator.login}'s GitHub`}
+                      key={`${collaborator.id}_key`}
+                      href={collaborator.html_url}
+                      target="_blank"
+                      rel="noreferrer">
+                      <img
+                        key={collaborator.id}
+                        src={collaborator.avatar_url}
+                        alt=""
+                      />
+                    </a>
+                  );
+                })}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="header-lottie-container">
+          <h3>Loading Repo Branches</h3>
+          <div className="header-lottie-element" ref={container}></div>
         </div>
-      </div>
+      )}
       {repo && (
         <div className="header-center">
           <p className="current-repo-prefix">Current Workspace</p>
