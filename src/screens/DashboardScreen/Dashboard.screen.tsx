@@ -5,14 +5,14 @@ import { Time } from '../../components/TimeComponent/Time.component';
 import { RandomQuote } from '../../components/RandomQuoteComponent/RandomQuote.component';
 import { Weather } from '../../components/WeatherComponent/Weather.component';
 import { useUser } from '../../hooks/use-user';
-import { UserInfo } from './UserInfoComponent/UserInfo.component';
+import { UserInfo } from '../../components/UserInfoComponent/UserInfo.component';
 import { useDispatch } from 'react-redux';
 import { setRepo } from '../../redux/repo/actions';
 import { setBranch } from '../../redux/branch/actions';
 import { Collapasible } from '../../components/CollapsibleComponent/Collapsible.component';
 import { useGhpToken } from '../../hooks/use-ghpToken';
 import { TokenInput } from '../../components/TokenInputComponent/TokenInput.component';
-import { RepoModal } from '../../components/CustomModals/RepoModal.component';
+import { RepoModal } from '../../components/CustomModalsComponents/RepoModal.component';
 import { setRepoModal } from '../../redux/repoModal/actions';
 import './Dashboard.css';
 
@@ -48,7 +48,7 @@ export const Dashboard: React.FC = () => {
         ) : (
           <div className="dashboard-right">
             <Collapasible open title="Add a new repository">
-              {/* <NewRepo /> */}
+              <></>
             </Collapasible>
             <div className="dashboard-column">
               <RepoSideBar />
