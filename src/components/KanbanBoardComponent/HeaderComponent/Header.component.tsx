@@ -28,8 +28,18 @@ export const Header: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [collaborators, setCollaborators] = useState([]);
 
+  // useEffect(() => {}, []);
+
   useEffect(() => {
     console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
+    default_branch && dispatch(setBranch(default_branch.value));
+    lottie.loadAnimation({
+      container: container.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: require('../../../assets/lottie/loading2.json'),
+    });
     fetchInfoOfRepo();
   }, []);
 
@@ -38,16 +48,6 @@ export const Header: React.FC = () => {
   }, [loading === true]);
 
   const container: any = useRef(null);
-
-  useEffect(() => {
-    lottie.loadAnimation({
-      container: container.current,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      animationData: require('../../../assets/lottie/loading2.json'),
-    });
-  }, []);
 
   const handleLogout = () => {
     AuthService.resetUserSession();
@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
     }>,
   ) => {
     console.log('Branch change event fired. Current branch: ', e?.value);
-    dispatch(setBranch(e?.value || default_branch));
+    dispatch(setBranch(e?.value || default_branch.value));
   };
 
   const handleNavigation = () => {
@@ -106,7 +106,7 @@ export const Header: React.FC = () => {
     }
   };
 
-  const default_branch = {
+  const default_branch = repo && {
     label: repo.default_branch,
     value: repo.default_branch,
   };
