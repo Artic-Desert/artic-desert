@@ -144,12 +144,6 @@ export const Workspace: React.FC = () => {
                   {!showTutorial ? `Show me how it works ` : `Ok got it!`}
                 </button>
               </div>
-              {/* <div className="branch-tutorial">
-                <span>
-                  This sidebar displays all the branches in the repository
-                </span>
-                <img src={tutorialArrow} alt="" />
-              </div> */}
             </div>
             <div className="label-timeline-container">
               {branches && gitTimelineLoaded && (
