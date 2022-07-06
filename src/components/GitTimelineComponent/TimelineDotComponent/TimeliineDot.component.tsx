@@ -10,9 +10,18 @@ export const TimeliineDot: React.FC<{
   branchesOrdered: string[];
   commit: string;
   isMerge: boolean;
-}> = ({ indexX, indexY, branchProps, branchesOrdered, commit, isMerge }) => {
+  height: number;
+}> = ({
+  indexX,
+  indexY,
+  branchProps,
+  branchesOrdered,
+  commit,
+  isMerge,
+  height,
+}) => {
   const dispatch = useDispatch();
-  console.log('INDEX OF DOT:', indexY);
+  // console.log('INDEX OF DOT:', indexY);
   return (
     <>
       <motion.circle
@@ -23,7 +32,7 @@ export const TimeliineDot: React.FC<{
         }}
         fill={isMerge ? '#ffffff' : branchProps[branchesOrdered[indexY]]}
         cx={indexX * 50}
-        cy={String(450 - indexY * 50)}
+        cy={String(height - indexY * 50)}
         r="15"
       />
     </>
