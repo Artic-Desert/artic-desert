@@ -96,10 +96,6 @@ export const CommitModal: React.FC = () => {
     commitModal &&
     commitInfo &&
     commitInfo.commit && (
-      // <AnimatePresence
-      //   initial={false}
-      //   exitBeforeEnter={true}
-      //   onExitComplete={() => null}>
       <Backdrop>
         <div className="commit-modal-wrapper">
           <motion.div
@@ -255,7 +251,6 @@ export const CommitModal: React.FC = () => {
           />
         </div>
       </Backdrop>
-      // </AnimatePresence>
     )
   );
 };
