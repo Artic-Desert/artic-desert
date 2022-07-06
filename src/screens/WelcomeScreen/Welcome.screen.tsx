@@ -30,7 +30,6 @@ export const Welcome: React.FC = () => {
         <h1>Collaboration made easy.</h1>
       </div>
       <div className="lottie-container" ref={container}></div>
-      {/* <button className="welcome-login-button"> */}
       <a
         type="button"
         className="a-tag welcome-login-button"
@@ -38,7 +37,6 @@ export const Welcome: React.FC = () => {
         <span>Sign In with GitHub</span>
         <AiOutlineGithub fontSize="45px" />
       </a>
-      {/* </button> */}
     </div>
   );
 };
