@@ -115,7 +115,7 @@ export const KanbanBoard: React.FC = () => {
 
   return (
     <>
-      {kanban && (
+      {branch && kanban && (
         <DragDropContext onDragEnd={onDragEnd}>
           <h1 className="kanban-repo-name">
             {branch.charAt(0).toUpperCase() + branch.slice(1, branch.length)}{' '}
