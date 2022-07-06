@@ -21,7 +21,7 @@
   transition: 0.4s ease;
 }
 .commit-modal[data-showFiles='true'] {
-  transform: translatex(-500px);
+  transform: translatex(-400px);
 }
 .background {
   background-color: rgb(0, 0, 0);
@@ -166,11 +166,12 @@
 .files-changed-container {
   display: flex;
   position: absolute;
-  right: 10%;
+  right: 6%;
   flex-direction: column;
   width: 45%;
   height: 600px;
   padding: 20px;
+  margin-top: 6px;
   font-size: xx-large;
   opacity: 1;
   animation: fadeIn 1s;

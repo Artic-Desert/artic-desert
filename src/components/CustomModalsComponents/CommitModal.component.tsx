@@ -71,21 +71,6 @@ export const CommitModal: React.FC = () => {
     dispatch(setCommitModal(''));
   }; // has to be a redux state
 
-  // const fetchRawFile = async () => {
-  //   if (!commitInfo) return;
-  //   const fileUrl = file.replaceAll('/', '%2F');
-  //   const response = await fetch(
-  //     `https://github.com/Artic-Desert/artic-desert/raw/${commitInfo.sha}/${fileUrl}`,
-  //     {
-  //       headers: {
-  //         Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
-  //       },
-  //     },
-  //   );
-  //   const parsedResponse = await response.json();
-  //   setFileContents(parsedResponse.content);
-  // };
-
   const fetchContentFile = async (url: string) => {
     if (!commitInfo) return;
     const response = await fetch(url, {
@@ -103,10 +88,6 @@ export const CommitModal: React.FC = () => {
     commitModal &&
     commitInfo &&
     commitInfo.commit && (
-      // <AnimatePresence
-      //   initial={false}
-      //   exitBeforeEnter={true}
-      //   onExitComplete={() => null}>
       <Backdrop>
         <div className="commit-modal-wrapper">
           <motion.div
@@ -255,7 +236,6 @@ export const CommitModal: React.FC = () => {
           />
         </div>
       </Backdrop>
-      // </AnimatePresence>
     )
   );
 };
