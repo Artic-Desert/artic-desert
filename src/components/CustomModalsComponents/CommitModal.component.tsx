@@ -23,7 +23,7 @@ const dropIn = {
     opacity: 0,
   },
   visible: {
-    y: '-8vh',
+    y: '-0vh',
     opacity: 1,
     transition: {
       duration: 1,
@@ -211,24 +211,24 @@ export const CommitModal: React.FC = () => {
                     </p>
                   </div>
                   <div className="commit-stats-files-changed">
-                    <button onClick={() => setIsFilesVisible(!isFilesVisible)}>
+                    <button
+                      className="commit-modal-buttons"
+                      onClick={() => setIsFilesVisible(!isFilesVisible)}>
                       Show Files Changed
                     </button>
                   </div>
                 </div>
               </div>
-              <RiCloseFill
-                onClick={handleClose}
-                className="close-commit-modal-icon"
-              />
             </div>
           </motion.div>
           {isFilesVisible && (
             <div className="files-changed-container">
-              <div className="side-menu-buttons">
+              <h3>Files Changed</h3>
+              <div className="top-menu-buttons-container">
                 {commitInfo.files.map(file => {
                   return (
                     <button
+                      className="commit-modal-buttons"
                       key={file.sha}
                       onClick={() => fetchContentFile(file.contents_url)}>
                       {file.filename}
@@ -236,6 +236,7 @@ export const CommitModal: React.FC = () => {
                   );
                 })}
               </div>
+              <h3>Changes</h3>
               <div className="file-contents-container">
                 {fileContents && (
                   <div className="file-contents">{atob(fileContents)}</div>
@@ -243,6 +244,10 @@ export const CommitModal: React.FC = () => {
               </div>
             </div>
           )}
+          <RiCloseFill
+            onClick={handleClose}
+            className="close-commit-modal-icon"
+          />
         </div>
       </Backdrop>
       // </AnimatePresence>

@@ -1,11 +1,14 @@
 .commit-modal-wrapper {
+  height: 100%;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-around;
+  padding: 0px 80px 200px 50px;
 }
 .commit-modal {
   width: clamp(45%, 700px, 70%);
-  height: fit-content;
+  height: 600px;
   max-height: 600px;
   display: flex;
   flex-direction: column;
@@ -144,8 +147,8 @@
 .close-commit-modal-icon {
   color: white;
   position: absolute;
-  right: 0px;
-  top: 10px;
+  right: 50px;
+  top: 50px;
   transform: scale(2);
 }
 .close-commit-modal-icon:hover {
@@ -155,8 +158,56 @@
 .close-commit-modal-icon:active {
   transform: scale(2) translateY(1px);
 }
-
 .files-changed-container {
-  color: white;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  height: 600px;
+  padding: 20px;
   font-size: xx-large;
+}
+.files-changed-container h3 {
+  color: #c8d1d9d5;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 10px;
+  padding: 5px;
+}
+.top-menu-buttons-container {
+  border: 1px solid #c8d1d952;
+  height: fit-content;
+  border-radius: 5px;
+  padding: 5px;
+}
+.file-contents-container {
+  border: 1px solid #c8d1d952;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  overflow-y: scroll;
+  color: #c8d1d9;
+  font-size: 16px;
+}
+.commit-modal-buttons {
+  font-size: 17px;
+  font-weight: bold;
+  margin: 4px 0px 0px 10px;
+  padding: 4px;
+  width: fit-content;
+  height: 34px;
+  color: #c8d1d9a3;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+}
+.commit-modal-buttons:hover {
+  border: 2px solid #c8d1d9d9;
+  color: #c8d1d9d9;
 }
