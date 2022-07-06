@@ -5,7 +5,6 @@ import { ApiClientService } from '../../services/ApiClientService';
 import { useKanban } from '../../hooks/use-kanban';
 import { useBranch } from '../../hooks/use-branch';
 import { useRepo } from '../../hooks/use-repo';
-
 import './KanbanBoard.css';
 import { useDispatch } from 'react-redux';
 import {
@@ -27,7 +26,10 @@ export const KanbanBoard: React.FC = () => {
   const kanban_board_id =
     repo &&
     branch &&
-    `{${repo.owner.login}:slash:${repo.name}:slash:${branch}}`;
+    `{${repo.owner.login}:slash:${repo.name}:slash:${branch.replace(
+      '/',
+      '-',
+    )}}`;
 
   useEffect(() => {
     kanban_board_id &&
