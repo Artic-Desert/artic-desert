@@ -13,6 +13,7 @@ import './Workspace.css';
 import { useBranches } from '../../hooks/use-branches';
 import { CommitModal } from '../../components/CustomModalsComponents/CommitModal.component';
 import { useDispatch } from 'react-redux';
+import { colors } from '../../shared/GitTimelineColors';
 
 const vh = Math.max(
   document.documentElement.clientHeight || 0,
@@ -25,30 +26,13 @@ export const Workspace: React.FC = () => {
   const [showTutorial, setShowTutorial] = useState(false);
   const [buttonDissapear, setButtonDissapear] = useState(false);
   const { branches } = useBranches();
+  const [gitTimelineLoaded, setGitTimelineLoaded] = useState(false);
 
   const toggleTutorial = () => setShowTutorial(!showTutorial);
   const dragStartToggle = () => {
     setShowTutorial(false);
     setButtonDissapear(true);
   };
-  const colors = [
-    '#ffab91',
-    '#00ffff',
-    '#e91e63',
-    '#ab47bc',
-    '#f48fb1',
-    '#ff8400',
-    '#6592b7',
-    '#57a6ff',
-    '#ffab91',
-    '#00ffff',
-    '#e91e63',
-    '#ab47bc',
-    '#f48fb1',
-    '#ff8400',
-    '#6592b7',
-    '#57a6ff',
-  ];
 
   const onClick = () => {
     if (kanbanSize <= 115) {
@@ -127,7 +111,9 @@ export const Workspace: React.FC = () => {
                   <img src={clickArrow} alt="" />
                 </div>
               </div>
-              <div className="click-tutorial" data-showTutorial={showTutorial}>
+              <div
+                className="svg-tutorial-cont"
+                data-showTutorial={showTutorial}>
                 <span>These nodes represent merges</span>
                 <div className="tutorial-svg">
                   <svg height="50" width="50">
@@ -149,7 +135,6 @@ export const Workspace: React.FC = () => {
                   <img src={scrollArrow} alt="" />
                   <img src={scrollArrow} alt="" />
                   <img src={scrollArrow} alt="" />
-                  <img src={scrollArrow} alt="" />
                 </div>
               </div>
               <div
@@ -167,7 +152,7 @@ export const Workspace: React.FC = () => {
               </div> */}
             </div>
             <div className="label-timeline-container">
-              {branches && (
+              {branches && gitTimelineLoaded && (
                 <div className="label-container">
                   {branches.map((branch: string, index: number) => {
                     return (
@@ -184,7 +169,7 @@ export const Workspace: React.FC = () => {
               <div
                 className="timeline-svg-container"
                 onScroll={dragStartToggle}>
-                <GitTimeline setGitTimelineLoaded={setGitTimeline} />
+                <GitTimeline setGitTimelineLoaded={setGitTimelineLoaded} />
               </div>
             </div>
           </div>
