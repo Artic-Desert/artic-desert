@@ -29,11 +29,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28vw;
+  width: fit-content;
   height: 100%;
   display: flex;
   justify-content: space-between;
   margin-left: 200px;
+}
+
+/* LOTTIE CSS LOGIC */
+.header-lottie-container {
+  width: 28vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  max-height: 100px;
+  color: white;
+}
+
+.header-lottie-container h3 {
+  font-family: 'Ubuntu', sans-serif;
+  color: #c8d1d9;
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.header-lottie-element {
+  height: 130px;
 }
 
 .header-center {
