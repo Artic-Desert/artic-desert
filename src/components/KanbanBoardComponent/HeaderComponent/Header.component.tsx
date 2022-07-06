@@ -41,7 +41,7 @@ export const Header: React.FC = () => {
     collaborators: undefined,
   });
 
-  const [currentBranch, setCurrentBranch] = useState('repo-board');
+  const [currentBranch, setCurrentBranch] = useState('workspace');
 
   useEffect(() => {
     console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);

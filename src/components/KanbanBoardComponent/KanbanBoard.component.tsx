@@ -111,10 +111,16 @@ export const KanbanBoard: React.FC = () => {
     }
   };
 
+  console.log('LA BRANCA', branch);
+
   return (
     <>
       {kanban && (
         <DragDropContext onDragEnd={onDragEnd}>
+          <h1 className="kanban-repo-name">
+            {branch.charAt(0).toUpperCase() + branch.slice(1, branch.length)}{' '}
+            {branch === 'workspace' ? '' : 'branch'} collaboration board
+          </h1>
           <div className="columns-cont">
             {Object.keys(kanban)
               .sort()

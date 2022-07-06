@@ -13,6 +13,15 @@
   height: 100%;
 }
 
+.kanban-repo-name {
+  position: absolute;
+  right: 140px;
+  top: 120px;
+  font-size: 2.6vw;
+  font-family: 'Ubuntu', sans-serif;
+  color: #c8d1d9c4;
+}
+
 /* TIMELINE CSS */
 .timeline {
   width: 100vw;

@@ -38,7 +38,6 @@ export const ChatInput: React.FC<{
     setMessage('');
   };
   const branch = useBranch();
-  console.log('LA BRANCA', branch);
 
   return (
     <div className="inputContainer">
