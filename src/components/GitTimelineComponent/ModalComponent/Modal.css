@@ -1,3 +1,4 @@
+/* 
 .modal {
   width: clamp(45%, 780px, 70%);
   min-height: min(70%, 450px);
@@ -11,15 +12,12 @@
   padding: 25px 50px 50px 50px;
   border-radius: 10px;
   border: 1px solid #c8d1d952;
-  /* -webkit-box-shadow: 0px 0px 6px 3px rgb(53, 54, 70, 1);
-  -moz-box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1);
-  box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1); */
+
 }
 .background {
   background-color: #082032;
 }
 
-/* REPO PREVIEW MODAL */
 .preview-modal-wrapper {
   height: 100%;
   width: 100%;
@@ -204,7 +202,7 @@
   color: #c8d1d9d9;
 }
 
-/* COMMIT INFO MODAL  */
+
 .modalCommit {
   width: clamp(45%, 800px, 70%);
   min-height: min(30%, 300px);
@@ -220,9 +218,6 @@
   padding: 30px;
   border-radius: 10px;
   border: 1px solid #c8d1d952;
-  /* -webkit-box-shadow: 0px 0px 6px 3px rgb(53, 54, 70, 1);
-  -moz-box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1);
-  box-shadow: 0px 0px 6px 3px rgba(53, 54, 70, 1); */
 }
 .commit-info-container {
   height: 100%;
@@ -354,3 +349,4 @@
 .copied-to-clipboard-alert {
   padding: 7px;
 }
+ */
