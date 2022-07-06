@@ -16,6 +16,7 @@ import { useGhpToken } from '../../hooks/use-ghpToken';
 import { useCommitModal } from '../../hooks/use-commit-modal';
 import { useDispatch } from 'react-redux';
 import { setCommitModal } from '../../redux/commitModal/actions';
+import { CopyBlock, dracula } from 'react-code-blocks';
 
 const dropIn = {
   hidden: {
@@ -50,6 +51,7 @@ export const CommitModal: React.FC = () => {
   const { commitModal } = useCommitModal(); // has to be state that is triggered by svg click
   const [commitInfo, setCommitInfo] = useState<GithubCommit>();
   const [isFilesVisible, setIsFilesVisible] = useState(false);
+  const [fileExtension, setFileExtension] = useState('');
   const [fileContents, setFileContents] = useState('');
   const dispatch = useDispatch();
 
@@ -67,26 +69,18 @@ export const CommitModal: React.FC = () => {
   }, [commitModal]);
 
   const handleClose = () => {
+    setFileContents('');
+    setFileExtension('');
+    setIsFilesVisible(false);
     dispatch(setCommitModal(''));
   }; // has to be a redux state
 
-  // const fetchRawFile = async () => {
-  //   if (!commitInfo) return;
-  //   const fileUrl = file.replaceAll('/', '%2F');
-  //   const response = await fetch(
-  //     `https://github.com/Artic-Desert/artic-desert/raw/${commitInfo.sha}/${fileUrl}`,
-  //     {
-  //       headers: {
-  //         Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
-  //       },
-  //     },
-  //   );
-  //   const parsedResponse = await response.json();
-  //   setFileContents(parsedResponse.content);
-  // };
-
   const fetchContentFile = async (url: string) => {
     if (!commitInfo) return;
+    const extArray = url.split('.');
+    const ext = extArray[extArray.length - 1].split('?')[0];
+    setFileExtension(ext);
+    console.log(ext);
     const response = await fetch(url, {
       headers: {
         Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
@@ -94,7 +88,6 @@ export const CommitModal: React.FC = () => {
     });
     const parsedResponse = await response.json();
     console.log(parsedResponse);
-    console.log(atob(parsedResponse.content));
     setFileContents(parsedResponse.content);
   };
 
@@ -243,7 +236,16 @@ export const CommitModal: React.FC = () => {
               </div>
               <h3>Changes</h3>
               <div className="file-contents-container">
-                {fileContents && <pre>{atob(fileContents)}</pre>}
+                {/* {fileContents && <pre>{atob(fileContents)}</pre>} */}
+                {fileContents && (
+                  <CopyBlock
+                    text={atob(fileContents)}
+                    language={fileExtension}
+                    textColor={'transparent'}
+                    theme={dracula}
+                    wrapLines
+                  />
+                )}
               </div>
             </div>
           )}
