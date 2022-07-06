@@ -7,7 +7,7 @@ export const RandomQuote: React.FC = () => {
   const [data, setData] = useState<randomQuoteData | null>();
   const [dataError, setDataError] = useState(false);
 
-  async function updateQuote() {
+  const updateQuote = async () => {
     try {
       const response = await fetch('https://api.quotable.io/random');
       const { statusCode, statusMessage, ...data } = await response.json();
@@ -18,15 +18,13 @@ export const RandomQuote: React.FC = () => {
       console.error(error);
       setDataError(true);
     }
-  }
+  };
 
   useEffect(() => {
     updateQuote();
   }, []);
 
-  if (!data) return null;
-
-  return (
+  return !data ? null : (
     <div className="random-quote-container">
       <div className="quote-main">
         <p className="quote-main-p">
