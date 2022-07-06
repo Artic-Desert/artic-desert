@@ -9,7 +9,7 @@ import { BsArrowUpSquare, BsArrowDownSquare } from 'react-icons/bs';
 
 import './Workspace.css';
 import { useBranches } from '../../hooks/use-branches';
-import { CommitModal } from '../../components/CustomModals/CommitModal.component';
+import { CommitModal } from '../../components/CustomModalsComponents/CommitModal.component';
 // import { useDispatch } from 'react-redux';
 
 const vh = Math.max(

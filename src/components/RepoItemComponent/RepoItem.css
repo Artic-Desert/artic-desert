@@ -34,7 +34,7 @@
   cursor: pointer;
 }
 .repo-name:active {
-  transform: translateY(1px) scale(0.9);
+  transform: translateY(1px) scale(0.95);
 }
 .privacy {
   color: rgba(255, 228, 196, 0.794);

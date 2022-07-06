@@ -12,7 +12,7 @@ import { setBranch } from '../../redux/branch/actions';
 import { Collapasible } from '../../components/CollapsibleComponent/Collapsible.component';
 import { useGhpToken } from '../../hooks/use-ghpToken';
 import { TokenInput } from '../../components/TokenInputComponent/TokenInput.component';
-import { RepoModal } from '../../components/CustomModals/RepoModal.component';
+import { RepoModal } from '../../components/CustomModalsComponents/RepoModal.component';
 import { setRepoModal } from '../../redux/repoModal/actions';
 import './Dashboard.css';
 
