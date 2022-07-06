@@ -12,7 +12,7 @@ const Backdrop: React.FC<{ children: any; onClick: () => void }> = ({
       className="backdrop"
       onClick={onClick}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: 0.97 }}
       exit={{ opacity: 0 }}>
       {children}
     </motion.div>

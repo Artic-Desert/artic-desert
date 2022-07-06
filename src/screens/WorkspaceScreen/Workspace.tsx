@@ -62,7 +62,7 @@ export const Workspace: React.FC = () => {
       {/* @ts-ignore */}
       <Pane
         split="horizontal"
-        minSize={100}
+        minSize={115}
         maxSize={vh * 0.875}
         size={kanbanSize}
         onDragFinished={e => {
