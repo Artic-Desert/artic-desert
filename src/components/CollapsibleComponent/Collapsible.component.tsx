@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Collapsible.css';
 import { AiOutlineFolderAdd } from 'react-icons/ai';
 import { TbLayoutSidebarRightCollapse } from 'react-icons/tb';
+import { NewRepo } from '../NewRepoComponent/NewRepo.component';
 
 interface IProps {
   open?: boolean;
@@ -9,7 +10,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
-export const Collapasible: React.FC<IProps> = ({ open, children }) => {
+export const Collapasible: React.FC<IProps> = ({ children, open }) => {
   const [isOpen, setIsOpen] = useState(!open);
 
   const handleFilterOpening = () => {
@@ -32,7 +33,7 @@ export const Collapasible: React.FC<IProps> = ({ open, children }) => {
         <h3 className="add-repo-dash">Add repo to Dashboard</h3>
       </div>
       <div className="border-bottom">
-        <div>{isOpen && <div className="p-3">{children}</div>}</div>
+        <div>{isOpen && <NewRepo setIsOpen={setIsOpen} />}</div>
       </div>
     </div>
   );

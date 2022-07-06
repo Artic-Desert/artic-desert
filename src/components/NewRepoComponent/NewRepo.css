@@ -10,7 +10,7 @@
 
 input {
   font-size: 18px;
-  width: 95%;
+  width: 97%;
   height: 40px;
   border-radius: 4px;
   padding: 5px;
@@ -28,13 +28,16 @@ input::placeholder {
 .or {
   font-size: x-large;
   color: #c8d1d9b5;
+  margin-top: 2px;
+  margin-bottom: 15px;
+  font-family: Ubuntu, sans-serif;
 }
 
 .dashboard-submit-button {
   font-size: 18px;
   font-weight: bold;
   margin-top: 4px;
-  width: 80%;
+  width: 96%;
   height: 45px;
   color: #c8d1d9a3;
   cursor: pointer;
@@ -53,28 +56,30 @@ input::placeholder {
   color: #c8d1d9d9;
 }
 
+.error-message-container {
+  height: fit-content;
+  width: 100%;
+  border: 1px solid #c8d1d9ad;
+  padding: 15px;
+  background-color: #00111c;
+  border-radius: 5px;
+}
+
 .error-message {
-  margin-left: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 70%;
-  width: 90%;
   color: #c8d1d9cf;
-  padding: 10px;
-  background-color: #00111c;
-  border-radius: 5px;
-  position: absolute;
-  bottom: 25%;
-  border: 1px solid #c8d1d9ad;
 }
 
 .error-message button {
   font-size: 14px;
   font-weight: bold;
   margin-top: 14px;
-  width: 60%;
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
   height: 30px;
   color: #c8d1d9a3;
   cursor: pointer;
@@ -93,8 +98,11 @@ input::placeholder {
 }
 
 .formWrapper {
-  padding: 5%;
-  height: 30vh;
+  /* padding: 5%; */
+  /* height: 30vh; */
+  height: fit-content;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
