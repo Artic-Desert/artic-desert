@@ -62,7 +62,6 @@ export const NewRepo: React.FC<{
             console.log('<NewRepo> repo fullname : ', `${owner}/${repo}`);
 
             setMessage('Repository added successfully!');
-            console.log(message);
             setError(false);
 
             return data;
@@ -70,7 +69,7 @@ export const NewRepo: React.FC<{
         })
       );
     } catch (err) {
-      console.log(err);
+      console.log('<NewRepo> Error: ', err);
     }
   };
 
