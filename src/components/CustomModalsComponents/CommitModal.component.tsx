@@ -53,6 +53,7 @@ export const CommitModal: React.FC = () => {
   const [file, setFile] = useState('');
   const [fileContents, setFileContents] = useState('');
   const dispatch = useDispatch();
+
   useEffect(() => {
     repo &&
       ApiClientService.getCommitBySha(
@@ -115,7 +116,9 @@ export const CommitModal: React.FC = () => {
             animate="visible"
             exit="exit"
             onClick={e => e.stopPropagation()}>
-            <div className="commit-modal commit-info-container">
+            <div
+              data-showFiles={isFilesVisible}
+              className="commit-modal commit-info-container">
               <div className="commit-author-name">
                 <img
                   src={
@@ -222,7 +225,9 @@ export const CommitModal: React.FC = () => {
             </div>
           </motion.div>
           {isFilesVisible && (
-            <div className="files-changed-container">
+            <div
+              data-showFiles={isFilesVisible}
+              className="files-changed-container">
               <h3>Files Changed</h3>
               <div className="top-menu-buttons-container">
                 {commitInfo.files.map(file => {
