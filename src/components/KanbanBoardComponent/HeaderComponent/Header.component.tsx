@@ -232,7 +232,7 @@ export const Header: React.FC = () => {
         <div className="user-info">
           <div className="hello-logout-cont">
             <span>Hello {user.name.split(' ')[0]}!</span>
-            <button className="logout-button" onClick={handleLogout}>
+            <button className="header-logout-button" onClick={handleLogout}>
               Log Out
             </button>
           </div>

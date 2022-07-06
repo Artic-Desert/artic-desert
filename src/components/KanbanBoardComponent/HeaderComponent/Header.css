@@ -169,6 +169,27 @@
   max-height: 60px;
 }
 
+.header-logout-button {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 4px;
+  width: 80%;
+  height: 34px;
+  color: #c8d1d9a3;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.header-logout-button:hover {
+  border: 2px solid #c8d1d9d9;
+  color: #c8d1d9d9;
+}
+
 .navigate-dashboard:hover {
   border: 1px solid #c8d1d9e4;
   color: #c8d1d9e4;
