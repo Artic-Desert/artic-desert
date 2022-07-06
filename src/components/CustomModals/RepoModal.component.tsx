@@ -63,7 +63,7 @@ export const RepoModal: React.FC = () => {
 
   const handleNavigation = (repo: GithubRepo) => {
     dispatch(setRepo(repo));
-    dispatch(setBranch('repo-board')); // this should be dynamic or checked for the first branch of the repo
+    dispatch(setBranch('workspace')); // this should be dynamic or checked for the first branch of the repo
     navigate('/workspace', { state: { repo } });
   };
 
