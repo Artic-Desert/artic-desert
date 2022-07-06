@@ -32,7 +32,7 @@
 }
 .expand-icon-div {
   position: absolute;
-  top: 5px;
+  top: 8px;
   left: 50%;
   cursor: pointer;
   z-index: 100;

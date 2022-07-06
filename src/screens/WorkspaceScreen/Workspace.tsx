@@ -24,7 +24,7 @@ export const Workspace: React.FC = () => {
 
   const onClick = () => {
     if (kanbanSize <= 115) {
-      setKanbanSize(vh * 0.9);
+      setKanbanSize(vh * 0.875);
     } else {
       setKanbanSize(115);
     }
