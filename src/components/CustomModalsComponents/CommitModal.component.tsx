@@ -50,7 +50,6 @@ export const CommitModal: React.FC = () => {
   const { commitModal } = useCommitModal(); // has to be state that is triggered by svg click
   const [commitInfo, setCommitInfo] = useState<GithubCommit>();
   const [isFilesVisible, setIsFilesVisible] = useState(false);
-  const [file, setFile] = useState('');
   const [fileContents, setFileContents] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
@@ -94,6 +93,7 @@ export const CommitModal: React.FC = () => {
     });
     const parsedResponse = await response.json();
     console.log(parsedResponse);
+    console.log(atob(parsedResponse.content));
     setFileContents(parsedResponse.content);
   };
 
@@ -237,9 +237,7 @@ export const CommitModal: React.FC = () => {
                 })}
               </div>
               <div className="file-contents-container">
-                {fileContents && (
-                  <div className="file-contents">{atob(fileContents)}</div>
-                )}
+                {fileContents && <pre>{atob(fileContents)}</pre>}
               </div>
             </div>
           )}
