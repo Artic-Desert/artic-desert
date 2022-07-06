@@ -25,12 +25,16 @@ export const TimeliineDot: React.FC<{
   return (
     <>
       <motion.circle
-        className="commit-circle"
+        className={isMerge ? 'merge-commit-circle' : 'commit-circle'}
         key={`${indexX}${indexY}`}
         onClick={() => {
           dispatch(setCommitModal(commit));
         }}
-        fill={isMerge ? '#ffffff' : branchProps[branchesOrdered[indexY]]}
+        fill={isMerge ? '#0e1117' : branchProps[branchesOrdered[indexY]]}
+        stroke={isMerge ? '#3aa945' : branchProps[branchesOrdered[indexY]]}
+        strokeWidth={isMerge ? '2' : '1'}
+        // stroke-dasharray={isMerge ? '4 9' : '0'}
+        // stroke-dasharray={isMerge ? '4' : '0'}
         cx={indexX * 50}
         cy={String(height - indexY * 50)}
         r="15"
