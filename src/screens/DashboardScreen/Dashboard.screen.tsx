@@ -5,7 +5,7 @@ import { Time } from '../../components/TimeComponent/Time.component';
 import { RandomQuote } from '../../components/RandomQuoteComponent/RandomQuote.component';
 import { Weather } from '../../components/WeatherComponent/Weather.component';
 import { useUser } from '../../hooks/use-user';
-import { UserInfo } from './UserInfoComponent/UserInfo.component';
+import { UserInfo } from '../../components/UserInfoComponent/UserInfo.component';
 import { useDispatch } from 'react-redux';
 import { setRepo } from '../../redux/repo/actions';
 import { setBranch } from '../../redux/branch/actions';
