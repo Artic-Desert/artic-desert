@@ -108,7 +108,7 @@ export const ListItem: React.FC<ItemProps> = ({ task, index, column }) => {
                 name="submit"
                 type="submit"
                 id={task.timestamp + 'button'}
-                className="item-edit"
+                className="item-edit checkmark"
                 onClick={handleSubmitEdit}>
                 <FiCheckSquare />
               </button>

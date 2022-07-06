@@ -6,7 +6,7 @@
   padding: 10px;
   -webkit-box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 20px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 12px -1px rgba(0, 0, 0, 0.75);
   position: relative;
   font-family: 'Ubuntu', sans-serif;
 }
@@ -32,7 +32,7 @@
   cursor: pointer;
   font-size: 23px;
   opacity: 0.56;
-  transition: 200ms linear all;
+  transition: 50ms linear all;
 }
 
 .item-delete:hover {
@@ -60,7 +60,7 @@
   cursor: pointer;
   font-size: 21px;
   opacity: 0.56;
-  transition: 200ms linear all;
+  transition: 50ms linear all;
 }
 
 .item-edit:hover {
@@ -115,7 +115,7 @@
   border: 1.7px solid rgba(0, 0, 0, 0.75);
   border-radius: 50%;
   /* background-color: #01fe12; */
-  transition: 200ms linear all;
+  transition: 50ms linear all;
 }
 
 .item-creator:hover {
@@ -133,4 +133,9 @@
   margin-top: 5px;
   margin-left: 10px;
   font-size: 12px;
+}
+
+.checkmark {
+  opacity: 1;
+  color: rgb(1, 209, 29);
 }
