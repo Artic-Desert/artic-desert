@@ -10,7 +10,6 @@ import { useGhpToken } from '../../hooks/use-ghpToken';
 import { ApiClientService } from '../../services/ApiClientService';
 
 export const RepoSideBar: React.FC = () => {
-  // const [repos, setRepos] = useState<GithubRepo[]>([]); //eslint-disable-line
   const [loading, setLoading] = useState(false); //eslint-disable-line
   const dispatch = useDispatch();
 
