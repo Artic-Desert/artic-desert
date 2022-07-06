@@ -22,7 +22,15 @@ const vh = Math.max(
 export const Workspace: React.FC = () => {
   const [kanbanSize, setKanbanSize] = useState(vh * 0.875);
   const [flipArrow, setFlipArrow] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [buttonDissapear, setButtonDissapear] = useState(false);
   const { branches } = useBranches();
+
+  const toggleTutorial = () => setShowTutorial(!showTutorial);
+  const dragStartToggle = () => {
+    setShowTutorial(false);
+    setButtonDissapear(true);
+  };
   const colors = [
     '#ffab91',
     '#00ffff',
@@ -112,23 +120,52 @@ export const Workspace: React.FC = () => {
               alignItems: 'center',
             }}>
             <div className="tutorial-box">
-              {/* <div className="tutorial-button">
-                <button>Timeline walktrough</button>
-              </div> */}
-              <div className="branch-tutorial">
+              <div className="click-tutorial" data-showTutorial={showTutorial}>
+                <span>The first node represents the latest commit</span>
+                <div className="clickarrow-cont">
+                  <img src={clickArrow} alt="" />
+                  <img src={clickArrow} alt="" />
+                </div>
+              </div>
+              <div
+                className="svg-tutorial-cont"
+                data-showTutorial={showTutorial}>
+                <span>These nodes represent merges</span>
+                <div className="tutorial-svg">
+                  <svg height="50" width="50">
+                    <circle
+                      cx="20"
+                      cy="20"
+                      r="15"
+                      stroke="#3aa945"
+                      strokeWidth="2"
+                      fill="#0e1117"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div className="scroll-tutorial" data-showTutorial={showTutorial}>
+                <span>Scroll right to view earlier commit history</span>
+                <div className="scroll-arrow-cont">
+                  <img src={scrollArrow} alt="" />
+                  <img src={scrollArrow} alt="" />
+                  <img src={scrollArrow} alt="" />
+                  <img src={scrollArrow} alt="" />
+                </div>
+              </div>
+              <div
+                className="tutorial-button"
+                data-buttonDissapear={buttonDissapear}>
+                <button onClick={toggleTutorial}>
+                  {!showTutorial ? `Show me how it works ` : `Ok got it!`}
+                </button>
+              </div>
+              {/* <div className="branch-tutorial">
                 <span>
                   This sidebar displays all the branches in the repository
                 </span>
                 <img src={tutorialArrow} alt="" />
-              </div>
-              <div className="click-tutorial">
-                <span>repo branches</span>
-                <img src={clickArrow} alt="" />
-              </div>
-              <div className="scroll-tutorial">
-                <span>repo branches</span>
-                <img src={scrollArrow} alt="" />
-              </div>
+              </div> */}
             </div>
             <div className="label-timeline-container">
               {branches && (
@@ -145,7 +182,9 @@ export const Workspace: React.FC = () => {
                   })}
                 </div>
               )}
-              <div className="timeline-svg-container">
+              <div
+                className="timeline-svg-container"
+                onScroll={dragStartToggle}>
                 <GitTimeline />
               </div>
             </div>
