@@ -1,7 +1,8 @@
 .repoSideBarWrapper {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 96%;
   height: fit-content;
   background-color: transparent;
+  margin-right: auto;
 }

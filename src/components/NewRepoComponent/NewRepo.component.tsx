@@ -5,14 +5,16 @@ import { useRepos } from '../../hooks/use-repos';
 import { useUser } from '../../hooks/use-user';
 import { addRepo } from '../../redux/repos/actions';
 import { ApiClientService } from '../../services/ApiClientService';
-// import { AuthService } from '../../services/AuthService';
 import './NewRepo.css';
 
-export const NewRepo: React.FC = () => {
+export const NewRepo: React.FC<{
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ setIsOpen }) => {
   const [ownerName, setOwnerName] = useState('');
   const [repoName, setRepoName] = useState('');
   const [repoUrl, setRepoUrl] = useState('');
   const [message, setMessage] = useState('');
+  const [error, setError] = useState(false);
 
   const { repos } = useRepos();
   const { user } = useUser();
@@ -20,12 +22,14 @@ export const NewRepo: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleRepoAlreadyExists = () => {
+    setError(false);
     setMessage(
       'The Repository you are trying to add already exists in your workspace!',
     );
   };
 
   const handleRepoNotFound = (repo: string, owner: string) => {
+    setError(true);
     setMessage(
       `Error 🚫 \nWe weren't able to find a repository called: ${repo} with author: ${owner}. Check your input and please try again.`,
     );
@@ -59,6 +63,7 @@ export const NewRepo: React.FC = () => {
 
             setMessage('Repository added successfully!');
             console.log(message);
+            setError(false);
 
             return data;
           }
@@ -95,6 +100,7 @@ export const NewRepo: React.FC = () => {
       const name = repoInfo[4];
       updateUserRepos(owner, name);
     } else {
+      setError(true);
       setMessage("Please, enter either the repo's name and owner or a url!");
     }
     setRepoUrl('');
@@ -108,35 +114,38 @@ export const NewRepo: React.FC = () => {
 
   return (
     <div className="formWrapper">
-      <form onSubmit={event => handleSubmit(event)} className="newRepoForm">
-        <input
-          type="text"
-          value={ownerName}
-          placeholder="Github username"
-          onChange={event => setOwnerName(event.target.value)}
-        />
-        <input
-          type="text"
-          value={repoName}
-          placeholder="Repository name"
-          onChange={event => setRepoName(event.target.value)}
-        />
-        <span className="or">or ...</span>
-        <input
-          type="text"
-          placeholder="Paste Github URL"
-          value={repoUrl}
-          onChange={event => setRepoUrl(event.target.value)}
-        />
-        <button className="dashboard-submit-button" type="submit">
-          Add repo to dashboard
-        </button>
-      </form>
-      {message && (
-        <h4 className="error-message" onClick={byeError}>
-          {message}
-          <button>close</button>
-        </h4>
+      {message ? (
+        <div className="error-message-container">
+          <p className="error-message" onClick={byeError}>
+            {message}
+            <button onClick={() => !error && setIsOpen(false)}>Got it!</button>
+          </p>
+        </div>
+      ) : (
+        <form onSubmit={event => handleSubmit(event)} className="newRepoForm">
+          <input
+            type="text"
+            value={ownerName}
+            placeholder="Github username"
+            onChange={event => setOwnerName(event.target.value)}
+          />
+          <input
+            type="text"
+            value={repoName}
+            placeholder="Repository name"
+            onChange={event => setRepoName(event.target.value)}
+          />
+          <span className="or">or ...</span>
+          <input
+            type="text"
+            placeholder="Paste Github URL"
+            value={repoUrl}
+            onChange={event => setRepoUrl(event.target.value)}
+          />
+          <button className="dashboard-submit-button" type="submit">
+            Add repo to dashboard
+          </button>
+        </form>
       )}
     </div>
   );

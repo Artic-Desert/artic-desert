@@ -18,6 +18,7 @@
   backdrop-filter: blur(6.1px);
   -webkit-backdrop-filter: blur(6.1px);
   border: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
 }
 
 .collapse-container:hover {
@@ -27,6 +28,7 @@
 
 .collapse-icon {
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .collapse-icon2 {
