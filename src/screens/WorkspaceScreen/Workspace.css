@@ -13,12 +13,33 @@
   height: 100%;
 }
 
+.tutorial-box {
+  font-family: 'Ubuntu', sans-serif;
+
+  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  color: #c8d1d9;
+}
+
+.tutorial-box img {
+  height: 60px;
+}
+
+.branch-tutorial {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
 .kanban-repo-name {
   position: absolute;
   right: 140px;
   top: 120px;
   font-size: 2.6vw;
   font-family: 'Ubuntu', sans-serif;
+  /* color: #c8d1d9; */
   color: #c8d1d9c4;
 }
 

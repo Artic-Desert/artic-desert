@@ -6,7 +6,9 @@ import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.c
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
 import { CurrentRepoInfo } from '../../components/CurrentRepoInfoComponent/CurrentRepoInfo.component';
 import { BsArrowUpSquare, BsArrowDownSquare } from 'react-icons/bs';
-
+import tutorialArrow from '../../assets/tutorial-arrow3.svg';
+import scrollArrow from '../../assets/tutorial-scroll2.svg';
+import clickArrow from '../../assets/tutorial-click2.svg';
 import './Workspace.css';
 import { useBranches } from '../../hooks/use-branches';
 import { CommitModal } from '../../components/CustomModals/CommitModal.component';
@@ -109,21 +111,24 @@ export const Workspace: React.FC = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <div style={{ width: '50%' }}>
-              <h1 style={{ color: 'white', textAlign: 'center' }}>
-                GIT TIMELINE
-              </h1>
-              <p
-                style={{
-                  color: 'white',
-                  textAlign: 'center',
-                  marginBottom: 20,
-                }}>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters, as opposed to using{' '}
-              </p>
+            <div className="tutorial-box">
+              {/* <div className="tutorial-button">
+                <button>Timeline walktrough</button>
+              </div> */}
+              <div className="branch-tutorial">
+                <span>
+                  This sidebar displays all the branches in the repository
+                </span>
+                <img src={tutorialArrow} alt="" />
+              </div>
+              <div className="click-tutorial">
+                <span>repo branches</span>
+                <img src={clickArrow} alt="" />
+              </div>
+              <div className="scroll-tutorial">
+                <span>repo branches</span>
+                <img src={scrollArrow} alt="" />
+              </div>
             </div>
             <div className="label-timeline-container">
               {branches && (
@@ -145,7 +150,6 @@ export const Workspace: React.FC = () => {
               </div>
             </div>
           </div>
-
           <ShowChatButton />
           <CommitModal />
         </div>
