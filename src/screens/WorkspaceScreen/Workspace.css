@@ -95,35 +95,32 @@
   border-color: transparent;
 }
 .label-timeline-container {
-  width: 100%;
+  overflow-y: scroll;
+  max-height: 620px;
+  width: 90%;
   display: flex;
+  align-items: center;
 }
 .label-container {
-  min-width: 200px;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: flex-end;
-  padding-bottom: 15px;
   text-align: right;
+  margin-bottom: 35px;
 }
 
 .label-container h3 {
-  height: 50px;
-  /* height: calc(4.5vh); */
   font-family: 'Ubuntu', sans-serif;
   margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.main-branch {
-  color: #56fb08;
-  /* margin-bottom: 50px; */
-  height: 50px;
 }
 
 .branch {
-  font-size: 20px;
+  display: flex;
+  flex-direction: flex-end;
+  align-items: flex-end;
+  font-size: 15px;
+  height: 50px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 600;
   color: white;
@@ -131,5 +128,5 @@
 
 .timeline-svg-container {
   overflow-x: scroll;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
 }

@@ -30,6 +30,14 @@ export const Workspace: React.FC = () => {
     '#ff8400',
     '#6592b7',
     '#57a6ff',
+    '#ffab91',
+    '#00ffff',
+    '#e91e63',
+    '#ab47bc',
+    '#f48fb1',
+    '#ff8400',
+    '#6592b7',
+    '#57a6ff',
   ];
 
   const onClick = () => {
@@ -93,25 +101,51 @@ export const Workspace: React.FC = () => {
             )}
           </div>
           <CurrentRepoInfo />
-          <div className="label-timeline-container">
-            {branches && (
-              <div className="label-container">
-                {branches.map((branch: string, index: number) => {
-                  return (
-                    <h3
-                      key={branch}
-                      className="branch"
-                      style={{ color: colors[branches.length - 1 - index] }}>
-                      {branch}
-                    </h3>
-                  );
-                })}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <div style={{ width: '50%' }}>
+              <h1 style={{ color: 'white', textAlign: 'center' }}>
+                GIT TIMELINE
+              </h1>
+              <p
+                style={{
+                  color: 'white',
+                  textAlign: 'center',
+                  marginBottom: 20,
+                }}>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less
+                normal distribution of letters, as opposed to using{' '}
+              </p>
+            </div>
+            <div className="label-timeline-container">
+              {branches && (
+                <div className="label-container">
+                  {branches.map((branch: string, index: number) => {
+                    return (
+                      <h3
+                        key={branch}
+                        className="branch"
+                        style={{ color: colors[branches.length - 1 - index] }}>
+                        {branch}
+                      </h3>
+                    );
+                  })}
+                </div>
+              )}
+              <div className="timeline-svg-container">
+                <GitTimeline />
               </div>
-            )}
-            <div className="timeline-svg-container">
-              <GitTimeline />
             </div>
           </div>
+
           <ShowChatButton />
           <CommitModal />
         </div>

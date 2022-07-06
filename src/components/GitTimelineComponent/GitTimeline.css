@@ -1,8 +1,11 @@
 .svg-cont {
   width: fit-content;
-  height: 75vh;
+  /* height: fit-content; */
+  /* height: 100vh; */
   /* overflow: hidden; */
-  position: relative;
+  /* position: relative; */
+  /* display: flex;
+  align-items: center; */
 }
 
 .the-svg {
@@ -11,5 +14,6 @@
   /* border-bottom: 1px solid #c8d1d9ae; */
   /* border-radius: 10px; */
   position: relative;
-  height: 50vh;
+  margin-bottom: 10px;
+  height: fit-content;
 }
