@@ -15,25 +15,18 @@ import { ApiClientService } from '../../services/ApiClientService';
 import { useRepos } from '../../hooks/use-repos';
 import { useUser } from '../../hooks/use-user';
 import { setRepoModal } from '../../redux/repoModal/actions';
-import { RepoModal } from '../CustomModals/RepoModal.component';
 
 export const RepoItem: React.FC<{
   repo: GithubRepo;
 }> = ({ repo }) => {
-  console.log('repo input from repo item: ', repo);
+  console.log('<RepoItem> input repo prop: ', repo);
   const [numOfBranches, setNumOfBranches] = useState(0);
-  // const { user } = useUser();
   const { repos } = useRepos();
   const { user } = useUser();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const [modalOpen, setModalOpen] = useState(false);
-
-  // const close = () => setModalOpen(false);
-  // const open = () => setModalOpen(true);
-  //eslint-disable-next-line
   const handleDelete = async () => {
     const body =
       repos &&
@@ -120,7 +113,6 @@ export const RepoItem: React.FC<{
               onClick={() => {
                 dispatch(setRepo(repo));
                 dispatch(setBranch('repo-board'));
-                // modalOpen ? close() : open();
                 dispatch(setRepoModal(JSON.stringify(repo)));
               }}>
               Repo Preview
@@ -128,13 +120,6 @@ export const RepoItem: React.FC<{
           </div>
         </div>
       </div>
-      {/* <RepoModal></RepoModal> */}
-      {/* <AnimatePresence
-        initial={false}
-        exitBeforeEnter={true}
-        onExitComplete={() => null}>
-        {modalOpen && <Modal repoPreview={repo} handleClose={close} />}
-      </AnimatePresence> */}
     </>
   );
 };
