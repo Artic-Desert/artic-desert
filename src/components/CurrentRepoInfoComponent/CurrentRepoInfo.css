@@ -4,16 +4,22 @@
   top: 10px;
   right: 50%;
   transform: translateX(50%);
+  margin-top: 25px;
   width: 93vw;
   height: 20vh;
   display: flex;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.current-repo-info-container span {
+  color: #c8d1d9f8;
 }
 .current-repo-info-heading {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #c8d1d9c0;
   padding: 10px;
@@ -32,13 +38,25 @@
   padding-top: 4px;
   transform: scale(1.3);
 }
-.current-repo-info-default-branch span {
+
+.current-repo-info-default-branch {
+  align-items: center;
+}
+.current-repo-info-default-branch p {
   color: rgba(255, 228, 196, 0.794);
   border: 1px solid rgba(255, 228, 196, 0.742);
   padding-left: 12px;
   padding-right: 12px;
   padding-bottom: 2px;
   border-radius: 20px;
+  width: fit-content;
+}
+
+.curr-repo-center-cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .copy-icon-workspace {
   margin-top: 20px;

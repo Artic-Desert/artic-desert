@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import './GitTimeline.css';
-import Modal from './ModalComponent/Modal.component';
+// import Modal from './ModalComponent/Modal.component';
 // import { gitTimelineData } from '../../mocks/GitTimeline/gitTimeline';
 import { TimeliineDot } from './TimelineDotComponent/TimeliineDot.component';
 import { useRepo } from '../../hooks/use-repo';
@@ -28,8 +28,8 @@ import { useGhpToken } from '../../hooks/use-ghpToken';
 // };
 
 export const GitTimeline: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentCommit, setCurrentCommit] = useState<string | number>('');
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const [currentCommit, setCurrentCommit] = useState<string | number>('');
   const [gitTimelineData, setGitTimelineData] = useState<any>([]); //eslint-disable-line
   const [arrays, setArrays] = useState<any>([]);
   const [branchesOrdered, setBranchesOrdered] = useState<string[]>([]);
@@ -73,10 +73,12 @@ export const GitTimeline: React.FC = () => {
 
   // const constraintsRef = useRef(null);
 
-  const vh = Math.max(
-    document.documentElement.clientHeight || 0,
-    window.innerHeight || 0,
-  );
+  // const vh = Math.max(
+  //   document.documentElement.clientHeight || 0,
+  //   window.innerHeight || 0,
+  // );
+
+  // const distanceBetweenBranches = vh * 0.001;
 
   // const height = 50 * (arrays && arrays[0].length);
   const width = 50 * (arrays && arrays.length);
@@ -103,7 +105,7 @@ export const GitTimeline: React.FC = () => {
         {/* <div ref={constraintsRef} style={{ width: 'fitContent' }}> */}
         <motion.div className="svg-cont">
           <motion.svg
-            drag={'x'}
+            // drag={'x'}
             dragConstraints={{ left: -width, right: 0 }}
             // dragConstraints={constraintsRef}
             // ref={constraintsRef}
@@ -111,50 +113,66 @@ export const GitTimeline: React.FC = () => {
             className="the-svg"
             xmlns="http://www.w3.org/2000/svg"
             width={String(width) + 'px'}
-            height={`${vh * 0.5}`}
-            // height="500px"
-            viewBox={`0 0 ${width} ${vh * 0.5}`}>
-            {/* viewBox={`0 0 ${width} 500px`}> */}
-            <path
+            // height={`${distanceBetweenBranches}`}
+            // viewBox={`0 0 ${width} ${distanceBetweenBranches`}>
+            height="500px"
+            viewBox={`0 0 ${width} 500px`}>
+            {/* <path
               stroke="#ffab91"
-              d={`M0 ${vh * 0.001 + 450}, ${width} ${vh * 0.001 + 450} `}
+              d={`M0 ${10 * (distanceBetweenBranches ^ 8)}, ${width} ${
+                10 * (distanceBetweenBranches ^ 8)
+              }`}
             />
             <path
               stroke="#00ffff"
-              d={`M0 ${vh * 0.001 + 400}, ${width} ${vh * 0.001 + 400} `}
+              d={`M0 ${10 * (distanceBetweenBranches ^ 7)}, ${width} ${
+                10 * (distanceBetweenBranches ^ 7)
+              }`}
             />
             <path
-              stroke="#e91e63"
-              d={`M0 ${vh * 0.001 + 350}), ${width} ${vh * 0.001 + 350}`}
+              stroke="#e910e63"
+              d={`M0 ${10 * (distanceBetweenBranches ^ 6)}, ${width} ${
+                10 * (distanceBetweenBranches ^ 6)
+              }`}
             />
             <path
               stroke="#ab47bc"
-              d={`M0 ${vh * 0.001 + 300}), ${width} ${vh * 0.001 + 300}`}
+              d={`M0 ${10 * (distanceBetweenBranches ^ 5)}, ${width} ${
+                10 * (distanceBetweenBranches ^ 5)
+              }`}
             />
             <path
-              stroke="#f48fb1"
-              d={`M0 ${vh * 0.001 + 250}), ${width} ${vh * 0.001 + 250}`}
+              stroke="#f48fb10"
+              d={`M0 ${10 * (distanceBetweenBranches ^ 4)}, ${width} ${
+                10 * (distanceBetweenBranches ^ 4)
+              }`}
             />
             <path
               stroke="#ff8400"
-              d={`M0 ${vh * 0.001 + 200}, ${width} ${vh * 0.001 + 200}`}
+              d={`M0 ${10 * (distanceBetweenBranches ^ 3)}, ${width} ${
+                10 * (distanceBetweenBranches ^ 3)
+              }`}
             />
             <path
               stroke="#6592b7"
-              d={`M0 ${vh * 0.001 + 150}), ${width} ${vh * 0.001 + 150}`}
+              d={`M0 ${10 * (distanceBetweenBranches ^ 2)}, ${width} ${
+                10 * (distanceBetweenBranches ^ 2)
+              }`}
             />
             <path
               stroke="#57a6ff"
-              d={`M0 ${vh * 0.001 + 100}, ${width} ${vh * 0.001 + 100}`}
-            />
-            {/* <path stroke="#ffab91" d={`M0 450, ${width} 450`} />
+              d={`M0 ${10 * (distanceBetweenBranches ^ 1)}, ${width} ${
+                10 * (distanceBetweenBranches ^ 1)
+              }`}
+            /> */}
+            <path stroke="#ffab91" d={`M0 450, ${width} 450`} />
             <path stroke="#00ffff" d={`M0 400, ${width} 400`} />
             <path stroke="#e91e63" d={`M0 350, ${width} 350`} />
             <path stroke="#ab47bc" d={`M0 300, ${width} 300`} />
             <path stroke="#f48fb1" d={`M0 250, ${width} 250`} />
             <path stroke="#ff8400" d={`M0 200, ${width} 200`} />
             <path stroke="#6592b7" d={`M0 150, ${width} 150`} />
-            <path stroke="#57a6ff" d={`M0 100, ${width} 100`} /> */}
+            <path stroke="#57a6ff" d={`M0 100, ${width} 100`} />
             {/* eslint-disable-next-line */}
             {console.log('HEY THERE IM INSIDE ARRAYS.MAP:', Math.random())};
             {arrays.map((array: any[], indexX: number) => {

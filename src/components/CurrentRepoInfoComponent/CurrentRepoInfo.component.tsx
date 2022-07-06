@@ -24,42 +24,50 @@ export const CurrentRepoInfo: React.FC = () => {
     <div className="current-repo-info-container">
       <div className="current-repo-info-heading">
         <p>
+          Created
           <span>
+            <br />
+            •
+            <br />
             {moment(new Date(repo.created_at)).format('DD/MMM/YYYY HH:MM')}
           </span>
-          <br />
-          •
-          <br />
-          Created
         </p>
         <p className="current-repo-info-default-branch">
-          <span>{repo.default_branch}</span>
-          <br />
-          •
-          <br />
           Default branch
+          <br />
+          <span>•</span>
+          <br />
+          <div className="curr-repo-center-cont">
+            <p>{repo.default_branch}</p>
+          </div>
         </p>
         <p>
-          <span>{moment(new Date(repo.updated_at)).fromNow()}</span>
-          <br />
-          •
-          <br />
           Last updated
+          <span>
+            <br />
+            •
+            <br />
+            {moment(new Date(repo.updated_at)).fromNow()}
+          </span>
         </p>
         <p>
+          Allow forking
           <span>
+            <br />
+            •
+            <br />
             {repo.allow_forking ? (
               <TiTick className="current-repo-info-tick-icon" />
             ) : (
               <GiSplitCross className="current-repo-info-cross-icon" />
             )}
           </span>
+        </p>
+        <p>
+          Delete branch on merge
           <br />
           •
           <br />
-          Allow forking
-        </p>
-        <p>
           <span>
             {repo.delete_branch_on_merge ? (
               <TiTick className="current-repo-info-tick-icon" />
@@ -67,53 +75,49 @@ export const CurrentRepoInfo: React.FC = () => {
               <GiSplitCross className="current-repo-info-cross-icon" />
             )}
           </span>
-          <br />
-          •
-          <br />
-          Delete branch on merge
         </p>
         <p>
+          Allow auto merge
           <span>
+            <br />
+            •
+            <br />
             {repo.allow_auto_merge ? (
               <TiTick className="current-repo-info-tick-icon" />
             ) : (
               <GiSplitCross className="current-repo-info-cross-icon" />
             )}
           </span>
-          <br />
-          •
-          <br />
-          Allow auto merge
         </p>
         <p>
+          Watchers
           <span>
+            <br />
+            •
+            <br />
             <BsFillEyeFill className="current-repo-info-icons" />{' '}
             {repo.watchers}{' '}
           </span>
-          <br />
-          •
-          <br />
-          Watchers
         </p>
         <p>
+          Size
           <span>
+            <br />
+            •
+            <br />
             <MdOutlineMemory className="current-repo-info-icons" /> {repo.size}
             {' KB'}
           </span>
-          <br />
-          •
-          <br />
-          Size
         </p>
         <p>
+          Stars
           <span>
+            <br />
+            •
+            <br />
             <AiOutlineStar className="current-repo-info-icons" />{' '}
             {repo.stargazers_count}
           </span>
-          <br />
-          •
-          <br />
-          Stars
         </p>
         {repo.allow_forking ? (
           <p>
@@ -128,17 +132,6 @@ export const CurrentRepoInfo: React.FC = () => {
           </p>
         ) : null}
       </div>
-      <div className="copy-clip-workspace">
-        <AiFillCopy
-          title="Copy Repo URL"
-          className="copy-icon-workspace"
-          onClick={copy}
-          size={35}
-        />
-      </div>
-      {copiedToClipboard && (
-        <div className="copied-to-clipboard-alert">Copied to clipboard</div>
-      )}
     </div>
   );
 };

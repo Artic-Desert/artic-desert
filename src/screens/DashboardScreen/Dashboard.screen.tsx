@@ -21,6 +21,8 @@ import { Collapasible } from '../../components/CollapsibleComponent/Collapsible.
 import { NewRepo } from '../../components/NewRepoComponent/NewRepo.component';
 import { useGhpToken } from '../../hooks/use-ghpToken';
 import { TokenInput } from '../../components/TokenInputComponent/TokenInput.component';
+import { RepoModal } from '../../components/CustomModals/RepoModal.component';
+import { setRepoModal } from '../../redux/repoModal/actions';
 
 export const Dashboard: React.FC = () => {
   const { user } = useUser();
@@ -30,9 +32,9 @@ export const Dashboard: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('ghpToken : ', ghpToken);
     dispatch(setRepo({}));
     dispatch(setBranch('all-branches'));
+    dispatch(setRepoModal(''));
   }, []);
 
   return (
@@ -62,6 +64,7 @@ export const Dashboard: React.FC = () => {
             </div>
           </div>
         )}
+        <RepoModal />
       </div>
     )
   );

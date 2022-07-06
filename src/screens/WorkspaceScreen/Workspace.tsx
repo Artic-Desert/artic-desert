@@ -5,7 +5,7 @@ import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/He
 import { KanbanBoard } from '../../components/KanbanBoardComponent/KanbanBoard.component';
 import { ShowChatButton } from '../../components/ShowChatButtonComponent/ShowChatButton.component';
 import { CurrentRepoInfo } from '../../components/CurrentRepoInfoComponent/CurrentRepoInfo.component';
-import { TbArrowBarUp, TbArrowBarDown } from 'react-icons/tb';
+import { BsArrowUpSquare, BsArrowDownSquare } from 'react-icons/bs';
 
 import './Workspace.css';
 import { useBranches } from '../../hooks/use-branches';
@@ -18,7 +18,7 @@ const vh = Math.max(
 );
 
 export const Workspace: React.FC = () => {
-  const [kanbanSize, setKanbanSize] = useState(vh * 0.9);
+  const [kanbanSize, setKanbanSize] = useState(vh * 0.875);
   const [flipArrow, setFlipArrow] = useState(false);
   const { branches } = useBranches();
   const colors = [
@@ -33,15 +33,15 @@ export const Workspace: React.FC = () => {
   ];
 
   const onClick = () => {
-    if (kanbanSize <= 100) {
+    if (kanbanSize <= 115) {
       setKanbanSize(vh * 0.9);
     } else {
-      setKanbanSize(100);
+      setKanbanSize(115);
     }
   };
 
   useEffect(() => {
-    if (kanbanSize > 100) {
+    if (kanbanSize > 115) {
       setFlipArrow(true);
     } else {
       setFlipArrow(false);
@@ -55,7 +55,7 @@ export const Workspace: React.FC = () => {
       <Pane
         split="horizontal"
         minSize={100}
-        maxSize={vh * 0.9}
+        maxSize={vh * 0.875}
         size={kanbanSize}
         onDragFinished={e => {
           setKanbanSize(e);
@@ -75,19 +75,19 @@ export const Workspace: React.FC = () => {
               setKanbanSize(e.clientY);
             }}>
             {flipArrow ? (
-              <TbArrowBarUp
+              <BsArrowUpSquare
                 title="Shrink Kanban"
                 className="shrink-icon"
-                size={30}
-                color="lightgrey"
+                size={25}
+                color="rgba(215, 215, 215, 0.800)"
                 onClick={onClick}
               />
             ) : (
-              <TbArrowBarDown
+              <BsArrowDownSquare
                 title="Expand Kanban"
                 className="expand-icon"
-                size={30}
-                color="lightgrey"
+                size={25}
+                color="rgba(215, 215, 215, 0.800)"
                 onClick={onClick}
               />
             )}
