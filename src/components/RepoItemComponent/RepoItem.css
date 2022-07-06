@@ -39,8 +39,7 @@
 .privacy {
   color: rgba(255, 228, 196, 0.794);
   border: 1px solid rgba(255, 228, 196, 0.742);
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 0 12px 2px 12px;
   border-radius: 20px;
 }
 .repo-owner {
@@ -86,6 +85,9 @@
   border: 2px solid #c8d1d99c;
   color: #c8d1d9d9;
 }
+.preview-button:active {
+  transform: translateY(1px) scale(0.95);
+}
 .lang-ball-default {
   color: #ffe4c4;
   margin-right: 5px;
@@ -106,13 +108,9 @@
   color: #e34c25;
   margin-right: 5px;
 }
-
 .repo-delete {
   color: white;
-  /* position: absolute; */
   margin-left: auto;
-  /* top: 5px; */
-  /* right: 20px; */
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -120,7 +118,9 @@
   opacity: 0.75;
   transition: 200ms linear all;
 }
-
+.repo-delete:active {
+  transform: translateY(1px) scale(0.95);
+}
 .repo-delete:hover {
   transform: rotate(5deg);
   color: #57a6ff;
