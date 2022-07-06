@@ -61,10 +61,10 @@
 .tutorial-svg {
   max-height: 50px;
   width: fit-content;
-  animation: bounce 2s infinite;
+  animation: tutorial-bounce 2s infinite;
 }
 
-@keyframes bounce {
+@keyframes tutorial-bounce {
   0%,
   20%,
   50%,
