@@ -185,7 +185,10 @@ export const Workspace: React.FC = () => {
                     gitTimelineLoaded={gitTimelineLoaded}
                   />
                 </div>
-                <div className="timeline-svg-container">
+                <div
+                  className={`timeline-svg-container ${
+                    gitTimelineLoaded && 'hide-loader'
+                  }`}>
                   <GitTimelineLoading viewable={!gitTimelineLoaded} />
                 </div>
               </div>
