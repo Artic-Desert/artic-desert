@@ -26,7 +26,7 @@
   width: 45%;
   position: absolute;
   left: 2%;
-  top: 4%;
+  top: 10%;
 }
 .bot {
   margin-left: 100px;
@@ -39,8 +39,8 @@
   width: 35%;
   color: #f3f0f0;
   position: absolute;
-  bottom: 35%;
-  line-height: 90px;
+  bottom: 20%;
+  line-height: 110px;
   left: 5%;
   font-family: 'Kdam Thmor Pro', sans-serif;
   font-size: 2.6vw;

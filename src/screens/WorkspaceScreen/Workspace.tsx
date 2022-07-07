@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Pane from 'react-split-pane';
 import { GitTimeline } from '../../components/GitTimelineComponent/GitTimeline.component';
 import { Header } from '../../components/KanbanBoardComponent/HeaderComponent/Header.component';
@@ -12,7 +12,7 @@ import './Workspace.css';
 import { useBranches } from '../../hooks/use-branches';
 import { CommitModal } from '../../components/CustomModalsComponents/CommitModal.component';
 import { colors } from '../../shared/GitTimelineColors';
-import { useHorizontalScroll } from '../../hooks/use-horizontal-scroll';
+// import { useHorizontalScroll } from '../../hooks/use-horizontal-scroll';
 import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/lottie/loading-line.json';
 // import lottie from 'lottie-web';
@@ -31,7 +31,7 @@ export const Workspace: React.FC = () => {
   const [gitTimelineLoaded, setGitTimelineLoaded] = useState(false);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const scrollRef: any = useHorizontalScroll();
+  // const scrollRef: any = useHorizontalScroll();
 
   const toggleTutorial = () => setShowTutorial(!showTutorial);
   const dragStartToggle = () => {
@@ -41,7 +41,7 @@ export const Workspace: React.FC = () => {
 
   const onClick = () => {
     if (kanbanSize <= 115) {
-      setKanbanSize(vh * 0.9);
+      setKanbanSize(vh * 0.875);
     } else {
       setKanbanSize(115);
     }
