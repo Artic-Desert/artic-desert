@@ -28,8 +28,6 @@ export const Header: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [collaborators, setCollaborators] = useState([]);
 
-  // useEffect(() => {}, []);
-
   useEffect(() => {
     console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
     default_branch && dispatch(setBranch(default_branch.value));
@@ -47,6 +45,7 @@ export const Header: React.FC = () => {
     branches && collaborators && setLoading(false);
   }, [loading === true]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const container: any = useRef(null);
 
   const handleLogout = () => {

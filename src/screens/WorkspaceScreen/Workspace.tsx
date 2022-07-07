@@ -12,6 +12,7 @@ import './Workspace.css';
 import { useBranches } from '../../hooks/use-branches';
 import { CommitModal } from '../../components/CustomModalsComponents/CommitModal.component';
 import { colors } from '../../shared/GitTimelineColors';
+import { useHorizontalScroll } from '../../hooks/use-horizontal-scroll';
 import lottie from 'lottie-web';
 
 const vh = Math.max(
@@ -26,6 +27,9 @@ export const Workspace: React.FC = () => {
   const [buttonDissapear, setButtonDissapear] = useState(false);
   const { branches } = useBranches();
   const [gitTimelineLoaded, setGitTimelineLoaded] = useState(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const scrollRef: any = useHorizontalScroll();
 
   const toggleTutorial = () => setShowTutorial(!showTutorial);
   const dragStartToggle = () => {
@@ -51,6 +55,7 @@ export const Workspace: React.FC = () => {
     });
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const container: any = useRef(null);
 
   useEffect(() => {
@@ -181,6 +186,7 @@ export const Workspace: React.FC = () => {
               )}
               <div
                 className="timeline-svg-container"
+                ref={scrollRef}
                 onScroll={dragStartToggle}>
                 <GitTimeline setGitTimelineLoaded={setGitTimelineLoaded} />
               </div>

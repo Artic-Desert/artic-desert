@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useRef } from 'react';
+import React, { SetStateAction, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import './GitTimeline.css';
@@ -79,6 +79,7 @@ export const GitTimeline: React.FC<{
 
             {/* eslint-disable-next-line */}
             {arrays.map((array: any[], indexX: number) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               return array.map((commit: any[] | number, indexY: number) => {
                 return (
                   typeof commit !== 'number' && (
