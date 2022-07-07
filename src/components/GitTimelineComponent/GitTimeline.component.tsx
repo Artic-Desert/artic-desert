@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect } from 'react';
+import React, { SetStateAction, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import './GitTimeline.css';
