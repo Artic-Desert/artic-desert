@@ -12,12 +12,16 @@ export const AuthService = {
 
   getToken: function () {
     // ADDED || process.env.REACT_APP_GHP_TOKEN
+    console.log('token : ', sessionStorage.getItem('token'));
     return sessionStorage.getItem('token') || process.env.REACT_APP_GHP_TOKEN;
   },
 
-  setUserSession: function (user: GithubUser, token: string | undefined) {
+  setToken: function (token: string) {
+    sessionStorage.setItem('token', token);
+  },
+
+  setUser: function (user: GithubUser) {
     sessionStorage.setItem('user', JSON.stringify(user));
-    token && sessionStorage.setItem('token', token);
   },
 
   resetUserSession: function () {
