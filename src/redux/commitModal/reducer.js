@@ -1,4 +1,5 @@
-import { SET_COMMIT_MODAL, SET_CURRENT_COMMIT_SHA } from './actions';
+import { SET_COMMIT_MODAL } from './actions';
+// import { SET_CURRENT_COMMIT_SHA } from './actions';
 
 export const commitModalReducer = (state = '', action) => {
   if (action.type === SET_COMMIT_MODAL) {

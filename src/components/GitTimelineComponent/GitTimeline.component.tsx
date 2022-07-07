@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useRef } from 'react';
+import React, { SetStateAction, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import './GitTimeline.css';
@@ -51,6 +51,7 @@ export const GitTimeline: React.FC<{
   const height = 50 * (arrays && arrays[0]?.length);
   const width = 50 * (arrays && arrays?.length);
   const dataIsLoaded = gitTimelineData?.length && branchesOrdered && arrays;
+<<<<<<< HEAD
   return gitTimelineLoaded ? (
     <>
       <motion.div className="svg-cont">
@@ -75,6 +76,54 @@ export const GitTimeline: React.FC<{
                   }`}
                 />
               );
+=======
+  return (
+    dataIsLoaded && (
+      <>
+        <motion.div className="svg-cont">
+          <motion.svg
+            dragConstraints={{ left: -width, right: 0 }}
+            // dragConstraints={constraintsRef}
+            // ref={constraintsRef}
+            dragElastic={0.001}
+            className="the-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            width={String(width + 25) + 'px'}
+            height={`${height + 25}px`}
+            viewBox={`0 0 ${width}px ${height}px`}>
+            {branches.length &&
+              branches.map((_: string, index: number) => {
+                return (
+                  <path
+                    key={index}
+                    stroke={colors[index]}
+                    d={`M10 ${height - 50 * index}, ${width} ${
+                      height - 50 * index
+                    }`}
+                  />
+                );
+              })}
+
+            {/* eslint-disable-next-line */}
+            {arrays.map((array: any[], indexX: number) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              return array.map((commit: any[] | number, indexY: number) => {
+                return (
+                  typeof commit !== 'number' && (
+                    <TimeliineDot
+                      key={`${indexX}${indexY}`}
+                      indexX={indexX + 0.5}
+                      indexY={Math.abs(indexY - array.length + 1)}
+                      branchProps={branchProps}
+                      branchesOrdered={branchesOrdered}
+                      commit={commit[0]}
+                      isMerge={commit[1]}
+                      height={height}
+                    />
+                  )
+                );
+              });
+>>>>>>> 31ca61f4aa4c5435becfe1e05c1a033a2f7c69e8
             })}
 
           {/* eslint-disable-next-line */}

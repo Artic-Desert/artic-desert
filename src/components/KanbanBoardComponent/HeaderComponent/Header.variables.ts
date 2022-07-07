@@ -35,6 +35,7 @@ export const customStyles = {
     ...provided,
     backgroundColor: '#161b22',
   }),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   singleValue: (provided: any) => ({
     ...provided,
     backgroundColor: '#161b22',

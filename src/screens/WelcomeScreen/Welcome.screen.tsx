@@ -2,12 +2,13 @@
 import React, { useEffect, useRef } from 'react';
 import { AiOutlineGithub } from 'react-icons/ai';
 import lottie from 'lottie-web';
-import mask from '../../assets/mask.svg';
+// import mask from '../../assets/mask.svg';
 import './Welcome.css';
 
 export const Welcome: React.FC = () => {
   const client_id = '71c6863d3d338f86fe07';
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const container: any = useRef(null);
 
   useEffect(() => {

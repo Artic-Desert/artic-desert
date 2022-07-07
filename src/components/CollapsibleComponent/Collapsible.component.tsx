@@ -10,7 +10,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
-export const Collapasible: React.FC<IProps> = ({ children, open }) => {
+export const Collapasible: React.FC<IProps> = ({ open }) => {
   const [isOpen, setIsOpen] = useState(!open);
 
   const handleFilterOpening = () => {
