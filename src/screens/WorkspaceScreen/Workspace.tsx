@@ -13,7 +13,9 @@ import { useBranches } from '../../hooks/use-branches';
 import { CommitModal } from '../../components/CustomModalsComponents/CommitModal.component';
 import { colors } from '../../shared/GitTimelineColors';
 import { useHorizontalScroll } from '../../hooks/use-horizontal-scroll';
-import lottie from 'lottie-web';
+import Lottie from 'lottie-react';
+import loadingAnimation from '../../assets/lottie/loading-line.json';
+// import lottie from 'lottie-web';
 
 const vh = Math.max(
   document.documentElement.clientHeight || 0,
@@ -45,18 +47,18 @@ export const Workspace: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    lottie.loadAnimation({
-      container: container.current,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      animationData: require('../../assets/lottie/loading-line.json'),
-    });
-  }, []);
+  // useEffect(() => {
+  //   lottie.loadAnimation({
+  //     container: container.current,
+  //     renderer: 'svg',
+  //     loop: true,
+  //     autoplay: true,
+  //     animationData: require('../../assets/lottie/loading-line.json'),
+  //   });
+  // }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const container: any = useRef(null);
+  // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // const container: any = useRef(null);
 
   useEffect(() => {
     if (kanbanSize > 115) {
@@ -170,7 +172,7 @@ export const Workspace: React.FC = () => {
               </div> */}
             </div>
             <div className="label-timeline-container">
-              {branches && gitTimelineLoaded && (
+              {branches && (
                 <div className="label-container">
                   {branches.map((branch: string, index: number) => {
                     return (
@@ -186,31 +188,45 @@ export const Workspace: React.FC = () => {
               )}
               <div
                 className="timeline-svg-container"
-                ref={scrollRef}
+                // ref={scrollRef}
                 onScroll={dragStartToggle}>
-                <GitTimeline setGitTimelineLoaded={setGitTimelineLoaded} />
+                {branches && (
+                  <GitTimeline
+                    viewable={gitTimelineLoaded}
+                    setGitTimelineLoaded={setGitTimelineLoaded}
+                  />
+                )}
+                <div
+                  style={
+                    gitTimelineLoaded
+                      ? { display: 'none', overflow: 'hidden' }
+                      : undefined
+                  }>
+                  {branches &&
+                    branches.map((branch: string, index: number) => (
+                      <Lottie
+                        animationData={loadingAnimation}
+                        key={index}
+                        loop={true}
+                        style={{ height: '50px' }}
+                      />
+                    ))}
+                </div>
               </div>
             </div>
           </div>
-          {branches && !gitTimelineLoaded && (
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                border: '1px solid red',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}>
+          {/* {branches && !gitTimelineLoaded && (
+            <div className="timeline-svg-container">
               {branches.map((branch: string, index: number) => (
-                <div
-                  // style={{ border: '1px solid blue' }}
-                  className="git-loading-lines"
-                  ref={container}
-                  key={index}></div>
+                <Lottie
+                  animationData={loadingAnimation}
+                  key={index}
+                  loop={true}
+                  style={{ height: '50px' }}
+                />
               ))}
             </div>
-          )}
+          )} */}
           <ShowChatButton />
           <CommitModal />
         </div>

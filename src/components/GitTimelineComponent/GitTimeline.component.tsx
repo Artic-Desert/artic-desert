@@ -12,8 +12,9 @@ import { useBranches } from '../../hooks/use-branches';
 import { colors } from '../../shared/GitTimelineColors';
 
 export const GitTimeline: React.FC<{
+  viewable: boolean;
   setGitTimelineLoaded: React.Dispatch<SetStateAction<boolean>>;
-}> = ({ setGitTimelineLoaded }) => {
+}> = ({ setGitTimelineLoaded, viewable }) => {
   const [gitTimelineData, setGitTimelineData] = useState<any>([]); //eslint-disable-line
   const [arrays, setArrays] = useState<any>([]); //eslint-disable-line
   const [branchesOrdered, setBranchesOrdered] = useState<string[]>([]);
@@ -51,7 +52,8 @@ export const GitTimeline: React.FC<{
   const width = 50 * (arrays && arrays?.length);
   const dataIsLoaded = gitTimelineData?.length && branchesOrdered && arrays;
   return (
-    dataIsLoaded && (
+    dataIsLoaded &&
+    viewable && (
       <>
         <motion.div className="svg-cont">
           <motion.svg
