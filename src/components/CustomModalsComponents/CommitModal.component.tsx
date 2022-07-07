@@ -236,6 +236,7 @@ export const CommitModal: React.FC = () => {
                 {fileContents && (
                   <CopyBlock
                     text={atob(fileContents)}
+                    showLineNumbers={true}
                     language={fileExtension}
                     textColor={'transparent'}
                     theme={dracula}
