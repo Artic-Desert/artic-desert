@@ -13,6 +13,9 @@ import { useBranches } from '../../hooks/use-branches';
 import { CommitModal } from '../../components/CustomModalsComponents/CommitModal.component';
 import { colors } from '../../shared/GitTimelineColors';
 import lottie from 'lottie-web';
+import Lottie from 'lottie-react';
+import loadingAnimation from '../../assets/lottie/loading-line.json';
+import { GitTimelineLoading } from '../../components/GitTimelineLoading/GitTimelineLoading.component';
 
 const vh = Math.max(
   document.documentElement.clientHeight || 0,
@@ -157,54 +160,38 @@ export const Workspace: React.FC = () => {
                   </button>
                 </div>
               )}
-              {/* <div className="branch-tutorial">
-                <span>
-                  This sidebar displays all the branches in the repository
-                </span>
-                <img src={tutorialArrow} alt="" />
-              </div> */}
             </div>
             <div className="label-timeline-container">
-              {branches && gitTimelineLoaded && (
-                <div className="label-container">
+              <div style={{ display: 'flex' }}>
+                <div>
                   {branches.map((branch: string, index: number) => {
                     return (
                       <h3
                         key={branch}
                         className="branch"
-                        style={{ color: colors[branches.length - 1 - index] }}>
+                        style={{
+                          color: colors[branches.length - 1 - index],
+                        }}>
                         {branch}
                       </h3>
                     );
                   })}
                 </div>
-              )}
-              <div
-                className="timeline-svg-container"
-                onScroll={dragStartToggle}>
-                <GitTimeline setGitTimelineLoaded={setGitTimelineLoaded} />
+                <div
+                  className="timeline-svg-container"
+                  onScroll={dragStartToggle}>
+                  <GitTimeline
+                    setGitTimelineLoaded={setGitTimelineLoaded}
+                    gitTimelineLoaded={gitTimelineLoaded}
+                  />
+                </div>
+                <div className="timeline-svg-container">
+                  <GitTimelineLoading viewable={!gitTimelineLoaded} />
+                </div>
               </div>
+              {/* )} */}
             </div>
           </div>
-          {branches && !gitTimelineLoaded && (
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                border: '1px solid red',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}>
-              {branches.map((branch: string, index: number) => (
-                <div
-                  // style={{ border: '1px solid blue' }}
-                  className="git-loading-lines"
-                  ref={container}
-                  key={index}></div>
-              ))}
-            </div>
-          )}
           <ShowChatButton />
           <CommitModal />
         </div>

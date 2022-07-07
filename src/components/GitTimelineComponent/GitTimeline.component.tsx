@@ -13,7 +13,8 @@ import { colors } from '../../shared/GitTimelineColors';
 
 export const GitTimeline: React.FC<{
   setGitTimelineLoaded: React.Dispatch<SetStateAction<boolean>>;
-}> = ({ setGitTimelineLoaded }) => {
+  gitTimelineLoaded: boolean;
+}> = ({ setGitTimelineLoaded, gitTimelineLoaded }) => {
   const [gitTimelineData, setGitTimelineData] = useState<any>([]); //eslint-disable-line
   const [arrays, setArrays] = useState<any>([]); //eslint-disable-line
   const [branchesOrdered, setBranchesOrdered] = useState<string[]>([]);
@@ -50,55 +51,55 @@ export const GitTimeline: React.FC<{
   const height = 50 * (arrays && arrays[0]?.length);
   const width = 50 * (arrays && arrays?.length);
   const dataIsLoaded = gitTimelineData?.length && branchesOrdered && arrays;
-  return (
-    dataIsLoaded && (
-      <>
-        <motion.div className="svg-cont">
-          <motion.svg
-            dragConstraints={{ left: -width, right: 0 }}
-            // dragConstraints={constraintsRef}
-            // ref={constraintsRef}
-            dragElastic={0.001}
-            className="the-svg"
-            xmlns="http://www.w3.org/2000/svg"
-            width={String(width + 25) + 'px'}
-            height={`${height + 25}px`}
-            viewBox={`0 0 ${width}px ${height}px`}>
-            {branches.length &&
-              branches.map((_: string, index: number) => {
-                return (
-                  <path
-                    key={index}
-                    stroke={colors[index]}
-                    d={`M10 ${height - 50 * index}, ${width} ${
-                      height - 50 * index
-                    }`}
-                  />
-                );
-              })}
-
-            {/* eslint-disable-next-line */}
-            {arrays.map((array: any[], indexX: number) => {
-              return array.map((commit: any[] | number, indexY: number) => {
-                return (
-                  typeof commit !== 'number' && (
-                    <TimeliineDot
-                      key={`${indexX}${indexY}`}
-                      indexX={indexX + 0.5}
-                      indexY={Math.abs(indexY - array.length + 1)}
-                      branchProps={branchProps}
-                      branchesOrdered={branchesOrdered}
-                      commit={commit[0]}
-                      isMerge={commit[1]}
-                      height={height}
-                    />
-                  )
-                );
-              });
+  return gitTimelineLoaded ? (
+    <>
+      <motion.div className="svg-cont">
+        <motion.svg
+          dragConstraints={{ left: -width, right: 0 }}
+          // dragConstraints={constraintsRef}
+          // ref={constraintsRef}
+          dragElastic={0.001}
+          className="the-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width={String(width + 25) + 'px'}
+          height={`${height + 25}px`}
+          viewBox={`0 0 ${width}px ${height}px`}>
+          {branches.length &&
+            branches.map((_: string, index: number) => {
+              return (
+                <path
+                  key={index}
+                  stroke={colors[index]}
+                  d={`M10 ${height - 50 * index}, ${width} ${
+                    height - 50 * index
+                  }`}
+                />
+              );
             })}
-          </motion.svg>
-        </motion.div>
-      </>
-    )
+
+          {/* eslint-disable-next-line */}
+          {arrays.map((array: any[], indexX: number) => {
+            return array.map((commit: any[] | number, indexY: number) => {
+              return (
+                typeof commit !== 'number' && (
+                  <TimeliineDot
+                    key={`${indexX}${indexY}`}
+                    indexX={indexX + 0.5}
+                    indexY={Math.abs(indexY - array.length + 1)}
+                    branchProps={branchProps}
+                    branchesOrdered={branchesOrdered}
+                    commit={commit[0]}
+                    isMerge={commit[1]}
+                    height={height}
+                  />
+                )
+              );
+            });
+          })}
+        </motion.svg>
+      </motion.div>
+    </>
+  ) : (
+    <></>
   );
 };
