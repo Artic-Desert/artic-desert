@@ -13,10 +13,9 @@ import { useBranches } from '../../hooks/use-branches';
 import { CommitModal } from '../../components/CustomModalsComponents/CommitModal.component';
 import { colors } from '../../shared/GitTimelineColors';
 import { useHorizontalScroll } from '../../hooks/use-horizontal-scroll';
-import lottie from 'lottie-web';
 import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/lottie/loading-line.json';
-import { GitTimelineLoading } from '../../components/GitTimelineLoading/GitTimelineLoading.component';
+// import lottie from 'lottie-web';
 
 const vh = Math.max(
   document.documentElement.clientHeight || 0,
@@ -48,18 +47,18 @@ export const Workspace: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    lottie.loadAnimation({
-      container: container.current,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      animationData: require('../../assets/lottie/loading-line.json'),
-    });
-  }, []);
+  // useEffect(() => {
+  //   lottie.loadAnimation({
+  //     container: container.current,
+  //     renderer: 'svg',
+  //     loop: true,
+  //     autoplay: true,
+  //     animationData: require('../../assets/lottie/loading-line.json'),
+  //   });
+  // }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const container: any = useRef(null);
+  // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // const container: any = useRef(null);
 
   useEffect(() => {
     if (kanbanSize > 115) {
@@ -165,50 +164,69 @@ export const Workspace: React.FC = () => {
                   </button>
                 </div>
               )}
+              {/* <div className="branch-tutorial">
+                <span>
+                  This sidebar displays all the branches in the repository
+                </span>
+                <img src={tutorialArrow} alt="" />
+              </div> */}
             </div>
             <div className="label-timeline-container">
-              <div style={{ display: 'flex' }}>
-                <div>
+              {branches && (
+                <div className="label-container">
                   {branches.map((branch: string, index: number) => {
                     return (
                       <h3
                         key={branch}
                         className="branch"
-                        style={{
-                          color: colors[branches.length - 1 - index],
-                        }}>
+                        style={{ color: colors[branches.length - 1 - index] }}>
                         {branch}
                       </h3>
                     );
                   })}
                 </div>
-<<<<<<< HEAD
-                <div
-                  className="timeline-svg-container"
-                  onScroll={dragStartToggle}>
-                  <GitTimeline
-                    setGitTimelineLoaded={setGitTimelineLoaded}
-                    gitTimelineLoaded={gitTimelineLoaded}
-                  />
-                </div>
-                <div
-                  className={`timeline-svg-container ${
-                    gitTimelineLoaded && 'hide-loader'
-                  }`}>
-                  <GitTimelineLoading viewable={!gitTimelineLoaded} />
-                </div>
-=======
               )}
               <div
                 className="timeline-svg-container"
-                ref={scrollRef}
+                // ref={scrollRef}
                 onScroll={dragStartToggle}>
-                <GitTimeline setGitTimelineLoaded={setGitTimelineLoaded} />
->>>>>>> 31ca61f4aa4c5435becfe1e05c1a033a2f7c69e8
+                {branches && (
+                  <GitTimeline
+                    viewable={gitTimelineLoaded}
+                    setGitTimelineLoaded={setGitTimelineLoaded}
+                  />
+                )}
+                <div
+                  style={
+                    gitTimelineLoaded
+                      ? { display: 'none', overflow: 'hidden' }
+                      : undefined
+                  }>
+                  {branches &&
+                    branches.map((branch: string, index: number) => (
+                      <Lottie
+                        animationData={loadingAnimation}
+                        key={index}
+                        loop={true}
+                        style={{ height: '50px' }}
+                      />
+                    ))}
+                </div>
               </div>
-              {/* )} */}
             </div>
           </div>
+          {/* {branches && !gitTimelineLoaded && (
+            <div className="timeline-svg-container">
+              {branches.map((branch: string, index: number) => (
+                <Lottie
+                  animationData={loadingAnimation}
+                  key={index}
+                  loop={true}
+                  style={{ height: '50px' }}
+                />
+              ))}
+            </div>
+          )} */}
           <ShowChatButton />
           <CommitModal />
         </div>
