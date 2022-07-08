@@ -22,7 +22,6 @@ export const Validation: React.FC = () => {
   const dispatch = useDispatch();
 
   const fetchRealToken = async (token: string) => {
-    console.log(token, 'Token inside fetch');
     setLoading(true);
     const body = JSON.stringify({ code: token });
     fetch(
@@ -63,7 +62,6 @@ export const Validation: React.FC = () => {
       },
     )
       .then(res => res.json())
-      .then(data => console.log(data))
       .catch(err => console.log(err));
   };
 
@@ -76,14 +74,10 @@ export const Validation: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('hi');
-    console.log(tempToken);
     tempToken && fetchRealToken(tempToken);
   }, []);
 
-  useEffect(() => {
-    console.log(trueToken, 'hello');
-  }, [trueToken]);
+  useEffect(() => {}, [trueToken]);
 
   return (
     <div className="validation-wrapper">

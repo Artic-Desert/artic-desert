@@ -23,11 +23,8 @@ export const ChatInput: React.FC<{
       avatar_url: user.avatar_url,
     };
 
-    console.log(messageBody);
     // TODO: Send message to the backend get it back and update new State with the created message
     const messageCreated = await postMessage(messageBody);
-
-    console.log(messageCreated);
 
     socketRef.current = io('https://arctic-desert.herokuapp.com');
     socketRef.current.emit('message', messageCreated);

@@ -12,7 +12,6 @@ export const TokenInput: React.FC = () => {
     setMessage('');
     event.preventDefault();
     if (ghpToken) {
-      console.log('---------------------', ghpToken);
       dispatch(setToken(ghpToken));
     } else {
       setMessage('Please enter a valid GHP Token');

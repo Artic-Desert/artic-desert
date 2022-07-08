@@ -19,7 +19,6 @@ import { setRepoModal } from '../../redux/repoModal/actions';
 export const RepoItem: React.FC<{
   repo: GithubRepo;
 }> = ({ repo }) => {
-  console.log('<RepoItem> input repo prop: ', repo);
   const [numOfBranches, setNumOfBranches] = useState(0);
   const { repos } = useRepos();
   const { user } = useUser();

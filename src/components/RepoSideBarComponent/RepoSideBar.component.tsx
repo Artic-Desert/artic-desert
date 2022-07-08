@@ -30,7 +30,6 @@ export const RepoSideBar: React.FC = () => {
     setLoading(true);
 
     const user = await fetchUser();
-    console.log('Dynamo user for repo array: ', user);
 
     user &&
       Promise.all(
@@ -54,8 +53,6 @@ export const RepoSideBar: React.FC = () => {
 
     setLoading(false);
   };
-
-  useEffect(() => console.log(repos), [repos]);
 
   useEffect(() => {
     fetchUserRepos();

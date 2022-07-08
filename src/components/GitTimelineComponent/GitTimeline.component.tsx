@@ -28,10 +28,6 @@ export const GitTimeline: React.FC<{
     getTimeLineData();
   }, []);
 
-  useEffect(() => {
-    console.log('Arrays inside gittimeline:', arrays[0]);
-  }, [arrays?.length]);
-
   const getTimeLineData = async () => {
     ApiClientService.getTimelineData(repo, ghpToken).then(data => {
       setGitTimelineData(data);

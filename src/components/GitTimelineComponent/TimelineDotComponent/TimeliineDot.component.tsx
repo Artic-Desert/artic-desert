@@ -21,7 +21,6 @@ export const TimeliineDot: React.FC<{
   height,
 }) => {
   const dispatch = useDispatch();
-  // console.log('INDEX OF DOT:', indexY);
   return (
     <>
       <motion.circle

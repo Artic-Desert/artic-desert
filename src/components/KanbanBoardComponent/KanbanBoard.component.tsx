@@ -17,9 +17,6 @@ export const KanbanBoard: React.FC = () => {
   const { branch } = useBranch();
   const { repo } = useRepo();
 
-  console.log('<KanbanBoard> current branch: ', branch);
-  console.log('<KanbanBoard> current repo: ', repo);
-
   const { kanban } = useKanban();
   const dispatch = useDispatch();
 
@@ -36,13 +33,11 @@ export const KanbanBoard: React.FC = () => {
       ApiClientService.getKanbanBoard(kanban_board_id).then(data => {
         dispatch(setKanban(data.board));
       });
-    console.log('Kanban Board: getting board');
   }, [branch]);
 
   useEffect(() => {
     kanban_board_id &&
       ApiClientService.updateKanbanBoard(kanban_board_id, kanban);
-    console.log('Kanban Board: updating board');
   }, [kanban]);
 
   const onDragEnd = ({ source, destination }: DropResult) => {
@@ -112,8 +107,6 @@ export const KanbanBoard: React.FC = () => {
       return null;
     }
   };
-
-  console.log('LA BRANCA', branch);
 
   return (
     <>

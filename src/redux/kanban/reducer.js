@@ -51,10 +51,7 @@ const initialKanban = {
 
 export const kanbanReducer = (state = initialKanban, action) => {
   if (action.type === SET_KANBAN) {
-    console.log('inside set kanban');
-    console.log('Kanban action payload: ', action.payload);
     const newState = { ...action.payload };
-    console.log('new state: ', newState);
     return newState;
   }
   if (action.type === ADD_TASK) {
@@ -70,7 +67,6 @@ export const kanbanReducer = (state = initialKanban, action) => {
   }
   if (action.type === DELETE_TASK) {
     const columnId = action.payload.column;
-    console.log('state: ', state);
     const oldTasks = state[columnId].tasks;
     const newTasks = oldTasks.filter(
       (task, index) => index !== action.payload.index,
@@ -79,13 +75,11 @@ export const kanbanReducer = (state = initialKanban, action) => {
       ...state,
       [columnId]: { id: columnId, tasks: newTasks },
     };
-    console.log('new state: ', newState);
     return newState;
   }
   if (action.type === UPDATE_ONE_COLUMN) {
     const columnId = action.payload.column.id;
     const newState = { ...state, [columnId]: action.payload.column };
-    console.log('new state: ', newState);
     return newState;
   }
   if (action.type === UPDATE_TWO_COLUMNS) {
@@ -96,7 +90,6 @@ export const kanbanReducer = (state = initialKanban, action) => {
       [columnOneId]: action.payload.columnOne,
       [columnTwoId]: action.payload.columnTwo,
     };
-    console.log('new state: ', newState);
     return newState;
   }
   if (action.type === UPDATE_TASK) {
@@ -117,7 +110,6 @@ export const kanbanReducer = (state = initialKanban, action) => {
         tasks: newTasks,
       },
     };
-    console.log('new state: ', newState);
     return newState;
   }
   return state;

@@ -4,7 +4,6 @@ const BASE_URL = 'https://arctic-desert.herokuapp.com/chatgroup';
 
 export const createChat = async (body: ChatGroupToCreate) => {
   try {
-    console.log('BODY : ', body);
     const response = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
@@ -14,7 +13,6 @@ export const createChat = async (body: ChatGroupToCreate) => {
     });
 
     const parsedRepsonse: ChatGroup = await response.json();
-    console.log('CREATE CHAT RESPONSE : ', parsedRepsonse);
 
     return parsedRepsonse;
   } catch (error) {

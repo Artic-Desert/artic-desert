@@ -63,7 +63,6 @@ export const CommitModal: React.FC = () => {
         ghpToken,
         commitModal,
       ).then(data => {
-        console.log(data);
         setCommitInfo(data);
       });
   }, [commitModal]);
@@ -80,18 +79,15 @@ export const CommitModal: React.FC = () => {
     const extArray = url.split('.');
     const ext = extArray[extArray.length - 1].split('?')[0];
     setFileExtension(ext);
-    console.log(ext);
     const response = await fetch(url, {
       headers: {
         Authorization: `token ${process.env.REACT_APP_GHP_TOKEN || ghpToken}`,
       },
     });
     const parsedResponse = await response.json();
-    console.log(parsedResponse);
     setFileContents(parsedResponse.content);
   };
 
-  console.log('HI THERE, IM INSIDE COMMIT MODAL');
   return (
     commitModal &&
     commitInfo &&
