@@ -80,8 +80,6 @@ export const Validation: React.FC = () => {
     tempToken && fetchRealToken(tempToken);
   }, []);
 
-  useEffect(() => {}, [trueToken]);
-
   return (
     <div className="validation-wrapper">
       <div className="validation-main-container">
