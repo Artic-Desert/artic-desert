@@ -37,14 +37,12 @@ export const Validation: React.FC = () => {
       .then(res => res.json())
       .then(data => {
         postUserToDynamo(data);
-        console.log(data.access_token, 'access token');
         setTrueToken(data.access_token);
         AuthService.setToken(data.access_token);
         return fetchUserData(data.access_token);
       })
       .then(res => res.json())
       .then(data => {
-        console.log('true token : ', AuthService.getToken());
         AuthService.setUser(data);
         dispatch(setUser(data));
         navigate('/Dashboard');
