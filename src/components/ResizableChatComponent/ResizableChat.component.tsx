@@ -54,7 +54,6 @@ export const ResizableChat: React.FC = () => {
           cursor: isDragging ? 'row-resize' : '',
         }}
         onDoubleClick={() => {
-          console.log('Dbl click');
           mWidth.set(vw * 0.5 * 0.9);
           mHeight.set(vw * 0.35);
         }}>

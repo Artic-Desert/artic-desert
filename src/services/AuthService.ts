@@ -12,7 +12,6 @@ export const AuthService = {
 
   getToken: function () {
     // ADDED || process.env.REACT_APP_GHP_TOKEN
-    console.log('token : ', sessionStorage.getItem('token'));
     return sessionStorage.getItem('token') || process.env.REACT_APP_GHP_TOKEN;
   },
 

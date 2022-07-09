@@ -59,7 +59,6 @@ export const NewRepo: React.FC<{
               handleRepoNotFound(repo, owner);
               return;
             }
-            console.log('<NewRepo> repo fullname : ', `${owner}/${repo}`);
 
             setMessage('Repository added successfully!');
             setError(false);

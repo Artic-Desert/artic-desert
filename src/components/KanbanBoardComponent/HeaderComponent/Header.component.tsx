@@ -29,7 +29,6 @@ export const Header: React.FC = () => {
   const [collaborators, setCollaborators] = useState([]);
 
   useEffect(() => {
-    console.log('<Header> Repo before calling fetchInfoOfRepo : ', repo);
     default_branch && dispatch(setBranch(default_branch.value));
     lottie.loadAnimation({
       container: container.current,
@@ -59,7 +58,6 @@ export const Header: React.FC = () => {
       label: string;
     }>,
   ) => {
-    console.log('Branch change event fired. Current branch: ', e?.value);
     dispatch(setBranch(e?.value || default_branch.value));
   };
 
