@@ -1,8 +1,79 @@
-# ARTIC DESERT:
+# Artic Desert
 
-### By Alex Price-Richards, Andrés Rodriguez, Seabstian Fernandez and Xavier Fabregat
+### By Alex Price-Richards, Andrés Rodriguez, Sebastian Fernandez and Xavier Fabregat
 
-This project is the love child between git kraken and slack, built by developers for developers.
+At Arctic Desert we set out to create an intuitive app that aids developer teams. We aimed to create a service that integrates git workflow, task management and real-time communication. This is integrated into a single workspace, allowing you to seamlessly switch between teams, projects and branches. Developers use multiple apps and interfaces during the development process and we were inspired to create an app that streamlines this workflow by boosting productivity and keeping an open line of communication.
+
+## Tech Stack
+
+### Frontend
+
+<p>
+	<a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"
+		><img
+			src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/typescript-colored.svg"
+			width="36"
+			height="36"
+			alt="TypeScript"
+	/></a>
+<a href="https://reactjs.org/" target="_blank" rel="noreferrer"
+		><img
+			src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/react-colored.svg"
+			width="36"
+			height="36"
+			alt="React"
+	/></a>
+	<a href="https://redux.js.org/" target="_blank" rel="noreferrer"
+		><img
+			src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/redux-colored.svg"
+			width="36"
+			height="36"
+			alt="Redux"
+	/></a>
+</p>
+
+### Backend
+
+<p>
+  <a
+		href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+		target="_blank"
+		rel="noreferrer"
+		><img
+			src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/javascript-colored.svg"
+			width="36"
+			height="36"
+			alt="JavaScript"
+	/></a>
+   <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer"
+		><img
+			src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/postgresql-colored.svg"
+			width="36"
+			height="36"
+			alt="PostgreSQL"
+	/></a>
+  <a href="https://expressjs.com/" target="_blank" rel="noreferrer"
+		><img
+			src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/express-colored.svg"
+			width="36"
+			height="36"
+			alt="Express"
+	/></a>
+   <a href="https://www.heroku.com/" target="_blank" rel="noreferrer"
+		><img
+			src="https://cdn.worldvectorlogo.com/logos/heroku-4.svg"
+			width="36"
+			height="36"
+			alt="Heroku"
+	/></a>
+   <a href="https://aws.amazon.com/" target="_blank" rel="noreferrer"
+		><img
+			src="https://cdn.worldvectorlogo.com/logos/aws-2.svg"
+			width="36"
+			height="36"
+			alt="AWS"
+	/></a>
+</p>
 
 # Getting Started with Create React App
 
