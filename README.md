@@ -75,49 +75,47 @@ At Arctic Desert we set out to create an intuitive app that aids developer teams
 	/></a>
 </p>
 
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To run this app on your own computer you'll need to clone this repository locally, to do so, you'll need git installed on your computer, you can check if it is by running <code>git --version</code>, once it is installed you'll need to run:
 
-## Available Scripts
+```
+git clone https://github.com/Artic-Desert/artic-desert.git
+```
 
-In the project directory, you can run:
+Once you have cloned this repo, install the dependencies with the following command:
 
-### `npm start`
+```
+npm i --legacy-peer-deps
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You'll need to create a .env file on the root directory with the following env variables:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+REACT_APP_WEATHER_API_KEY= {{YOUR_WEATHER_API_KEY_HERE}}
+REACT_APP_GHP_TOKEN= {{YOUR_GITHUB_GHP_TOKEN_HERE}}
+```
 
-### `npm test`
+The second one is only necessary to bypass the ghp token screen, if you don't create it, you'll need to input it through the UI.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- You can get your weather api key <a href='https://openweathermap.org/price' target='_blank'>here</a>.
+- You can get your GitHub ghp token <a href='https://github.com/settings/tokens' target='_blank'>here</a>.
 
-### `npm run build`
+Once all this is set up, to run the app just type <code>npm start</code> in the console and the app will run on https://localhost:3000.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Images
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Welcome Screen:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src='./src/assets/ArticDesertHome.png' width='700'/>
 
-### `npm run eject`
+### Dashboard Screens:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src='./src/assets/ArticDesertDashboard.png' width='500'/>
+<img src='./src/assets/ArticDesertRepoPreview.png' width='500'/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Workspace Screens:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src='./src/assets/ArticDesertWorkspace.png' width='500'/>
+<img src='./src/assets/ArticDesertGitTimeline.png' width='500'/>
+<img src='./src/assets/ArticDesertCommitModal.png' width='500'/>
