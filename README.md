@@ -92,8 +92,8 @@ npm i --legacy-peer-deps
 You'll need to create a .env file on the root directory with the following env variables:
 
 ```
-REACT_APP_WEATHER_API_KEY= {{YOUR_WEATHER_API_KEY_HERE}}
-REACT_APP_GHP_TOKEN= {{YOUR_GITHUB_GHP_TOKEN_HERE}}
+REACT_APP_WEATHER_API_KEY={{YOUR_WEATHER_API_KEY_HERE}}
+REACT_APP_GHP_TOKEN={{YOUR_GITHUB_GHP_TOKEN_HERE}}
 ```
 
 The second one is only necessary to bypass the ghp token screen, if you don't create it, you'll need to input it through the UI.
