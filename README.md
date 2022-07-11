@@ -101,7 +101,7 @@ The second one is only necessary to bypass the ghp token screen, if you don't cr
 - You can get your weather api key <a href='https://openweathermap.org/price' target='_blank'>here</a>.
 - You can get your GitHub ghp token <a href='https://github.com/settings/tokens' target='_blank'>here</a>.
 
-Once all this is set up, to run the app just type <code>npm start</code> in the console and the app will run on https://localhost:3000.
+Once all this is set up, to run the app just type <code>npm start</code> in the console and the app will run on http://localhost:3000.
 
 # Images
 
